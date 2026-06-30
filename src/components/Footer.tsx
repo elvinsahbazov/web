@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { supabase } from '../lib/supabase';
 import Container from './ui/Container';
 import { C } from '../lib/colors';
+import { useSiteContent } from '../context/SiteContentContext';
 
 const PROFILE_IMAGE =
   'https://drive.google.com/thumbnail?id=1YmSQizY-GCTKCiPg6UD2PPFOG0d_ap2o&sz=w200';
@@ -163,6 +164,7 @@ function ContactForm() {
 }
 
 export default function Footer() {
+  const { content } = useSiteContent();
   return (
     <footer className="text-white" style={{ backgroundColor: C.black }}>
       <div className="border-b border-white/5">
@@ -179,7 +181,7 @@ export default function Footer() {
           </motion.div>
           <div className="flex flex-wrap gap-4">
             <a
-              href="https://wa.me/994999550001"
+              href={content.contact_whatsapp_link || 'https://wa.me/994999550001'}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"
@@ -251,13 +253,13 @@ export default function Footer() {
               <h4 className="font-semibold text-xs uppercase tracking-[0.2em] text-white/50 mb-5">Birbaşa Əlaqə</h4>
               <ul className="space-y-3">
                 <li>
-                  <a href="mailto:elvinsahbazovv@gmail.com" className="flex items-center gap-2 text-white/60 hover:text-white text-sm transition-colors">
-                    <Mail size={13} /> elvinsahbazovv@gmail.com
+                  <a href={`mailto:${content.contact_email || 'elvinsahbazovv@gmail.com'}`} className="flex items-center gap-2 text-white/60 hover:text-white text-sm transition-colors">
+                    <Mail size={13} /> {content.contact_email || 'elvinsahbazovv@gmail.com'}
                   </a>
                 </li>
                 <li>
-                  <a href="https://wa.me/994999550001" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/60 hover:text-white text-sm transition-colors">
-                    <Phone size={13} /> +994 99 955 00 01
+                  <a href={content.contact_whatsapp_link || 'https://wa.me/994999550001'} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/60 hover:text-white text-sm transition-colors">
+                    <Phone size={13} /> {content.contact_phone || '+994 99 955 00 01'}
                   </a>
                 </li>
               </ul>
@@ -270,7 +272,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/5 mt-16 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/50 text-xs">© {new Date().getFullYear()} Elvin Şahbazov. Bütün hüquqlar qorunur.</p>
+          <p className="text-white/50 text-xs">{content.footer_copyright || `© ${new Date().getFullYear()} Elvin Şahbazov. Bütün hüquqlar qorunur.`}</p>
           <p className="text-sm text-slate-400">Rəqəmsal Marketinq & Süni İntellekt Avtomatlaşdırma Mütəxəssisi</p>
         </div>
       </Container>

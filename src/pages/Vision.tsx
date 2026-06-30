@@ -4,6 +4,7 @@ import { ArrowRight, TrendingUp, Database, Cpu, Layers } from 'lucide-react';
 import Container from '../components/ui/Container';
 import { fadeUp } from '../lib/motion';
 import { C } from '../lib/colors';
+import { useSiteContent } from '../context/SiteContentContext';
 
 function useScrollSpy(ids: string[]) {
   const [active, setActive] = useState(ids[0]);
@@ -111,6 +112,7 @@ const learningResources = [
 
 export default function Vision() {
   const active = useScrollSpy(sectionIds);
+  const { content } = useSiteContent();
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -171,9 +173,9 @@ export default function Vision() {
                 <span className="section-label">
                   <i className="fas fa-rocket" /> Rəqəmsal Sahibkar
                 </span>
-                <h2 className="section-title mt-8">Rəqəmsal Sahibkar Kimdir?</h2>
+                <h2 className="section-title mt-8">{content.vision_hero_title || 'Rəqəmsal Sahibkar Kimdir?'}</h2>
                 <p className="section-subtitle">
-                  Data, texnologiya və yaradıcılığın kəsişimindəki lider profil.
+                  {content.vision_hero_subtitle || 'Data, texnologiya və yaradıcılığın kəsişimindəki lider profil.'}
                 </p>
               </motion.div>
 
@@ -250,9 +252,9 @@ export default function Vision() {
                 <span className="section-label">
                   <i className="fas fa-user-graduate" /> Rəqəmsal Tələbə
                 </span>
-                <h2 className="section-title mt-8">Rəqəmsal Tələbə Kimdir?</h2>
+                <h2 className="section-title mt-8">{content.vision_mission_title || 'Rəqəmsal Tələbə Kimdir?'}</h2>
                 <p className="section-subtitle">
-                  Texnologiya, data və rəqəmsal bacarıqlara yiyələnən müasir öyrənən profili.
+                  {content.vision_mission_desc || 'Texnologiya, data və rəqəmsal bacarıqlara yiyələnən müasir öyrənən profili.'}
                 </p>
               </motion.div>
 

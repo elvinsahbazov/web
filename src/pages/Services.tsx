@@ -5,6 +5,7 @@ import Container from '../components/ui/Container';
 import { fadeUp } from '../lib/motion';
 import { C } from '../lib/colors';
 import { supabase } from '../lib/supabase';
+import { useSiteContent } from '../context/SiteContentContext';
 
 // ─── ScrollSpy Hook ─────────────────────────────────────────────────────────
 function useScrollSpy(ids: string[]) {
@@ -199,6 +200,7 @@ const sectionIds = ['xidmetlerim', 'biznes-inkisaf', 'telim'];
 
 export default function Services() {
   const active = useScrollSpy(sectionIds);
+  const { content } = useSiteContent();
   const [dbServices, setDbServices] = useState<any[]>([]);
 
   useEffect(() => {
@@ -297,9 +299,9 @@ export default function Services() {
                 <span className="section-label">
                   <i className="fas fa-briefcase" /> Xidmətlərim
                 </span>
-                <h2 className="section-title mt-8">Peşəkar Xidmətlər</h2>
+                <h2 className="section-title mt-8">{content.services_main_title || 'Peşəkar Xidmətlər'}</h2>
                 <p className="section-subtitle">
-                  ROI-a fokuslanmış, məlumata əsaslanan marketinq xidmətləri.
+                  {content.services_main_subtitle || 'ROI-a fokuslanmış, məlumata əsaslanan marketinq xidmətləri.'}
                 </p>
               </motion.div>
 
@@ -356,9 +358,9 @@ export default function Services() {
                 <span className="section-label">
                   <i className="fas fa-chart-line" /> Biznes İnkişaf
                 </span>
-                <h2 className="section-title mt-4">Biznes İnkişaf Xidmətləri</h2>
+                <h2 className="section-title mt-4">{content.services_bizdev_title || 'Biznes İnkişaf Xidmətləri'}</h2>
                 <p className="section-subtitle">
-                  Biznesinizi böyütmək üçün strateji yanaşmalar və hazır həllər.
+                  {content.services_bizdev_subtitle || 'Biznesinizi böyütmək üçün strateji yanaşmalar və hazır həllər.'}
                 </p>
               </motion.div>
 
@@ -409,12 +411,9 @@ export default function Services() {
                   <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold tracking-wide uppercase mb-6">
                     <i className="fas fa-star" /> Beynəlxalq Səviyyəli Kurs
                   </span>
-                  <h2 className="font-satoshi text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight mb-6">
-                    Rəqəmsal Marketinq & <br className="hidden md:block"/>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Süni İntellektlə Avtomatlaşdırma Kursu</span>
-                  </h2>
+                  <h2 className="font-satoshi text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight mb-6" dangerouslySetInnerHTML={{ __html: content.services_course_title || 'Rəqəmsal Marketinq & <br class="hidden md:block"/><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Süni İntellektlə Avtomatlaşdırma Kursu</span>' }} />
                   <p className="text-white/60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                    Rəqəmsal Marketinq və Süni İntellektlə Avtomatlaşdırmanı real layihələr, mentorluq və beynəlxalq səviyyəli bacarıqlarla öyrənin.
+                    {content.services_course_subtitle || 'Rəqəmsal Marketinq və Süni İntellektlə Avtomatlaşdırmanı real layihələr, mentorluq və beynəlxalq səviyyəli bacarıqlarla öyrənin.'}
                   </p>
                   
                   <div className="flex flex-wrap justify-center gap-3 mt-8">

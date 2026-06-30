@@ -187,7 +187,7 @@ export default function Admin() {
           )}
             {activeTab === 'pages' && (
               <div className="space-y-8 col-span-1 lg:col-span-2">
-                {['hero', 'about'].map(section => {
+                {['hero', 'about', 'services', 'vision', 'contact', 'footer'].map(section => {
                   const sectionItems = siteContent.filter(item => item.section === section);
                   if(sectionItems.length === 0) return null;
                   return (

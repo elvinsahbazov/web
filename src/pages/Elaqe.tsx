@@ -5,6 +5,7 @@ import { supabase } from '../lib/supabase';
 import Container from '../components/ui/Container';
 import { fadeUp } from '../lib/motion';
 import { C } from '../lib/colors';
+import { useSiteContent } from '../context/SiteContentContext';
 
 const contactInfo = [
   {
@@ -123,6 +124,7 @@ const subjects = [
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
 export default function Elaqe() {
+  const { content } = useSiteContent();
   const [form, setForm] = useState({
     full_name: '',
     email: '',
@@ -168,12 +170,9 @@ export default function Elaqe() {
           <span className="section-label">
             <MessageCircle size={12} /> Əlaqə
           </span>
-          <h1 className="section-title mt-8 leading-tight">
-            Biznesiniz üçün <span className="text-gradient-blue">doğru addımı</span><br />
-            birlikdə ataq
-          </h1>
+          <h1 className="section-title mt-8 leading-tight" dangerouslySetInnerHTML={{ __html: content.contact_page_title || 'Biznesiniz üçün <span class="text-gradient-blue">doğru addımı</span><br />birlikdə ataq' }} />
           <p className="section-subtitle mx-auto">
-            Pulsuz ilkin audit üçün əlaqə saxlayın. 24 saat ərzində cavab alacaqsınız.
+            {content.contact_page_subtitle || 'Pulsuz ilkin audit üçün əlaqə saxlayın. 24 saat ərzində cavab alacaqsınız.'}
           </p>
         </motion.div>
 
