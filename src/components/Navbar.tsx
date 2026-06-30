@@ -91,20 +91,20 @@ export default function Navbar() {
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-4 md:gap-6">
+          <div className="flex items-center gap-3 md:gap-6">
             <a
               href="https://wa.me/994999550001"
               target="_blank"
               rel="noopener noreferrer"
               data-magnetic
-              className={`flex items-center gap-2 overflow-hidden rounded-full border border-green-500/20 bg-green-500/10 px-4 py-2 text-sm font-semibold text-[#25D366] transition-all duration-500 ease-out hover:bg-green-500/20 ${
+              className={`flex items-center gap-2 overflow-hidden rounded-full shadow-lg shadow-[#25D366]/20 bg-[#25D366] px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm font-semibold text-white transition-all duration-500 ease-out hover:bg-[#1DA851] ${
                 isMinimal
                   ? 'pointer-events-none w-0 scale-95 border-0 p-0 opacity-0'
                   : 'w-auto scale-100 opacity-100'
               }`}
             >
-              <i className="fab fa-whatsapp text-base text-[#25D366]" />
-              <span className="hidden sm:inline">WhatsApp</span>
+              <i className="fab fa-whatsapp text-sm md:text-base text-white" />
+              <span className="inline">WhatsApp</span>
             </a>
 
             <button
@@ -113,7 +113,7 @@ export default function Navbar() {
               aria-label={isOpen ? 'Menyunu bağla' : 'Menyunu aç'}
               aria-expanded={isOpen}
               onClick={toggle}
-              className={`relative z-[101] flex h-12 w-12 shrink-0 flex-col items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/5 transition-all duration-500 hover:bg-white/10 ${
+              className={`hidden md:flex relative z-[101] h-12 w-12 shrink-0 flex-col items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/5 transition-all duration-500 hover:bg-white/10 ${
                 isMinimal ? 'shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-md' : ''
               } ${isOpen ? 'border-white/20 bg-white/10' : ''}`}
             >
