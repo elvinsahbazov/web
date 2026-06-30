@@ -3,6 +3,7 @@ import { BookOpen, Award, Briefcase, Target, GraduationCap } from 'lucide-react'
 import Container from '../components/ui/Container';
 import { fadeUp } from '../lib/motion';
 import { C } from '../lib/colors';
+import { useSiteContent } from '../context/SiteContentContext';
 
 const ABOUT_IMAGE =
   'https://drive.google.com/thumbnail?id=17punt_lVpXaUSqdoz0x8TPNSKDnFkgkT&sz=w1200';
@@ -88,6 +89,7 @@ const books = [
 const fadeUpLocal = fadeUp;
 
 function AboutHero() {
+  const { content } = useSiteContent();
   return (
     <section className="hero-batuhan relative overflow-hidden bg-black">
       <div className="pointer-events-none absolute inset-0 z-[1]">
@@ -102,7 +104,7 @@ function AboutHero() {
       >
         <div className="absolute inset-0 z-[1] bg-gradient-to-r from-black via-black/60 to-transparent lg:from-black lg:via-black/25 lg:to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 z-[1] h-[18%] bg-gradient-to-t from-black/70 to-transparent lg:hidden" />
-        <img src={ABOUT_IMAGE} alt="Elvin Şahbazov" />
+        <img src={content.about_image || ABOUT_IMAGE} alt="Elvin Şahbazov" />
       </motion.div>
 
       <div className="relative z-[3] mx-auto max-w-[1600px]">
@@ -171,7 +173,7 @@ function AboutHero() {
           <div className="relative min-h-[50vh] overflow-hidden lg:hidden">
             <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black via-transparent to-transparent" />
             <img
-              src={ABOUT_IMAGE}
+              src={content.about_image || ABOUT_IMAGE}
               alt=""
               aria-hidden="true"
               className="h-[118%] w-full object-cover object-[50%_12%] -translate-y-[10%]"
@@ -196,6 +198,7 @@ function DarkCard({ children, className = '' }: { children: React.ReactNode; cla
 }
 
 export default function About() {
+  const { content } = useSiteContent();
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       <AboutHero />
@@ -211,16 +214,12 @@ export default function About() {
                     <i className="fas fa-user text-primary" />
                   </div>
                   <h3 className="text-lg font-bold text-white" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>
-                    Haqqımda
+                    {content.about_title || 'Haqqımda'}
                   </h3>
                 </div>
                 <div className="no-scrollbar max-h-72 space-y-3 overflow-y-auto pr-1 text-sm leading-relaxed text-white/65">
-                  <p>
-                    Mən <strong className="text-white">Elvin Şahbazov</strong> – rəqəmsal marketinq, süni intellektlə avtomatlaşdırma, biznes inkişafı və rəqəmsal idarəetmə sistemləri üzrə fəaliyyət göstərən mütəxəssis, təlimçi və rəhbərəm.
-                  </p>
-                  <p>
-                    Hazırda fəaliyyətimi <strong className="text-white">Qafqazın ən böyük Avtomobil Mərkəzi olan Baku Auto Mall-da Marketinq Direktoru</strong>, eyni zamanda <strong className="text-white">SMARTKOB – Rəqəmsal İdarəetmə Mərkəzində Marketinq və Biznes İnkişafı Departamentinin Rəhbəri</strong> kimi davam etdirirəm.
-                  </p>
+                  <p dangerouslySetInnerHTML={{ __html: content.about_desc_1 || 'Mən <strong class="text-white">Elvin Şahbazov</strong> – rəqəmsal marketinq, süni intellektlə avtomatlaşdırma, biznes inkişafı və rəqəmsal idarəetmə sistemləri üzrə fəaliyyət göstərən mütəxəssis, təlimçi və rəhbərəm.' }} />
+                  <p dangerouslySetInnerHTML={{ __html: content.about_desc_2 || 'Hazırda fəaliyyətimi <strong class="text-white">Qafqazın ən böyük Avtomobil Mərkəzi olan Baku Auto Mall-da Marketinq Direktoru</strong>, eyni zamanda <strong class="text-white">SMARTKOB – Rəqəmsal İdarəetmə Mərkəzində Marketinq və Biznes İnkişafı Departamentinin Rəhbəri</strong> kimi davam etdirirəm.' }} />
                   <p>
                     Marketinq sahəsində məqsədim yalnız reklam kampaniyaları idarə etmək deyil. Əsas hədəfim bizneslər üçün ölçülə bilən nəticələrə əsaslanan, davamlı və tam idarə olunan rəqəmsal marketinq sistemləri qurmaqdır.
                   </p>
