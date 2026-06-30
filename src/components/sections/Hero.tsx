@@ -29,19 +29,37 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-black">
       {/* Stripe ambient glow */}
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
         <div className="absolute -left-32 top-1/4 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(0,123,255,0.14)_0%,transparent_68%)] blur-3xl" />
         <div className="absolute bottom-0 right-0 h-[640px] w-[640px] translate-x-1/4 rounded-full bg-[radial-gradient(circle,rgba(0,123,255,0.08)_0%,transparent_70%)] blur-3xl" />
         <div className="vercel-grid absolute inset-0 opacity-[0.35]" />
       </div>
 
-      <div className="relative z-10 mx-auto grid min-h-screen max-w-[1800px] grid-cols-1 items-center gap-12 px-6 pb-24 pt-28 md:grid-cols-[1fr_0.95fr] md:gap-8 md:px-10 2xl:px-20 md:pb-32 md:pt-32 lg:gap-16">
+      {/* RIGHT — Immersive Image Container */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          filter: isMenuOpen ? 'blur(20px) brightness(0.2)' : 'blur(0px) brightness(1)',
+        }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute right-0 top-0 h-full w-full md:w-1/2 z-0 opacity-30 md:opacity-100"
+      >
+        <img
+          src={PROFILE_IMAGE}
+          alt="Elvin Şahbazov"
+          className="h-full w-full object-cover object-right-top [mask-image:linear-gradient(to_top,transparent_0%,black_30%)] md:[mask-image:linear-gradient(to_right,transparent_0%,black_30%)]"
+        />
+      </motion.div>
+
+      {/* TEXT LAYOUT (THE "CUBIX" CLEANLINESS) */}
+      <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center px-6 pb-24 pt-28 md:grid-cols-2 md:px-12 md:pb-32 md:pt-32">
         {/* LEFT — persona & authority */}
         <motion.div
           variants={revealContainer}
           initial="hidden"
           animate="show"
-          className="flex flex-col justify-center"
+          className="flex flex-col justify-center text-left"
         >
           <motion.h1
             variants={revealItem}
@@ -62,7 +80,7 @@ export default function Hero() {
             {badges.map((badge) => (
               <span
                 key={badge}
-                className="stripe-glass-pill text-xs font-medium tracking-wide text-white/90"
+                className="bg-white/[0.03] backdrop-blur-xl border border-white/5 rounded-full px-4 py-1.5 text-xs font-medium tracking-wide text-white/90"
               >
                 {badge}
               </span>
@@ -84,7 +102,7 @@ export default function Hero() {
               Konsultasiya
             </motion.a>
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={springSnappy}>
-              <Link to="/xidmetler" data-magnetic className="btn-outline-dark btn-hero">
+              <Link to="/xidmetler" data-magnetic className="bg-white/[0.03] backdrop-blur-xl border border-white/5 text-white btn-hero hover:bg-white/[0.08] transition-colors">
                 Xidmətlər
                 <ArrowRight size={16} />
               </Link>
@@ -128,13 +146,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...springSmooth, delay: 0.48 }}
-            className="relative mt-16 w-full max-w-2xl"
+            className="relative mt-16 w-full max-w-xl"
           >
             <div
               className="pointer-events-none absolute -inset-3 rounded-3xl bg-blue-500/10 blur-2xl"
               aria-hidden="true"
             />
-            <div className="relative rounded-2xl border border-white/10 border-l-4 border-l-blue-500 bg-white/[0.03] p-6 shadow-2xl backdrop-blur-xl md:p-8">
+            <div className="relative rounded-2xl border border-white/5 border-l-4 border-l-blue-500 bg-white/[0.03] p-6 shadow-2xl backdrop-blur-xl md:p-8">
               <p className="text-sm leading-relaxed text-white/80 md:text-base">
                 Hər əsrdə bir dönüş nöqtəsi olur və oyunun qaydaları dəyişir. Bu gün həmin nöqtənin
                 adı <span className="font-semibold text-blue-500">Süni İntellektdir.</span>
@@ -152,34 +170,9 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          <AdsPlatformsTabs />
-        </motion.div>
-
-        {/* RIGHT — clean keynote portrait */}
-        <motion.div
-          initial={{ opacity: 0, x: 40, filter: 'blur(12px)' }}
-          animate={{
-            opacity: 1,
-            x: 0,
-            filter: isMenuOpen ? 'blur(20px) brightness(0.2)' : 'blur(0px) brightness(1)',
-            scale: isMenuOpen ? 0.95 : 1,
-          }}
-          transition={springSmooth}
-          className="relative flex items-end justify-center md:justify-end"
-        >
-          <div
-            className="pointer-events-none absolute bottom-[12%] right-[8%] h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(0,123,255,0.22)_0%,transparent_70%)] blur-3xl"
-            aria-hidden="true"
-          />
-
-          <motion.img
-            src={PROFILE_IMAGE}
-            alt="Elvin Şahbazov — Rəqəmsal Marketinq & Süni İntellekt Avtomatlaşdırma Mütəxəssisi"
-            className="hero-portrait relative z-[1] w-full max-w-[520px] object-contain object-bottom md:max-h-[88vh] md:max-w-none"
-            initial={{ opacity: 0, y: 32 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...springSmooth, delay: 0.22 }}
-          />
+          <div className="mt-16 w-full max-w-xl">
+            <AdsPlatformsTabs />
+          </div>
         </motion.div>
       </div>
     </section>
