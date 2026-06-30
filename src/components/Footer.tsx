@@ -35,6 +35,62 @@ function NewsletterForm() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!email.trim()) return;
+    setStatus('loading');
+    const { error } = await supabase.from('newsletter_subscribers').insert({
+      email: email.trim().toLowerCase(),
+      source: 'footer',
+    });
+    if (!error) {
+      setStatus('success');
+    } else if (error.code === '23505') {
+      setStatus('duplicate');
+    } else {
+      setStatus('error');
+    }
+  };
+
+  if (status === 'success') {
+    return (
+      <div className="flex items-center gap-2 text-primary text-sm">
+        <CheckCircle size={15} />
+        <span>Abunə oldunuz! Xoş gəldiniz.</span>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      {status === 'duplicate' && (
+        <p className="text-white/60 text-xs mb-2">Bu email artıq abunədir.</p>
+      )}
+      <form onSubmit={submit} className="flex gap-2">
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => { setEmail(e.target.value); setStatus('idle'); }}
+          placeholder="Email ünvanınız"
+          required
+          className="flex-1 px-5 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-white/40 text-sm focus:outline-none focus:border-primary/50 transition-colors"
+        />
+        <button
+          type="submit"
+          disabled={status === 'loading'}
+          className="px-5 py-3 bg-primary rounded-2xl text-white hover:bg-primary-dark transition-colors disabled:opacity-60 flex items-center"
+        >
+          {status === 'loading' ? <i className="fas fa-spinner fa-spin text-xs" /> : <Send size={13} />}
+        </button>
+      </form>
+    </div>
+  );
+}
+
+function ContactForm() {
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
     setStatus('loading');
     
@@ -65,8 +121,6 @@ function NewsletterForm() {
       message: form.message.trim(),
       page_source: 'footer',
     });
-
-
     if (error) {
       setStatus('error');
     } else {
