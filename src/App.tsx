@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { SiteContentProvider } from './context/SiteContentContext';
 import Layout from './components/layout/Layout';
 import Preloader from './components/Preloader';
 import IndexPage from './pages/Index';
