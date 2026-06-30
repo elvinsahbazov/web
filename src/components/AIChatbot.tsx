@@ -1,0 +1,278 @@
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+// Initialize Gemini AI
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY || '';
+const genAI = new GoogleGenerativeAI(apiKey);
+
+const SYSTEM_PROMPT = `Sən Elvin Şahbazovun şəxsi AI köməkçisisən. Adın "AI Asistent"dir.
+Çox mehriban, enerjili, köməksevər, səmimi, tam bir insan kimi və səlis Azərbaycan dilində danışırsan.
+Emoji-lərdən istifadə et. Qısa, dəqiq və təbii cavablar ver. Çox uzun, darıxdırıcı və robotik mətnlər yazma.
+
+ELVİN ŞAHBAZOV HAQQINDA MƏLUMAT:
+Elvin Şahbazov rəqəmsal marketinq, performans reklamları (Meta & Google Ads) və bizneslərin süni intellektlə (AI) avtomatlaşdırılması üzrə peşəkar mütəxəssisdir. O, bizneslərin satışlarını və ROAS (reklam gəlirliliyini) artırmaq üçün data-yönümlü xüsusi strategiyalar hazırlayır.
+
+ƏLAQƏ MƏLUMATLARI:
+- WhatsApp və Zəng: +994 99 955 00 01
+- Email: elvinsahbazovv@gmail.com
+- İş vaxtı: 7/24 onlaynıq! (Həmçinin mən 7/24 buradayam!)
+
+XİDMƏTLƏRİMİZ (Saytda göstərilən):
+1. Performans Reklamları (Google, Meta, TikTok) - Büdcəni hədər etmədən ən yüksək satış gətirən hədəfli reklamlar.
+2. Vebsaytların Hazırlanması - Yüksək sürətli, müasir dizaynlı və konversiya yönümlü biznes saytlarının və e-ticarət platformalarının qurulması.
+3. AI və Biznes Avtomatlaşdırması - Çatbotlar (mənim kimi!), CRM inteqrasiyası, Zapier/Make proseslərinin avtomatlaşdırılması.
+4. Funnel Qurulması - Ziyarətçini müştəriyə çevirən addımlı sistemlər.
+5. Audit və Analiz - Mövcud biznesin problemlərinin tapılması və həlli.
+
+QİYMƏTLƏR (ÇOX ÖNƏMLİ):
+Dəqiq rəqəm (qiymət) demə. İstənilən qiymət sualına belə və ya buna bənzər cavab ver: "Hər biznesin hədəfi və ehtiyacı fərqlidir, ona görə də qiymətlər xidmətin növünə və həcminə görə dəyişir. Sizə ən uyğun paketi təklif edə bilməmiz üçün zəhmət olmasa WhatsApp-dan bizə yazın (+994 99 955 00 01), birlikdə layihənizi müzakirə edək! 😊"
+
+PORTFOLİO:
+Bizim bir çox uğurlu işlərimiz və yüksək ROAS gətirən layihələrimiz var. Müştəri case-study-ləri ilə saytın "Portfolio" bölməsindən tanış ola bilərsiniz.
+
+DİQQƏT EDİLƏSİ NÜANS:
+- İstənilən suala cavab verdikdən sonra istifadəçini hərəkətə keçməyə (Call to Action) həvəsləndir. (Məsələn: "Ətraflı məlumat üçün WhatsApp-a yaza bilərsiniz!").
+- Mümkün qədər cümlələrini qısa və oxunaqlı et.
+- Əgər sənin kim olduğunu soruşsalar: "Mən Elvin bəyin AI asistenti və bu saytın rəqəmsal bələdçisiyəm! Sizə necə kömək edə bilərəm? 🤖✨" kimi enerjili cavab ver.`;
+
+export default function UnifiedContactWidget() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
+  
+  const [messages, setMessages] = useState<{ role: 'user' | 'model'; text: string }[]>([
+    { role: 'model', text: 'Salam! Mən Elvin Şahbazovun süni intellekt asistentiyəm. Sizə rəqəmsal marketinq və ya xidmətlərimiz barədə necə kömək edə bilərəm? 😊' }
+  ]);
+  const [input, setInput] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, isTyping]);
+
+  const handleSend = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+
+    const userMessage = input.trim();
+    setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
+    setInput('');
+    setIsTyping(true);
+
+    try {
+      if (!apiKey) {
+        throw new Error('API_KEY_MISSING');
+      }
+
+      // Initialize the model
+      const model = genAI.getGenerativeModel({ 
+        model: 'gemini-1.5-flash',
+        systemInstruction: SYSTEM_PROMPT,
+      });
+
+      // Prepare conversation history for context
+      const history = messages.map(msg => ({
+        role: msg.role === 'model' ? 'model' : 'user',
+        parts: [{ text: msg.text }]
+      }));
+
+      // Start chat
+      const chat = model.startChat({
+        history: history,
+        generationConfig: {
+          maxOutputTokens: 500,
+          temperature: 0.7,
+        },
+      });
+
+      const result = await chat.sendMessage(userMessage);
+      const responseText = result.response.text();
+
+      setMessages(prev => [...prev, { role: 'model', text: responseText }]);
+    } catch (error) {
+      console.error('AI Error:', error);
+      let errorMsg = 'Üzr istəyirəm, hal-hazırda sistemdə qısa bir fasilə var. 🛠️ Zəhmət olmasa bizimlə birbaşa WhatsApp (+994 99 955 00 01) üzərindən əlaqə saxlayın!';
+      if (error instanceof Error && error.message === 'API_KEY_MISSING') {
+        errorMsg = 'API Key tapılmadı. Zəhmət olmasa .env faylında VITE_GEMINI_API_KEY-i əlavə edin.';
+      }
+      setMessages(prev => [...prev, { role: 'model', text: errorMsg }]);
+    } finally {
+      setIsTyping(false);
+    }
+  };
+
+  const handleCloseChat = () => {
+    setChatOpen(false);
+    setMenuOpen(true); // Geri menyuya qayıtsın
+  };
+
+  return (
+    <div className="fixed bottom-24 md:bottom-6 right-4 md:right-6 z-[100] flex flex-col items-end gap-4">
+      {/* --- Chat Window --- */}
+      <AnimatePresence>
+        {chatOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.9, transformOrigin: 'bottom right' }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 50, scale: 0.9 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="w-[350px] max-w-[calc(100vw-48px)] h-[500px] max-h-[calc(100vh-100px)] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-black/10"
+          >
+            {/* Header */}
+            <div className="bg-gradient-to-r from-blue-600 to-blue-800 p-4 flex items-center justify-between text-white flex-none shadow-md">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm relative border border-white/20">
+                  <i className="fas fa-brain text-lg" />
+                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 border-2 border-blue-700 rounded-full"></span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-sm tracking-wide">AI Asistent</h3>
+                  <p className="text-[10px] text-blue-100/90 font-medium tracking-wider uppercase">Onlayn</p>
+                </div>
+              </div>
+              <button 
+                onClick={handleCloseChat}
+                className="w-8 h-8 rounded-full bg-black/10 hover:bg-black/30 flex items-center justify-center transition-colors border border-white/10"
+              >
+                <i className="fas fa-chevron-down text-sm" />
+              </button>
+            </div>
+
+            {/* Messages Body */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#F8FAFC]">
+              {messages.map((msg, i) => (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  key={i} 
+                  className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div className={`max-w-[85%] rounded-2xl p-3.5 text-sm leading-relaxed shadow-sm ${
+                    msg.role === 'user' 
+                    ? 'bg-blue-600 text-white rounded-br-none' 
+                    : 'bg-white text-black/80 border border-black/5 rounded-bl-none'
+                  }`}>
+                    {msg.text}
+                  </div>
+                </motion.div>
+              ))}
+              {isTyping && (
+                <div className="flex justify-start">
+                  <div className="bg-white border border-black/5 rounded-2xl rounded-bl-none p-4 shadow-sm flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Input Area */}
+            <div className="p-4 bg-white border-t border-black/5 flex-none relative">
+              <form onSubmit={handleSend} className="relative flex items-center">
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Sualınızı yazın..."
+                  className="w-full bg-[#F1F5F9] border border-black/5 rounded-full pl-5 pr-14 py-3.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all text-black/80 placeholder-black/40"
+                />
+                <button 
+                  type="submit"
+                  disabled={!input.trim()}
+                  className="absolute right-1.5 w-10 h-10 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 disabled:shadow-none shadow-md shadow-blue-500/30 text-white rounded-full flex items-center justify-center transition-all"
+                >
+                  <i className="fas fa-paper-plane text-xs ml-[-2px]" />
+                </button>
+              </form>
+              <div className="text-center mt-2">
+                <span className="text-[9px] text-black/30 font-semibold uppercase tracking-widest">Powered by AI</span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* --- Speed Dial Options --- */}
+      <AnimatePresence>
+        {menuOpen && !chatOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.8 }}
+            transition={{ type: 'spring', damping: 20, stiffness: 300, staggerChildren: 0.1 }}
+            className="flex flex-col gap-3 items-end mb-2"
+          >
+            {/* WhatsApp Option */}
+            <motion.a
+              href="https://wa.me/994999550001"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              className="flex items-center gap-3 group"
+            >
+              <span className="bg-black/70 backdrop-blur-md text-white text-xs font-semibold py-1.5 px-3 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity">WhatsApp</span>
+              <div className="w-12 h-12 bg-[#25D366] hover:bg-[#1DA851] rounded-full flex items-center justify-center shadow-lg shadow-[#25D366]/30 text-white text-xl transition-transform hover:scale-110">
+                <i className="fab fa-whatsapp" />
+              </div>
+            </motion.a>
+
+            {/* AI Assistant Option */}
+            <motion.button
+              onClick={() => { setMenuOpen(false); setChatOpen(true); }}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              className="flex items-center gap-3 group"
+            >
+              <span className="bg-black/70 backdrop-blur-md text-white text-xs font-semibold py-1.5 px-3 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity">AI Asistent</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 rounded-full flex items-center justify-center shadow-lg shadow-blue-600/30 text-white text-lg transition-transform hover:scale-110 border border-white/10">
+                <i className="fas fa-robot" />
+              </div>
+            </motion.button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* --- Main FAB --- */}
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => {
+          if (chatOpen) {
+            setChatOpen(false);
+          } else {
+            setMenuOpen(!menuOpen);
+          }
+        }}
+        className={`relative flex items-center justify-center w-14 h-14 rounded-full shadow-2xl transition-all duration-300 ${
+          menuOpen || chatOpen 
+          ? 'bg-black text-white shadow-black/30' 
+          : 'bg-primary text-white shadow-primary/40'
+        }`}
+      >
+        {!(menuOpen || chatOpen) && (
+          <>
+            <span className="absolute inset-0 animate-ping rounded-full bg-primary/20" />
+            <span className="absolute inset-0 animate-pulse rounded-full ring-2 ring-primary/30" />
+          </>
+        )}
+        <motion.div
+          animate={{ rotate: menuOpen || chatOpen ? 45 : 0 }}
+          transition={{ duration: 0.3, ease: 'backOut' }}
+          className="text-2xl flex items-center justify-center"
+        >
+          {menuOpen || chatOpen ? <i className="fas fa-plus" /> : <i className="fas fa-comment-dots" />}
+        </motion.div>
+      </motion.button>
+    </div>
+  );
+}
