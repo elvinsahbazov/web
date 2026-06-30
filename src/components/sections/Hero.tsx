@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import { ArrowRight, BarChart2, Target, TrendingUp } from 'lucide-react';
 import { revealContainer, revealItem, springSnappy, springSmooth } from '../../lib/motion';
 import { useMobileMenu } from '../../context/MobileMenuContext';
+import { useSiteContent } from '../../context/SiteContentContext';
 import AdsPlatformsTabs from './AdsPlatformsTabs';
 
-const PROFILE_IMAGE =
-  'https://drive.google.com/thumbnail?id=1YmSQizY-GCTKCiPg6UD2PPFOG0d_ap2o&sz=w1000';
+
 
 const stats = [
   { icon: TrendingUp, value: '10+', label: 'İl Təcrübə' },
@@ -24,6 +24,7 @@ const heroSocials = [
 ];
 
 export default function Hero() {
+  const { content } = useSiteContent();
   const { isOpen: isMenuOpen } = useMobileMenu();
 
   return (
@@ -51,7 +52,7 @@ export default function Hero() {
             className="font-satoshi mb-8 max-w-xl text-[clamp(2.75rem,7vw,5.5rem)] font-black leading-[0.92] tracking-[-0.04em] text-white"
           >
             ELVİN
-            <span className="block text-gradient-blue">ŞAHBAZOV</span>
+            <span className="block text-gradient-blue">{content.hero_title_2 || 'ŞAHBAZOV'}</span>
           </motion.h1>
 
           <motion.p
@@ -88,7 +89,7 @@ export default function Hero() {
             </motion.a>
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={springSnappy}>
               <Link to="/xidmetler" data-magnetic className="bg-white/[0.03] backdrop-blur-xl border border-white/5 text-white btn-hero hover:bg-white/[0.08] transition-colors">
-                Xidmətlər
+                {content.hero_button_2 || 'Xidmətlər'}
                 <ArrowRight size={16} />
               </Link>
             </motion.div>
@@ -171,7 +172,7 @@ export default function Hero() {
           className="relative mt-8 flex h-full w-full items-end justify-center md:absolute md:right-0 md:top-0 md:mt-0 md:w-1/2 md:z-0"
         >
           <img
-            src={PROFILE_IMAGE}
+            src={content.hero_image || 'https://drive.google.com/thumbnail?id=1YmSQizY-GCTKCiPg6UD2PPFOG0d_ap2o&sz=w1000'}
             alt="Elvin Şahbazov"
             className="w-full max-w-[420px] object-contain object-bottom md:max-w-none md:h-full md:w-full md:object-cover md:object-right-top [mask-image:linear-gradient(to_top,transparent_0%,black_15%)] md:[mask-image:linear-gradient(to_right,transparent_0%,black_30%)]"
           />

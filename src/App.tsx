@@ -47,9 +47,11 @@ function AppRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
+      <SiteContentProvider>
       <Preloader />
       <AIChatbot />
       <AppRoutes />
+          </SiteContentProvider>
     </BrowserRouter>
   );
 }

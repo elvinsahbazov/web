@@ -5,8 +5,13 @@ import Container from '../components/ui/Container';
 export default function Admin() {
   const [auth, setAuth] = useState(false);
   const [password, setPassword] = useState('');
-  const [activeTab, setActiveTab] = useState<'blog' | 'services' | 'portfolio'>('blog');
+  const [activeTab, setActiveTab] = useState<'blog' | 'services' | 'portfolio' | 'pages'>('blog');
   
+
+  // Site Content State
+  const [siteContent, setSiteContent] = useState<any[]>([]);
+  const [contentSaving, setContentSaving] = useState<string | null>(null);
+
   // Blog State
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
@@ -43,6 +48,10 @@ export default function Admin() {
       const { data } = await supabase.from('portfolio').select('*').order('created_at', { ascending: false });
       if (data) setPortfolio(data);
     }
+    } else if(activeTab === 'pages') {
+      const { data } = await supabase.from('site_content').select('*').order('section', { ascending: true });
+      if (data) setSiteContent(data);
+
   }
 
   const handleLogin = (e: React.FormEvent) => {
@@ -70,6 +79,18 @@ export default function Admin() {
     const { error } = await supabase.from('portfolio').insert([{ title: portTitle, image_url: portImage, link_url: portLink, published: true }]);
     if (error) alert('Xəta: ' + error.message);
     else { alert('Uğurlu!'); setPortTitle(''); setPortImage(''); setPortLink(''); fetchData(); }
+  };
+
+
+  const handleSaveContent = async (id: string, value: string) => {
+    setContentSaving(id);
+    const { error } = await supabase.from('site_content').update({ value }).eq('id', id);
+    if (error) alert('Xəta: ' + error.message);
+    else {
+      alert('Yadda saxlanıldı!');
+      fetchData();
+    }
+    setContentSaving(null);
   };
 
   const handleDelete = async (table: string, id: string) => {
@@ -104,12 +125,14 @@ export default function Admin() {
           <button onClick={() => setActiveTab('blog')} className={`px-6 py-2 rounded-full font-bold ${activeTab === 'blog' ? 'bg-primary text-white' : 'bg-white text-black/60'}`}>Bloq</button>
           <button onClick={() => setActiveTab('services')} className={`px-6 py-2 rounded-full font-bold ${activeTab === 'services' ? 'bg-primary text-white' : 'bg-white text-black/60'}`}>Xidmətlər</button>
           <button onClick={() => setActiveTab('portfolio')} className={`px-6 py-2 rounded-full font-bold ${activeTab === 'portfolio' ? 'bg-primary text-white' : 'bg-white text-black/60'}`}>Portfolio</button>
+          <button onClick={() => setActiveTab('pages')} className={`px-6 py-2 rounded-full font-bold ${activeTab === 'pages' ? 'bg-primary text-white' : 'bg-white text-black/60'}`}>Səhifə Məzmunu</button>
         </div>
 
         {/* Tab Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           
           {/* CREATE FORM */}
+          {activeTab !== 'pages' && (
           <div className="bg-white p-8 rounded-3xl shadow-sm border border-black/5">
             <h2 className="text-xl font-bold mb-6">Yeni Əlavə Et</h2>
             
@@ -142,7 +165,11 @@ export default function Admin() {
             )}
           </div>
 
+          </div>
+          )}
+
           {/* LIST */}
+          {activeTab !== 'pages' && (
           <div className="bg-white p-8 rounded-3xl shadow-sm border border-black/5">
             <h2 className="text-xl font-bold mb-6">Mövcud Siyahı</h2>
             <div className="space-y-4 overflow-y-auto max-h-[500px] pr-2">
@@ -157,6 +184,42 @@ export default function Admin() {
               ))}
             </div>
           </div>
+          )}
+            {activeTab === 'pages' && (
+              <div className="space-y-8 col-span-1 lg:col-span-2">
+                {['hero', 'about'].map(section => {
+                  const sectionItems = siteContent.filter(item => item.section === section);
+                  if(sectionItems.length === 0) return null;
+                  return (
+                    <div key={section} className="bg-white p-8 rounded-3xl shadow-sm border border-black/5">
+                      <h2 className="text-2xl font-bold mb-6 capitalize">{section} Bölməsi</h2>
+                      <div className="space-y-6">
+                        {sectionItems.map(item => (
+                          <div key={item.id} className="flex flex-col gap-2">
+                            <label className="font-bold text-sm text-gray-700">{item.label}</label>
+                            <div className="flex gap-4">
+                              {item.type === 'textarea' ? (
+                                <textarea rows={4} defaultValue={item.value} id={`input-${item.id}`} className="w-full px-4 py-2 border rounded-xl" />
+                              ) : (
+                                <input type="text" defaultValue={item.value} id={`input-${item.id}`} className="w-full px-4 py-2 border rounded-xl" />
+                              )}
+                              <button 
+                                onClick={() => handleSaveContent(item.id, (document.getElementById(`input-${item.id}`) as HTMLInputElement).value)}
+                                disabled={contentSaving === item.id}
+                                className="px-6 py-2 bg-primary text-white font-bold rounded-xl whitespace-nowrap"
+                              >
+                                {contentSaving === item.id ? '...' : 'Yadda Saxla'}
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
 
         </div>
       </Container>
