@@ -35,22 +35,7 @@ export default function Hero() {
         <div className="vercel-grid absolute inset-0 opacity-[0.35]" />
       </div>
 
-      {/* RIGHT — Immersive Image Container */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: 1,
-          filter: isMenuOpen ? 'blur(20px) brightness(0.2)' : 'blur(0px) brightness(1)',
-        }}
-        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute right-0 top-0 h-full w-full md:w-1/2 z-0 opacity-30 md:opacity-100"
-      >
-        <img
-          src={PROFILE_IMAGE}
-          alt="Elvin Şahbazov"
-          className="h-full w-full object-cover object-right-top [mask-image:linear-gradient(to_top,transparent_0%,black_30%)] md:[mask-image:linear-gradient(to_right,transparent_0%,black_30%)]"
-        />
-      </motion.div>
+      
 
       {/* TEXT LAYOUT (THE "CUBIX" CLEANLINESS) */}
       <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center px-6 pb-24 pt-28 md:grid-cols-2 md:px-12 md:pb-32 md:pt-32">
@@ -174,6 +159,24 @@ export default function Hero() {
             <AdsPlatformsTabs />
           </div>
         </motion.div>
+
+        {/* RIGHT — Image Container (Mobile: In flow, Desktop: Absolute full height) */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: 1,
+            filter: isMenuOpen ? 'blur(20px) brightness(0.2)' : 'blur(0px) brightness(1)',
+          }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mt-8 flex h-full w-full items-end justify-center md:absolute md:right-0 md:top-0 md:mt-0 md:w-1/2 md:z-0"
+        >
+          <img
+            src={PROFILE_IMAGE}
+            alt="Elvin Şahbazov"
+            className="w-full max-w-[420px] object-contain object-bottom md:max-w-none md:h-full md:w-full md:object-cover md:object-right-top [mask-image:linear-gradient(to_top,transparent_0%,black_15%)] md:[mask-image:linear-gradient(to_right,transparent_0%,black_30%)]"
+          />
+        </motion.div>
+
       </div>
     </section>
   );
