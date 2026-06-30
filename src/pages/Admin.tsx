@@ -47,11 +47,10 @@ export default function Admin() {
     } else if(activeTab === 'portfolio') {
       const { data } = await supabase.from('portfolio').select('*').order('created_at', { ascending: false });
       if (data) setPortfolio(data);
-    }
     } else if(activeTab === 'pages') {
       const { data } = await supabase.from('site_content').select('*').order('section', { ascending: true });
       if (data) setSiteContent(data);
-
+    }
   }
 
   const handleLogin = (e: React.FormEvent) => {
@@ -163,8 +162,6 @@ export default function Admin() {
                 <button type="submit" className="w-full py-3 bg-primary text-white font-bold rounded-xl">Əlavə et</button>
               </form>
             )}
-          </div>
-
           </div>
           )}
 
