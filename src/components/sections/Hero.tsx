@@ -169,12 +169,12 @@ export default function Hero() {
             filter: isMenuOpen ? 'blur(20px) brightness(0.2)' : 'blur(0px) brightness(1)',
           }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mt-8 flex h-full w-full items-end justify-center md:absolute md:right-0 md:top-0 md:mt-0 md:w-1/2 md:z-0"
+          className="relative mt-8 flex h-full w-full items-end justify-center md:absolute md:right-0 md:top-0 md:mt-0 md:w-[65%] md:z-0"
         >
           <img
             src={content.hero_image || 'https://drive.google.com/thumbnail?id=1YmSQizY-GCTKCiPg6UD2PPFOG0d_ap2o&sz=w1000'}
             alt="Elvin Şahbazov"
-            className="w-full max-w-[420px] object-contain object-bottom md:max-w-none md:h-full md:w-full md:object-cover md:object-right-top [mask-image:linear-gradient(to_top,transparent_0%,black_15%)] md:[mask-image:linear-gradient(to_right,transparent_0%,black_30%)]"
+            className="w-full max-w-[420px] object-contain object-bottom md:max-w-none md:h-full md:w-full md:object-cover md:object-top [mask-image:linear-gradient(to_top,transparent_0%,black_15%)] md:[mask-image:linear-gradient(to_right,transparent_0%,black_30%)]"
           />
         </motion.div>
 
