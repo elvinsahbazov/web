@@ -329,6 +329,10 @@ export default function Calculator() {
   const netProfit = totalProfit - totalBudget;
   const blendedROAS = totalBudget > 0 ? totalRevenue / totalBudget : 0;
   const breakEvenROAS = margin > 0 ? 100 / margin : 0;
+  
+  const estSales = state.productPrice > 0 ? totalRevenue / state.productPrice : 0;
+  const cpa = estSales > 0 ? totalBudget / estSales : 0;
+  const roi = totalBudget > 0 ? (netProfit / totalBudget) * 100 : 0;
 
   const saveSession = useCallback(async () => {
     if (!passed || !userEmail) return;
@@ -381,6 +385,11 @@ export default function Calculator() {
         (c.budget * c.roas * (margin / 100)).toFixed(0),
       ]),
       ['CƏMI', totalBudget, blendedROAS.toFixed(2), totalRevenue.toFixed(0), netProfit.toFixed(0)],
+      [],
+      ['Əlavə Metriklər'],
+      ['Təxmini Satış Sayı', estSales.toFixed(0)],
+      ['Orta Müştəri Qazanma Dəyəri (CAC/CPA)', cpa.toFixed(2)],
+      ['ROI (İnvestisiya Gəlirliyi)', `${roi.toFixed(1)}%`]
     ];
     const csv = rows.map((r) => r.join(',')).join('\n');
     const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
@@ -393,7 +402,7 @@ export default function Calculator() {
   };
 
   const exportWhatsApp = () => {
-    const msg = `📊 *Smart Reklam Hesabatı*\n\n👤 ${userName}\n\n💰 Ümumi Büdcə: ₼${totalBudget.toLocaleString()}\n📈 Gözlənilən Gəlir: ₼${totalRevenue.toFixed(0)}\n🎯 Blended ROAS: ${blendedROAS.toFixed(2)}x\n💵 Xalis Mənfəət: ₼${netProfit.toFixed(0)}\n⚠️ Break-Even ROAS: ${breakEvenROAS.toFixed(2)}x\n\n_Hesablama elvinsahbazov.com tərəfindən_`;
+    const msg = `📊 *Smart Reklam Hesabatı*\n\n👤 ${userName}\n\n💰 Ümumi Büdcə: ₼${totalBudget.toLocaleString()}\n📈 Gözlənilən Gəlir: ₼${totalRevenue.toFixed(0)}\n🎯 Blended ROAS: ${blendedROAS.toFixed(2)}x\n💵 Xalis Mənfəət: ₼${netProfit.toFixed(0)}\n⚠️ Break-Even ROAS: ${breakEvenROAS.toFixed(2)}x\n\n📦 Təxmini Satış: ${estSales.toFixed(0)} ədəd\n🤝 Orta Müştəri Qazanma Dəyəri (CAC): ₼${cpa.toFixed(2)}\n🚀 ROI: ${roi.toFixed(1)}%\n\n_Hesablama elvinsahbazov.com tərəfindən_`;
     window.open(`https://wa.me/994999550001?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
@@ -650,8 +659,11 @@ export default function Calculator() {
                 {[
                   { label: 'Gözlənilən Gəlir', value: `₼${totalRevenue.toFixed(0)}`, color: 'text-primary', bg: 'bg-primary/5' },
                   { label: 'Xalis Mənfəət', value: `₼${netProfit.toFixed(0)}`, color: netProfit >= 0 ? 'text-primary' : 'text-black', bg: netProfit >= 0 ? 'bg-primary/5' : 'bg-black/5' },
+                  { label: 'ROI', value: `${roi.toFixed(1)}%`, color: roi >= 0 ? 'text-primary' : 'text-black', bg: roi >= 0 ? 'bg-primary/5' : 'bg-black/5' },
                   { label: 'Blended ROAS', value: `${blendedROAS.toFixed(2)}x`, color: blendedROAS >= breakEvenROAS ? 'text-primary' : 'text-black', bg: 'bg-[#F8FAFC]' },
                   { label: 'Break-Even ROAS', value: `${breakEvenROAS.toFixed(2)}x`, color: 'text-primary', bg: 'bg-primary/5' },
+                  { label: 'Təxmini Satış Sayı', value: `${estSales.toFixed(0)} ədəd`, color: 'text-black/70', bg: 'bg-[#F8FAFC]' },
+                  { label: 'Orta CAC / CPA', value: `₼${cpa.toFixed(2)}`, color: 'text-black/70', bg: 'bg-primary/5' },
                   { label: 'Marja', value: `${margin.toFixed(1)}%`, color: 'text-black/70', bg: 'bg-[#F8FAFC]' },
                 ].map((item) => (
                   <div key={item.label} className={`flex items-center justify-between p-3 rounded-xl ${item.bg}`}>
