@@ -6,6 +6,7 @@ export default function Admin() {
   const [auth, setAuth] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [activeTab, setActiveTab] = useState<'blog' | 'services' | 'portfolio' | 'pages'>('blog');
   
 
@@ -56,7 +57,7 @@ export default function Admin() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email === 'sahbazovelvin92@gmail.com' && password === 'elvin000111sahbazov') setAuth(true);
+    if (email.trim().toLowerCase() === 'sahbazovelvin92@gmail.com' && password.trim() === 'elvin000111sahbazov') setAuth(true);
     else alert('Yanlış e-poçt və ya şifrə!');
   };
 
@@ -106,7 +107,12 @@ export default function Admin() {
         <form onSubmit={handleLogin} className="bg-white p-8 rounded-3xl shadow-lg border border-black/5 w-full max-w-sm">
           <h2 className="text-2xl font-bold mb-6 text-center">Admin Panel</h2>
           <input type="email" placeholder="E-poçt" required className="w-full px-4 py-3 rounded-xl border mb-4" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <input type="password" placeholder="Şifrə" required className="w-full px-4 py-3 rounded-xl border mb-4" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <div className="relative mb-4">
+            <input type={showPassword ? 'text' : 'password'} placeholder="Şifrə" required className="w-full px-4 py-3 rounded-xl border" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black">
+              <i className={showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'} />
+            </button>
+          </div>
           <button type="submit" className="w-full py-3 bg-primary text-white font-bold rounded-xl">Daxil ol</button>
         </form>
       </div>
