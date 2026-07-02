@@ -199,7 +199,7 @@ export const blogs = [
     title: 'Remarketing nədir və strategiyası necə qurulur?',
     slug: 'remarketing-nedir-ve-strategiyasi-nece-qurulur',
     excerpt: 'Remarketing rəqəmsal marketinqin ən effektiv üsullarından biridir. Bu strategiya məhsul və ya xidmətinizlə artıq maraqlanmış insanlarla yenidən əlaqə qurmağa imkan verir.',
-    cover_image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80',
+    cover_image: 'https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&q=80',
     published: true,
     created_at: new Date(Date.now() - 259200000).toISOString(),
     content: `
@@ -305,7 +305,7 @@ export const blogs = [
     title: 'Süni İntellekt Axtarış Motorları üçün Sayt Necə Optimallaşdırılır?',
     slug: 'suni-intellekt-axtaris-motorlari-ucun-sayt-nece-optimallasdirilir',
     excerpt: 'İnternetdə məlumat axtarma vərdişləri son illərdə əhəmiyyətli dərəcədə dəyişib. Bu gün milyonlarla insan suallarını birbaşa süni intellekt platformalarına verir.',
-    cover_image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80',
+    cover_image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80',
     published: true,
     created_at: new Date(Date.now() - 345600000).toISOString(),
     content: `
