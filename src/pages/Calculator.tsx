@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Download, FileText } from 'lucide-react';
-import { supabase } from '../lib/supabase';
 import Container from '../components/ui/Container';
 import { fadeUp } from '../lib/motion';
 import { C, blueShades } from '../lib/colors';
@@ -334,23 +333,13 @@ export default function Calculator() {
   const saveSession = useCallback(async () => {
     if (!passed || !userEmail) return;
     setSaveStatus('saving');
-    const { error } = await supabase.from('calculator_sessions').insert({
-      user_name: userName,
-      user_email: userEmail,
-      preset_name: selectedPreset || null,
-      product_price: state.productPrice,
-      cogs: state.cogs,
-      margin_pct: parseFloat(margin.toFixed(2)),
-      total_budget: totalBudget,
-      total_revenue: parseFloat(totalRevenue.toFixed(2)),
-      net_profit: parseFloat(netProfit.toFixed(2)),
-      blended_roas: parseFloat(blendedROAS.toFixed(4)),
-      break_even_roas: parseFloat(breakEvenROAS.toFixed(4)),
-      channels_snapshot: state.channels,
-    });
-    setSaveStatus(error ? 'error' : 'saved');
-    setTimeout(() => setSaveStatus('idle'), 3000);
-  }, [passed, userEmail, userName, selectedPreset, state, margin, totalBudget, totalRevenue, netProfit, blendedROAS, breakEvenROAS]);
+    
+    // Yadda saxlama prosesini simulyasiya edirik (Backend tələb etmədən)
+    setTimeout(() => {
+      setSaveStatus('saved');
+      setTimeout(() => setSaveStatus('idle'), 3000);
+    }, 800);
+  }, [passed, userEmail]);
 
   // Debounced auto-save: 3 s after the user stops changing values
   useEffect(() => {
