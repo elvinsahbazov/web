@@ -8,6 +8,7 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Vision from './pages/Vision';
 import Calculator from './pages/Calculator';
+import Planner from './pages/Planner';
 import Elaqe from './pages/Elaqe';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
@@ -35,6 +36,7 @@ function AppRoutes() {
           <Route path="/xidmetler" element={<Services />} />
           <Route path="/vision" element={<Vision />} />
           <Route path="/hesablayici" element={<Calculator />} />
+          <Route path="/planlama" element={<Planner />} />
           <Route path="/elaqe" element={<Elaqe />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />

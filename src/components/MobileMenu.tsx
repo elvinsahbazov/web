@@ -9,6 +9,7 @@ export const mobileNavLinks = [
   { path: '/xidmetler', label: 'Xidmətlər' },
   { path: '/vision', label: 'Rəqəmsal' },
   { path: '/hesablayici', label: 'Hesablayıcı' },
+  { path: '/planlama', label: 'Planlama' },
   { path: '/blog', label: 'Bloq' },
   { path: '/elaqe', label: 'Əlaqə' },
 ] as const;
