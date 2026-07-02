@@ -67,7 +67,9 @@ export default function Blog() {
                       <h3 className="font-bold text-xl text-black leading-tight mb-3 group-hover:text-primary transition-colors">
                         {post.title}
                       </h3>
-                      <div className="text-sm text-black/80 mt-4 prose prose-sm max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} />
+                      <p className="text-sm text-black/60 line-clamp-3">
+                        {post.excerpt}
+                      </p>
                     </div>
                   </Link>
                 </motion.div>

@@ -47,5 +47,31 @@ export const blogs = [
 <p>Biznesin miqyaslandırılması yalnız daha çox reklam vermək və ya daha çox əməkdaş işə götürməklə mümkün olmur. Davamlı inkişaf üçün düzgün strategiya, keyfiyyətli məzmun, SEO və GEO optimallaşdırması, məlumatların analizi və texnologiyanın imkanlarından düzgün istifadə vacibdir.</p>
 <p>Gələcəkdə rəqabətdə üstün mövqe tutacaq şirkətlər dəyişən texnologiyalara uyğunlaşan, müştəri ehtiyaclarını diqqətlə analiz edən və rəqəmsal transformasiyanı biznes strategiyasının ayrılmaz hissəsinə çevirən şirkətlər olacaq. Bu gün atılan düzgün addımlar sabah daha dayanıqlı inkişafın və uzunmüddətli uğurun əsasını təşkil edəcək.</p>
     `
+  },
+  {
+    id: '2',
+    title: 'Yeni bloq yazısı (Nümunə 1)',
+    slug: 'yeni-bloq-yazisi-numune-1',
+    excerpt: 'Bu, yeni məqalələr əlavə edə biləcəyiniz nümunə bloq yazısıdır.',
+    cover_image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80',
+    published: true,
+    created_at: new Date(Date.now() - 86400000).toISOString(),
+    content: `
+      <h2>Bu sadəcə bir nümunədir</h2>
+      <p>Siz <code>src/data/blogs.ts</code> faylına girərək bu hissəyə öz yeni məqalələrinizi yaza bilərsiniz. Beləliklə, sonsuz sayda məqalə əlavə etmək mümkündür.</p>
+    `
+  },
+  {
+    id: '3',
+    title: 'Yeni bloq yazısı (Nümunə 2)',
+    slug: 'yeni-bloq-yazisi-numune-2',
+    excerpt: 'Daha bir nümunə bloq məqaləsi. Bura qısa açıqlama yazılır.',
+    cover_image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80',
+    published: true,
+    created_at: new Date(Date.now() - 172800000).toISOString(),
+    content: `
+      <h2>Daha bir nümunə</h2>
+      <p>Yeni bir məqalə artırmaq üçün əvvəlki məqalənin blokunu kopyalayıb aşağıya yapışdırmaq və mətnlərini dəyişmək kifayətdir.</p>
+    `
   }
 ];
