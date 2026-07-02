@@ -542,7 +542,12 @@ export default function Calculator() {
               transition={{ delay: 0.2 }}
               className="card"
             >
-              <h3 className="font-poppins font-bold text-black mb-5">Reklam Kanalları</h3>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+                <h3 className="font-poppins font-bold text-black">Reklam Kanalları</h3>
+                <div className="text-[11px] text-black/60 bg-primary/5 border border-primary/10 px-3 py-2 rounded-xl max-w-sm">
+                  💡 <strong className="text-primary">ROAS nədir?</strong> 1₼ reklam xərci qarşılığında neçə ₼ gəlir gözlədiyinizi bildirir (Məs: 4 = 1₼ xərcə 4₼ gəlir). Sistem avtomatik olaraq sektorunuza uyğun orta <strong>ROAS</strong> göstəricilərini təyin edir, istərsəniz dəyişə bilərsiniz.
+                </div>
+              </div>
               <div className="space-y-3">
                 {state.channels.map((ch, i) => (
                   <div
@@ -577,7 +582,7 @@ export default function Calculator() {
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-black/40 mb-1">ROAS</label>
+                      <label className="block text-[10px] sm:text-xs text-black/40 mb-1">ROAS (Qat)</label>
                       <input
                         type="number"
                         step="0.1"
