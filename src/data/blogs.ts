@@ -193,5 +193,111 @@ export const blogs = [
 <p>Bu gün yalnız internetdə mövcud olmaq kifayət etmir. Vacib olan doğru auditoriya qarşısında görünmək, faydalı məlumat təqdim etmək, etibar yaratmaq və həm klassik axtarış sistemləri, həm də süni intellekt platformaları üçün dəyərli məzmun hazırlamaqdır.</p>
 <p>Gələcəyin uğurlu biznesləri texnologiyanı məqsəd deyil, inkişaf vasitəsi kimi görən, məlumatlara əsaslanan qərarlar qəbul edən və istifadəçilərə real dəyər təqdim edən bizneslər olacaq. SEO və GEO strategiyalarını birlikdə tətbiq edən şirkətlər isə dəyişən rəqəmsal mühitdə daha güclü mövqe qazanmaq imkanına malik olacaqlar.</p>
     `
+  },
+  {
+    id: '4',
+    title: 'Remarketing nədir və strategiyası necə qurulur?',
+    slug: 'remarketing-nedir-ve-strategiyasi-nece-qurulur',
+    excerpt: 'Remarketing rəqəmsal marketinqin ən effektiv üsullarından biridir. Bu strategiya məhsul və ya xidmətinizlə artıq maraqlanmış insanlarla yenidən əlaqə qurmağa imkan verir.',
+    cover_image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80',
+    published: true,
+    created_at: new Date(Date.now() - 259200000).toISOString(),
+    content: `
+<h2>Rəqəmsal marketinqdə ikinci şansın gücü</h2>
+<p>İnternet üzərindən məhsul və ya xidmət axtararkən çoxumuz eyni davranışı nümayiş etdiririk. Bir sayta daxil olur, məhsullara baxır, qiymətləri müqayisə edir, lakin dərhal alış etmirik. Bəzən qərar vermək üçün zamana ehtiyac duyuruq, bəzən isə sadəcə başqa alternativlərə baxmaq istəyirik. Əgər həmin şirkət bir neçə saat və ya bir neçə gün sonra qarşımıza yenidən reklamla çıxırsa, bu təsadüfi deyil. Bu, remarketing strategiyasının nəticəsidir.</p>
+<p>Remarketing rəqəmsal marketinqin ən effektiv üsullarından biri hesab olunur. Çünki bu strategiya məhsul və ya xidmətinizlə artıq maraqlanmış insanlarla yenidən əlaqə qurmağa imkan verir. Yeni auditoriyaya çatmaq vacib olsa da, mövcud marağı olan istifadəçiləri yenidən qazanmaq əksər hallarda daha yüksək nəticə verir.</p>
+
+<h2>Remarketing nədir?</h2>
+<p>Remarketing — əvvəllər veb saytınıza daxil olmuş, mobil tətbiqinizdən istifadə etmiş və ya məhsulunuzla maraqlanmış insanlara sonradan yenidən reklam göstərilməsi prosesidir.</p>
+<p>Sadə dillə desək, istifadəçi sizin biznesinizlə ilk dəfə tanış olur, lakin alış etmir. Daha sonra müxtəlif platformalarda qarşısına sizin reklamlarınız çıxmağa davam edir. Məqsəd həmin istifadəçini yenidən sayta qaytarmaq və qərar verməsinə kömək etməkdir.</p>
+<p>Bu yanaşma müştərini narahat etmək üçün deyil, qərarvermə prosesini dəstəkləmək üçün istifadə olunur. Çünki insanların böyük hissəsi ilk ziyarətdə alış etmir.</p>
+
+<h2>Remarketing niyə vacibdir?</h2>
+<p>Müxtəlif araşdırmalar göstərir ki, istifadəçilərin böyük əksəriyyəti ilk ziyarətdə məhsul almır və ya xidmət sifariş etmir. Bunun səbəbləri müxtəlif ola bilər:</p>
+<ul>
+<li>Qiymətləri müqayisə etmək istəyirlər.</li>
+<li>Büdcələrini planlaşdırırlar.</li>
+<li>Qərar vermək üçün əlavə məlumata ehtiyac duyurlar.</li>
+<li>Digər alternativlərə baxırlar.</li>
+<li>Sadəcə həmin anda vaxtları olmur.</li>
+</ul>
+<p>Əgər biznes həmin istifadəçini tamamilə itirirsə, reklam büdcəsinin bir hissəsi boşa gedə bilər. Remarketing isə həmin insanı yenidən biznesinizlə qarşılaşdıraraq satış ehtimalını artırır.</p>
+
+<h2>Remarketing necə işləyir?</h2>
+<p>İstifadəçi saytınıza daxil olduqda müəyyən anonim məlumatlar vasitəsilə həmin ziyarət qeyd olunur. Sonradan həmin istifadəçi Google Display Network, YouTube, Meta platformaları və ya digər reklam şəbəkələrində olarkən ona uyğun reklamlar göstərilə bilər.</p>
+<p>Məsələn, bir nəfər diş implantı xidmətinə baxır, lakin müraciət etmir. Bir neçə gün sonra xəbər saytında və ya YouTube izləyərkən implant xidmətiniz haqqında reklam görür. Bu reklam istifadəçiyə biznesinizi xatırladır və onu yenidən sayta qayıtmağa təşviq edir.</p>
+
+<h2>Remarketing strategiyası necə qurulur?</h2>
+<p>Uğurlu remarketing yalnız reklam göstərməkdən ibarət deyil. Strategiya istifadəçinin davranışına əsaslanmalıdır.</p>
+<p>İlk addım auditoriyanı düzgün seqmentləşdirməkdir. Sayta daxil olan hər kəs eyni marağa malik deyil. Ana səhifəyə baxan istifadəçi ilə qiymət səhifəsinə daxil olan istifadəçi arasında ciddi fərq var.</p>
+<p>Buna görə auditoriya müxtəlif qruplara bölünə bilər:</p>
+<ul>
+<li>Ana səhifəni ziyarət edənlər</li>
+<li>Xidmət səhifələrinə baxanlar</li>
+<li>Qiymət səhifəsini açanlar</li>
+<li>Əlaqə formasını doldurmayanlar</li>
+<li>Səbətə məhsul əlavə edib alış etməyənlər</li>
+<li>Əvvəlki müştərilər</li>
+</ul>
+<p>Hər qrup üçün fərqli mesaj hazırlanmalıdır.</p>
+
+<h2>Klinika nümunəsi</h2>
+<p>Təsəvvür edək ki, bir pasiyent Google vasitəsilə estetik stomatologiya xidmətiniz haqqında məlumat əldə edir. O, "Hollywood Smile" səhifəsinə daxil olur, əvvəl-sonra fotolarına baxır, lakin qeydiyyatdan keçmir.</p>
+<p>Əgər bu istifadəçiyə bir neçə gün sonra aşağıdakı məzmunlu reklam göstərilərsə:</p>
+<p><em>"Hollywood Smile haqqında ətraflı konsultasiya üçün bizimlə əlaqə saxlayın."</em></p>
+<p>və ya</p>
+<p><em>"Təbii görünüşlü estetik gülüş dizaynı haqqında daha çox məlumat əldə edin."</em></p>
+<p>onun yenidən sayta qayıtmaq ehtimalı artır.</p>
+<p>Əgər istifadəçi artıq qiymət səhifəsinə baxıbsa, həmin auditoriyaya fərqli mesaj göstərmək daha məqsədəuyğundur. Məsələn:</p>
+<p><em>"İlkin konsultasiya üçün onlayn qeydiyyatdan keçin."</em></p>
+<p>və ya</p>
+<p><em>"Müalicə planı və ödəniş imkanları haqqında məlumat alın."</em></p>
+<p>Bu yanaşma remarketing kampaniyasını daha effektiv edir.</p>
+
+<h2>Google Remarketing və Meta Remarketing arasındakı fərq</h2>
+<p>Google Remarketing əsasən Google Display şəbəkəsi, YouTube və digər tərəfdaş saytlar vasitəsilə reklam göstərməyə imkan yaradır.</p>
+<p>Meta Remarketing isə Facebook və Instagram platformalarında istifadəçiyə yenidən reklam göstərmək üçün istifadə olunur.</p>
+<p>Hər iki platformanın məqsədi eyni olsa da, auditoriyanın davranışı fərqli olduğundan mesaj və kreativlər də uyğunlaşdırılmalıdır.</p>
+
+<h2>Hansı bizneslər remarketingdən faydalana bilər?</h2>
+<p>Remarketing demək olar ki, bütün sahələr üçün faydalıdır.</p>
+<p>Xüsusilə:</p>
+<ul>
+<li>Özəl klinikalar</li>
+<li>Stomatoloji mərkəzlər</li>
+<li>Estetik klinikalar</li>
+<li>Daşınmaz əmlak şirkətləri</li>
+<li>Avtomobil salonları</li>
+<li>E-ticarət mağazaları</li>
+<li>Hüquq şirkətləri</li>
+<li>Sığorta şirkətləri</li>
+<li>Turizm agentlikləri</li>
+<li>Təmir və tikinti şirkətləri</li>
+<li>Təhsil müəssisələri</li>
+<li>Gözəllik salonları</li>
+</ul>
+<p>Bu sahələrdə qərarvermə prosesi adətən bir neçə gün və ya hətta bir neçə həftə çəkir. Remarketing həmin müddətdə istifadəçini biznesdən uzaqlaşdırmamağa kömək edir.</p>
+
+<h2>Remarketing zamanı ən çox edilən səhvlər</h2>
+<p>Bir çox şirkət remarketing kampaniyası başladır, lakin nəticə əldə etmir. Bunun əsas səbəbi strategiyanın düzgün qurulmamasıdır.</p>
+<p>Ən çox rast gəlinən səhvlər bunlardır:</p>
+<ul>
+<li>Bütün istifadəçilərə eyni reklamın göstərilməsi.</li>
+<li>Reklamların həddindən artıq təkrarlanması.</li>
+<li>Auditoriyanın seqmentləşdirilməməsi.</li>
+<li>Müxtəlif platformalar üçün eyni kreativdən istifadə edilməsi.</li>
+<li>Reklam nəticələrinin analiz edilməməsi.</li>
+<li>Satınalma etmiş müştərilərə eyni reklamların göstərilməyə davam etməsi.</li>
+</ul>
+<p>Bu səhvlər reklam büdcəsinin səmərəliliyini azalda və istifadəçilərdə mənfi təəssürat yarada bilər.</p>
+
+<h2>AI və remarketing birlikdə necə işləyir?</h2>
+<p>Süni intellekt remarketing kampaniyalarının daha effektiv idarə olunmasına kömək edir. AI alqoritmləri istifadəçi davranışını analiz edərək hansı auditoriyanın alış ehtimalının daha yüksək olduğunu müəyyən edə, reklam büdcəsini optimallaşdıra və daha uyğun reklam məzmununun hazırlanmasına dəstək ola bilər.</p>
+<p>Bunun nəticəsində remarketing yalnız "yenidən reklam göstərmək" deyil, istifadəçinin marağına uyğun fərdiləşdirilmiş marketinq strategiyasına çevrilir.</p>
+
+<p>Remarketing rəqəmsal marketinq strategiyasının vacib elementlərindən biridir. O, məhsul və ya xidmətinizlə artıq maraqlanmış istifadəçilərlə yenidən əlaqə qurmağa, onların etibarını gücləndirməyə və satış ehtimalını artırmağa kömək edir.</p>
+<p>Lakin uğurlu remarketing üçün yalnız reklam göstərmək kifayət deyil. Auditoriyanın düzgün seqmentləşdirilməsi, uyğun mesajların hazırlanması, reklam tezliyinin balanslaşdırılması və nəticələrin mütəmadi təhlili strategiyanın əsas hissəsini təşkil edir.</p>
+<p>Düzgün planlaşdırılmış remarketing kampaniyası reklam büdcəsindən daha səmərəli istifadə etməyə, müştəri əldə etmə xərclərini optimallaşdırmağa və uzunmüddətli biznes inkişafını dəstəkləməyə kömək edə bilər.</p>
+    `
   }
 ];
