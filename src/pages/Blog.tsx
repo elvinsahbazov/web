@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
+import { blogs } from '../data/blogs';
 import Container from '../components/ui/Container';
 import { fadeUp } from '../lib/motion';
 
@@ -11,19 +11,11 @@ export default function Blog() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchPosts() {
-      const { data, error } = await supabase
-        .from('posts')
-        .select('*')
-        .eq('published', true)
-        .order('created_at', { ascending: false });
-
-      if (!error && data) {
-        setPosts(data);
-      }
+    // Simulating a fast network request for the spinner effect
+    setTimeout(() => {
+      setPosts(blogs);
       setLoading(false);
-    }
-    fetchPosts();
+    }, 400);
   }, []);
 
   return (
