@@ -4,6 +4,7 @@ import Container from '../components/ui/Container';
 
 export default function Admin() {
   const [auth, setAuth] = useState(false);
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [activeTab, setActiveTab] = useState<'blog' | 'services' | 'portfolio' | 'pages'>('blog');
   
@@ -55,8 +56,8 @@ export default function Admin() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'admin123') setAuth(true);
-    else alert('Yanlış şifrə!');
+    if (email === 'sahbazovelvin92@gmail.com' && password === 'elvin000111sahbazov') setAuth(true);
+    else alert('Yanlış e-poçt və ya şifrə!');
   };
 
   const handleCreateBlog = async (e: React.FormEvent) => {
@@ -104,7 +105,8 @@ export default function Admin() {
       <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center pt-20">
         <form onSubmit={handleLogin} className="bg-white p-8 rounded-3xl shadow-lg border border-black/5 w-full max-w-sm">
           <h2 className="text-2xl font-bold mb-6 text-center">Admin Panel</h2>
-          <input type="password" placeholder="Şifrə (admin123)" className="w-full px-4 py-3 rounded-xl border mb-4" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input type="email" placeholder="E-poçt" required className="w-full px-4 py-3 rounded-xl border mb-4" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="password" placeholder="Şifrə" required className="w-full px-4 py-3 rounded-xl border mb-4" value={password} onChange={(e) => setPassword(e.target.value)} />
           <button type="submit" className="w-full py-3 bg-primary text-white font-bold rounded-xl">Daxil ol</button>
         </form>
       </div>
