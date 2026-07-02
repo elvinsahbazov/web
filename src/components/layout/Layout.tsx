@@ -1,4 +1,3 @@
-import CustomCursor from '../CustomCursor';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import CommandMenu from '../CommandMenu';
@@ -13,7 +12,6 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <MobileMenuProvider>
       <div className="layout-shell relative min-h-screen bg-black text-white antialiased">
-        <CustomCursor />
         <Navbar />
         <CommandMenu />
         <main className="relative overflow-x-hidden pb-16 md:pb-0">{children}</main>
