@@ -1,0 +1,1 @@
+import { createClient } from '@supabase/supabase-js'; import dotenv from 'dotenv'; dotenv.config(); const supabase = createClient(process.env.VITE_SUPABASE_URL, process.env.VITE_SUPABASE_ANON_KEY); supabase.from('site_content').insert([{id: 'web3forms_access_key', section: '?laq? Formu (Gmail)', type: 'text', label: 'Web3Forms Access Key', value: ''}]).then(console.log); 

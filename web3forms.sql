@@ -1,0 +1,1 @@
+INSERT INTO public.site_content (id, section, type, label, value) VALUES ('web3forms_access_key', '?laq? Formu (Gmail inteqrasiyasi)', 'text', 'Web3Forms Access Key', '') ON CONFLICT (id) DO NOTHING; 
