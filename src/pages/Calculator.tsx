@@ -14,6 +14,36 @@ import {
 import { Doughnut, Bar } from 'react-chartjs-2';
 import Container from '../components/ui/Container';
 
+const InfoTooltip = ({ title, content }: { title: string, content: string }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="relative inline-flex items-center" onMouseLeave={() => setIsOpen(false)}>
+      <button
+        onClick={(e) => { e.preventDefault(); setIsOpen(!isOpen); }}
+        onMouseEnter={() => setIsOpen(true)}
+        className="p-1 hover:bg-slate-100 rounded-full transition-colors ml-0.5 focus:outline-none"
+      >
+        <Info size={14} className={isOpen ? "text-blue-600" : "text-slate-400"} />
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 5 }}
+            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-slate-900 text-white text-xs rounded-xl shadow-xl z-50 cursor-default"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="font-bold mb-1 text-blue-200">{title}</div>
+            <div className="text-slate-200 leading-relaxed font-normal whitespace-normal">{content}</div>
+            <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-900" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title);
 
 type Channel = {
@@ -542,24 +572,36 @@ _Hesablama elvinsahbazov.com tərəfindən_`;
                 <div className="h-px w-full bg-slate-100" />
                 
                 <div className="flex justify-between items-center p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                  <span className="text-sm text-slate-500 font-medium flex items-center gap-1.5" title="Return on Investment (Sərmayə Gəlirliyi)">
-                    ROI <Info size={12} className="text-slate-400" />
+                  <span className="text-sm text-slate-500 font-medium flex items-center">
+                    ROI
+                    <InfoTooltip 
+                      title="Return on Investment" 
+                      content="Sərmayə Gəlirliyi. Yatırılan hər 1 ₼ reklam büdcəsindən əldə edilən xalis gəlir faizidir." 
+                    />
                   </span>
                   <span className={`font-bold ${roi >= 0 ? 'text-slate-900' : 'text-red-500'}`}>{roi.toFixed(1)}%</span>
                 </div>
                 <div className="h-px w-full bg-slate-100" />
                 
                 <div className="flex justify-between items-center p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                  <span className="text-sm text-slate-500 font-medium flex items-center gap-1.5" title="Orta hesabla ümumi reklam gəlir qatınız">
-                    Blended ROAS <Info size={12} className="text-slate-400" />
+                  <span className="text-sm text-slate-500 font-medium flex items-center">
+                    Blended ROAS
+                    <InfoTooltip 
+                      title="Blended ROAS (Ümumi ROAS)" 
+                      content="Bütün reklam kanallarının cəmindən əldə edilən orta gəlir qatıdır. Reklamın ümumi səmərəliliyini göstərir." 
+                    />
                   </span>
                   <span className="font-bold text-slate-900">{blendedROAS.toFixed(2)}x</span>
                 </div>
                 <div className="h-px w-full bg-slate-100" />
                 
                 <div className="flex justify-between items-center p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                  <span className="text-sm text-slate-500 font-medium flex items-center gap-1.5" title="Zərər etməmək üçün minimum tələb olunan ROAS">
-                    Break-Even ROAS <Info size={12} className="text-slate-400" />
+                  <span className="text-sm text-slate-500 font-medium flex items-center">
+                    Break-Even ROAS
+                    <InfoTooltip 
+                      title="Break-Even ROAS (Zərərsizlik Nöqtəsi)" 
+                      content="Reklamdan zərər etməmək (sıfıra-sıfır çıxmaq) üçün əldə etməli olduğunuz minimum ROAS dəyəridir." 
+                    />
                   </span>
                   <span className="font-bold text-blue-600">{breakEvenROAS.toFixed(2)}x</span>
                 </div>
@@ -572,7 +614,13 @@ _Hesablama elvinsahbazov.com tərəfindən_`;
                 <div className="h-px w-full bg-slate-100" />
                 
                 <div className="flex justify-between items-center p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                  <span className="text-sm text-slate-500 font-medium">Orta CAC / CPA</span>
+                  <span className="text-sm text-slate-500 font-medium flex items-center">
+                    Orta CAC / CPA
+                    <InfoTooltip 
+                      title="CAC (Müştəri Əldəetmə Xərci)" 
+                      content="1 yeni məhsul sifarişi (və ya müştəri) qazanmaq üçün xərclənən orta reklam məbləğidir." 
+                    />
+                  </span>
                   <span className="font-bold text-slate-900">₼{cpa.toFixed(2)}</span>
                 </div>
               </div>
