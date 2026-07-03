@@ -1,10 +1,10 @@
 import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Download, FileText, MessageCircle, AlertCircle, Save, Info, Calculator as CalcIcon } from 'lucide-react';
+import { Download, FileText, MessageCircle, AlertCircle, Save, Info, Calculator as CalcIcon, Target, TrendingUp, Filter, Users, Banknote } from 'lucide-react';
 import {
   Chart as ChartJS,
   ArcElement,
-  Tooltip,
+  Tooltip as ChartTooltip,
   Legend,
   CategoryScale,
   LinearScale,
@@ -44,7 +44,7 @@ const InfoTooltip = ({ title, content }: { title: string, content: string }) => 
   );
 };
 
-ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title);
+ChartJS.register(ArcElement, ChartTooltip, Legend, CategoryScale, LinearScale, BarElement, Title);
 
 type Channel = {
   name: string;
@@ -60,6 +60,12 @@ type CalcState = {
   channels: Channel[];
 };
 
+type ForecastState = {
+  targetRevenue: number;
+  cpl: number;
+  conversionRate: number;
+};
+
 const PRESETS: Record<string, { price: number; cogs: number; channels: Channel[] }> = {
   'E-ticarət': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 4.5 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 3.5 }, { name: 'TikTok Ads', enabled: false, budget: 0, roas: 2.5 }, { name: 'Email M.', enabled: false, budget: 0, roas: 6.0 } ] },
   'Tibb & Klinika': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 3.0 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 4.0 }, { name: 'TikTok Ads', enabled: false, budget: 0, roas: 1.5 }, { name: 'Email M.', enabled: false, budget: 0, roas: 2.0 } ] },
@@ -68,55 +74,17 @@ const PRESETS: Record<string, { price: number; cogs: number; channels: Channel[]
   'B2B Xidmətlər': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: false, budget: 0, roas: 2.0 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 5.0 }, { name: 'LinkedIn Ads', enabled: true, budget: 0, roas: 3.5 }, { name: 'Email M.', enabled: true, budget: 0, roas: 8.0 } ] },
   'Təhsil / Kurslar': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 4.0 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 3.0 }, { name: 'TikTok Ads', enabled: true, budget: 0, roas: 5.0 }, { name: 'Email M.', enabled: false, budget: 0, roas: 2.0 } ] },
   'Gözəllik & SPA': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 4.5 }, { name: 'Google Ads', enabled: false, budget: 0, roas: 2.0 }, { name: 'TikTok Ads', enabled: true, budget: 0, roas: 3.5 }, { name: 'Email M.', enabled: false, budget: 0, roas: 1.5 } ] },
-  'Turizm / Səyahət': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 5.0 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 6.5 }, { name: 'TikTok Ads', enabled: false, budget: 0, roas: 3.0 }, { name: 'Email M.', enabled: true, budget: 0, roas: 8.0 } ] },
-  'Hüquq / Konsaltinq': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: false, budget: 0, roas: 2.0 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 6.0 }, { name: 'LinkedIn Ads', enabled: true, budget: 0, roas: 4.0 }, { name: 'Email M.', enabled: false, budget: 0, roas: 3.0 } ] },
-  'Fitnes & İdman': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 3.5 }, { name: 'Google Ads', enabled: false, budget: 0, roas: 1.5 }, { name: 'TikTok Ads', enabled: true, budget: 0, roas: 4.0 }, { name: 'Email M.', enabled: false, budget: 0, roas: 2.0 } ] },
-  'Tikinti & Təmir': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 8.0 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 12.0 }, { name: 'TikTok Ads', enabled: false, budget: 0, roas: 2.0 }, { name: 'Email M.', enabled: false, budget: 0, roas: 1.0 } ] },
-  'Digər': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 3.0 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 3.0 }, { name: 'TikTok Ads', enabled: false, budget: 0, roas: 2.0 }, { name: 'Email M.', enabled: false, budget: 0, roas: 2.0 } ] },
-};
-
-const channelColors: Record<string, string> = {
-  'Meta Ads': '#2563eb', // Blue-600
-  'Google Ads': '#ef4444', // Red-500
-  'TikTok Ads': '#000000',
-  'LinkedIn Ads': '#0284c7', // Sky-600
-  'Email M.': '#10b981', // Emerald-500
+  'Turizm / Otel': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 5.0 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 6.0 }, { name: 'TikTok Ads', enabled: false, budget: 0, roas: 3.0 }, { name: 'Email M.', enabled: false, budget: 0, roas: 4.0 } ] },
+  'Hüquq / Konsaltinq': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: false, budget: 0, roas: 2.5 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 4.5 }, { name: 'LinkedIn Ads', enabled: true, budget: 0, roas: 4.0 }, { name: 'Email M.', enabled: false, budget: 0, roas: 3.0 } ] },
+  'Fitnes / İdman': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 3.5 }, { name: 'Google Ads', enabled: false, budget: 0, roas: 2.0 }, { name: 'TikTok Ads', enabled: true, budget: 0, roas: 4.0 }, { name: 'Email M.', enabled: false, budget: 0, roas: 1.5 } ] },
+  'Tikinti / Təmir': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 6.0 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 5.0 }, { name: 'TikTok Ads', enabled: false, budget: 0, roas: 2.0 }, { name: 'Email M.', enabled: false, budget: 0, roas: 3.0 } ] }
 };
 
 export default function Calculator() {
+  const [activeTab, setActiveTab] = useState<'roas' | 'forecast'>('roas');
   const [passed, setPassed] = useState(false);
-  const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle');
-
-  // Lead Gen State
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'error'>('idle');
-
-  const handleStart = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!name || !email) return;
-    setSubmitStatus('loading');
-    setTimeout(() => {
-      localStorage.setItem('calc_user', JSON.stringify({ name, email }));
-      setSubmitStatus('idle');
-      setPassed(true);
-    }, 800);
-  };
-
   useEffect(() => {
-    const user = localStorage.getItem('calc_user');
-    if (user) {
-      try {
-        const p = JSON.parse(user);
-        if (p.name && p.email) {
-          setName(p.name);
-          setEmail(p.email);
-          setPassed(true);
-        }
-      } catch (e) {
-        // ignore
-      }
-    }
+    setPassed(true);
   }, []);
 
   const [state, setState] = useState<CalcState>(() => {
@@ -132,21 +100,32 @@ export default function Calculator() {
     };
   });
 
+  const [forecastState, setForecastState] = useState<ForecastState>(() => {
+    const saved = localStorage.getItem('calc_forecast_state');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) { /* ignore */ }
+    }
+    return {
+      targetRevenue: 10000,
+      cpl: 2.0,
+      conversionRate: 5.0
+    };
+  });
+
   const userInfo = (() => {
     try { return JSON.parse(localStorage.getItem('calc_user') || '{}') as { name?: string; email?: string }; } catch { return {}; }
   })();
   const userName = userInfo.name || '';
-  const userEmail = userInfo.email || '';
 
   useEffect(() => {
-    if (passed) localStorage.setItem('calc_state', JSON.stringify(state));
-  }, [state, passed]);
+    if (passed) {
+      localStorage.setItem('calc_state', JSON.stringify(state));
+      localStorage.setItem('calc_forecast_state', JSON.stringify(forecastState));
+    }
+  }, [state, forecastState, passed]);
 
-  // CALCULATION LOGIC
-  const margin = state.productPrice > 0
-    ? ((state.productPrice - state.cogs) / state.productPrice) * 100
-    : 0;
-
+  // ROAS CALCULATION LOGIC
+  const margin = state.productPrice > 0 ? ((state.productPrice - state.cogs) / state.productPrice) * 100 : 0;
   const enabledChannels = state.channels.filter((c) => c.enabled);
   const totalBudget = enabledChannels.reduce((s, c) => s + c.budget, 0);
   const totalRevenue = enabledChannels.reduce((s, c) => s + c.budget * c.roas, 0);
@@ -154,519 +133,597 @@ export default function Calculator() {
   const netProfit = totalProfit - totalBudget;
   const blendedROAS = totalBudget > 0 ? totalRevenue / totalBudget : 0;
   const breakEvenROAS = margin > 0 ? 100 / margin : 0;
-  
   const estSales = state.productPrice > 0 ? totalRevenue / state.productPrice : 0;
   const cpa = estSales > 0 ? totalBudget / estSales : 0;
   const roi = totalBudget > 0 ? (netProfit / totalBudget) * 100 : 0;
 
-  const saveSession = useCallback(async () => {
-    if (!passed || !userEmail) return;
-    setSaveStatus('saving');
-    setTimeout(() => {
-      setSaveStatus('saved');
-      setTimeout(() => setSaveStatus('idle'), 3000);
-    }, 600);
-  }, [passed, userEmail]);
+  // FORECAST CALCULATION LOGIC
+  const f_salesNeeded = state.productPrice > 0 ? forecastState.targetRevenue / state.productPrice : 0;
+  const f_leadsNeeded = forecastState.conversionRate > 0 ? f_salesNeeded / (forecastState.conversionRate / 100) : 0;
+  const f_requiredBudget = f_leadsNeeded * forecastState.cpl;
+  const f_expectedROAS = f_requiredBudget > 0 ? forecastState.targetRevenue / f_requiredBudget : 0;
 
-  useEffect(() => {
-    const timer = setInterval(saveSession, 60000); // 1 minute auto-save
-    return () => clearInterval(timer);
-  }, [saveSession]);
-
-  const updatePreset = (pName: string) => {
-    const p = PRESETS[pName] || PRESETS['Digər'];
-    setState({
-      presetName: pName,
-      productPrice: p.price,
-      cogs: p.cogs,
-      channels: JSON.parse(JSON.stringify(p.channels)),
-    });
-  };
-
-  const updateChannel = (idx: number, field: keyof Channel, val: any) => {
-    const newChannels = [...state.channels];
-    newChannels[idx] = { ...newChannels[idx], [field]: val };
-    setState({ ...state, channels: newChannels });
-  };
-
-  // EXPORTS
-  const exportPDF = () => {
-    alert('PDF ixracı hazırda hazırlanır (simulyasiya). Nəticələrinizi yadda saxladıq.');
-  };
-
-  const exportCSV = () => {
-    const rows = [
-      ['Smart Reklam Hesabatı'],
-      ['İstifadəçi', userName],
-      ['Baza Növü', state.presetName],
-      ['Qiymət', state.productPrice],
-      ['Maya Dəyəri', state.cogs],
-      ['Marja (%)', margin.toFixed(1)],
-      [],
-      ['Kanal', 'Büdcə (₼)', 'ROAS', 'Gəlir (₼)', 'Mənfəət (₼)'],
-      ...enabledChannels.map((c) => [
-        c.name,
-        c.budget,
-        c.roas,
-        (c.budget * c.roas).toFixed(0),
-        (c.budget * c.roas * (margin / 100)).toFixed(0),
-      ]),
-      ['CƏMI', totalBudget, blendedROAS.toFixed(2), totalRevenue.toFixed(0), netProfit.toFixed(0)],
-      [],
-      ['Əlavə Metriklər'],
-      ['Təxmini Satış Sayı', estSales.toFixed(0)],
-      ['Orta Müştəri Qazanma Dəyəri (CAC/CPA)', cpa.toFixed(2)],
-      ['ROI (İnvestisiya Gəlirliyi)', `${roi.toFixed(1)}%`]
-    ];
-    const csv = rows.map((r) => r.join(',')).join('\n');
-    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `smart-roas-${new Date().toISOString().split('T')[0]}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
-  };
-
-  const exportWhatsApp = () => {
-    const msg = `📊 *Smart Reklam Hesabatı PRO*
-
-👤 ${userName}
-💼 Sektor: ${state.presetName}
-
-💰 Ümumi Büdcə: ₼${totalBudget.toLocaleString()}
-📈 Gözlənilən Gəlir: ₼${totalRevenue.toFixed(0)}
-🎯 Blended ROAS: ${blendedROAS.toFixed(2)}x
-💵 Xalis Mənfəət: ₼${netProfit.toFixed(0)}
-⚠️ Break-Even ROAS: ${breakEvenROAS.toFixed(2)}x
-
-📦 Təxmini Satış: ${estSales.toFixed(0)} ədəd
-🤝 Orta CAC / CPA: ₼${cpa.toFixed(2)}
-🚀 ROI: ${roi.toFixed(1)}%
-
-_Hesablama elvinsahbazov.com tərəfindən_`;
-    window.open(`https://wa.me/994999550001?text=${encodeURIComponent(msg)}`, '_blank');
-  };
-
-  // CHARTS
-  const doughnutData = {
-    labels: enabledChannels.map(c => c.name),
-    datasets: [{
-      data: enabledChannels.map(c => c.budget),
-      backgroundColor: enabledChannels.map(c => channelColors[c.name] || '#3b82f6'),
-      borderWidth: 0,
-    }],
-  };
-  
-  const barData = {
-    labels: enabledChannels.map(c => c.name),
-    datasets: [
-      {
-        label: 'Gəlir (₼)',
-        data: enabledChannels.map(c => c.budget * c.roas),
-        backgroundColor: '#93c5fd', // blue-300
-        borderRadius: 4,
-      },
-      {
-        label: 'Mənfəət (₼)',
-        data: enabledChannels.map(c => c.budget * c.roas * (margin / 100)),
-        backgroundColor: '#2563eb', // blue-600
-        borderRadius: 4,
-      }
-    ],
-  };
-
-  const chartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        backgroundColor: '#1e293b',
-        titleFont: { family: 'Inter', size: 13 },
-        bodyFont: { family: 'Inter', size: 13 },
-        padding: 10,
-        cornerRadius: 8,
-      }
-    },
-    scales: {
-      y: { border: { display: false }, grid: { color: '#f1f5f9' }, ticks: { font: { family: 'Inter' } } },
-      x: { border: { display: false }, grid: { display: false }, ticks: { font: { family: 'Inter' } } }
+  const loadPreset = (presetName: string) => {
+    const p = PRESETS[presetName];
+    if (p) {
+      setState(s => ({
+        ...s,
+        presetName,
+        channels: p.channels,
+      }));
     }
   };
 
-  if (!passed) {
-    return (
-      <div className="min-h-screen bg-slate-50 pt-28 pb-20 font-inter text-slate-900 flex items-center justify-center">
-        <div className="max-w-md w-full px-6">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-white rounded-2xl shadow-xl border border-slate-200 p-8">
-            <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 text-blue-600 shadow-sm mx-auto">
-              <CalcIcon size={28} />
-            </div>
-            <h1 className="text-2xl font-bold text-center mb-2">Smart Reklam Hesablayıcı <span className="text-blue-600">PRO</span></h1>
-            <p className="text-slate-500 text-center text-sm mb-8">
-              Reklam büdcənizin gəlirliyini və xalis mənfəəti simulyasiya edərək düzgün qərar verin.
-            </p>
-            <form onSubmit={handleStart} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Adınız</label>
-                <input
-                  type="text"
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none"
-                  placeholder="Məs: Elvin Şahbazov"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none"
-                  placeholder="elaqe@domain.com"
-                />
-              </div>
-              <button
-                type="submit"
-                disabled={submitStatus === 'loading'}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl shadow-md shadow-blue-600/20 transition-all active:scale-[0.98] disabled:opacity-70 disabled:active:scale-100 mt-2"
-              >
-                {submitStatus === 'loading' ? 'Yüklənir...' : 'Sistemə Daxil Ol'}
-              </button>
-            </form>
-          </motion.div>
-        </div>
-      </div>
-    );
-  }
+  const updateChannel = (idx: number, field: keyof Channel, value: number | boolean) => {
+    setState(s => {
+      const newChannels = [...s.channels];
+      newChannels[idx] = { ...newChannels[idx], [field]: value };
+      return { ...s, channels: newChannels };
+    });
+  };
+
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    e.target.select();
+  };
+
+  const generateReportText = () => {
+    if (activeTab === 'roas') {
+      return `📊 *ROAS VƏ QAZANC HESABATIM*
+
+🏢 Sektor: ${state.presetName}
+💰 Məhsul Qiyməti: ₼${state.productPrice}
+📦 Maya Dəyəri: ₼${state.cogs}
+
+💸 Ümumi Büdcə: ₼${totalBudget}
+📈 Gözlənilən Gəlir: ₼${totalRevenue.toFixed(0)}
+💎 Xalis Mənfəət: ₼${netProfit.toFixed(0)}
+
+🚀 ROI: ${roi.toFixed(1)}%
+🎯 Blended ROAS: ${blendedROAS.toFixed(2)}x
+⚖️ Break-Even ROAS: ${breakEvenROAS.toFixed(2)}x
+🛍 Təxmini Satış: ${estSales.toFixed(0)} ədəd
+
+_Bu hesabat Elvin Şahbazov-un ROAS Hesablayıcısı tərəfindən generasiya edilmişdir._`;
+    } else {
+      return `🔮 *MARKETİNQ PROQNOZ HESABATIM*
+
+🎯 Hədəf Gəlir: ₼${forecastState.targetRevenue.toLocaleString()}
+💰 Məhsul Qiyməti: ₼${state.productPrice}
+
+📊 *Hədəfə Çatmaq Üçün Tələblər:*
+💸 Tələb Olunan Büdcə: ₼${f_requiredBudget.toFixed(0)}
+📩 Tələb Olunan Mesaj/Lead: ${f_leadsNeeded.toFixed(0)} ədəd
+🛍 Tələb Olunan Satış: ${f_salesNeeded.toFixed(0)} ədəd
+
+🎯 Gözlənilən ROAS: ${f_expectedROAS.toFixed(2)}x
+
+_Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişdir._`;
+    }
+  };
+
+  const exportWhatsApp = () => {
+    const msg = generateReportText();
+    window.open(`https://wa.me/994999550001?text=${encodeURIComponent(msg)}`, '_blank');
+  };
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-28 pb-20 font-inter text-slate-900 selection:bg-blue-500/30">
+    <div className="min-h-screen bg-slate-50 pt-28 pb-20 font-inter">
       <Container>
-        {/* Header Row */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
           <div>
-            <div className="flex items-center gap-3 mb-1">
-              <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Smart Reklam Hesablayıcı</h1>
-              <span className="bg-blue-600 text-white text-xs font-bold px-2 py-0.5 rounded-md shadow-sm">PRO</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-100 text-blue-700 font-semibold text-xs mb-4">
+              <TrendingUp size={16} /> Data-Driven Marketinq
             </div>
-            <p className="text-slate-500 text-sm">
-              Xoş gəldiniz, <span className="font-semibold text-slate-700">{userName}</span>! Təxmini ROAS və gəlir ssenarilərinizi formalaşdırın.
-            </p>
+            <h1 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight mb-2">
+              Marketinq & <span className="text-blue-600">ROAS</span> Paneli
+            </h1>
+            <p className="text-slate-500 text-lg">Xərclərinizi hesablayın və ya hədəflərinizə çatmaq üçün proqnozlar qurun.</p>
           </div>
           
-          <div className="flex flex-wrap items-center gap-2 md:gap-3">
-            <div className="hidden sm:flex items-center text-xs text-slate-400 mr-2">
-              {saveStatus === 'saving' && <><Save size={14} className="mr-1 animate-pulse" /> Saxlanılır...</>}
-              {saveStatus === 'saved' && <><Save size={14} className="mr-1 text-emerald-500" /> Saxlanıldı</>}
-            </div>
-            
-            <button onClick={exportPDF} className="flex items-center gap-2 px-3 py-2 bg-white border border-slate-200 text-slate-600 text-sm font-medium rounded-lg hover:bg-slate-50 transition-colors shadow-sm">
-              <FileText size={16} /> <span className="hidden sm:inline">PDF</span>
+          {/* Action Buttons */}
+          <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+            <button
+              onClick={() => window.print()}
+              className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 px-4 py-2.5 rounded-xl font-semibold shadow-sm hover:bg-slate-50 transition-all print-hide"
+            >
+              <FileText size={18} /> PDF
             </button>
-            <button onClick={exportCSV} className="flex items-center gap-2 px-3 py-2 bg-white border border-slate-200 text-slate-600 text-sm font-medium rounded-lg hover:bg-slate-50 transition-colors shadow-sm">
-              <Download size={16} /> <span className="hidden sm:inline">CSV</span>
-            </button>
-            <button onClick={exportWhatsApp} className="flex items-center gap-2 px-3 py-2 bg-[#25D366]/10 border border-[#25D366]/20 text-[#1DA851] text-sm font-medium rounded-lg hover:bg-[#25D366]/20 transition-colors shadow-sm">
-              <MessageCircle size={16} /> <span className="hidden sm:inline">WhatsApp</span>
+            <button
+              onClick={exportWhatsApp}
+              className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold shadow-md hover:bg-blue-700 transition-all print-hide"
+            >
+              <MessageCircle size={18} /> WhatsApp <span className="hidden sm:inline">ilə Göndər</span>
             </button>
           </div>
         </div>
 
-        {/* Main Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        {/* Custom Tabs */}
+        <div className="flex p-1 bg-slate-200/60 rounded-2xl w-full max-w-sm mb-8 relative">
+          <button
+            onClick={() => setActiveTab('roas')}
+            className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold rounded-xl transition-all z-10 ${
+              activeTab === 'roas' ? 'text-blue-700 shadow-sm bg-white' : 'text-slate-500 hover:text-slate-700'
+            }`}
+          >
+            <CalcIcon size={16} /> ROAS Hesablayıcı
+          </button>
+          <button
+            onClick={() => setActiveTab('forecast')}
+            className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold rounded-xl transition-all z-10 ${
+              activeTab === 'forecast' ? 'text-blue-700 shadow-sm bg-white' : 'text-slate-500 hover:text-slate-700'
+            }`}
+          >
+            <Target size={16} /> Proqnoz Paneli
+          </button>
+        </div>
+
+        <AnimatePresence mode="wait">
           
-          {/* LEFT COLUMN (70%) */}
-          <div className="lg:col-span-8 space-y-6">
-            
-            {/* Card 1: Əsas Məlumatlar */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-              <h2 className="text-lg font-bold mb-5 flex items-center gap-2">
-                <div className="w-1.5 h-6 bg-blue-600 rounded-full"></div>
-                Əsas Məlumatlar
-              </h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
-                <div className="md:col-span-1">
-                  <label className="block text-xs font-semibold text-slate-500 mb-1.5 uppercase tracking-wider">Biznes Növü (Preset)</label>
-                  <select
-                    value={state.presetName}
-                    onChange={(e) => updatePreset(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition-all appearance-none cursor-pointer"
-                  >
-                    {Object.keys(PRESETS).map((p) => (
-                      <option key={p} value={p}>{p}</option>
+          {/* TAB 1: ROAS CALCULATOR */}
+          {activeTab === 'roas' && (
+            <motion.div key="roas" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              {/* LEFT COLUMN */}
+              <div className="lg:col-span-8 space-y-8">
+                
+                {/* 1. Presets */}
+                <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                      <Filter size={20} />
+                    </div>
+                    <div>
+                      <h2 className="text-xl font-bold text-slate-900">Sənaye Şablonları</h2>
+                      <p className="text-sm text-slate-500">Biznes növünüzü seçin, ortalama ROAS dəyərləri avtomatik yüklənsin.</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {Object.keys(PRESETS).map(p => (
+                      <button
+                        key={p}
+                        onClick={() => loadPreset(p)}
+                        className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                          state.presetName === p
+                            ? 'bg-blue-600 text-white shadow-md'
+                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                        }`}
+                      >
+                        {p}
+                      </button>
                     ))}
-                  </select>
-                </div>
-                
-                <div className="md:col-span-2 grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-500 mb-1.5 uppercase tracking-wider">Xidmət / Məhsul Qiyməti (₼)</label>
-                    <input
-                      type="number"
-                      value={state.productPrice === 0 ? '' : state.productPrice}
-                      onChange={(e) => setState({ ...state, productPrice: +e.target.value })}
-                      onFocus={(e) => e.target.select()}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-bold focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition-all"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-500 mb-1.5 uppercase tracking-wider">Maya Dəyəri (COGS) (₼)</label>
-                    <input
-                      type="number"
-                      value={state.cogs === 0 ? '' : state.cogs}
-                      onChange={(e) => setState({ ...state, cogs: +e.target.value })}
-                      onFocus={(e) => e.target.select()}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-bold focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition-all"
-                    />
                   </div>
                 </div>
-              </div>
-              
-              <div className="bg-blue-50 rounded-xl p-4 flex items-center justify-between border border-blue-100">
-                <span className="text-sm font-medium text-blue-800">Hesablanmış Ümumi Marja (Gross Margin)</span>
-                <span className="text-2xl font-black text-blue-600">{margin.toFixed(1)}%</span>
-              </div>
-            </motion.div>
 
-            {/* Card 2: Reklam Kanalları */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-                <h2 className="text-lg font-bold flex items-center gap-2">
-                  <div className="w-1.5 h-6 bg-blue-600 rounded-full"></div>
-                  Reklam Kanalları
-                </h2>
-                <div className="bg-amber-50 text-amber-800 border border-amber-200/50 rounded-xl px-3 py-2 text-xs flex gap-2 max-w-sm">
-                  <Info size={16} className="shrink-0 mt-0.5 text-amber-600" />
-                  <p>
-                    <strong className="font-semibold">ROAS nədir?</strong> 1₼ xərc qarşılığında neçə ₼ gəlir gözlədiyinizdir (Məs: 4.5 = 1₼ xərcə 4.5₼ gəlir).
-                  </p>
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                {state.channels.map((ch, i) => (
-                  <div
-                    key={ch.name}
-                    className={`grid grid-cols-[auto_1fr_120px_100px] gap-4 items-center p-3 rounded-xl border transition-all ${
-                      ch.enabled ? 'border-slate-200 bg-white shadow-sm' : 'border-slate-100 bg-slate-50/50 opacity-60'
-                    }`}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={ch.enabled}
-                      onChange={(e) => updateChannel(i, 'enabled', e.target.checked)}
-                      className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
-                    />
-                    <div className="flex items-center gap-2 min-w-0">
-                      <div className="w-3 h-3 rounded-full flex-none" style={{ backgroundColor: channelColors[ch.name] || '#3b82f6' }} />
-                      <span className="font-medium text-sm text-slate-700 truncate">{ch.name}</span>
+                {/* 2. Basic Data */}
+                <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                      <Banknote size={20} />
                     </div>
                     <div>
-                      <label className="block text-[10px] uppercase font-semibold text-slate-400 mb-1">Büdcə (₼)</label>
+                      <h2 className="text-xl font-bold text-slate-900">Məhsul/Xidmət Məlumatları</h2>
+                      <p className="text-sm text-slate-500">Dəqiq mənfəəti (Marrjı) hesablamaq üçün daxil edin.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-bold text-slate-700 mb-2">Orta Satış Qiyməti (AOV) ₼</label>
                       <input
                         type="number"
-                        value={ch.budget === 0 ? '' : ch.budget}
-                        onChange={(e) => updateChannel(i, 'budget', +e.target.value)}
-                        onFocus={(e) => e.target.select()}
-                        disabled={!ch.enabled}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-sm font-semibold focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none disabled:bg-transparent disabled:border-transparent transition-all"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                        value={state.productPrice === 0 ? '' : state.productPrice}
+                        onChange={(e) => setState(s => ({ ...s, productPrice: Number(e.target.value) }))}
+                        onFocus={handleFocus}
+                        placeholder="0"
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] uppercase font-semibold text-slate-400 mb-1">ROAS (Qat)</label>
+                      <label className="block text-sm font-bold text-slate-700 mb-2">Məhsulun Maya Dəyəri (COGS) ₼</label>
                       <input
                         type="number"
-                        step="0.1"
-                        value={ch.roas === 0 ? '' : ch.roas}
-                        onChange={(e) => updateChannel(i, 'roas', +e.target.value)}
-                        onFocus={(e) => e.target.select()}
-                        disabled={!ch.enabled}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-sm font-semibold focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none disabled:bg-transparent disabled:border-transparent transition-all"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                        value={state.cogs === 0 ? '' : state.cogs}
+                        onChange={(e) => setState(s => ({ ...s, cogs: Number(e.target.value) }))}
+                        onFocus={handleFocus}
+                        placeholder="0"
                       />
                     </div>
                   </div>
-                ))}
-              </div>
-            </motion.div>
-            
-            {/* Charts Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <h3 className="font-semibold text-sm mb-4">Büdcə Bölgüsü</h3>
-                <div className="relative h-48">
-                  <Doughnut data={doughnutData} options={{ maintainAspectRatio: false, cutout: '75%', plugins: { legend: { display: false } } }} />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                    <span className="text-xs font-semibold text-slate-400">CƏMİ</span>
-                    <span className="text-lg font-bold">₼{totalBudget.toLocaleString()}</span>
+
+                  {state.productPrice > 0 && (
+                    <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 text-sm font-bold border border-emerald-100">
+                      Mənfəət Marjı: {margin.toFixed(1)}%
+                    </div>
+                  )}
+                </div>
+
+                {/* 3. Channels */}
+                <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200 overflow-hidden">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                      <Target size={20} />
+                    </div>
+                    <div>
+                      <h2 className="text-xl font-bold text-slate-900">Reklam Kanalları</h2>
+                      <p className="text-sm text-slate-500">Aylıq reklam büdcənizi və hədəf ROAS-ı daxil edin.</p>
+                    </div>
+                  </div>
+
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left min-w-[600px]">
+                      <thead>
+                        <tr className="border-b border-slate-200 text-slate-400 text-sm">
+                          <th className="pb-3 font-semibold w-12">Aktiv</th>
+                          <th className="pb-3 font-semibold">Kanal Adı</th>
+                          <th className="pb-3 font-semibold w-40">Büdcə (₼)</th>
+                          <th className="pb-3 font-semibold w-32">Hədəf ROAS</th>
+                          <th className="pb-3 font-semibold text-right">Gözlənilən Gəlir</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {state.channels.map((channel, idx) => (
+                          <tr key={idx} className={`transition-colors ${!channel.enabled ? 'opacity-50 grayscale' : ''}`}>
+                            <td className="py-4">
+                              <label className="relative inline-flex items-center cursor-pointer">
+                                <input
+                                  type="checkbox"
+                                  className="sr-only peer"
+                                  checked={channel.enabled}
+                                  onChange={(e) => updateChannel(idx, 'enabled', e.target.checked)}
+                                />
+                                <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                              </label>
+                            </td>
+                            <td className="py-4 font-bold text-slate-700">{channel.name}</td>
+                            <td className="py-4 pr-4">
+                              <div className="relative">
+                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">₼</span>
+                                <input
+                                  type="number"
+                                  className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all disabled:bg-slate-100 disabled:text-slate-400"
+                                  value={channel.budget === 0 ? '' : channel.budget}
+                                  onChange={(e) => updateChannel(idx, 'budget', Number(e.target.value))}
+                                  onFocus={handleFocus}
+                                  disabled={!channel.enabled}
+                                  placeholder="0"
+                                />
+                              </div>
+                            </td>
+                            <td className="py-4 pr-4">
+                              <div className="relative">
+                                <input
+                                  type="number"
+                                  step="0.1"
+                                  className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-3 pr-8 py-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all disabled:bg-slate-100 disabled:text-slate-400"
+                                  value={channel.roas === 0 ? '' : channel.roas}
+                                  onChange={(e) => updateChannel(idx, 'roas', Number(e.target.value))}
+                                  onFocus={handleFocus}
+                                  disabled={!channel.enabled}
+                                />
+                                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">x</span>
+                              </div>
+                            </td>
+                            <td className="py-4 text-right font-black text-slate-900">
+                              ₼{(channel.budget * channel.roas).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-                <div className="mt-4 space-y-2">
-                  {enabledChannels.map((c) => (
-                    <div key={c.name} className="flex justify-between items-center text-xs">
-                      <div className="flex items-center gap-1.5">
-                        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: channelColors[c.name] }} />
-                        <span className="text-slate-600">{c.name}</span>
+
+                {/* 4. Chart View */}
+                <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200 overflow-hidden">
+                  <h3 className="font-bold text-lg text-slate-900 mb-6 flex items-center gap-2">
+                    <div className="w-1.5 h-5 bg-blue-600 rounded-full"></div>
+                    Məsrəf vs Gəlir Qrafiki
+                  </h3>
+                  <div className="h-64 w-full">
+                    <Bar 
+                      data={{
+                        labels: enabledChannels.map(c => c.name),
+                        datasets: [
+                          { label: 'Büdcə (Məsrəf)', data: enabledChannels.map(c => c.budget), backgroundColor: '#cbd5e1', borderRadius: 4 },
+                          { label: 'Gözlənilən Gəlir', data: enabledChannels.map(c => c.budget * c.roas), backgroundColor: '#3b82f6', borderRadius: 4 },
+                          { label: 'Xalis Mənfəət', data: enabledChannels.map(c => (c.budget * c.roas) * (margin / 100) - c.budget), backgroundColor: '#10b981', borderRadius: 4 }
+                        ]
+                      }}
+                      options={{ maintainAspectRatio: false, scales: { y: { beginAtZero: true, grid: { color: '#f1f5f9' } }, x: { grid: { display: false } } }, plugins: { legend: { display: false } } }}
+                    />
+                  </div>
+                </div>
+
+              </div>
+
+              {/* RIGHT COLUMN */}
+              <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-28">
+                <div className="bg-blue-600 rounded-3xl shadow-md p-6 md:p-8 text-white relative overflow-hidden">
+                  <div className="absolute -top-6 -right-6 opacity-10">
+                    <CalcIcon size={140} />
+                  </div>
+                  <div className="relative z-10">
+                    <p className="text-blue-200 text-sm font-bold uppercase tracking-wider mb-2">Ümumi Reklam Büdcəsi</p>
+                    <p className="text-4xl md:text-5xl font-black mb-3 tracking-tight">₼{totalBudget.toLocaleString()}</p>
+                    <div className="inline-flex items-center px-3 py-1 bg-blue-500 rounded-lg text-xs font-bold border border-blue-400">
+                      Aktiv kanallar: {enabledChannels.length}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8">
+                  <div className="space-y-1">
+                    <div className="flex justify-between items-center py-3">
+                      <span className="text-sm text-slate-500 font-bold">Gözlənilən Gəlir</span>
+                      <span className="font-black text-slate-900 text-xl">₼{totalRevenue.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
+                    </div>
+                    <div className="h-px w-full bg-slate-100" />
+                    
+                    <div className="flex justify-between items-center py-3">
+                      <span className="text-sm text-slate-500 font-bold">Xalis Mənfəət</span>
+                      <span className={`font-black text-xl ${netProfit >= 0 ? 'text-emerald-500' : 'text-red-500'}`}>₼{netProfit.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
+                    </div>
+                    <div className="h-px w-full bg-slate-100" />
+                    
+                    <div className="flex justify-between items-center py-3">
+                      <span className="text-sm text-slate-500 font-bold flex items-center">
+                        ROI
+                        <InfoTooltip title="Return on Investment" content="Sərmayə Gəlirliyi. Yatırılan hər 1 ₼ reklam büdcəsindən əldə edilən xalis gəlir faizidir." />
+                      </span>
+                      <span className={`font-black text-lg ${roi >= 0 ? 'text-blue-600' : 'text-red-500'}`}>{roi.toFixed(1)}%</span>
+                    </div>
+                    <div className="h-px w-full bg-slate-100" />
+                    
+                    <div className="flex justify-between items-center py-3">
+                      <span className="text-sm text-slate-500 font-bold flex items-center">
+                        Blended ROAS
+                        <InfoTooltip title="Blended ROAS (Ümumi ROAS)" content="Bütün reklam kanallarının cəmindən əldə edilən orta gəlir qatıdır. Reklamın ümumi səmərəliliyini göstərir." />
+                      </span>
+                      <span className="font-black text-slate-900 text-lg">{blendedROAS.toFixed(2)}x</span>
+                    </div>
+                    <div className="h-px w-full bg-slate-100" />
+                    
+                    <div className="flex justify-between items-center py-3">
+                      <span className="text-sm text-slate-500 font-bold flex items-center">
+                        Break-Even ROAS
+                        <InfoTooltip title="Break-Even ROAS (Zərərsizlik Nöqtəsi)" content="Reklamdan zərər etməmək (sıfıra-sıfır çıxmaq) üçün əldə etməli olduğunuz minimum ROAS dəyəridir." />
+                      </span>
+                      <span className="font-black text-blue-600 text-lg">{breakEvenROAS.toFixed(2)}x</span>
+                    </div>
+                    <div className="h-px w-full bg-slate-100" />
+                    
+                    <div className="flex justify-between items-center py-3">
+                      <span className="text-sm text-slate-500 font-bold">Təxmini Satış</span>
+                      <span className="font-black text-slate-900 text-lg">{estSales.toFixed(0)} ədəd</span>
+                    </div>
+                    <div className="h-px w-full bg-slate-100" />
+                    
+                    <div className="flex justify-between items-center py-3">
+                      <span className="text-sm text-slate-500 font-bold flex items-center">
+                        Orta CAC / CPA
+                        <InfoTooltip title="CAC (Müştəri Əldəetmə Xərci)" content="1 yeni məhsul sifarişi (və ya müştəri) qazanmaq üçün xərclənən orta reklam məbləğidir." />
+                      </span>
+                      <span className="font-black text-slate-900 text-lg">₼{cpa.toFixed(2)}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <AnimatePresence>
+                  {blendedROAS < breakEvenROAS && blendedROAS > 0 && (
+                    <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="bg-red-50 border border-red-200 rounded-3xl p-6 flex gap-4">
+                      <AlertCircle className="text-red-500 shrink-0 mt-1" size={24} />
+                      <div>
+                        <h4 className="font-black text-red-900 mb-1">Kritik Risk! Zərər edirsiniz.</h4>
+                        <p className="text-sm text-red-700 font-medium leading-relaxed">
+                          Mövcud ROAS göstəriciniz zərərsizlik nöqtəsindən ({(breakEvenROAS - blendedROAS).toFixed(2)}x) aşağıdır. Ya məhsulun satış qiymətini qaldırın, ya da reklam optimizasiyası edin.
+                        </p>
                       </div>
-                      <span className="font-semibold">₼{c.budget.toLocaleString()}</span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
+          )}
+
+          {/* TAB 2: FORECAST PANEL */}
+          {activeTab === 'forecast' && (
+            <motion.div key="forecast" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              
+              {/* LEFT COLUMN: INPUTS */}
+              <div className="lg:col-span-6 space-y-6">
+                
+                {/* 1. Məhsul Qiyməti (Shared) */}
+                <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center shrink-0">
+                      <Banknote size={20} />
                     </div>
-                  ))}
-                </div>
-              </motion.div>
-
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }} className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <h3 className="font-semibold text-sm mb-4">Gəlir & Mənfəət</h3>
-                <div className="h-48">
-                  <Bar data={barData} options={chartOptions as any} />
-                </div>
-                <div className="flex gap-4 mt-4 justify-center text-xs">
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-2.5 h-2.5 rounded-sm bg-blue-300" />
-                    <span className="text-slate-600">Gəlir</span>
+                    <div>
+                      <h2 className="text-xl font-bold text-slate-900">Baza Məlumatı</h2>
+                      <p className="text-sm text-slate-500">Məhsul və ya Xidmətinizin satış qiyməti.</p>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-2.5 h-2.5 rounded-sm bg-blue-600" />
-                    <span className="text-slate-600">Mənfəət</span>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-          </div>
-
-          {/* RIGHT COLUMN (30% Sticky) */}
-          <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-28">
-            
-            {/* Total Highlight */}
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15 }} className="bg-blue-600 rounded-2xl shadow-md p-6 text-white relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-4 opacity-10">
-                <CalcIcon size={120} />
-              </div>
-              <div className="relative z-10">
-                <p className="text-blue-100 text-sm font-medium mb-1">Ümumi Reklam Büdcəsi</p>
-                <p className="text-4xl font-black mb-2 tracking-tight">₼{totalBudget.toLocaleString()}</p>
-                <div className="inline-flex items-center px-2 py-1 bg-blue-500/50 rounded text-xs font-semibold">
-                  Aktiv kanallar: {enabledChannels.length}
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Metrics List */}
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }} className="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
-              <div className="space-y-1">
-                <div className="flex justify-between items-center p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                  <span className="text-sm text-slate-500 font-medium">Gözlənilən Gəlir</span>
-                  <span className="font-bold text-blue-600 text-lg">₼{totalRevenue.toFixed(0)}</span>
-                </div>
-                <div className="h-px w-full bg-slate-100" />
-                
-                <div className="flex justify-between items-center p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                  <span className="text-sm text-slate-500 font-medium">Xalis Mənfəət</span>
-                  <span className={`font-bold text-lg ${netProfit >= 0 ? 'text-blue-600' : 'text-red-500'}`}>₼{netProfit.toFixed(0)}</span>
-                </div>
-                <div className="h-px w-full bg-slate-100" />
-                
-                <div className="flex justify-between items-center p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                  <span className="text-sm text-slate-500 font-medium flex items-center">
-                    ROI
-                    <InfoTooltip 
-                      title="Return on Investment" 
-                      content="Sərmayə Gəlirliyi. Yatırılan hər 1 ₼ reklam büdcəsindən əldə edilən xalis gəlir faizidir." 
-                    />
-                  </span>
-                  <span className={`font-bold ${roi >= 0 ? 'text-slate-900' : 'text-red-500'}`}>{roi.toFixed(1)}%</span>
-                </div>
-                <div className="h-px w-full bg-slate-100" />
-                
-                <div className="flex justify-between items-center p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                  <span className="text-sm text-slate-500 font-medium flex items-center">
-                    Blended ROAS
-                    <InfoTooltip 
-                      title="Blended ROAS (Ümumi ROAS)" 
-                      content="Bütün reklam kanallarının cəmindən əldə edilən orta gəlir qatıdır. Reklamın ümumi səmərəliliyini göstərir." 
-                    />
-                  </span>
-                  <span className="font-bold text-slate-900">{blendedROAS.toFixed(2)}x</span>
-                </div>
-                <div className="h-px w-full bg-slate-100" />
-                
-                <div className="flex justify-between items-center p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                  <span className="text-sm text-slate-500 font-medium flex items-center">
-                    Break-Even ROAS
-                    <InfoTooltip 
-                      title="Break-Even ROAS (Zərərsizlik Nöqtəsi)" 
-                      content="Reklamdan zərər etməmək (sıfıra-sıfır çıxmaq) üçün əldə etməli olduğunuz minimum ROAS dəyəridir." 
-                    />
-                  </span>
-                  <span className="font-bold text-blue-600">{breakEvenROAS.toFixed(2)}x</span>
-                </div>
-                <div className="h-px w-full bg-slate-100" />
-                
-                <div className="flex justify-between items-center p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                  <span className="text-sm text-slate-500 font-medium">Təxmini Satış Sayı</span>
-                  <span className="font-bold text-slate-900">{estSales.toFixed(0)} ədəd</span>
-                </div>
-                <div className="h-px w-full bg-slate-100" />
-                
-                <div className="flex justify-between items-center p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                  <span className="text-sm text-slate-500 font-medium flex items-center">
-                    Orta CAC / CPA
-                    <InfoTooltip 
-                      title="CAC (Müştəri Əldəetmə Xərci)" 
-                      content="1 yeni məhsul sifarişi (və ya müştəri) qazanmaq üçün xərclənən orta reklam məbləğidir." 
-                    />
-                  </span>
-                  <span className="font-bold text-slate-900">₼{cpa.toFixed(2)}</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Risk Alert */}
-            <AnimatePresence>
-              {blendedROAS < breakEvenROAS && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="bg-red-50 border border-red-200 rounded-2xl p-4 flex gap-3 overflow-hidden"
-                >
-                  <AlertCircle className="text-red-500 shrink-0 mt-0.5" size={20} />
                   <div>
-                    <h4 className="font-bold text-red-800 text-sm mb-0.5">Risk Var! Zərər edirsiniz.</h4>
-                    <p className="text-xs text-red-600/90 font-medium">
-                      Mövcud ROAS göstəriciniz zərərsizlik nöqtəsindən ({(breakEvenROAS - blendedROAS).toFixed(2)}x) aşağıdır. Büdcəni və ya strategiyanızı optimallaşdırın.
-                    </p>
+                    <label className="block text-sm font-bold text-slate-700 mb-2">Orta Satış Qiyməti (AOV) ₼</label>
+                    <input
+                      type="number"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                      value={state.productPrice === 0 ? '' : state.productPrice}
+                      onChange={(e) => setState(s => ({ ...s, productPrice: Number(e.target.value) }))}
+                      onFocus={handleFocus}
+                      placeholder="0"
+                    />
                   </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                </div>
 
-            {/* CTA */}
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }} className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 text-center">
-              <p className="text-sm font-medium text-slate-600 mb-4">Hesabatınızı mütəxəssislə müzakirə edin.</p>
-              <a
-                href="https://wa.me/994999550001"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl shadow-sm transition-all"
-              >
-                <MessageCircle size={18} /> Məsləhət Al
-              </a>
-              <button
-                onClick={() => { localStorage.removeItem('calc_user'); setPassed(false); }}
-                className="mt-4 text-xs font-semibold text-slate-400 hover:text-slate-600 transition-colors"
-              >
-                Sistemdən Çıxış
-              </button>
+                {/* 2. Forecast Variables */}
+                <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center shrink-0">
+                      <Target size={20} />
+                    </div>
+                    <div>
+                      <h2 className="text-xl font-bold text-slate-900">Hədəf Dəyişənləri</h2>
+                      <p className="text-sm text-slate-500">Qazanmaq istədiyiniz məbləğ və dönüşüm (conversion) ehtimalları.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <div>
+                      <label className="flex items-center text-sm font-bold text-slate-700 mb-2">
+                        Hədəflənən Gəlir ₼
+                        <InfoTooltip title="Hədəf Gəlir" content="Bu ay reklamdan qazanmaq istədiyiniz ümumi dövriyyə məbləği." />
+                      </label>
+                      <input
+                        type="number"
+                        className="w-full bg-indigo-50/50 border border-indigo-200 rounded-xl px-4 py-4 text-xl font-black text-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                        value={forecastState.targetRevenue === 0 ? '' : forecastState.targetRevenue}
+                        onChange={(e) => setForecastState(s => ({ ...s, targetRevenue: Number(e.target.value) }))}
+                        onFocus={handleFocus}
+                        placeholder="Məs: 50000"
+                      />
+                    </div>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div>
+                        <label className="flex items-center text-sm font-bold text-slate-700 mb-2">
+                          Mesaj/Lead Xərci (CPL) ₼
+                          <InfoTooltip title="CPL / CPM" content="1 potensial müştəridən mesaj almaq, yaxud nömrəsini götürmək sizə neçəyə başa gəlir? (Məs: 1.5 AZN)" />
+                        </label>
+                        <input
+                          type="number" step="0.1"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                          value={forecastState.cpl === 0 ? '' : forecastState.cpl}
+                          onChange={(e) => setForecastState(s => ({ ...s, cpl: Number(e.target.value) }))}
+                          onFocus={handleFocus}
+                          placeholder="1.5"
+                        />
+                      </div>
+                      <div>
+                        <label className="flex items-center text-sm font-bold text-slate-700 mb-2">
+                          Çevrilmə Faizi (CR) %
+                          <InfoTooltip title="Conversion Rate (CR)" content="Sizə yazan və ya müraciət edən hər 100 nəfərdən orta hesabla neçəsi məhsulu alır? (Məs: 10%)" />
+                        </label>
+                        <input
+                          type="number" step="0.1"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                          value={forecastState.conversionRate === 0 ? '' : forecastState.conversionRate}
+                          onChange={(e) => setForecastState(s => ({ ...s, conversionRate: Number(e.target.value) }))}
+                          onFocus={handleFocus}
+                          placeholder="10"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* RIGHT COLUMN: RESULTS & FUNNEL */}
+              <div className="lg:col-span-6 space-y-6">
+                
+                <div className="bg-indigo-600 rounded-3xl shadow-md p-6 md:p-10 text-white relative overflow-hidden">
+                  <div className="absolute -bottom-10 -right-4 opacity-10">
+                    <Target size={180} />
+                  </div>
+                  <div className="relative z-10">
+                    <p className="text-indigo-200 text-sm font-bold uppercase tracking-wider mb-2">Hədəfə Çatmaq Üçün Tələb Olunan Büdcə</p>
+                    <p className="text-4xl md:text-5xl font-black mb-1 tracking-tight">₼{f_requiredBudget.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
+                    <p className="text-indigo-200 font-medium text-sm mt-3">Bu məbləği xərcləyərək {forecastState.targetRevenue.toLocaleString()} ₼ qazana bilərsiniz.</p>
+                  </div>
+                </div>
+
+                {/* The Funnel */}
+                <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8">
+                  <h3 className="font-bold text-lg text-slate-900 mb-6 flex items-center gap-2">
+                    <div className="w-1.5 h-5 bg-indigo-600 rounded-full"></div>
+                    Proqnoz Qıfı (Funnel)
+                  </h3>
+
+                  <div className="space-y-3 relative">
+                    
+                    {/* Stage 1: Traffic/Leads */}
+                    <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 flex items-center justify-between z-10 relative">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                          <Users size={18} />
+                        </div>
+                        <div>
+                          <p className="text-xs font-bold text-slate-400 uppercase">Tələb Olunan Müraciət</p>
+                          <p className="font-bold text-slate-900">{f_leadsNeeded.toLocaleString(undefined, { maximumFractionDigits: 0 })} Lead (Mesaj)</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xs text-slate-400 font-medium">Büdcə Xərci</p>
+                        <p className="font-bold text-red-500">-₼{f_requiredBudget.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
+                      </div>
+                    </div>
+
+                    {/* Funnel Arrow */}
+                    <div className="w-full flex justify-center -my-2 relative z-0">
+                      <div className="w-8 h-8 bg-white border border-slate-100 rounded-full flex items-center justify-center text-slate-300">
+                        ↓
+                      </div>
+                    </div>
+
+                    {/* Stage 2: Sales */}
+                    <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 flex items-center justify-between z-10 relative">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center">
+                          <CalcIcon size={18} />
+                        </div>
+                        <div>
+                          <p className="text-xs font-bold text-slate-400 uppercase">Tələb Olunan Satış</p>
+                          <p className="font-bold text-slate-900">{f_salesNeeded.toLocaleString(undefined, { maximumFractionDigits: 0 })} Satış (Sifariş)</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xs text-slate-400 font-medium">Dönüşüm</p>
+                        <p className="font-bold text-slate-900">{forecastState.conversionRate}%</p>
+                      </div>
+                    </div>
+
+                    {/* Funnel Arrow */}
+                    <div className="w-full flex justify-center -my-2 relative z-0">
+                      <div className="w-8 h-8 bg-white border border-slate-100 rounded-full flex items-center justify-center text-slate-300">
+                        ↓
+                      </div>
+                    </div>
+
+                    {/* Stage 3: Revenue */}
+                    <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-4 flex items-center justify-between z-10 relative">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center">
+                          <Banknote size={18} />
+                        </div>
+                        <div>
+                          <p className="text-xs font-bold text-indigo-400 uppercase">Hədəflənən Gəlir</p>
+                          <p className="font-black text-indigo-900 text-lg">₼{forecastState.targetRevenue.toLocaleString()}</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xs text-indigo-400 font-bold uppercase">Gözlənilən ROAS</p>
+                        <p className="font-black text-indigo-700 text-lg">{f_expectedROAS.toFixed(2)}x</p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                {state.productPrice === 0 && (
+                  <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex gap-3">
+                    <AlertCircle className="text-amber-500 shrink-0 mt-0.5" size={20} />
+                    <p className="text-sm text-amber-700 font-medium">Proqnozların düzgün hesablanması üçün sol tərəfdən "Məhsul Qiyməti" xanasını doldurmağınız xahiş olunur.</p>
+                  </div>
+                )}
+              </div>
+
             </motion.div>
+          )}
 
-          </div>
-        </div>
+        </AnimatePresence>
+
       </Container>
     </div>
   );
