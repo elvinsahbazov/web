@@ -52,7 +52,8 @@ type Channel = {
   name: string;
   enabled: boolean;
   budget: number;
-  roas: number;
+  cpl: number;
+  cr: number;
 };
 
 type CalcState = {
@@ -66,7 +67,7 @@ type CalcState = {
 };
 
 type ForecastState = {
-  targetRevenue: number;
+  targetNetProfit: number;
   cpl: number;
   conversionRate: number;
 };
@@ -81,7 +82,8 @@ const createChannels = (actives: Record<string, number>): Channel[] => {
     name,
     enabled: name in actives,
     budget: 0,
-    roas: actives[name] || 2.0
+    cpl: 2.0, // Default CPL
+    cr: 10.0  // Default CR
   }));
 };
 
@@ -134,7 +136,7 @@ export default function Calculator() {
       try { return JSON.parse(saved); } catch (e) { /* ignore */ }
     }
     return {
-      targetRevenue: 10000,
+      targetNetProfit: 5000,
       cpl: 2.0,
       conversionRate: 5.0
     };
@@ -156,10 +158,21 @@ export default function Calculator() {
   const margin = state.productPrice > 0 ? ((state.productPrice - state.cogs) / state.productPrice) * 100 : 0;
   const enabledChannels = state.channels.filter((c) => c.enabled);
   const totalBudget = enabledChannels.reduce((s, c) => s + c.budget, 0);
-  const totalRevenue = enabledChannels.reduce((s, c) => s + c.budget * c.roas, 0);
+  
+  // Calculate raw sales based on CPL and CR
+  const rawSales = enabledChannels.reduce((s, c) => {
+    if (c.cpl > 0 && c.cr > 0) {
+      const messages = c.budget / c.cpl;
+      return s + (messages * (c.cr / 100));
+    }
+    return s;
+  }, 0);
+  
+  const totalGrossRevenue = rawSales * state.productPrice;
   const refundRate = state.refundRate || 0;
   const ltvFreq = state.ltvFrequency || 1;
-  const netRevenue = totalRevenue * (1 - refundRate / 100); // After refunds
+  
+  const netRevenue = totalGrossRevenue * (1 - refundRate / 100); // After refunds
   const ltvRevenue = netRevenue * ltvFreq; // After repeat purchases
   
   const totalProfit = netRevenue * (margin / 100);
@@ -173,7 +186,7 @@ export default function Calculator() {
   const ltvROAS = totalBudget > 0 ? ltvRevenue / totalBudget : 0;
   const breakEvenROAS = margin > 0 ? 100 / margin : 0;
   
-  const estSales = state.productPrice > 0 ? netRevenue / state.productPrice : 0;
+  const estSales = rawSales * (1 - refundRate / 100);
   const cpa = estSales > 0 ? totalBudget / estSales : 0;
   const roi = totalBudget > 0 ? (netProfit / totalBudget) * 100 : 0;
   const ltvRoi = totalBudget > 0 ? (ltvNetProfit / totalBudget) * 100 : 0;
@@ -188,10 +201,28 @@ export default function Calculator() {
 
 
   // FORECAST CALCULATION LOGIC
-  const f_salesNeeded = state.productPrice > 0 ? forecastState.targetRevenue / state.productPrice : 0;
-  const f_leadsNeeded = forecastState.conversionRate > 0 ? f_salesNeeded / (forecastState.conversionRate / 100) : 0;
-  const f_requiredBudget = f_leadsNeeded * forecastState.cpl;
-  const f_expectedROAS = f_requiredBudget > 0 ? forecastState.targetRevenue / f_requiredBudget : 0;
+  // We want to solve for Target Net Profit.
+  // Net Profit = (Sales * MarginProfit) - Budget - FixedCosts
+  // Sales = (Budget / CPL) * CR
+  // Therefore: Budget = (TargetNetProfit + FixedCosts) / (((MarginProfit * CR) / CPL) - 1)
+  const marginProfit = state.productPrice - state.cogs;
+  const marginPerBudgetDollar = (forecastState.cpl > 0 && forecastState.conversionRate > 0) 
+    ? (marginProfit * (forecastState.conversionRate / 100)) / forecastState.cpl 
+    : 0;
+    
+  let f_requiredBudget = 0;
+  let f_salesNeeded = 0;
+  let f_leadsNeeded = 0;
+  let f_expectedROAS = 0;
+  let f_revenue = 0;
+
+  if (marginPerBudgetDollar > 1) {
+    f_requiredBudget = (forecastState.targetNetProfit + fixedCosts) / (marginPerBudgetDollar - 1);
+    f_leadsNeeded = f_requiredBudget / forecastState.cpl;
+    f_salesNeeded = f_leadsNeeded * (forecastState.conversionRate / 100);
+    f_revenue = f_salesNeeded * state.productPrice;
+    f_expectedROAS = f_requiredBudget > 0 ? f_revenue / f_requiredBudget : 0;
+  }
 
 
   // LINE CHART DATA
@@ -466,7 +497,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                     </div>
                     <div>
                       <h2 className="text-xl font-bold text-slate-900">Reklam Kanalları</h2>
-                      <p className="text-sm text-slate-500">Aylıq reklam büdcənizi və hədəf ROAS-ı daxil edin.</p>
+                      <p className="text-sm text-slate-500">Aylıq reklam büdcənizi, Mesaj (CPL) və Satış faizini (CR) daxil edin.</p>
                     </div>
                   </div>
 
@@ -476,8 +507,9 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                         <tr className="border-b border-slate-200 text-slate-400 text-sm">
                           <th className="pb-3 font-semibold w-12">Aktiv</th>
                           <th className="pb-3 font-semibold">Kanal Adı</th>
-                          <th className="pb-3 font-semibold w-40">Büdcə ($)</th>
-                          <th className="pb-3 font-semibold w-32">Hədəf ROAS</th>
+                          <th className="pb-3 font-semibold w-32">Büdcə ($)</th>
+                          <th className="pb-3 font-semibold w-28">CPL ($)</th>
+                          <th className="pb-3 font-semibold w-28">CR (%)</th>
                           <th className="pb-3 font-semibold text-right">Gözlənilən Gəlir</th>
                         </tr>
                       </thead>
