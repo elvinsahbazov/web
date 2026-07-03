@@ -128,7 +128,7 @@ DİQQƏT EDİLƏSİ NÜANS:
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': \`Bearer \${apiKey}\`
+          'Authorization': `Bearer ${apiKey}`
         },
         body: JSON.stringify({
           model: 'gpt-4o-mini',
@@ -146,8 +146,8 @@ DİQQƏT EDİLƏSİ NÜANS:
       let responseText = data.choices[0].message.content;
       
       // Clean up markdown bold/italic tags just in case AI still outputs them
-      responseText = responseText.replace(/**/g, '');
-      responseText = responseText.replace(/*/g, '');
+      responseText = responseText.replace(/\*\*/g, '');
+      responseText = responseText.replace(/\*/g, '');
       responseText = responseText.replace(/#/g, '');
 
       setMessages(prev => [...prev, { role: 'assistant', text: responseText }]);
@@ -207,13 +207,13 @@ DİQQƏT EDİLƏSİ NÜANS:
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   key={i} 
-                  className={\`flex \${msg.role === 'user' ? 'justify-end' : 'justify-start'}\`}
+                  className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div className={\`max-w-[85%] rounded-2xl p-3.5 text-sm leading-relaxed shadow-sm whitespace-pre-wrap \${
+                  <div className={`max-w-[85%] rounded-2xl p-3.5 text-sm leading-relaxed shadow-sm whitespace-pre-wrap ${
                     msg.role === 'user' 
                     ? 'bg-blue-600 text-white rounded-br-none' 
                     : 'bg-white text-black/80 border border-black/5 rounded-bl-none'
-                  }\`}>
+                  }`}>
                     {msg.text}
                   </div>
                 </motion.div>
@@ -310,11 +310,11 @@ DİQQƏT EDİLƏSİ NÜANS:
             setMenuOpen(!menuOpen);
           }
         }}
-        className={\`relative flex items-center justify-center w-14 h-14 rounded-full shadow-2xl transition-all duration-300 \${
+        className={`relative flex items-center justify-center w-14 h-14 rounded-full shadow-2xl transition-all duration-300 ${
           menuOpen || chatOpen 
           ? 'bg-black text-white shadow-black/30' 
           : 'bg-primary text-white shadow-primary/40'
-        }\`}
+        }`}
       >
         {!(menuOpen || chatOpen) && (
           <>
