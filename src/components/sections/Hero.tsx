@@ -45,7 +45,7 @@ export default function Hero() {
           variants={revealContainer}
           initial="hidden"
           animate="show"
-          className="relative z-10 flex flex-col justify-center text-left md:w-[60%] lg:w-[50%] pt-12 md:pt-0"
+          className="relative z-10 flex flex-col justify-center text-left pt-12 md:pt-0"
         >
           <motion.h1
             variants={revealItem}
@@ -163,7 +163,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* RIGHT — Image Container (Mobile: In flow, Desktop: Absolute full height) */}
+        {/* RIGHT — Image Container */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{
@@ -171,12 +171,12 @@ export default function Hero() {
             filter: isMenuOpen ? 'blur(20px) brightness(0.2)' : 'blur(0px) brightness(1)',
           }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mt-8 flex h-full w-full items-end justify-center md:absolute md:right-0 md:top-0 md:mt-0 md:w-[65%] md:z-0"
+          className="relative mt-8 flex h-full w-full items-end justify-center md:mt-0 md:items-center"
         >
           <img
             src={content.hero_image || 'https://drive.google.com/thumbnail?id=1YmSQizY-GCTKCiPg6UD2PPFOG0d_ap2o&sz=w1000'}
             alt="Elvin Şahbazov"
-            className="w-full max-w-[420px] object-contain object-bottom md:max-w-none md:h-full md:w-full md:object-cover md:object-top"
+            className="w-full max-w-[420px] object-contain md:max-w-[550px]"
           />
           {/* Edge fading overlays for seamless blend into black background */}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-black/60 to-transparent" />
