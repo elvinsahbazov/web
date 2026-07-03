@@ -42,10 +42,10 @@ const services = [
   },
   {
     icon: 'fas fa-robot',
-    title: 'AI Marketinq Avtomatlaşdırması',
+    title: 'Süni İntellektlə Biznes Avtomatlaşdırması',
     color: C.blue,
-    desc: 'Biznes proseslərini avtomatlaşdıran AI əsaslı funnel, CRM inteqrasiyası və email sekvens sistemlərinin qurulması.',
-    features: ['AI funnel qurulması', 'CRM inteqrasiyası', 'Email avtomatlaşdırma', 'Lead scoring'],
+    desc: 'Təkcə CRM yox, müştəri xidmətləri (AI Çatbotlar), daxili əməliyyatlar, sənəd dövriyyəsi və marketinq proseslərinin AI ilə tam avtomatlaşdırılması.',
+    features: ['AI Çatbot və Səs Agentləri', 'Bütün biznes proseslərin avtomatlaşdırılması', 'CRM və ERP İnteqrasiyası', '24/7 İşləyən AI İşçilər'],
   },
   {
     icon: 'fas fa-chart-bar',
