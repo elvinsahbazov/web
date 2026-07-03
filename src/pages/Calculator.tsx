@@ -113,9 +113,13 @@ export default function Calculator() {
     if (saved) {
       try { 
         const parsed = JSON.parse(saved); 
-        // Force refresh if old channel list length (not 9)
+        // Force refresh if old channel list length or missing new properties (cpl, cr)
         if (parsed && parsed.channels && parsed.channels.length === ALL_CHANNELS.length) {
-          return parsed; 
+          if (parsed.channels[0].cpl === undefined) {
+             console.log("Old state detected, wiping...");
+          } else {
+             return parsed; 
+          }
         }
       } catch (e) { /* ignore */ }
     }
@@ -133,7 +137,14 @@ export default function Calculator() {
   const [forecastState, setForecastState] = useState<ForecastState>(() => {
     const saved = localStorage.getItem('calc_forecast_state');
     if (saved) {
-      try { return JSON.parse(saved); } catch (e) { /* ignore */ }
+      try { 
+        const parsed = JSON.parse(saved); 
+        if (parsed.targetNetProfit === undefined) {
+          console.log("Old forecast state detected, wiping...");
+        } else {
+          return parsed; 
+        }
+      } catch (e) { /* ignore */ }
     }
     return {
       targetNetProfit: 5000,
