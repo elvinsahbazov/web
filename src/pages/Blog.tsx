@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */  
-import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { blogs } from '../data/blogs';
@@ -7,16 +6,7 @@ import Container from '../components/ui/Container';
 import { fadeUp } from '../lib/motion';
 
 export default function Blog() {
-  const [posts, setPosts] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulating a fast network request for the spinner effect
-    setTimeout(() => {
-      setPosts(blogs);
-      setLoading(false);
-    }, 400);
-  }, []);
+  const posts = blogs;
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] pt-32 pb-20">
@@ -32,15 +22,10 @@ export default function Blog() {
           </p>
         </motion.div>
 
-        {loading ? (
-          <div className="flex justify-center items-center h-40">
-            <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.length > 0 ? (
-              posts.map((post, i) => (
-                <motion.div
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.length > 0 ? (
+            posts.map((post, i) => (
+              <motion.div
                   key={post.id}
                   {...fadeUp(i * 0.1)}
                   data-cursor-text="Oxu"
@@ -80,7 +65,6 @@ export default function Blog() {
               </div>
             )}
           </div>
-        )}
       </Container>
     </div>
   );
