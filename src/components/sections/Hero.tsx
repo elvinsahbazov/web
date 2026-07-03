@@ -177,8 +177,12 @@ export default function Hero() {
           <img
             src={content.hero_image || 'https://drive.google.com/thumbnail?id=1YmSQizY-GCTKCiPg6UD2PPFOG0d_ap2o&sz=w1000'}
             alt="Elvin Şahbazov"
-            className="w-full max-w-[420px] object-contain object-bottom md:max-w-none md:h-full md:w-full md:object-cover md:object-top [mask-image:linear-gradient(to_top,transparent_0%,black_15%)] md:[mask-image:linear-gradient(to_right,transparent_0%,black_30%)]"
+            className="w-full max-w-[420px] object-contain object-bottom md:max-w-none md:h-full md:w-full md:object-cover md:object-top"
           />
+          {/* Edge fading overlays for seamless blend into black background */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-black/60 to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-black via-black/40 to-transparent md:w-1/3" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/5 bg-gradient-to-l from-black via-black/20 to-transparent md:block" />
         </motion.div>
 
       </div>
