@@ -100,7 +100,7 @@ function AboutHero() {
         initial={{ opacity: 0, x: 48 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.15, duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
-        className="hero-portrait-layer pointer-events-none absolute inset-y-0 right-0 w-full lg:w-[52%]"
+        className="hero-portrait-layer pointer-events-none absolute inset-y-0 right-0 hidden lg:block lg:w-[52%]"
       >
         <div className="absolute inset-0 z-[1] bg-gradient-to-r from-black via-black/60 to-transparent lg:from-black lg:via-black/25 lg:to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 z-[1] h-[18%] bg-gradient-to-t from-black/70 to-transparent lg:hidden" />
@@ -217,21 +217,39 @@ export default function About() {
                     {content.about_title || 'Haqqımda'}
                   </h3>
                 </div>
-                <div className="no-scrollbar max-h-72 space-y-3 overflow-y-auto pr-1 text-sm leading-relaxed text-white/65">
-                  <p dangerouslySetInnerHTML={{ __html: content.about_desc_1 || 'Mən <strong class="text-white">Elvin Şahbazov</strong> – rəqəmsal marketinq, süni intellektlə avtomatlaşdırma, biznes inkişafı və rəqəmsal idarəetmə sistemləri üzrə fəaliyyət göstərən mütəxəssis, təlimçi və rəhbərəm.' }} />
-                  <p dangerouslySetInnerHTML={{ __html: content.about_desc_2 || 'Hazırda fəaliyyətimi <strong class="text-white">Qafqazın ən böyük Avtomobil Mərkəzi olan Baku Auto Mall-da Marketinq Direktoru</strong>, eyni zamanda <strong class="text-white">SMARTKOB – Rəqəmsal İdarəetmə Mərkəzində Marketinq və Biznes İnkişafı Departamentinin Rəhbəri</strong> kimi davam etdirirəm.' }} />
-                  <p>
-                    Marketinq sahəsində məqsədim yalnız reklam kampaniyaları idarə etmək deyil. Əsas hədəfim bizneslər üçün ölçülə bilən nəticələrə əsaslanan, davamlı və tam idarə olunan rəqəmsal marketinq sistemləri qurmaqdır.
-                  </p>
-                  <p>
-                    Peşəkar bilik və bacarıqlarım <strong className="text-white">Google, Meta, HubSpot Academy</strong> və <strong className="text-white">Digital Marketing Institute (DMI)</strong> tərəfindən verilmiş beynəlxalq sertifikatlarla təsdiqlənmişdir.
-                  </p>
-                  <p>
-                    Bu günə qədər <strong className="text-white">10-dan çox şirkət üçün</strong> rəqəmsal transformasiya, marketinq strategiyalarının hazırlanması, satış sistemlərinin qurulması və analitika əsaslı idarəetmə layihələrini uğurla həyata keçirmişəm.
-                  </p>
-                  <p>
-                    Missiyam bizneslərin rəqəmsal transformasiyasına rəhbərlik etmək, süni intellekt və avtomatlaşdırma texnologiyalarını real biznes nəticələrinə çevirmək, şirkətlərin satışlarını artıran, idarəetməni sadələşdirən və uzunmüddətli inkişafı təmin edən sistemlər qurmaqdır.
-                  </p>
+                <div className="no-scrollbar max-h-96 space-y-4 overflow-y-auto pr-2 text-sm leading-relaxed text-white/75">
+                  <p>Mən <strong className="text-white">Elvin Şahbazov</strong> – rəqəmsal marketinq, süni intellektlə avtomatlaşdırma, biznes inkişafı və rəqəmsal idarəetmə sistemləri üzrə fəaliyyət göstərən mütəxəssis, təlimçi və rəhbərəm.</p>
+
+                  <p>Hazırda fəaliyyətimi Qafqazın ən böyük Avtomobil Mərkəzi olan <strong className="text-white">Baku Auto Mall-da Marketinq Direktoru</strong>, eyni zamanda <strong className="text-white">SMARTKOB – Rəqəmsal İdarəetmə Mərkəzində Marketinq və Biznes İnkişafı Departamentinin Rəhbəri</strong> kimi davam etdirirəm.</p>
+
+                  <p>Marketinq sahəsində məqsədim yalnız reklam kampaniyaları idarə etmək deyil. Əsas hədəfim bizneslər üçün ölçülə bilən nəticələrə əsaslanan, davamlı və tam idarə olunan rəqəmsal marketinq sistemləri qurmaqdır.</p>
+
+                  <h4 className="text-base font-bold text-white mt-6 mb-2">Qlobal Təcrübə və Beynəlxalq Reklam Platformaları</h4>
+                  <p>Fəaliyyət coğrafiyam təkcə yerli bazarla məhdudlaşmır. Fərqli mədəniyyətlərə və bazar dinamikalarına malik olan bir çox ölkədə şirkətlərin rəqəmsal marketinq fəaliyyətlərini uğurla həyata keçirmişəm. Uğurlu reklam və marketinq kampaniyaları idarə etdiyim ölkələr sırasına aşağıdakılar daxildir:</p>
+                  
+                  <ul className="list-disc pl-5 space-y-1 text-white/65">
+                    <li><strong className="text-white">Avropa və Amerika:</strong> Kanada, Argentina, Litva, Çexiya, Albaniya</li>
+                    <li><strong className="text-white">Yaxın Şərq və Körfəz Ölkələri:</strong> Qətər, Küveyt, BƏƏ (Birləşmiş Ərəb Əmirlikləri), Türkiyə</li>
+                    <li><strong className="text-white">MDB və Asiya:</strong> Rusiya, Qazaxıstan, Özbəkistan, Gürcüstan</li>
+                  </ul>
+
+                  <p>Bu qlobal layihələrdə müxtəlif auditoriyalarla düzgün kommunikasiya qurmaq üçün dünyanın ən qabaqcıl rəqəmsal reklam platformalarından peşəkar səviyyədə istifadə edirəm:</p>
+                  <ul className="list-disc pl-5 space-y-1 text-white/65">
+                    <li>Meta Ads (Facebook, Instagram)</li>
+                    <li>Google Ads & YouTube Ads</li>
+                    <li>LinkedIn Ads (B2B seqmenti üçün)</li>
+                    <li>TikTok Ads & Snapchat Ads</li>
+                    <li>X Ads (keçmiş Twitter)</li>
+                    <li>Yandex Ads & VKontakte (MDB bazarları üçün)</li>
+                  </ul>
+
+                  <h4 className="text-base font-bold text-white mt-6 mb-2">Süni İntellekt (AI) İnteqrasiyası və Avtomatlaşdırma</h4>
+                  <p>Müasir biznesin rəqabətədavamlı olması üçün ənənəvi metodlar kifayət etmir. Bu səbəbdən fəaliyyətimdə texnoloji innovasiyalara xüsusi yer ayırıram. Bir çox şirkət üçün rəqəmsal marketinq və süni intellektin (AI) inteqrasiyası vasitəsilə unikal biznes həlləri yaratmışam.</p>
+                  <p>Eyni zamanda, ümumi süni intellekt avtomatlaşdırılması tətbiq edərək şirkətlərin daxili proseslərini, müştəri münasibətlərini və satış qıflarını (sales funnel) avtomatlaşdırıb idarəetməni sadələşdirən xüsusi biznes həlləri ərsəyə gətirmişəm. Məqsəd minimum insan əməyi ilə maksimum qazanc və məhsuldarlıq əldə etməkdir.</p>
+
+                  <h4 className="text-base font-bold text-white mt-6 mb-2">Peşəkar Uğurlar və Beynəlxalq Sertifikatlar</h4>
+                  <p>Peşəkar bilik və bacarıqlarım qlobal miqyasda tanınan <strong className="text-white">Google, Meta, HubSpot Academy</strong> və <strong className="text-white">Digital Marketing Institute (DMI)</strong> tərəfindən verilmiş beynəlxalq sertifikatlarla təsdiqlənmişdir.</p>
+                  <p>Bu günə qədər <strong className="text-white">15-dən çox şirkət üçün</strong> rəqəmsal transformasiya, marketinq strategiyalarının hazırlanması, satış sistemlərinin qurulması və analitika əsaslı idarəetmə layihələrini uğurla həyata keçirmişəm.</p>
                 </div>
               </DarkCard>
             </motion.div>
