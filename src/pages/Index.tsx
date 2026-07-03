@@ -855,10 +855,13 @@ function ForumCountdown() {
 export default function IndexPage() {
   return (
     <div className="min-h-screen bg-black">
+      <div className="sticky top-0 z-0 h-screen overflow-hidden">
+        <Hero />
+      </div>
 
-      <Hero />
+      <div className="relative z-10 bg-black shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+        <MarqueeTicker />
 
-      <MarqueeTicker />
 
       <AIPremiumSection />
 
@@ -877,22 +880,6 @@ export default function IndexPage() {
         </Container>
       </section>
 
-      <section className="section-py bg-white">
-        <Container>
-          <motion.div {...fadeUp()} className="text-center mb-16 md:mb-24 max-w-3xl mx-auto">
-            <span className="section-label"><i className="fas fa-calculator" /> Biznes Planlayıcı</span>
-            <h2 className="section-title mt-8">ROI Hesablayıcı</h2>
-            <p className="section-subtitle mx-auto">
-              4 addımda reklam büdcənizi, funnel konversiyanızı və xalis mənfəətinizi hesablayın.
-            </p>
-          </motion.div>
-          <motion.div {...fadeUp(0.2)}>
-            <div className="card shadow-card-hover p-8 md:p-12 max-w-3xl mx-auto">
-              <ROIWizard />
-            </div>
-          </motion.div>
-        </Container>
-      </section>
 
       <section className="section-py section-alt">
         <Container wide>
@@ -936,12 +923,12 @@ export default function IndexPage() {
           <FlipCards />
         </Container>
       </section>
-
-      <section className="section-py bg-white">
+      <section className="section-py bg-white pb-24">
         <Container>
           <ForumCountdown />
         </Container>
       </section>
+      </div>
 
     </div>
   );

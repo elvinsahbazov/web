@@ -155,31 +155,41 @@
   }
 
   .social-icon-btn {
-    @apply flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-white/55 transition-all duration-300;
+    @apply flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] transition-all duration-300;
   }
 
   .social-icon-btn:hover {
     @apply scale-110 border-transparent bg-white/[0.06];
   }
 
-  .social-hover-linkedin:hover {
+  .social-hover-linkedin {
     color: #0a66c2;
+  }
+  .social-hover-linkedin:hover {
     box-shadow: 0 0 22px rgba(10, 102, 194, 0.35);
   }
 
-  .social-hover-whatsapp:hover {
+  .social-hover-whatsapp {
     color: #25d366;
+  }
+  .social-hover-whatsapp:hover {
     box-shadow: 0 0 22px rgba(37, 211, 102, 0.35);
   }
 
-  .social-hover-youtube:hover {
+  .social-hover-youtube {
     color: #ff0000;
+  }
+  .social-hover-youtube:hover {
     box-shadow: 0 0 22px rgba(255, 0, 0, 0.3);
   }
 
+  .social-hover-instagram {
+    background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
   .social-hover-instagram:hover {
-    color: #e1306c;
-    box-shadow: 0 0 22px rgba(225, 48, 108, 0.35);
+    filter: drop-shadow(0 0 10px rgba(220, 39, 67, 0.4));
   }
 
   .social-hover-facebook:hover {
