@@ -10,8 +10,10 @@ import {
   LinearScale,
   BarElement,
   Title,
+  PointElement,
+  LineElement,
 } from 'chart.js';
-import { Doughnut, Bar } from 'react-chartjs-2';
+import { Doughnut, Bar, Line } from 'react-chartjs-2';
 import Container from '../components/ui/Container';
 
 const InfoTooltip = ({ title, content }: { title: string, content: string }) => {
@@ -44,7 +46,7 @@ const InfoTooltip = ({ title, content }: { title: string, content: string }) => 
   );
 };
 
-ChartJS.register(ArcElement, ChartTooltip, Legend, CategoryScale, LinearScale, BarElement, Title);
+ChartJS.register(ArcElement, ChartTooltip, Legend, CategoryScale, LinearScale, BarElement, Title, PointElement, LineElement);
 
 type Channel = {
   name: string;
@@ -58,6 +60,8 @@ type CalcState = {
   productPrice: number;
   cogs: number;
   fixedCosts: number;
+  ltvFrequency: number;
+  refundRate: number;
   channels: Channel[];
 };
 
@@ -118,6 +122,8 @@ export default function Calculator() {
       productPrice: PRESETS['E-ticarət'].price,
       cogs: PRESETS['E-ticarət'].cogs,
       fixedCosts: PRESETS['E-ticarət'].fixedCosts || 0,
+      ltvFrequency: 1,
+      refundRate: 0,
       channels: PRESETS['E-ticarət'].channels,
     };
   });
@@ -151,20 +157,69 @@ export default function Calculator() {
   const enabledChannels = state.channels.filter((c) => c.enabled);
   const totalBudget = enabledChannels.reduce((s, c) => s + c.budget, 0);
   const totalRevenue = enabledChannels.reduce((s, c) => s + c.budget * c.roas, 0);
-  const totalProfit = totalRevenue * (margin / 100);
+  const refundRate = state.refundRate || 0;
+  const ltvFreq = state.ltvFrequency || 1;
+  const netRevenue = totalRevenue * (1 - refundRate / 100); // After refunds
+  const ltvRevenue = netRevenue * ltvFreq; // After repeat purchases
+  
+  const totalProfit = netRevenue * (margin / 100);
+  const ltvProfit = ltvRevenue * (margin / 100);
+  
   const fixedCosts = state.fixedCosts || 0;
   const netProfit = totalProfit - totalBudget - fixedCosts;
-  const blendedROAS = totalBudget > 0 ? totalRevenue / totalBudget : 0;
+  const ltvNetProfit = ltvProfit - totalBudget - fixedCosts;
+  
+  const blendedROAS = totalBudget > 0 ? netRevenue / totalBudget : 0;
+  const ltvROAS = totalBudget > 0 ? ltvRevenue / totalBudget : 0;
   const breakEvenROAS = margin > 0 ? 100 / margin : 0;
-  const estSales = state.productPrice > 0 ? totalRevenue / state.productPrice : 0;
+  
+  const estSales = state.productPrice > 0 ? netRevenue / state.productPrice : 0;
   const cpa = estSales > 0 ? totalBudget / estSales : 0;
   const roi = totalBudget > 0 ? (netProfit / totalBudget) * 100 : 0;
+  const ltvRoi = totalBudget > 0 ? (ltvNetProfit / totalBudget) * 100 : 0;
+
+  // INDUSTRY BENCHMARK LOGIC
+  const INDUSTRY_CAC: Record<string, number> = {
+    'E-ticarət': 15, 'Tibb & Klinika': 25, 'Daşınmaz Əmlak': 100, 'Restoran / Kafe': 5,
+    'B2B Xidmətlər': 40, 'Təhsil / Kurslar': 15, 'Gözəllik & SPA': 10, 'Turizm / Otel': 30,
+    'Hüquq / Konsaltinq': 50, 'Fitnes / İdman': 12, 'Tikinti / Təmir': 60
+  };
+  const benchmarkCAC = INDUSTRY_CAC[state.presetName] || 20;
+
 
   // FORECAST CALCULATION LOGIC
   const f_salesNeeded = state.productPrice > 0 ? forecastState.targetRevenue / state.productPrice : 0;
   const f_leadsNeeded = forecastState.conversionRate > 0 ? f_salesNeeded / (forecastState.conversionRate / 100) : 0;
   const f_requiredBudget = f_leadsNeeded * forecastState.cpl;
   const f_expectedROAS = f_requiredBudget > 0 ? forecastState.targetRevenue / f_requiredBudget : 0;
+
+
+  // LINE CHART DATA
+  const labels = Array.from({length: 12}, (_, i) => `${i + 1}-ci Ay`);
+  const chartDataLTV = {
+    labels,
+    datasets: [
+      {
+        label: 'Məcmu LTV Gəliri (₼)',
+        data: labels.map((_, i) => netRevenue + (netRevenue * ltvFreq * (i/12))),
+        borderColor: 'rgb(147, 51, 234)',
+        backgroundColor: 'rgba(147, 51, 234, 0.1)',
+        borderWidth: 3,
+        fill: true,
+        tension: 0.4,
+      },
+      {
+        label: 'Məcmu Reklam Xərci (₼)',
+        data: labels.map((_, i) => totalBudget * (i + 1)),
+        borderColor: 'rgb(239, 68, 68)',
+        backgroundColor: 'rgba(239, 68, 68, 0.0)',
+        borderWidth: 2,
+        borderDash: [5, 5],
+        fill: false,
+        tension: 0,
+      }
+    ]
+  };
 
   const loadPreset = (presetName: string) => {
     const p = PRESETS[presetName];
@@ -329,7 +384,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                     </div>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-bold text-slate-700 mb-2">Orta Satış Qiyməti (AOV) ₼</label>
                       <input
@@ -339,6 +394,34 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                         onChange={(e) => setState(s => ({ ...s, productPrice: Number(e.target.value) }))}
                         onFocus={handleFocus}
                         placeholder="0"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-bold text-slate-700 mb-2">
+                        Təkrar Alış Sayı (İldə LTV)
+                        <InfoTooltip title="LTV (Müştəri Ömrü Qazancı)" content="Müştəri gəldiyi il ərzində sizdən neçə dəfə təkrar alış edəcək? E-ticarət üçün ortalama 1.5 - 3 arasıdır." />
+                      </label>
+                      <input
+                        type="number"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                        value={state.ltvFrequency || ''}
+                        onChange={(e) => setState(s => ({ ...s, ltvFrequency: Number(e.target.value) }))}
+                        onFocus={handleFocus}
+                        placeholder="1"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-bold text-slate-700 mb-2">
+                        İmtina / Qaytarılma % (Refund)
+                        <InfoTooltip title="İmtina Faizi" content="Sifarişlərin (və ya randevuların) neçə faizi geri qayıdır və ya ləğv olunur?" />
+                      </label>
+                      <input
+                        type="number"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-red-600"
+                        value={state.refundRate === 0 ? '' : state.refundRate}
+                        onChange={(e) => setState(s => ({ ...s, refundRate: Number(e.target.value) }))}
+                        onFocus={handleFocus}
+                        placeholder="0%"
                       />
                     </div>
                     <div>
@@ -622,7 +705,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                       />
                     </div>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-6">
                       <div>
                         <label className="flex items-center text-sm font-bold text-slate-700 mb-2">
                           Mesaj/Lead Xərci (CPL) ₼
