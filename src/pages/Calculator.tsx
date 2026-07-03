@@ -57,6 +57,7 @@ type CalcState = {
   presetName: string;
   productPrice: number;
   cogs: number;
+  fixedCosts: number;
   channels: Channel[];
 };
 
@@ -66,18 +67,32 @@ type ForecastState = {
   conversionRate: number;
 };
 
-const PRESETS: Record<string, { price: number; cogs: number; channels: Channel[] }> = {
-  'E-ticarət': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 4.5 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 3.5 }, { name: 'TikTok Ads', enabled: false, budget: 0, roas: 2.5 }, { name: 'Email M.', enabled: false, budget: 0, roas: 6.0 } ] },
-  'Tibb & Klinika': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 3.0 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 4.0 }, { name: 'TikTok Ads', enabled: false, budget: 0, roas: 1.5 }, { name: 'Email M.', enabled: false, budget: 0, roas: 2.0 } ] },
-  'Daşınmaz Əmlak': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 15.0 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 20.0 }, { name: 'TikTok Ads', enabled: false, budget: 0, roas: 8.0 }, { name: 'Email M.', enabled: false, budget: 0, roas: 5.0 } ] },
-  'Restoran / Kafe': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 2.5 }, { name: 'Google Ads', enabled: false, budget: 0, roas: 1.5 }, { name: 'TikTok Ads', enabled: true, budget: 0, roas: 3.0 }, { name: 'Email M.', enabled: false, budget: 0, roas: 1.0 } ] },
-  'B2B Xidmətlər': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: false, budget: 0, roas: 2.0 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 5.0 }, { name: 'LinkedIn Ads', enabled: true, budget: 0, roas: 3.5 }, { name: 'Email M.', enabled: true, budget: 0, roas: 8.0 } ] },
-  'Təhsil / Kurslar': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 4.0 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 3.0 }, { name: 'TikTok Ads', enabled: true, budget: 0, roas: 5.0 }, { name: 'Email M.', enabled: false, budget: 0, roas: 2.0 } ] },
-  'Gözəllik & SPA': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 4.5 }, { name: 'Google Ads', enabled: false, budget: 0, roas: 2.0 }, { name: 'TikTok Ads', enabled: true, budget: 0, roas: 3.5 }, { name: 'Email M.', enabled: false, budget: 0, roas: 1.5 } ] },
-  'Turizm / Otel': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 5.0 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 6.0 }, { name: 'TikTok Ads', enabled: false, budget: 0, roas: 3.0 }, { name: 'Email M.', enabled: false, budget: 0, roas: 4.0 } ] },
-  'Hüquq / Konsaltinq': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: false, budget: 0, roas: 2.5 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 4.5 }, { name: 'LinkedIn Ads', enabled: true, budget: 0, roas: 4.0 }, { name: 'Email M.', enabled: false, budget: 0, roas: 3.0 } ] },
-  'Fitnes / İdman': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 3.5 }, { name: 'Google Ads', enabled: false, budget: 0, roas: 2.0 }, { name: 'TikTok Ads', enabled: true, budget: 0, roas: 4.0 }, { name: 'Email M.', enabled: false, budget: 0, roas: 1.5 } ] },
-  'Tikinti / Təmir': { price: 0, cogs: 0, channels: [ { name: 'Meta Ads', enabled: true, budget: 0, roas: 6.0 }, { name: 'Google Ads', enabled: true, budget: 0, roas: 5.0 }, { name: 'TikTok Ads', enabled: false, budget: 0, roas: 2.0 }, { name: 'Email M.', enabled: false, budget: 0, roas: 3.0 } ] }
+const ALL_CHANNELS = [
+  'Meta Ads', 'Google Ads', 'TikTok Ads', 'LinkedIn Ads', 
+  'Influencer & PR', 'SEO & Məzmun', 'E-mail & SMS', 'Snapchat / X Ads', 'Offline / TV'
+];
+
+const createChannels = (actives: Record<string, number>): Channel[] => {
+  return ALL_CHANNELS.map(name => ({
+    name,
+    enabled: name in actives,
+    budget: 0,
+    roas: actives[name] || 2.0
+  }));
+};
+
+const PRESETS: Record<string, { price: number; cogs: number; fixedCosts: number; channels: Channel[] }> = {
+  'E-ticarət': { price: 0, cogs: 0, fixedCosts: 0, channels: createChannels({ 'Meta Ads': 4.5, 'Google Ads': 3.5, 'TikTok Ads': 2.5, 'E-mail & SMS': 6.0, 'Influencer & PR': 3.0 }) },
+  'Tibb & Klinika': { price: 0, cogs: 0, fixedCosts: 0, channels: createChannels({ 'Meta Ads': 3.0, 'Google Ads': 4.0, 'SEO & Məzmun': 5.0, 'Offline / TV': 1.5 }) },
+  'Daşınmaz Əmlak': { price: 0, cogs: 0, fixedCosts: 0, channels: createChannels({ 'Meta Ads': 15.0, 'Google Ads': 20.0, 'LinkedIn Ads': 10.0, 'Offline / TV': 5.0 }) },
+  'Restoran / Kafe': { price: 0, cogs: 0, fixedCosts: 0, channels: createChannels({ 'Meta Ads': 2.5, 'TikTok Ads': 3.0, 'Influencer & PR': 2.5, 'Offline / TV': 1.0 }) },
+  'B2B Xidmətlər': { price: 0, cogs: 0, fixedCosts: 0, channels: createChannels({ 'Google Ads': 5.0, 'LinkedIn Ads': 4.5, 'E-mail & SMS': 8.0, 'SEO & Məzmun': 4.0 }) },
+  'Təhsil / Kurslar': { price: 0, cogs: 0, fixedCosts: 0, channels: createChannels({ 'Meta Ads': 4.0, 'Google Ads': 3.0, 'TikTok Ads': 5.0, 'Influencer & PR': 3.5 }) },
+  'Gözəllik & SPA': { price: 0, cogs: 0, fixedCosts: 0, channels: createChannels({ 'Meta Ads': 4.5, 'TikTok Ads': 3.5, 'Influencer & PR': 4.0 }) },
+  'Turizm / Otel': { price: 0, cogs: 0, fixedCosts: 0, channels: createChannels({ 'Meta Ads': 5.0, 'Google Ads': 6.0, 'SEO & Məzmun': 4.0, 'Influencer & PR': 3.0 }) },
+  'Hüquq / Konsaltinq': { price: 0, cogs: 0, fixedCosts: 0, channels: createChannels({ 'Google Ads': 4.5, 'LinkedIn Ads': 4.0, 'SEO & Məzmun': 3.5 }) },
+  'Fitnes / İdman': { price: 0, cogs: 0, fixedCosts: 0, channels: createChannels({ 'Meta Ads': 3.5, 'TikTok Ads': 4.0, 'Influencer & PR': 2.5 }) },
+  'Tikinti / Təmir': { price: 0, cogs: 0, fixedCosts: 0, channels: createChannels({ 'Meta Ads': 6.0, 'Google Ads': 5.0, 'Offline / TV': 3.0 }) }
 };
 
 export default function Calculator() {
@@ -96,6 +111,7 @@ export default function Calculator() {
       presetName: 'E-ticarət',
       productPrice: PRESETS['E-ticarət'].price,
       cogs: PRESETS['E-ticarət'].cogs,
+      fixedCosts: PRESETS['E-ticarət'].fixedCosts || 0,
       channels: PRESETS['E-ticarət'].channels,
     };
   });
@@ -130,7 +146,8 @@ export default function Calculator() {
   const totalBudget = enabledChannels.reduce((s, c) => s + c.budget, 0);
   const totalRevenue = enabledChannels.reduce((s, c) => s + c.budget * c.roas, 0);
   const totalProfit = totalRevenue * (margin / 100);
-  const netProfit = totalProfit - totalBudget;
+  const fixedCosts = state.fixedCosts || 0;
+  const netProfit = totalProfit - totalBudget - fixedCosts;
   const blendedROAS = totalBudget > 0 ? totalRevenue / totalBudget : 0;
   const breakEvenROAS = margin > 0 ? 100 / margin : 0;
   const estSales = state.productPrice > 0 ? totalRevenue / state.productPrice : 0;
@@ -306,7 +323,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                     </div>
                   </div>
                   
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-bold text-slate-700 mb-2">Orta Satış Qiyməti (AOV) ₼</label>
                       <input
@@ -325,6 +342,20 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                         value={state.cogs === 0 ? '' : state.cogs}
                         onChange={(e) => setState(s => ({ ...s, cogs: Number(e.target.value) }))}
+                        onFocus={handleFocus}
+                        placeholder="0"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-bold text-slate-700 mb-2">
+                        Aylıq Sabit Xərclər (Agentlik, Çəkiliş, Alətlər) ₼
+                        <InfoTooltip title="Sabit Xərclər" content="Marketinq agentliyi, SMM, çəkiliş komandası, proqramlar kimi reklam büdcəsi xaricindəki əlavə aylıq xərclər." />
+                      </label>
+                      <input
+                        type="number"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                        value={state.fixedCosts === 0 ? '' : state.fixedCosts}
+                        onChange={(e) => setState(s => ({ ...s, fixedCosts: Number(e.target.value) }))}
                         onFocus={handleFocus}
                         placeholder="0"
                       />
@@ -585,7 +616,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                       />
                     </div>
                     
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-6">
                       <div>
                         <label className="flex items-center text-sm font-bold text-slate-700 mb-2">
                           Mesaj/Lead Xərci (CPL) ₼
