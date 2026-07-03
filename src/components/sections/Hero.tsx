@@ -45,7 +45,7 @@ export default function Hero() {
           variants={revealContainer}
           initial="hidden"
           animate="show"
-          className="flex flex-col justify-center text-left"
+          className="relative z-10 flex flex-col justify-center text-left md:w-[60%] lg:w-[50%] pt-12 md:pt-0"
         >
           <motion.h1
             variants={revealItem}
@@ -139,21 +139,20 @@ export default function Hero() {
               aria-hidden="true"
             />
             <div 
-              className="relative rounded-2xl border border-white/50 border-l-4 border-l-blue-600 p-6 shadow-[0_8px_30px_rgb(255,255,255,0.15)] md:p-8"
-              style={{ backgroundColor: 'rgba(255, 255, 255, 0.85)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
+              className="relative rounded-2xl border border-white/10 border-l-4 border-l-blue-500 bg-white/5 p-6 shadow-2xl backdrop-blur-2xl md:p-8"
             >
-              <p className="text-sm leading-relaxed text-slate-700 md:text-base">
+              <p className="text-sm leading-relaxed text-gray-300 md:text-base">
                 Hər əsrdə bir dönüş nöqtəsi olur və oyunun qaydaları dəyişir. Bu gün həmin nöqtənin
-                adı <span className="font-bold text-blue-700">Süni İntellektdir.</span>
+                adı <span className="font-bold text-white">Süni İntellektdir.</span>
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
+              <p className="mt-4 text-sm leading-relaxed text-gray-400 md:text-base">
                 Bu dəyişikliyi vaxtında anlayanlar sabah bazarın lideri olur, gecikənlər isə bu
                 gündən geridə qalmağa başlayır.
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
+              <p className="mt-4 text-sm leading-relaxed text-gray-400 md:text-base">
                 Texnologiya artıq seçim deyil — böyümənin mühərrikidir.
               </p>
-              <p className="mt-5 block text-base font-black text-slate-900 md:text-lg">
+              <p className="mt-5 block text-base font-black text-white md:text-lg">
                 Gələcək gözləyənlərin yox, indi hərəkət edənlərindir.
               </p>
             </div>
