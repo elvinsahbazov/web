@@ -1,15 +1,62 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSiteContent } from '../context/SiteContentContext';
+import { supabase } from '../lib/supabase';
 
 const apiKey = import.meta.env.VITE_OPENAI_API_KEY || '';
 
 export default function UnifiedContactWidget() {
   const { content } = useSiteContent();
+  
+  const [siteData, setSiteData] = useState({
+    services: '',
+    blogs: '',
+    portfolio: ''
+  });
+
+  useEffect(() => {
+    async function fetchFullSiteData() {
+      try {
+        const [servicesRes, blogRes, portfolioRes] = await Promise.all([
+          supabase.from('services').select('*'),
+          supabase.from('blog_posts').select('*'),
+          supabase.from('portfolio').select('*')
+        ]);
+
+        let servicesText = '';
+        if (servicesRes.data) {
+          servicesText = servicesRes.data.map(s => `- ${s.title}: ${s.description}`).join('n');
+        }
+
+        let blogsText = '';
+        if (blogRes.data) {
+          blogsText = blogRes.data.map(b => `- ${b.title} (Link: /blog/${b.slug}): ${b.excerpt}`).join('n');
+        }
+
+        let portfolioText = '';
+        if (portfolioRes.data) {
+          portfolioText = portfolioRes.data.map(p => `- Layihə: ${p.title}`).join('n');
+        }
+
+        setSiteData({
+          services: servicesText,
+          blogs: blogsText,
+          portfolio: portfolioText
+        });
+      } catch (e) {
+        console.error('Failed to load site data for AI', e);
+      }
+    }
+    fetchFullSiteData();
+  }, []);
 
   const dynamicPrompt = `Sən Elvin Şahbazovun şəxsi AI köməkçisisən. Adın "AI Asistent"dir.
 Çox mehriban, enerjili, köməksevər, səmimi, tam bir insan kimi və səlis Azərbaycan dilində danışırsan.
 Emoji-lərdən istifadə et. Qısa, dəqiq və təbii cavablar ver. Çox uzun, darıxdırıcı və robotik mətnlər yazma. Sən saytın bütün məlumatlarını bilirsən və istifadəçi ilə real bir dost/insan kimi söhbət edirsən.
+
+XÜSUSİ VƏ QƏTİ QAYDA (FORMATLAMA ÜÇÜN):
+Mütləq və mütləq olaraq, HEC BİR HALDA Markdown formatından istifadə etmə! Qalın yazılar (bold) üçün ** və ya * işarələrindən qətiyyən İSTİFADƏ ETMƏ!
+Siyahı (1., 2., 3. və s.) əvəzinə təbii cümlələr qur. Məsələn, "Bizim xidmətlərimizə bunlar daxildir: ..." şəklində yaz, alt-alta 1,2,3 yazma. Sadəcə düzmətn şəklində yaz. Çünki ekranda formatlama kodları xəta kimi görünür. Heç bir halda **, *, # istifadə etmə.
 
 ELVİN ŞAHBAZOV HAQQINDA MƏLUMAT:
 ${content.about_text_1 || 'Rəqəmsal marketinq, performans reklamları (Meta & Google Ads) və bizneslərin süni intellektlə (AI) avtomatlaşdırılması üzrə peşəkar mütəxəssisdir.'}
@@ -20,20 +67,21 @@ ${content.about_text_2 || 'Hazırda Baku Auto Mall-da Marketinq Direktoru və SM
 - Email: ${content.contact_email || 'elvinsahbazovv@gmail.com'}
 - İş vaxtı: 7/24 onlaynıq! (Həmçinin mən 7/24 buradayam!)
 
-XİDMƏTLƏRİMİZ (Saytdakı məlumatlara əsasən):
-- ${content.services_main_title || 'Peşəkar Xidmətlər'}: ${content.services_main_subtitle || 'ROI-a fokuslanmış, məlumata əsaslanan marketinq xidmətləri.'}
-- ${content.services_bizdev_title || 'Biznes İnkişaf Xidmətləri'}: ${content.services_bizdev_subtitle || 'Biznesinizi böyütmək üçün strateji yanaşmalar.'}
+SAYTDAKİ BÜTÜN XİDMƏTLƏRİMİZ:
+${siteData.services || 'Məlumat yüklənir...'}
 
-MİSSİYA / VİZYON / BLOQ:
-Sən saytdakı "Rəqəmsal" (Digital News), "Bloq" (Blog) və "Xidmətlər" (Services) kimi bütün səhifələrin məzmununa bələdsən. Saytdakı xidmətlər arasında Rəqəmsal Reklam (Meta Ads, Google Ads, TikTok Ads və s.), CRM Avtomatlaşdırma, Satış Qıfları (Funnels) və AI İnteqrasiyaları var.
+SAYTDAKİ BÜTÜN BLOQ YAZILARIMIZ VƏ XƏBƏRLƏR:
+${siteData.blogs || 'Məlumat yüklənir...'}
+
+PORTFOLİOMUZ (Bəzi layihələr):
+${siteData.portfolio || 'Məlumat yüklənir...'}
 
 QİYMƏTLƏR (ÇOX ÖNƏMLİ):
 Dəqiq rəqəm (qiymət) demə. İstənilən qiymət sualına belə və ya buna bənzər cavab ver: "Hər biznesin hədəfi və ehtiyacı fərqlidir, ona görə də qiymətlər xidmətin növünə və həcminə görə dəyişir. Sizə ən uyğun paketi təklif edə bilməmiz üçün zəhmət olmasa WhatsApp-dan bizə yazın (${content.contact_whatsapp_link || 'https://wa.me/994999550001'}), birlikdə layihənizi müzakirə edək! 😊"
 
 DİQQƏT EDİLƏSİ NÜANS:
 - İstənilən suala cavab verdikdən sonra istifadəçini hərəkətə keçməyə (Call to Action) həvəsləndir.
-- Mümkün qədər cümlələrini qısa və oxunaqlı et.
-- Suala cavab verərkən həmişə saytda qeyd olunan məlumatlara əsaslanaraq cavab ver. Əgər məlumat yoxdursa, mülayimcə WhatsApp-a yönləndir.`;
+- Mümkün qədər cümlələrini qısa və oxunaqlı et. Təbii və axıcı insan dilindən istifadə et. Markdown yoxdur!`;
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
@@ -67,7 +115,6 @@ DİQQƏT EDİLƏSİ NÜANS:
         throw new Error('API_KEY_MISSING');
       }
 
-      // Convert messages to OpenAI format
       const openAiMessages = [
         { role: 'system', content: dynamicPrompt },
         ...messages.map(msg => ({
@@ -81,13 +128,13 @@ DİQQƏT EDİLƏSİ NÜANS:
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
+          'Authorization': \`Bearer \${apiKey}\`
         },
         body: JSON.stringify({
           model: 'gpt-4o-mini',
           messages: openAiMessages,
           temperature: 0.7,
-          max_tokens: 500
+          max_tokens: 600
         })
       });
 
@@ -96,7 +143,12 @@ DİQQƏT EDİLƏSİ NÜANS:
       }
 
       const data = await response.json();
-      const responseText = data.choices[0].message.content;
+      let responseText = data.choices[0].message.content;
+      
+      // Clean up markdown bold/italic tags just in case AI still outputs them
+      responseText = responseText.replace(/**/g, '');
+      responseText = responseText.replace(/*/g, '');
+      responseText = responseText.replace(/#/g, '');
 
       setMessages(prev => [...prev, { role: 'assistant', text: responseText }]);
     } catch (error) {
@@ -155,13 +207,13 @@ DİQQƏT EDİLƏSİ NÜANS:
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   key={i} 
-                  className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                  className={\`flex \${msg.role === 'user' ? 'justify-end' : 'justify-start'}\`}
                 >
-                  <div className={`max-w-[85%] rounded-2xl p-3.5 text-sm leading-relaxed shadow-sm ${
+                  <div className={\`max-w-[85%] rounded-2xl p-3.5 text-sm leading-relaxed shadow-sm whitespace-pre-wrap \${
                     msg.role === 'user' 
                     ? 'bg-blue-600 text-white rounded-br-none' 
                     : 'bg-white text-black/80 border border-black/5 rounded-bl-none'
-                  }`}>
+                  }\`}>
                     {msg.text}
                   </div>
                 </motion.div>
@@ -258,11 +310,11 @@ DİQQƏT EDİLƏSİ NÜANS:
             setMenuOpen(!menuOpen);
           }
         }}
-        className={`relative flex items-center justify-center w-14 h-14 rounded-full shadow-2xl transition-all duration-300 ${
+        className={\`relative flex items-center justify-center w-14 h-14 rounded-full shadow-2xl transition-all duration-300 \${
           menuOpen || chatOpen 
           ? 'bg-black text-white shadow-black/30' 
           : 'bg-primary text-white shadow-primary/40'
-        }`}
+        }\`}
       >
         {!(menuOpen || chatOpen) && (
           <>
