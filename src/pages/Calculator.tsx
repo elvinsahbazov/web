@@ -605,8 +605,8 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                         labels: enabledChannels.map(c => c.name),
                         datasets: [
                           { label: 'Büdcə (Məsrəf)', data: enabledChannels.map(c => c.budget), backgroundColor: '#cbd5e1', borderRadius: 4 },
-                          { label: 'Gözlənilən Gəlir', data: enabledChannels.map(c => c.budget * c.roas), backgroundColor: '#3b82f6', borderRadius: 4 },
-                          { label: 'Xalis Mənfəət', data: enabledChannels.map(c => (c.budget * c.roas) * (margin / 100) - c.budget), backgroundColor: '#10b981', borderRadius: 4 }
+                          { label: 'Gözlənilən Gəlir', data: enabledChannels.map(c => (c.cpl > 0 ? (c.budget / c.cpl) * (c.cr / 100) : 0) * state.productPrice), backgroundColor: '#3b82f6', borderRadius: 4 },
+                          { label: 'Xalis Mənfəət', data: enabledChannels.map(c => ((c.cpl > 0 ? (c.budget / c.cpl) * (c.cr / 100) : 0) * state.productPrice) * (margin / 100) - c.budget), backgroundColor: '#10b981', borderRadius: 4 }
                         ]
                       }}
                       options={{ maintainAspectRatio: false, scales: { y: { beginAtZero: true, grid: { color: '#f1f5f9' } }, x: { grid: { display: false } } }, plugins: { legend: { display: false } } }}
