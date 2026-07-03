@@ -379,8 +379,9 @@ _Hesablama elvinsahbazov.com tərəfindən_`;
                     <label className="block text-xs font-semibold text-slate-500 mb-1.5 uppercase tracking-wider">Xidmət / Məhsul Qiyməti (₼)</label>
                     <input
                       type="number"
-                      value={state.productPrice}
+                      value={state.productPrice === 0 ? '' : state.productPrice}
                       onChange={(e) => setState({ ...state, productPrice: +e.target.value })}
+                      onFocus={(e) => e.target.select()}
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-bold focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition-all"
                     />
                   </div>
@@ -388,8 +389,9 @@ _Hesablama elvinsahbazov.com tərəfindən_`;
                     <label className="block text-xs font-semibold text-slate-500 mb-1.5 uppercase tracking-wider">Maya Dəyəri (COGS) (₼)</label>
                     <input
                       type="number"
-                      value={state.cogs}
+                      value={state.cogs === 0 ? '' : state.cogs}
                       onChange={(e) => setState({ ...state, cogs: +e.target.value })}
+                      onFocus={(e) => e.target.select()}
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-bold focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition-all"
                     />
                   </div>
@@ -439,8 +441,9 @@ _Hesablama elvinsahbazov.com tərəfindən_`;
                       <label className="block text-[10px] uppercase font-semibold text-slate-400 mb-1">Büdcə (₼)</label>
                       <input
                         type="number"
-                        value={ch.budget}
+                        value={ch.budget === 0 ? '' : ch.budget}
                         onChange={(e) => updateChannel(i, 'budget', +e.target.value)}
+                        onFocus={(e) => e.target.select()}
                         disabled={!ch.enabled}
                         className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-sm font-semibold focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none disabled:bg-transparent disabled:border-transparent transition-all"
                       />
@@ -450,8 +453,9 @@ _Hesablama elvinsahbazov.com tərəfindən_`;
                       <input
                         type="number"
                         step="0.1"
-                        value={ch.roas}
+                        value={ch.roas === 0 ? '' : ch.roas}
                         onChange={(e) => updateChannel(i, 'roas', +e.target.value)}
+                        onFocus={(e) => e.target.select()}
                         disabled={!ch.enabled}
                         className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-sm font-semibold focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none disabled:bg-transparent disabled:border-transparent transition-all"
                       />
