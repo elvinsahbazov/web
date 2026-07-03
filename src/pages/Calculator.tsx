@@ -105,7 +105,13 @@ export default function Calculator() {
   const [state, setState] = useState<CalcState>(() => {
     const saved = localStorage.getItem('calc_state');
     if (saved) {
-      try { return JSON.parse(saved); } catch (e) { /* ignore */ }
+      try { 
+        const parsed = JSON.parse(saved); 
+        // Force refresh if old channel list length (not 9)
+        if (parsed && parsed.channels && parsed.channels.length === ALL_CHANNELS.length) {
+          return parsed; 
+        }
+      } catch (e) { /* ignore */ }
     }
     return {
       presetName: 'E-ticarət',
