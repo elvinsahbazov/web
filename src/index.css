@@ -192,19 +192,32 @@
     filter: drop-shadow(0 0 10px rgba(220, 39, 67, 0.4));
   }
 
-  .social-hover-facebook:hover {
+  .social-hover-facebook {
     color: #1877f2;
+  }
+  .social-hover-facebook:hover {
     box-shadow: 0 0 22px rgba(24, 119, 242, 0.35);
   }
 
-  .social-hover-tiktok:hover {
+  .social-hover-tiktok {
     color: #ffffff;
+  }
+  .social-hover-tiktok:hover {
     box-shadow: 0 0 22px rgba(255, 255, 255, 0.2);
   }
 
-  .social-hover-x:hover {
+  .social-hover-x {
     color: #ffffff;
+  }
+  .social-hover-x:hover {
     box-shadow: 0 0 22px rgba(255, 255, 255, 0.2);
+  }
+
+  .social-hover-gmail {
+    color: #EA4335;
+  }
+  .social-hover-gmail:hover {
+    box-shadow: 0 0 22px rgba(234, 67, 53, 0.35);
   }
 
   .platform-tag-dark {
