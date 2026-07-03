@@ -1,23 +1,19 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GoogleGenerativeAI } from '@google/generative-ai';
 import { useSiteContent } from '../context/SiteContentContext';
 
-// Initialize Gemini AI
-const apiKey = import.meta.env.VITE_GEMINI_API_KEY || '';
-const genAI = new GoogleGenerativeAI(apiKey);
-
+const apiKey = import.meta.env.VITE_OPENAI_API_KEY || '';
 
 export default function UnifiedContactWidget() {
   const { content } = useSiteContent();
 
   const dynamicPrompt = `Sən Elvin Şahbazovun şəxsi AI köməkçisisən. Adın "AI Asistent"dir.
 Çox mehriban, enerjili, köməksevər, səmimi, tam bir insan kimi və səlis Azərbaycan dilində danışırsan.
-Emoji-lərdən istifadə et. Qısa, dəqiq və təbii cavablar ver. Çox uzun, darıxdırıcı və robotik mətnlər yazma.
+Emoji-lərdən istifadə et. Qısa, dəqiq və təbii cavablar ver. Çox uzun, darıxdırıcı və robotik mətnlər yazma. Sən saytın bütün məlumatlarını bilirsən və istifadəçi ilə real bir dost/insan kimi söhbət edirsən.
 
 ELVİN ŞAHBAZOV HAQQINDA MƏLUMAT:
 ${content.about_text_1 || 'Rəqəmsal marketinq, performans reklamları (Meta & Google Ads) və bizneslərin süni intellektlə (AI) avtomatlaşdırılması üzrə peşəkar mütəxəssisdir.'}
-${content.about_text_2 || ''}
+${content.about_text_2 || 'Hazırda Baku Auto Mall-da Marketinq Direktoru və SMARTKOB-da Departament rəhbəridir.'}
 
 ƏLAQƏ MƏLUMATLARI:
 - WhatsApp və Zəng: ${content.contact_phone || '+994 99 955 00 01'}
@@ -28,9 +24,8 @@ XİDMƏTLƏRİMİZ (Saytdakı məlumatlara əsasən):
 - ${content.services_main_title || 'Peşəkar Xidmətlər'}: ${content.services_main_subtitle || 'ROI-a fokuslanmış, məlumata əsaslanan marketinq xidmətləri.'}
 - ${content.services_bizdev_title || 'Biznes İnkişaf Xidmətləri'}: ${content.services_bizdev_subtitle || 'Biznesinizi böyütmək üçün strateji yanaşmalar.'}
 
-MİSSİYA / VİZYON:
-- Rəqəmsal Sahibkar: ${content.vision_hero_subtitle || ''}
-- Rəqəmsal Tələbə: ${content.vision_mission_desc || ''}
+MİSSİYA / VİZYON / BLOQ:
+Sən saytdakı "Rəqəmsal" (Digital News), "Bloq" (Blog) və "Xidmətlər" (Services) kimi bütün səhifələrin məzmununa bələdsən. Saytdakı xidmətlər arasında Rəqəmsal Reklam (Meta Ads, Google Ads, TikTok Ads və s.), CRM Avtomatlaşdırma, Satış Qıfları (Funnels) və AI İnteqrasiyaları var.
 
 QİYMƏTLƏR (ÇOX ÖNƏMLİ):
 Dəqiq rəqəm (qiymət) demə. İstənilən qiymət sualına belə və ya buna bənzər cavab ver: "Hər biznesin hədəfi və ehtiyacı fərqlidir, ona görə də qiymətlər xidmətin növünə və həcminə görə dəyişir. Sizə ən uyğun paketi təklif edə bilməmiz üçün zəhmət olmasa WhatsApp-dan bizə yazın (${content.contact_whatsapp_link || 'https://wa.me/994999550001'}), birlikdə layihənizi müzakirə edək! 😊"
@@ -38,13 +33,13 @@ Dəqiq rəqəm (qiymət) demə. İstənilən qiymət sualına belə və ya buna 
 DİQQƏT EDİLƏSİ NÜANS:
 - İstənilən suala cavab verdikdən sonra istifadəçini hərəkətə keçməyə (Call to Action) həvəsləndir.
 - Mümkün qədər cümlələrini qısa və oxunaqlı et.
-- Suala cavab verərkən həmişə saytda qeyd olunan məlumatlara (Yuxarıdakı kontentə) əsaslanaraq cavab ver. Əgər məlumat yoxdursa, mülayimcə WhatsApp-a yönləndir.`;
+- Suala cavab verərkən həmişə saytda qeyd olunan məlumatlara əsaslanaraq cavab ver. Əgər məlumat yoxdursa, mülayimcə WhatsApp-a yönləndir.`;
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   
-  const [messages, setMessages] = useState<{ role: 'user' | 'model'; text: string }[]>([
-    { role: 'model', text: 'Salam! Mən Elvin Şahbazovun süni intellekt asistentiyəm. Sizə rəqəmsal marketinq və ya xidmətlərimiz barədə necə kömək edə bilərəm? 😊' }
+  const [messages, setMessages] = useState<{ role: 'user' | 'assistant'; text: string }[]>([
+    { role: 'assistant', text: 'Salam! Mən Elvin Şahbazovun süni intellekt asistentiyəm. Sizə necə kömək edə bilərəm? 😊' }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -72,38 +67,45 @@ DİQQƏT EDİLƏSİ NÜANS:
         throw new Error('API_KEY_MISSING');
       }
 
-      // Initialize the model
-      const model = genAI.getGenerativeModel({ 
-        model: 'gemini-1.5-flash',
-        systemInstruction: dynamicPrompt,
-      });
+      // Convert messages to OpenAI format
+      const openAiMessages = [
+        { role: 'system', content: dynamicPrompt },
+        ...messages.map(msg => ({
+          role: msg.role,
+          content: msg.text
+        })),
+        { role: 'user', content: userMessage }
+      ];
 
-      // Prepare conversation history for context
-      const history = messages.map(msg => ({
-        role: msg.role === 'model' ? 'model' : 'user',
-        parts: [{ text: msg.text }]
-      }));
-
-      // Start chat
-      const chat = model.startChat({
-        history: history,
-        generationConfig: {
-          maxOutputTokens: 500,
-          temperature: 0.7,
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
         },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: openAiMessages,
+          temperature: 0.7,
+          max_tokens: 500
+        })
       });
 
-      const result = await chat.sendMessage(userMessage);
-      const responseText = result.response.text();
+      if (!response.ok) {
+        throw new Error('API_ERROR');
+      }
 
-      setMessages(prev => [...prev, { role: 'model', text: responseText }]);
+      const data = await response.json();
+      const responseText = data.choices[0].message.content;
+
+      setMessages(prev => [...prev, { role: 'assistant', text: responseText }]);
     } catch (error) {
       console.error('AI Error:', error);
       let errorMsg = 'Üzr istəyirəm, hal-hazırda sistemdə qısa bir fasilə var. 🛠️ Zəhmət olmasa bizimlə birbaşa WhatsApp (+994 99 955 00 01) üzərindən əlaqə saxlayın!';
       if (error instanceof Error && error.message === 'API_KEY_MISSING') {
-        errorMsg = 'API Key tapılmadı. Zəhmət olmasa .env faylında VITE_GEMINI_API_KEY-i əlavə edin.';
+        errorMsg = 'API Key tapılmadı. Zəhmət olmasa Vercel-də VITE_OPENAI_API_KEY-i əlavə edin.';
       }
-      setMessages(prev => [...prev, { role: 'model', text: errorMsg }]);
+      setMessages(prev => [...prev, { role: 'assistant', text: errorMsg }]);
     } finally {
       setIsTyping(false);
     }
@@ -111,7 +113,7 @@ DİQQƏT EDİLƏSİ NÜANS:
 
   const handleCloseChat = () => {
     setChatOpen(false);
-    setMenuOpen(true); // Geri menyuya qayıtsın
+    setMenuOpen(true);
   };
 
   return (
