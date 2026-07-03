@@ -200,7 +200,7 @@ export default function Calculator() {
     labels,
     datasets: [
       {
-        label: 'Məcmu LTV Gəliri (₼)',
+        label: 'Məcmu LTV Gəliri ($)',
         data: labels.map((_, i) => netRevenue + (netRevenue * ltvFreq * (i/12))),
         borderColor: 'rgb(147, 51, 234)',
         backgroundColor: 'rgba(147, 51, 234, 0.1)',
@@ -209,7 +209,7 @@ export default function Calculator() {
         tension: 0.4,
       },
       {
-        label: 'Məcmu Reklam Xərci (₼)',
+        label: 'Məcmu Reklam Xərci ($)',
         data: labels.map((_, i) => totalBudget * (i + 1)),
         borderColor: 'rgb(239, 68, 68)',
         backgroundColor: 'rgba(239, 68, 68, 0.0)',
@@ -249,12 +249,12 @@ export default function Calculator() {
       return `📊 *ROAS VƏ QAZANC HESABATIM*
 
 🏢 Sektor: ${state.presetName}
-💰 Məhsul Qiyməti: ₼${state.productPrice}
-📦 Maya Dəyəri: ₼${state.cogs}
+💰 Məhsul Qiyməti: $${state.productPrice}
+📦 Maya Dəyəri: $${state.cogs}
 
-💸 Ümumi Büdcə: ₼${totalBudget}
-📈 Gözlənilən Gəlir: ₼${totalRevenue.toFixed(0)}
-💎 Xalis Mənfəət: ₼${netProfit.toFixed(0)}
+💸 Ümumi Büdcə: $${totalBudget}
+📈 Gözlənilən Gəlir: $${totalRevenue.toFixed(0)}
+💎 Xalis Mənfəət: $${netProfit.toFixed(0)}
 
 🚀 ROI: ${roi.toFixed(1)}%
 🎯 Blended ROAS: ${blendedROAS.toFixed(2)}x
@@ -265,11 +265,11 @@ _Bu hesabat Elvin Şahbazov-un ROAS Hesablayıcısı tərəfindən generasiya ed
     } else {
       return `🔮 *MARKETİNQ PROQNOZ HESABATIM*
 
-🎯 Hədəf Gəlir: ₼${forecastState.targetRevenue.toLocaleString()}
-💰 Məhsul Qiyməti: ₼${state.productPrice}
+🎯 Hədəf Gəlir: $${forecastState.targetRevenue.toLocaleString()}
+💰 Məhsul Qiyməti: $${state.productPrice}
 
 📊 *Hədəfə Çatmaq Üçün Tələblər:*
-💸 Tələb Olunan Büdcə: ₼${f_requiredBudget.toFixed(0)}
+💸 Tələb Olunan Büdcə: $${f_requiredBudget.toFixed(0)}
 📩 Tələb Olunan Mesaj/Lead: ${f_leadsNeeded.toFixed(0)} ədəd
 🛍 Tələb Olunan Satış: ${f_salesNeeded.toFixed(0)} ədəd
 
@@ -386,7 +386,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                   
                   <div className="grid grid-cols-1 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-bold text-slate-700 mb-2">Orta Satış Qiyməti (AOV) ₼</label>
+                      <label className="block text-sm font-bold text-slate-700 mb-2">Orta Satış Qiyməti (AOV) $</label>
                       <input
                         type="number"
                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
@@ -425,7 +425,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-bold text-slate-700 mb-2">Məhsulun Maya Dəyəri (COGS) ₼</label>
+                      <label className="block text-sm font-bold text-slate-700 mb-2">Məhsulun Maya Dəyəri (COGS) $</label>
                       <input
                         type="number"
                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
@@ -437,7 +437,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                     </div>
                     <div>
                       <label className="block text-sm font-bold text-slate-700 mb-2">
-                        Aylıq Sabit Xərclər (Agentlik, Çəkiliş, Alətlər) ₼
+                        Aylıq Sabit Xərclər (Agentlik, Çəkiliş, Alətlər) $
                         <InfoTooltip title="Sabit Xərclər" content="Marketinq agentliyi, SMM, çəkiliş komandası, proqramlar kimi reklam büdcəsi xaricindəki əlavə aylıq xərclər." />
                       </label>
                       <input
@@ -476,7 +476,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                         <tr className="border-b border-slate-200 text-slate-400 text-sm">
                           <th className="pb-3 font-semibold w-12">Aktiv</th>
                           <th className="pb-3 font-semibold">Kanal Adı</th>
-                          <th className="pb-3 font-semibold w-40">Büdcə (₼)</th>
+                          <th className="pb-3 font-semibold w-40">Büdcə ($)</th>
                           <th className="pb-3 font-semibold w-32">Hədəf ROAS</th>
                           <th className="pb-3 font-semibold text-right">Gözlənilən Gəlir</th>
                         </tr>
@@ -498,7 +498,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                             <td className="py-4 font-bold text-slate-700">{channel.name}</td>
                             <td className="py-4 pr-4">
                               <div className="relative">
-                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">₼</span>
+                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">$</span>
                                 <input
                                   type="number"
                                   className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all disabled:bg-slate-100 disabled:text-slate-400"
@@ -525,7 +525,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                               </div>
                             </td>
                             <td className="py-4 text-right font-black text-slate-900">
-                              ₼{(channel.budget * channel.roas).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                              ${(channel.budget * channel.roas).toLocaleString(undefined, { maximumFractionDigits: 0 })}
                             </td>
                           </tr>
                         ))}
@@ -565,7 +565,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                   </div>
                   <div className="relative z-10">
                     <p className="text-blue-200 text-sm font-bold uppercase tracking-wider mb-2">Ümumi Reklam Büdcəsi</p>
-                    <p className="text-4xl md:text-5xl font-black mb-3 tracking-tight">₼{totalBudget.toLocaleString()}</p>
+                    <p className="text-4xl md:text-5xl font-black mb-3 tracking-tight">${totalBudget.toLocaleString()}</p>
                     <div className="inline-flex items-center px-3 py-1 bg-blue-500 rounded-lg text-xs font-bold border border-blue-400">
                       Aktiv kanallar: {enabledChannels.length}
                     </div>
@@ -576,20 +576,20 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                   <div className="space-y-1">
                     <div className="flex justify-between items-center py-3">
                       <span className="text-sm text-slate-500 font-bold">Gözlənilən Gəlir</span>
-                      <span className="font-black text-slate-900 text-xl">₼{totalRevenue.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
+                      <span className="font-black text-slate-900 text-xl">${totalRevenue.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
                     </div>
                     <div className="h-px w-full bg-slate-100" />
                     
                     <div className="flex justify-between items-center py-3">
                       <span className="text-sm text-slate-500 font-bold">Xalis Mənfəət</span>
-                      <span className={`font-black text-xl ${netProfit >= 0 ? 'text-emerald-500' : 'text-red-500'}`}>₼{netProfit.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
+                      <span className={`font-black text-xl ${netProfit >= 0 ? 'text-emerald-500' : 'text-red-500'}`}>${netProfit.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
                     </div>
                     <div className="h-px w-full bg-slate-100" />
                     
                     <div className="flex justify-between items-center py-3">
                       <span className="text-sm text-slate-500 font-bold flex items-center">
                         ROI
-                        <InfoTooltip title="Return on Investment" content="Sərmayə Gəlirliyi. Yatırılan hər 1 ₼ reklam büdcəsindən əldə edilən xalis gəlir faizidir." />
+                        <InfoTooltip title="Return on Investment" content="Sərmayə Gəlirliyi. Yatırılan hər 1 $ reklam büdcəsindən əldə edilən xalis gəlir faizidir." />
                       </span>
                       <span className={`font-black text-lg ${roi >= 0 ? 'text-blue-600' : 'text-red-500'}`}>{roi.toFixed(1)}%</span>
                     </div>
@@ -624,7 +624,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                         Orta CAC / CPA
                         <InfoTooltip title="CAC (Müştəri Əldəetmə Xərci)" content="1 yeni məhsul sifarişi (və ya müştəri) qazanmaq üçün xərclənən orta reklam məbləğidir." />
                       </span>
-                      <span className="font-black text-slate-900 text-lg">₼{cpa.toFixed(2)}</span>
+                      <span className="font-black text-slate-900 text-lg">${cpa.toFixed(2)}</span>
                     </div>
                   </div>
                 </div>
@@ -665,7 +665,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-slate-700 mb-2">Orta Satış Qiyməti (AOV) ₼</label>
+                    <label className="block text-sm font-bold text-slate-700 mb-2">Orta Satış Qiyməti (AOV) $</label>
                     <input
                       type="number"
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
@@ -692,7 +692,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                   <div className="space-y-6">
                     <div>
                       <label className="flex items-center text-sm font-bold text-slate-700 mb-2">
-                        Hədəflənən Gəlir ₼
+                        Hədəflənən Gəlir $
                         <InfoTooltip title="Hədəf Gəlir" content="Bu ay reklamdan qazanmaq istədiyiniz ümumi dövriyyə məbləği." />
                       </label>
                       <input
@@ -708,7 +708,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                     <div className="grid grid-cols-1 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-6">
                       <div>
                         <label className="flex items-center text-sm font-bold text-slate-700 mb-2">
-                          Mesaj/Lead Xərci (CPL) ₼
+                          Mesaj/Lead Xərci (CPL) $
                           <InfoTooltip title="CPL / CPM" content="1 potensial müştəridən mesaj almaq, yaxud nömrəsini götürmək sizə neçəyə başa gəlir? (Məs: 1.5 AZN)" />
                         </label>
                         <input
@@ -749,8 +749,8 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                   </div>
                   <div className="relative z-10">
                     <p className="text-indigo-200 text-sm font-bold uppercase tracking-wider mb-2">Hədəfə Çatmaq Üçün Tələb Olunan Büdcə</p>
-                    <p className="text-4xl md:text-5xl font-black mb-1 tracking-tight">₼{f_requiredBudget.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
-                    <p className="text-indigo-200 font-medium text-sm mt-3">Bu məbləği xərcləyərək {forecastState.targetRevenue.toLocaleString()} ₼ qazana bilərsiniz.</p>
+                    <p className="text-4xl md:text-5xl font-black mb-1 tracking-tight">${f_requiredBudget.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
+                    <p className="text-indigo-200 font-medium text-sm mt-3">Bu məbləği xərcləyərək {forecastState.targetRevenue.toLocaleString()} $ qazana bilərsiniz.</p>
                   </div>
                 </div>
 
@@ -776,7 +776,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                       </div>
                       <div className="text-right">
                         <p className="text-xs text-slate-400 font-medium">Büdcə Xərci</p>
-                        <p className="font-bold text-red-500">-₼{f_requiredBudget.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
+                        <p className="font-bold text-red-500">-${f_requiredBudget.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
                       </div>
                     </div>
 
@@ -819,7 +819,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                         </div>
                         <div>
                           <p className="text-xs font-bold text-indigo-400 uppercase">Hədəflənən Gəlir</p>
-                          <p className="font-black text-indigo-900 text-lg">₼{forecastState.targetRevenue.toLocaleString()}</p>
+                          <p className="font-black text-indigo-900 text-lg">${forecastState.targetRevenue.toLocaleString()}</p>
                         </div>
                       </div>
                       <div className="text-right">
