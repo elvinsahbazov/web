@@ -539,14 +539,29 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                               </label>
                             </td>
                             <td className="py-4 font-bold text-slate-700">{channel.name}</td>
-                            <td className="py-4 pr-4">
+                            <td className="py-4 pr-2">
                               <div className="relative">
                                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">$</span>
                                 <input
                                   type="number"
-                                  className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-2 text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all disabled:bg-slate-100 disabled:text-slate-400"
+                                  className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-7 pr-2 py-2 text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all disabled:bg-slate-100 disabled:text-slate-400"
                                   value={channel.budget === 0 ? '' : channel.budget}
                                   onChange={(e) => updateChannel(idx, 'budget', Number(e.target.value))}
+                                  onFocus={handleFocus}
+                                  disabled={!channel.enabled}
+                                  placeholder="0"
+                                />
+                              </div>
+                            </td>
+                            <td className="py-4 pr-2">
+                              <div className="relative">
+                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">$</span>
+                                <input
+                                  type="number"
+                                  step="0.1"
+                                  className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-7 pr-2 py-2 text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all disabled:bg-slate-100 disabled:text-slate-400"
+                                  value={channel.cpl === 0 ? '' : channel.cpl}
+                                  onChange={(e) => updateChannel(idx, 'cpl', Number(e.target.value))}
                                   onFocus={handleFocus}
                                   disabled={!channel.enabled}
                                   placeholder="0"
@@ -558,17 +573,18 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                                 <input
                                   type="number"
                                   step="0.1"
-                                  className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-3 pr-8 py-2 text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all disabled:bg-slate-100 disabled:text-slate-400"
-                                  value={channel.roas === 0 ? '' : channel.roas}
-                                  onChange={(e) => updateChannel(idx, 'roas', Number(e.target.value))}
+                                  className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-3 pr-6 py-2 text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all disabled:bg-slate-100 disabled:text-slate-400"
+                                  value={channel.cr === 0 ? '' : channel.cr}
+                                  onChange={(e) => updateChannel(idx, 'cr', Number(e.target.value))}
                                   onFocus={handleFocus}
                                   disabled={!channel.enabled}
+                                  placeholder="0"
                                 />
-                                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">x</span>
+                                <span className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-sm">%</span>
                               </div>
                             </td>
                             <td className="py-4 text-right font-black text-slate-900">
-                              ${(channel.budget * channel.roas).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                              ${((channel.cpl > 0 ? (channel.budget / channel.cpl) * (channel.cr / 100) : 0) * state.productPrice).toLocaleString(undefined, { maximumFractionDigits: 0 })}
                             </td>
                           </tr>
                         ))}
