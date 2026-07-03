@@ -156,12 +156,17 @@ export default function Planner() {
                         ))}
                       </div>
                       {state.industry === 'Digər' && (
-                        <motion.input
+                        <motion.div
                           initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}
-                          type="text" placeholder="Sektorunuzu qeyd edin..."
-                          className="input-field mt-3"
-                          value={state.otherIndustry} onChange={e => setState({ ...state, otherIndustry: e.target.value })}
-                        />
+                          className="mt-3"
+                        >
+                          <input
+                            type="text" placeholder="Zəhmət olmasa, sektorunuzu qeyd edin..."
+                            className={`input-field w-full ${!state.otherIndustry ? 'border-red-300 focus:border-red-500' : ''}`}
+                            value={state.otherIndustry} onChange={e => setState({ ...state, otherIndustry: e.target.value })}
+                          />
+                          {!state.otherIndustry && <p className="text-red-500 text-xs mt-1">Davam etmək üçün sahəni doldurun.</p>}
+                        </motion.div>
                       )}
                     </div>
 
@@ -201,7 +206,7 @@ export default function Planner() {
                       <button 
                         onClick={() => setStep(2)} 
                         disabled={!state.industry || (state.industry === 'Digər' && !state.otherIndustry) || !state.audience || !state.budget}
-                        className="btn-primary py-3 px-8 disabled:opacity-50"
+                        className="btn-primary py-3 px-8 disabled:bg-slate-200 disabled:text-slate-400 disabled:border-slate-200 disabled:shadow-none disabled:cursor-not-allowed transition-all"
                       >
                         Növbəti <i className="fas fa-arrow-right ml-2" />
                       </button>
