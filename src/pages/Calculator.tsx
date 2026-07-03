@@ -307,7 +307,7 @@ _Bu hesabat Elvin Şahbazov-un ROAS Hesablayıcısı tərəfindən generasiya ed
     } else {
       return `🔮 *MARKETİNQ PROQNOZ HESABATIM*
 
-🎯 Hədəf Gəlir: $${forecastState.targetRevenue.toLocaleString()}
+🎯 Hədəf Xalis Qazanc: $${forecastState.targetNetProfit.toLocaleString()}
 💰 Məhsul Qiyməti: $${state.productPrice}
 
 📊 *Hədəfə Çatmaq Üçün Tələblər:*
@@ -741,7 +741,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                       <input
                         type="number"
                         className="w-full bg-indigo-50/50 border border-indigo-200 rounded-xl px-4 py-4 text-xl font-black text-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                        value={forecastState.targetRevenue === 0 ? '' : forecastState.targetRevenue}
+                        value={forecastState.targetNetProfit === 0 ? '' : forecastState.targetNetProfit}
                         onChange={(e) => setForecastState(s => ({ ...s, targetRevenue: Number(e.target.value) }))}
                         onFocus={handleFocus}
                         placeholder="Məs: 50000"
@@ -793,7 +793,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                   <div className="relative z-10">
                     <p className="text-indigo-200 text-sm font-bold uppercase tracking-wider mb-2">Hədəfə Çatmaq Üçün Tələb Olunan Büdcə</p>
                     <p className="text-4xl md:text-5xl font-black mb-1 tracking-tight">${f_requiredBudget.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
-                    <p className="text-indigo-200 font-medium text-sm mt-3">Bu məbləği xərcləyərək {forecastState.targetRevenue.toLocaleString()} $ qazana bilərsiniz.</p>
+                    <p className="text-indigo-200 font-medium text-sm mt-3">Bu məbləği xərcləyərək cibinizə {forecastState.targetNetProfit.toLocaleString()} $ xalis qazanc qala bilər.</p>
                   </div>
                 </div>
 
@@ -862,7 +862,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                         </div>
                         <div>
                           <p className="text-xs font-bold text-indigo-400 uppercase">Hədəflənən Gəlir</p>
-                          <p className="font-black text-indigo-900 text-lg">${forecastState.targetRevenue.toLocaleString()}</p>
+                          <p className="font-black text-indigo-900 text-lg">${forecastState.targetNetProfit.toLocaleString()}</p>
                         </div>
                       </div>
                       <div className="text-right">
