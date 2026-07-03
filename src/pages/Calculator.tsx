@@ -295,7 +295,7 @@ export default function Calculator() {
 📦 Maya Dəyəri: $${state.cogs}
 
 💸 Ümumi Büdcə: $${totalBudget}
-📈 Gözlənilən Gəlir: $${totalRevenue.toFixed(0)}
+📈 Gözlənilən Gəlir: $${totalGrossRevenue.toFixed(0)}
 💎 Xalis Mənfəət: $${netProfit.toFixed(0)}
 
 🚀 ROI: ${roi.toFixed(1)}%
@@ -635,7 +635,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                   <div className="space-y-1">
                     <div className="flex justify-between items-center py-3">
                       <span className="text-sm text-slate-500 font-bold">Gözlənilən Gəlir</span>
-                      <span className="font-black text-slate-900 text-xl">${totalRevenue.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
+                      <span className="font-black text-slate-900 text-xl">${totalGrossRevenue.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
                     </div>
                     <div className="h-px w-full bg-slate-100" />
                     
