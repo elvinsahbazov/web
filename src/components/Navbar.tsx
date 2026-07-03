@@ -12,7 +12,7 @@ function TechMenuToggle({ open }: { open: boolean }) {
   return (
     <span className="relative block h-5 w-6" aria-hidden="true">
       <motion.span
-        className="absolute left-0 top-[5px] block h-[2px] rounded-full bg-white"
+        className="absolute left-0 top-[5px] block h-[2px] rounded-full bg-slate-900"
         initial={false}
         animate={
           open
@@ -84,7 +84,7 @@ export default function Navbar() {
             }`}
           >
             <span
-              className="whitespace-nowrap text-sm font-bold uppercase tracking-widest text-white sm:text-base"
+              className="whitespace-nowrap text-sm font-bold uppercase tracking-widest text-slate-900 sm:text-base"
               style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}
             >
               ELVİN ŞAHBAZOV
@@ -113,9 +113,9 @@ export default function Navbar() {
               aria-label={isOpen ? 'Menyunu bağla' : 'Menyunu aç'}
               aria-expanded={isOpen}
               onClick={toggle}
-              className={`hidden md:flex relative z-[101] h-12 w-12 shrink-0 flex-col items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/5 transition-all duration-500 hover:bg-white/10 ${
-                isMinimal ? 'shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-md' : ''
-              } ${isOpen ? 'border-white/20 bg-white/10' : ''}`}
+              className={`hidden md:flex relative z-[101] h-12 w-12 shrink-0 flex-col items-center justify-center gap-1.5 rounded-full border border-slate-900/10 bg-slate-900/5 transition-all duration-500 hover:bg-slate-900/10 ${
+                isMinimal ? 'shadow-[0_8px_32px_rgba(0,0,0,0.05)] backdrop-blur-md' : ''
+              } ${isOpen ? 'border-slate-900/20 bg-slate-900/10' : ''}`}
             >
               <motion.span
                 className="flex items-center justify-center"

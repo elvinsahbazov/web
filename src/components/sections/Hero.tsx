@@ -28,10 +28,10 @@ export default function Hero() {
   const { isOpen: isMenuOpen } = useMobileMenu();
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-black">
+    <section className="relative min-h-screen overflow-hidden bg-slate-50">
       {/* Stripe ambient glow */}
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
-        <div className="absolute -left-32 top-1/4 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(0,123,255,0.14)_0%,transparent_68%)] blur-3xl" />
+        <div className="absolute -left-32 top-1/4 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(0,123,255,0.08)_0%,transparent_68%)] blur-3xl" />
         <div className="absolute bottom-0 right-0 h-[640px] w-[640px] translate-x-1/4 rounded-full bg-[radial-gradient(circle,rgba(0,123,255,0.08)_0%,transparent_70%)] blur-3xl" />
         <div className="vercel-grid absolute inset-0 opacity-[0.35]" />
       </div>
@@ -49,7 +49,7 @@ export default function Hero() {
         >
           <motion.h1
             variants={revealItem}
-            className="font-satoshi mb-8 max-w-xl text-[clamp(2.75rem,7vw,5.5rem)] font-black leading-[0.92] tracking-[-0.04em] text-white"
+            className="font-satoshi mb-8 max-w-xl text-[clamp(2.75rem,7vw,5.5rem)] font-black leading-[0.92] tracking-[-0.04em] text-slate-900"
           >
             ELVİN
             <span className="block text-gradient-blue">{content.hero_title_2 || 'ŞAHBAZOV'}</span>
@@ -66,7 +66,7 @@ export default function Hero() {
             {badges.map((badge) => (
               <span
                 key={badge}
-                className="bg-white/[0.03] backdrop-blur-xl border border-white/5 rounded-full px-4 py-1.5 text-xs font-medium tracking-wide text-white/90"
+                className="bg-slate-900/5 backdrop-blur-xl border border-slate-900/10 rounded-full px-4 py-1.5 text-xs font-medium tracking-wide text-slate-900/90"
               >
                 {badge}
               </span>
@@ -88,7 +88,7 @@ export default function Hero() {
               Konsultasiya
             </motion.a>
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={springSnappy}>
-              <Link to="/xidmetler" data-magnetic className="bg-white/[0.03] backdrop-blur-xl border border-white/5 text-white btn-hero hover:bg-white/[0.08] transition-colors">
+              <Link to="/xidmetler" data-magnetic className="bg-slate-900/5 backdrop-blur-xl border border-slate-900/10 text-slate-900 btn-hero hover:bg-slate-900/10 transition-colors">
                 {content.hero_button_2 || 'Xidmətlər'}
                 <ArrowRight size={16} />
               </Link>
@@ -119,10 +119,10 @@ export default function Hero() {
             {stats.map((stat) => (
               <motion.div key={stat.label} variants={revealItem} className="text-left">
                 <stat.icon size={18} className="mb-3 text-primary" strokeWidth={2} />
-                <p className="font-satoshi text-3xl font-black tracking-tight text-white md:text-4xl">
+                <p className="font-satoshi text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
                   {stat.value}
                 </p>
-                <p className="mt-1 text-xs font-medium tracking-wide text-white/45">{stat.label}</p>
+                <p className="mt-1 text-xs font-medium tracking-wide text-slate-500">{stat.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -139,7 +139,7 @@ export default function Hero() {
               aria-hidden="true"
             />
             <div 
-              className="relative rounded-2xl border border-white/50 border-l-4 border-l-blue-600 p-6 shadow-[0_8px_30px_rgb(255,255,255,0.15)] md:p-8"
+              className="relative rounded-2xl border border-slate-900/100 border-l-4 border-l-blue-600 p-6 shadow-[0_8px_30px_rgb(255,255,255,0.15)] md:p-8"
               style={{ backgroundColor: 'rgba(255, 255, 255, 0.85)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
             >
               <p className="text-sm leading-relaxed text-slate-700 md:text-base">
