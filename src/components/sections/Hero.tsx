@@ -135,10 +135,13 @@ export default function Hero() {
             className="relative mt-16 w-full max-w-xl"
           >
             <div
-              className="pointer-events-none absolute -inset-3 rounded-3xl bg-blue-500/10 blur-2xl"
+              className="pointer-events-none absolute -inset-3 rounded-3xl bg-white/20 blur-2xl"
               aria-hidden="true"
             />
-            <div className="relative rounded-2xl border border-white/40 border-l-4 border-l-blue-600 bg-white/90 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-2xl md:p-8">
+            <div 
+              className="relative rounded-2xl border border-white/50 border-l-4 border-l-blue-600 p-6 shadow-[0_8px_30px_rgb(255,255,255,0.15)] md:p-8"
+              style={{ backgroundColor: 'rgba(255, 255, 255, 0.85)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
+            >
               <p className="text-sm leading-relaxed text-slate-700 md:text-base">
                 Hər əsrdə bir dönüş nöqtəsi olur və oyunun qaydaları dəyişir. Bu gün həmin nöqtənin
                 adı <span className="font-bold text-blue-700">Süni İntellektdir.</span>
