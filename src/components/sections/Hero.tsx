@@ -138,19 +138,19 @@ export default function Hero() {
               className="pointer-events-none absolute -inset-3 rounded-3xl bg-blue-500/10 blur-2xl"
               aria-hidden="true"
             />
-            <div className="relative rounded-2xl border border-white/5 border-l-4 border-l-blue-500 bg-white/[0.03] p-6 shadow-2xl backdrop-blur-xl md:p-8">
-              <p className="text-sm leading-relaxed text-white/80 md:text-base">
+            <div className="relative rounded-2xl border border-white/40 border-l-4 border-l-blue-600 bg-white/90 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-2xl md:p-8">
+              <p className="text-sm leading-relaxed text-slate-700 md:text-base">
                 Hər əsrdə bir dönüş nöqtəsi olur və oyunun qaydaları dəyişir. Bu gün həmin nöqtənin
-                adı <span className="font-semibold text-blue-500">Süni İntellektdir.</span>
+                adı <span className="font-bold text-blue-700">Süni İntellektdir.</span>
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-gray-400 md:text-base">
+              <p className="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
                 Bu dəyişikliyi vaxtında anlayanlar sabah bazarın lideri olur, gecikənlər isə bu
                 gündən geridə qalmağa başlayır.
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-gray-400 md:text-base">
+              <p className="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
                 Texnologiya artıq seçim deyil — böyümənin mühərrikidir.
               </p>
-              <p className="mt-5 block text-base font-bold text-white md:text-lg">
+              <p className="mt-5 block text-base font-black text-slate-900 md:text-lg">
                 Gələcək gözləyənlərin yox, indi hərəkət edənlərindir.
               </p>
             </div>
