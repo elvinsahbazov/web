@@ -85,10 +85,10 @@ export default function Navbar() {
               className="overflow-hidden hover:opacity-90"
             >
               <span
-                className="whitespace-nowrap text-sm font-bold uppercase tracking-widest text-white sm:text-base block"
+                className="whitespace-nowrap text-sm font-bold tracking-widest text-white sm:text-base block"
                 style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}
               >
-                ELVİN ŞAHBAZOV
+                ELVİN SHAHBAZOV <span className="text-gray-400 text-xs sm:text-sm font-medium tracking-normal hidden xl:inline ml-1">/ Digital Marketing and AI Automation Expert</span>
               </span>
             </Link>
             
