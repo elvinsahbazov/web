@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { easePremium } from '../lib/motion';
 import { useMobileMenu } from '../context/MobileMenuContext';
-import MobileMenu from './MobileMenu';
+import MobileMenu, { mobileNavLinks } from './MobileMenu';
 
 const SCROLL_THRESHOLD = 50;
 
