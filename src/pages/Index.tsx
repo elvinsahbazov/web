@@ -88,7 +88,7 @@ function HoverCard({ card, i }: { card: any, i: number }) {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       data-cursor-text="Kəşf et"
-      className="relative group rounded-3xl bg-white/5 border border-white/10 p-8 lg:p-10 overflow-hidden cursor-default transition-all duration-300 hover:border-primary/40"
+      className="relative group rounded-3xl bg-white/60 backdrop-blur-md border border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 lg:p-10 overflow-hidden cursor-default transition-all duration-300 hover:border-primary/40 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)]"
     >
       <motion.div
         className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
@@ -99,19 +99,19 @@ function HoverCard({ card, i }: { card: any, i: number }) {
       <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${card.gradient} flex items-center justify-center mb-6 shadow-blue relative z-10`}>
         <i className={`${card.icon} text-white text-xl`} />
       </div>
-      <h3 className="font-black text-white text-xl mb-4 tracking-tight relative z-10" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{card.title}</h3>
-      <p className="text-white/65 text-sm leading-relaxed mb-8 relative z-10">{card.desc}</p>
+      <h3 className="font-black text-gray-900 text-xl mb-4 tracking-tight relative z-10" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{card.title}</h3>
+      <p className="text-gray-600 text-sm leading-relaxed mb-8 relative z-10">{card.desc}</p>
       <ul className="space-y-2.5 relative z-10">
         {card.features.map((f: string) => (
           <li key={f} className="flex items-center gap-2.5 text-sm">
             <div className="w-4 h-4 rounded-full flex items-center justify-center flex-none" style={{ backgroundColor: `${card.color}22` }}>
               <i className="fas fa-check text-[9px]" style={{ color: card.color }} />
             </div>
-            <span className="text-white/85 text-sm">{f}</span>
+            <span className="text-gray-700 text-sm">{f}</span>
           </li>
         ))}
       </ul>
-      <div className="mt-8 pt-6 border-t border-white/10 relative z-10">
+      <div className="mt-8 pt-6 border-t border-gray-200 relative z-10">
         <a
           href="https://wa.me/994999550001"
           target="_blank"
@@ -127,21 +127,21 @@ function HoverCard({ card, i }: { card: any, i: number }) {
 
 function AIPremiumSection() {
   return (
-    <section className="section-py section-black relative overflow-hidden">
-      <div className="absolute inset-0 bg-dot-pattern opacity-[0.12] pointer-events-none" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/[0.04] rounded-full blur-[100px] pointer-events-none" />
+    <section className="section-py relative overflow-hidden">
+      <div className="absolute inset-0 bg-dot-pattern opacity-[0.4] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/[0.08] rounded-full blur-[100px] pointer-events-none" />
 
       <Container wide className="relative">
         <motion.div {...fadeUp()} className="text-center mb-20 md:mb-28 max-w-4xl mx-auto">
-          <span className="section-label">
+          <span className="section-label !bg-white !text-gray-800 !border-gray-200 !shadow-sm">
             <i className="fas fa-robot text-primary" /> AI-Powered Biznes
           </span>
-          <h2 className="section-title mt-8">
+          <h2 className="section-title !text-gray-900 mt-8">
             Biznes proseslərinizi AI ilə daha<br />
             <span className="text-gradient-blue">sürətli, ölçülə bilən</span> və avtomatik<br />
             idarə olunan sistemə çevirin.
           </h2>
-          <p className="section-subtitle mx-auto">
+          <p className="section-subtitle !text-gray-600 mx-auto">
             Manual işlər bitir. AI işçilərinizi avtomatlaşdırır, leadlər itmir, satış böyüyür.
           </p>
         </motion.div>
@@ -255,7 +255,7 @@ function RadialTimeline() {
               onClick={() => handleNode(node.id)}
             >
               <div className="absolute inset-x-0 -bottom-8 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="text-[10px] font-bold text-white/90 text-center leading-tight px-1 block">{node.label}</span>
+                <span className="text-[10px] font-bold text-gray-900 text-center leading-tight px-1 block">{node.label}</span>
               </div>
               <i className={`${node.icon} text-xl mb-1`} style={{ color: node.color }} />
             </motion.div>
@@ -277,11 +277,11 @@ function RadialTimeline() {
               <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-3" style={{ backgroundColor: orbitNodes[active].bg }}>
                 <i className={`${orbitNodes[active].icon} text-lg`} style={{ color: orbitNodes[active].color }} />
               </div>
-              <h4 className="font-black text-white text-sm mb-2" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{orbitNodes[active].title}</h4>
-              <p className="text-xs text-muted leading-relaxed mb-3">{orbitNodes[active].desc}</p>
+              <h4 className="font-black text-gray-900 text-sm mb-2" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{orbitNodes[active].title}</h4>
+              <p className="text-xs text-gray-600 leading-relaxed mb-3">{orbitNodes[active].desc}</p>
               <ul className="space-y-1.5">
                 {orbitNodes[active].items.map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-xs text-white/60">
+                  <li key={item} className="flex items-center gap-2 text-xs text-gray-700">
                     <span className="w-1.5 h-1.5 rounded-full flex-none" style={{ backgroundColor: orbitNodes[active].color }} />
                     {item}
                   </li>
@@ -311,8 +311,8 @@ function RadialTimeline() {
               <i className={`${node.icon} text-sm`} style={{ color: node.color }} />
             </div>
             <div>
-              <p className="font-semibold text-white text-xs">{node.title}</p>
-              <p className="text-xs text-muted line-clamp-1">{node.desc.slice(0, 45)}...</p>
+              <p className="font-semibold text-gray-900 text-xs">{node.title}</p>
+              <p className="text-xs text-gray-600 line-clamp-1">{node.desc.slice(0, 45)}...</p>
             </div>
           </motion.div>
         ))}
@@ -555,16 +555,16 @@ function AutomationProcess() {
             onClick={() => setActiveStep(i)}
             whileHover={{ x: 3 }}
             className={`flex-none lg:flex items-center gap-4 text-left p-4 rounded-2xl border transition-all duration-300 min-w-[180px] lg:min-w-0 ${
-              activeStep === i ? 'shadow-card bg-white/[0.05] border-white/20' : 'border-white/5 bg-white/[0.02] hover:bg-white/[0.05]'
+              activeStep === i ? 'shadow-card bg-white border-white shadow-[0_8px_30px_rgb(0,0,0,0.06)]' : 'border-white/60 bg-white/40 hover:bg-white/80'
             }`}
-            style={activeStep === i ? { backgroundColor: `${s.color}15`, borderColor: `${s.color}40` } : {}}
+            style={activeStep === i ? { borderColor: `${s.color}40` } : {}}
           >
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-none font-black text-sm" style={{ fontFamily: 'Satoshi, Inter, sans-serif', backgroundColor: activeStep === i ? s.color : 'rgba(255,255,255,0.05)', color: activeStep === i ? '#fff' : 'rgba(255,255,255,0.6)' }}>
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-none font-black text-sm" style={{ fontFamily: 'Satoshi, Inter, sans-serif', backgroundColor: activeStep === i ? s.color : 'rgba(0,0,0,0.05)', color: activeStep === i ? '#fff' : 'rgba(0,0,0,0.6)' }}>
               {s.num}
             </div>
             <div className="text-left">
-              <p className="font-semibold text-white text-sm">{s.title}</p>
-              <p className="text-xs text-white/60 mt-0.5">{s.items[0]}</p>
+              <p className="font-semibold text-gray-900 text-sm">{s.title}</p>
+              <p className="text-xs text-gray-500 mt-0.5">{s.items[0]}</p>
             </div>
           </motion.button>
         ))}
@@ -577,7 +577,7 @@ function AutomationProcess() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.35 }}
-          className="lg:col-span-3 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-md p-8 shadow-2xl"
+          className="lg:col-span-3 rounded-3xl border border-white bg-white/70 backdrop-blur-md p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
         >
           <div className="flex items-center gap-4 mb-5">
             <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-card" style={{ backgroundColor: autoSteps[activeStep].color }}>
@@ -585,17 +585,17 @@ function AutomationProcess() {
             </div>
             <div>
               <span className="text-xs font-bold tracking-widest uppercase" style={{ color: autoSteps[activeStep].color }}>Addım {autoSteps[activeStep].num}</span>
-              <h3 className="font-black text-white text-xl" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{autoSteps[activeStep].title}</h3>
+              <h3 className="font-black text-gray-900 text-xl" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{autoSteps[activeStep].title}</h3>
             </div>
           </div>
-          <p className="text-white/60 leading-relaxed mb-6">{autoSteps[activeStep].desc}</p>
+          <p className="text-gray-600 leading-relaxed mb-6">{autoSteps[activeStep].desc}</p>
           <div className="grid grid-cols-2 gap-3">
             {autoSteps[activeStep].items.map((item) => (
-              <div key={item} className="flex items-center gap-2.5 p-3 rounded-xl" style={{ backgroundColor: `${autoSteps[activeStep].color}15`, border: `1px solid ${autoSteps[activeStep].color}30` }}>
-                <div className="w-5 h-5 rounded-lg flex items-center justify-center flex-none" style={{ backgroundColor: `${autoSteps[activeStep].color}30` }}>
+              <div key={item} className="flex items-center gap-2.5 p-3 rounded-xl bg-white border border-gray-100 shadow-sm">
+                <div className="w-5 h-5 rounded-lg flex items-center justify-center flex-none" style={{ backgroundColor: `${autoSteps[activeStep].color}15` }}>
                   <i className="fas fa-check text-[10px]" style={{ color: autoSteps[activeStep].color }} />
                 </div>
-                <span className="text-sm font-medium text-white font-semibold">{item}</span>
+                <span className="text-sm font-medium text-gray-800">{item}</span>
               </div>
             ))}
           </div>
@@ -661,20 +661,20 @@ function FAQ() {
             className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
           >
             <div className="flex items-center gap-3">
-              <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-none text-xs font-black ${open === i ? 'bg-primary text-white' : 'bg-black/5 text-muted'}`}>
+              <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-none text-xs font-black ${open === i ? 'bg-primary text-white' : 'bg-gray-100 text-gray-500'}`}>
                 {i + 1}
               </div>
-              <span className="font-semibold text-white text-sm">{faq.q}</span>
+              <span className="font-semibold text-gray-900 text-sm">{faq.q}</span>
             </div>
             <motion.div animate={{ rotate: open === i ? 180 : 0 }} transition={{ duration: 0.3 }}>
-              <ChevronDown size={16} className={open === i ? 'text-primary' : 'text-white/45'} />
+              <ChevronDown size={16} className={open === i ? 'text-primary' : 'text-gray-400'} />
             </motion.div>
           </button>
           <AnimatePresence>
             {open === i && (
               <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, ease: 'easeInOut' }}>
                 <div className="px-6 pb-6">
-                  <div className="ml-10 text-sm text-white/60 leading-relaxed border-t border-black/8 pt-4">
+                  <div className="ml-10 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
                     {faq.a}
                   </div>
                 </div>
@@ -747,8 +747,8 @@ function FlipCards() {
                 </div>
                 <span className="font-black text-5xl leading-none" style={{ color: `${card.color}12`, fontFamily: 'Satoshi, Inter, sans-serif' }}>{card.num}</span>
               </div>
-              <h3 className="font-black text-white text-base mb-2" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{card.title}</h3>
-              <p className="text-sm text-muted leading-relaxed flex-1">{card.front}</p>
+              <h3 className="font-black text-gray-900 text-base mb-2" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{card.title}</h3>
+              <p className="text-sm text-gray-600 leading-relaxed flex-1">{card.front}</p>
               <p className="text-xs mt-3 font-semibold" style={{ color: card.color }}>Hover edin →</p>
             </div>
             <div className="flip-back flex flex-col p-6" style={{ background: `linear-gradient(135deg, ${card.color}, ${card.color}dd)` }}>
@@ -895,17 +895,19 @@ export default function IndexPage() {
       <div className="relative z-10 bg-transparent">
         <MarqueeTicker />
 
+        {/* LIGHT GLASSMORPHIC THEME WRAPPER FOR MIDDLE SECTIONS */}
+        <div className="relative z-20 bg-white/90 backdrop-blur-3xl border border-white/50 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] rounded-[40px] mx-4 md:mx-8 my-10 overflow-hidden text-gray-900">
 
-      <AIPremiumSection />
+          <AIPremiumSection />
 
-      <section className="section-py section-alt overflow-hidden">
-        <Container wide>
-          <motion.div {...fadeUp()} className="text-center mb-16 md:mb-24 max-w-3xl mx-auto">
-            <span className="section-label"><i className="fas fa-sync-alt" /> İş Prosesi</span>
-            <h2 className="section-title mt-8">Necə işləyirik?</h2>
-            <p className="section-subtitle mx-auto">
-              Hər layihə 4 mərhələdən keçir. Detalları görmək üçün orbitdəki nöqtəyə klikləyin.
-            </p>
+          <section className="section-py overflow-hidden">
+            <Container wide>
+              <motion.div {...fadeUp()} className="text-center mb-16 md:mb-24 max-w-3xl mx-auto">
+                <span className="section-label !bg-gray-100 !text-gray-800 !border-gray-200"><i className="fas fa-sync-alt" /> İş Prosesi</span>
+                <h2 className="section-title !text-gray-900 mt-8">Necə işləyirik?</h2>
+                <p className="section-subtitle !text-gray-600 mx-auto">
+                  Hər layihə 4 mərhələdən keçir. Detalları görmək üçün orbitdəki nöqtəyə klikləyin.
+                </p>
           </motion.div>
           <div className="overflow-x-auto pb-4">
             <RadialTimeline />
@@ -914,12 +916,12 @@ export default function IndexPage() {
       </section>
 
 
-      <section className="section-py section-alt">
+      <section className="section-py">
         <Container wide>
           <motion.div {...fadeUp()} className="text-center mb-16 md:mb-24 max-w-3xl mx-auto">
-            <span className="section-label"><i className="fas fa-cogs" /> Avtomatlaşdırma</span>
-            <h2 className="section-title mt-8">Avtomatlaşdırma Prosesi</h2>
-            <p className="section-subtitle mx-auto">
+            <span className="section-label !bg-gray-100 !text-gray-800 !border-gray-200"><i className="fas fa-cogs" /> Avtomatlaşdırma</span>
+            <h2 className="section-title !text-gray-900 mt-8">Avtomatlaşdırma Prosesi</h2>
+            <p className="section-subtitle !text-gray-600 mx-auto">
               4 addımda biznesinizi tam avtomatlaşdırırıq. Hər addımı klikləyib ətraflı öyrənin.
             </p>
           </motion.div>
@@ -929,16 +931,16 @@ export default function IndexPage() {
         </Container>
       </section>
 
-      <section className="section-py bg-transparent text-white">
+      <section className="section-py bg-transparent text-gray-900">
         <Container>
           <motion.div {...fadeUp()} className="text-center mb-16 md:mb-24 max-w-3xl mx-auto">
-            <span className="section-label"><i className="fas fa-question-circle" /> Sual & Cavab</span>
-            <h2 className="section-title mt-8">Tez-tez verilən suallar</h2>
-            <p className="section-subtitle mx-auto">Müştərilərimin ən çox soruşduğu suallar və ətraflı cavablar.</p>
+            <span className="section-label !bg-gray-100 !text-gray-800 !border-gray-200"><i className="fas fa-question-circle" /> Sual & Cavab</span>
+            <h2 className="section-title !text-gray-900 mt-8">Tez-tez verilən suallar</h2>
+            <p className="section-subtitle !text-gray-600 mx-auto">Müştərilərimin ən çox soruşduğu suallar və ətraflı cavablar.</p>
           </motion.div>
           <FAQ />
           <motion.div {...fadeUp(0.3)} className="text-center mt-16 md:mt-20">
-            <p className="text-muted mb-6 text-sm">Başqa sualınız var?</p>
+            <p className="text-gray-600 mb-6 text-sm">Başqa sualınız var?</p>
             <a href="https://wa.me/994999550001" target="_blank" rel="noopener noreferrer" className="btn-primary">
               <i className="fab fa-whatsapp text-sm" /> WhatsApp-da soruşun
             </a>
@@ -946,21 +948,25 @@ export default function IndexPage() {
         </Container>
       </section>
 
-      <section className="section-py section-alt">
+      <section className="section-py">
         <Container wide>
           <motion.div {...fadeUp()} className="text-center mb-16 md:mb-24 max-w-3xl mx-auto">
-            <span className="section-label"><i className="fas fa-star" /> Niyə Biz?</span>
-            <h2 className="section-title mt-8">Xidmətlər & Üstünlüklər</h2>
-            <p className="section-subtitle mx-auto">Kartların üzərindən keçin — hər bir xidmətin detallarını görün.</p>
+            <span className="section-label !bg-gray-100 !text-gray-800 !border-gray-200"><i className="fas fa-star" /> Niyə Biz?</span>
+            <h2 className="section-title !text-gray-900 mt-8">Xidmətlər & Üstünlüklər</h2>
+            <p className="section-subtitle !text-gray-600 mx-auto">Kartların üzərindən keçin — hər bir xidmətin detallarını görün.</p>
           </motion.div>
           <FlipCards />
         </Container>
       </section>
-      <section className="section-py bg-transparent text-white pb-24">
+      <section className="section-py bg-transparent text-gray-900 pb-24">
         <Container>
           <ForumCountdown />
         </Container>
       </section>
+
+        {/* END LIGHT GLASSMORPHIC THEME WRAPPER */}
+        </div>
+
       </div>
 
     </div>
