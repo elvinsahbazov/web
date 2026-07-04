@@ -78,7 +78,7 @@ export default function Hero() {
 
 
       {/* TEXT LAYOUT (THE "CUBIX" CLEANLINESS) */}
-      <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center px-6 pb-24 pt-28 md:grid-cols-2 md:px-12 md:pb-32 md:pt-32">
+      <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-start px-6 pb-24 pt-28 md:grid-cols-2 md:px-12 md:pb-32 md:pt-32">
         {/* LEFT — persona & authority */}
         <motion.div
           variants={revealContainer}
@@ -182,9 +182,6 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          <div className="mt-16 w-full max-w-xl">
-            <AdsPlatformsTabs />
-          </div>
         </motion.div>
 
         {/* RIGHT — Premium Image & Floating Elements */}
@@ -195,7 +192,7 @@ export default function Hero() {
             filter: isMenuOpen ? 'blur(20px) brightness(0.2)' : 'blur(0px) brightness(1)',
           }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mt-16 flex h-full w-full items-center justify-center md:mt-0"
+          className="relative mt-16 flex h-full w-full flex-col items-center justify-start md:mt-0"
         >
           {/* Main Photo Card */}
           <div className="relative w-full max-w-[380px] md:max-w-[480px]">
@@ -218,6 +215,10 @@ export default function Hero() {
             </div>
 
 
+          </div>
+
+          <div className="mt-8 w-full max-w-[380px] md:max-w-[480px]">
+            <AdsPlatformsTabs />
           </div>
         </motion.div>
 
