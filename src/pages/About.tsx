@@ -217,7 +217,7 @@ export default function About() {
                     {content.about_title || 'Haqqımda'}
                   </h3>
                 </div>
-                <div className="no-scrollbar max-h-96 space-y-4 overflow-y-auto pr-2 text-sm leading-relaxed text-white/75">
+                <div className="space-y-4 text-sm leading-relaxed text-white/75">
                   <p>Mən <strong className="text-white">Elvin Şahbazov</strong> – rəqəmsal marketinq, süni intellektlə avtomatlaşdırma, biznes inkişafı və rəqəmsal idarəetmə sistemləri üzrə fəaliyyət göstərən mütəxəssis, təlimçi və rəhbərəm.</p>
 
                   <p>Hazırda fəaliyyətimi Qafqazın ən böyük Avtomobil Mərkəzi olan <strong className="text-white">Baku Auto Mall-da Marketinq Direktoru</strong>, eyni zamanda <strong className="text-white">SMARTKOB – Rəqəmsal İdarəetmə Mərkəzində Marketinq və Biznes İnkişafı Departamentinin Rəhbəri</strong> kimi davam etdirirəm.</p>
