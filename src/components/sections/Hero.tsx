@@ -34,7 +34,37 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-transparent pt-20">
 
-      
+      {/* ABSTRACT HOLOGRAPHIC GLOWS (Premium Background Effect) */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {/* Top Left Orb */}
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute -left-[10%] top-[-10%] h-[500px] w-[500px] rounded-full bg-primary/20 blur-[120px]"
+        />
+        {/* Bottom Right Orb */}
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+          className="absolute -right-[10%] bottom-[-10%] h-[600px] w-[600px] rounded-full bg-purple-600/20 blur-[130px]"
+        />
+      </div>
+
 
       {/* TEXT LAYOUT (THE "CUBIX" CLEANLINESS) */}
       <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center px-6 pb-24 pt-28 md:grid-cols-2 md:px-12 md:pb-32 md:pt-32">
