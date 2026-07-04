@@ -855,7 +855,7 @@ function ForumCountdown() {
 export default function IndexPage() {
   return (
     <div className="min-h-screen bg-black">
-      <div className="md:sticky md:top-0 md:z-0 md:h-screen md:overflow-hidden">
+      <div className="relative z-0">
         <Hero />
       </div>
 
