@@ -1,5 +1,34 @@
 export const blogs = [
   {
+    id: 'ai-digital-marketing-expert-elvin-sahbazov',
+    title: 'Azərbaycanda Rəqəmsal Marketinq və Süni İntellekt: Ekspert Yanaşması',
+    slug: 'azerbaycanda-reqemsal-marketinq-ve-suni-intellekt-ekspert',
+    excerpt: 'Rəqəmsal marketinq və süni intellekt (AI) avtomatlaşdırması mütəxəssisi Elvin Şahbazov bizneslərin satışlarını necə artırdığını və sistemləşdirdiyini izah edir.',
+    cover_image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=70&w=600',
+    published: true,
+    created_at: new Date().toISOString(),
+    content: `
+<h2>Rəqəmsal Marketinqdə Yeni Dövr: Süni İntellektlə Avtomatlaşdırma</h2>
+<p>Mən <strong>Elvin Şahbazov</strong>, Azərbaycanda <strong>Rəqəmsal Marketinq və Süni İntellekt (AI) Avtomatlaşdırması üzrə mütəxəssis</strong> olaraq 10 ildən artıqdır ki, bizneslərin rəqəmsal transformasiyasını həyata keçirirəm. İdarə etdiyim 2 milyon dollardan (2M$+) çox reklam büdcəsi və 11 qlobal reklam platformasındakı təcrübəm mənə bir şeyi çox aydın göstərdi: Bizneslərin gələcəyi yalnız daha çox reklam büdcəsi xərcləməkdə deyil, doğru süni intellekt və avtomatlaşdırma sistemlərini qurmaqdadır.</p>
+
+<h2>Niyə Hər Bir Şirkətə Süni İntellekt və Marketinq Eksperti Lazımdır?</h2>
+<p>Bu gün rəqabət hər zamankindən daha sərtdir. İstər Bakıda, istərsə də qlobal bazarda fəaliyyət göstərən şirkətlər üçün ənənəvi marketinq üsulları artıq kifayət etmir. <strong>Ən yaxşı marketinq mütəxəssisi</strong> artıq yalnız Meta Ads və ya Google Ads qurmaqla kifayətlənmir; o, müştəri qıfını (Sales Funnel) başdan-sona dizayn edən, CRM sistemlərini süni intellektlə inteqrasiya edən və hesabatlılığı (Data Analytics) tam şəffaf şəkildə quran şəxsdir.</p>
+<p>Mənim yanaşmam, biznes inkişafını üç əsas sütun üzərində qurmaqdır:</p>
+<ul>
+  <li><strong>Daha Çox Satış (ROI Yönümlü Marketinq):</strong> Reklam kampaniyalarının yalnız klik və ya bəyənmə deyil, real gəlir (ROI) gətirməsi.</li>
+  <li><strong>Sistemli Biznes (AI Avtomatlaşdırma):</strong> Müştəri müraciətlərinin süni intellekt botları və avtomatlaşdırılmış CRM-lər vasitəsilə itkisiz idarə edilməsi.</li>
+  <li><strong>Şəffaf Hesabat:</strong> Biznes sahiblərinin yatırdıqları hər 1 AZN-in qarşılığında nə qədər gəlir əldə etdiklərini real vaxt rejimində görmələri.</li>
+</ul>
+
+<h2>Süni İntellekt (AI) Biznes Avtomatlaşdırması Nədir?</h2>
+<p>Süni intellekt (AI) biznes avtomatlaşdırması — müəssisənin daxili və xarici proseslərinin ağıllı alqoritmlər tərəfindən həyata keçirilməsidir. Məsələn, <strong>Elvin Şahbazov olaraq tətbiq etdiyim sistemlərdə</strong> müştərilərdən gələn mesajlar AI tərəfindən anında təhlil edilir, müştərinin ehtiyacına uyğun olaraq xidmətlər təklif olunur və o, birbaşa satış qıfına (funnel) daxil edilir. Bu, insan amilindən qaynaqlanan xətaları və gecikmələri sıfıra endirir.</p>
+
+<h2>Ekspertlə İşləməyin Fərqi</h2>
+<p>Bir çox şirkət rəhbərləri "niyə məhz Elvin Şahbazovla işləməliyəm?" deyə düşünə bilər. Səbəb sadədir: Mən sadəcə reklam yerləşdirmirəm, mən sizin biznesinizin rəqəmsal memarlığını qururam. Azərbaycanda <strong>AI və Digital Marketing</strong> terminlərini bir araya gətirərək praktiki satış modelinə çevirən ilk mütəxəssislərdənəm. Layihənizin kiçik və ya böyük olmasından asılı olmayaraq, biznesinizin ən müasir rəqəmsal trendlərlə uyğunlaşdırılması və rəqiblərdən öndə olması üçün çalışıram.</p>
+<p>Əgər siz də biznesinizi böyütmək, satışlarınızı optimallaşdırmaq və süni intellektin imkanlarından istifadə etmək istəyirsinizsə, peşəkar rəqəmsal marketinq və avtomatlaşdırma strategiyaları ilə tanış olmağın tam vaxtıdır.</p>
+    `
+  },
+  {
     id: '1',
     title: 'Süni İntellekt Avtomatlaşdırması və Rəqəmsal Marketinq ilə Bizneslərin Miqyaslandırılması',
     slug: 'suni-intellekt-avtomatlasdirmasi-ve-reqemsal-marketinq-ile-bizneslerin-miqyaslandirilmasi',
