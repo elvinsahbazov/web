@@ -250,7 +250,7 @@ export default function About() {
 
                   <h4 className="text-base font-bold text-white mt-6 mb-2">Süni İntellekt (AI) İnteqrasiyası və Avtomatlaşdırma</h4>
                   <p>Müasir biznesin rəqabətədavamlı olması üçün ənənəvi metodlar kifayət etmir. Bu səbəbdən fəaliyyətimdə texnoloji innovasiyalara xüsusi yer ayırıram. Bir çox şirkət üçün rəqəmsal marketinq və süni intellektin (AI) inteqrasiyası vasitəsilə unikal biznes həlləri yaratmışam.</p>
-                  <p>Eyni zamanda, ümumi süni intellekt avtomatlaşdırılması tətbiq edərək şirkətlərin daxili proseslərini, müştəri münasibətlərini və satış qıflarını (sales funnel) avtomatlaşdırıb idarəetməni sadələşdirən xüsusi biznes həlləri ərsəyə gətirmişəm. Məqsəd minimum insan əməyi ilə maksimum qazanc və məhsuldarlıq əldə etməkdir.</p>
+                  <p>Eyni zamanda, ümumi süni intellektlə avtomatlaşdırma tətbiq edərək şirkətlərin daxili proseslərini, müştəri münasibətlərini və satış qıflarını (sales funnel) avtomatlaşdırıb idarəetməni sadələşdirən xüsusi biznes həlləri ərsəyə gətirmişəm. Məqsəd minimum insan əməyi ilə maksimum qazanc və məhsuldarlıq əldə etməkdir.</p>
 
                   <h4 className="text-base font-bold text-white mt-6 mb-2">Peşəkar Uğurlar, 2 Milyon+ Büdcə İdarəetməsi və Sertifikatlar</h4>
                   <p>Peşəkar bilik və bacarıqlarım qlobal miqyasda tanınan <strong className="text-white">Google, Meta, HubSpot Academy</strong> və <strong className="text-white">Digital Marketing Institute (DMI)</strong> tərəfindən verilmiş beynəlxalq sertifikatlarla təsdiqlənmişdir.</p>
