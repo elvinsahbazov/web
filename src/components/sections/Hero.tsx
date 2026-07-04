@@ -133,25 +133,25 @@ export default function Hero() {
             className="relative mt-16 w-full max-w-xl"
           >
             <div
-              className="pointer-events-none absolute -inset-3 rounded-3xl bg-white/20 blur-2xl"
+              className="pointer-events-none absolute -inset-3 rounded-3xl bg-primary/10 blur-2xl opacity-60"
               aria-hidden="true"
             />
             <div 
-              className="relative rounded-2xl border border-white/50 border-l-4 border-l-blue-600 p-6 shadow-[0_8px_30px_rgb(255,255,255,0.15)] md:p-8"
-              style={{ backgroundColor: 'rgba(255, 255, 255, 0.85)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
+              className="relative rounded-2xl border border-white/10 border-l-4 border-l-primary p-6 shadow-2xl md:p-8"
+              style={{ backgroundColor: 'rgba(255, 255, 255, 0.03)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
             >
-              <p className="text-sm leading-relaxed text-slate-700 md:text-base">
+              <p className="text-sm leading-relaxed text-white/80 md:text-base">
                 Hər əsrdə bir dönüş nöqtəsi olur və oyunun qaydaları dəyişir. Bu gün həmin nöqtənin
-                adı <span className="font-bold text-blue-700">Süni İntellektdir.</span>
+                adı <span className="font-bold text-primary">Süni İntellektdir.</span>
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
+              <p className="mt-4 text-sm leading-relaxed text-white/60 md:text-base">
                 Bu dəyişikliyi vaxtında anlayanlar sabah bazarın lideri olur, gecikənlər isə bu
                 gündən geridə qalmağa başlayır.
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
+              <p className="mt-4 text-sm leading-relaxed text-white/60 md:text-base">
                 Texnologiya artıq seçim deyil — böyümənin mühərrikidir.
               </p>
-              <p className="mt-5 block text-base font-black text-slate-900 md:text-lg">
+              <p className="mt-5 block text-base font-black text-white md:text-lg">
                 Gələcək gözləyənlərin yox, indi hərəkət edənlərindir.
               </p>
             </div>
@@ -162,7 +162,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* RIGHT — Image Container */}
+        {/* RIGHT — Premium Image & Floating Elements */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{
@@ -170,17 +170,58 @@ export default function Hero() {
             filter: isMenuOpen ? 'blur(20px) brightness(0.2)' : 'blur(0px) brightness(1)',
           }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mt-8 flex h-full w-full items-end justify-center md:mt-0 md:items-center"
+          className="relative mt-16 flex h-full w-full items-center justify-center md:mt-0"
         >
-          <img
-            src={content.hero_image || 'https://drive.google.com/thumbnail?id=1YmSQizY-GCTKCiPg6UD2PPFOG0d_ap2o&sz=w1000'}
-            alt="Elvin Şahbazov"
-            className="w-full max-w-[420px] object-contain md:max-w-[550px]"
-          />
-          {/* Edge fading overlays for seamless blend into black background */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-black/60 to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-black via-black/40 to-transparent md:w-1/3" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/5 bg-gradient-to-l from-black via-black/20 to-transparent md:block" />
+          {/* Main Photo Card */}
+          <div className="relative w-full max-w-[380px] md:max-w-[480px]">
+            {/* Glowing backdrop */}
+            <div className="absolute -inset-4 rounded-[40px] bg-gradient-to-br from-primary/30 to-purple-500/20 blur-2xl opacity-50 animate-pulse" />
+            
+            {/* Image Container with Glassmorphism Border */}
+            <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur-sm">
+              <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-b from-white/5 to-transparent">
+                <img
+                  src={content.hero_image || 'https://drive.google.com/thumbnail?id=1YmSQizY-GCTKCiPg6UD2PPFOG0d_ap2o&sz=w1000'}
+                  alt="Elvin Şahbazov"
+                  className="w-full object-cover"
+                  style={{ 
+                    WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+                    maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Floating Element 1 */}
+            <motion.div 
+              animate={{ y: [0, -10, 0] }} 
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              className="absolute -right-4 top-12 md:-right-12 md:top-20 z-20 flex items-center gap-3 rounded-2xl border border-white/10 bg-black/60 px-5 py-3 shadow-xl backdrop-blur-md"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary flex-none">
+                <i className="fas fa-robot text-lg" />
+              </div>
+              <div>
+                <p className="text-[10px] font-semibold text-white/60 uppercase tracking-wider">Avtomatlaşdırma</p>
+                <p className="text-sm font-bold text-white whitespace-nowrap">AI Sistemləri</p>
+              </div>
+            </motion.div>
+
+            {/* Floating Element 2 */}
+            <motion.div 
+              animate={{ y: [0, 10, 0] }} 
+              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
+              className="absolute -left-4 bottom-16 md:-left-12 md:bottom-24 z-20 flex items-center gap-3 rounded-2xl border border-white/10 bg-black/60 px-5 py-3 shadow-xl backdrop-blur-md"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-500/20 text-green-400 flex-none">
+                <i className="fas fa-chart-line text-lg" />
+              </div>
+              <div>
+                <p className="text-[10px] font-semibold text-white/60 uppercase tracking-wider">Performans</p>
+                <p className="text-sm font-bold text-white whitespace-nowrap">+45% ROI Artımı</p>
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
 
       </div>
