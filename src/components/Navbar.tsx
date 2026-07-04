@@ -87,6 +87,7 @@ export default function Navbar() {
                 { icon: 'fab fa-instagram', href: 'https://www.instagram.com/elvin_sahbazov', brand: 'bg-[#E1306C] border-[#E1306C]' },
                 { icon: 'fab fa-facebook-f', href: 'https://www.facebook.com/share/18wNYYGku2/', brand: 'bg-[#1877F2] border-[#1877F2]' },
                 { icon: 'fab fa-tiktok', href: 'https://www.tiktok.com/@elvinsahbazov_', brand: 'bg-[#000000] border-gray-600' },
+                { icon: 'fab fa-x-twitter', href: 'https://x.com/ElvinSahbazov92', brand: 'bg-[#000000] border-gray-600' },
                 { icon: 'fas fa-envelope', href: 'mailto:elvinsahbazovv@gmail.com', brand: 'bg-[#EA4335] border-[#EA4335]' },
               ].map((social, idx) => (
                 <a
