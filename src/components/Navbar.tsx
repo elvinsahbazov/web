@@ -61,12 +61,12 @@ export default function Navbar() {
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.65, ease: easePremium, delay: 0.08 }}
-        className={`fixed top-0 w-full px-6 py-5 transition-all duration-500 ease-out md:px-10 md:py-6 ${
+        className={`fixed top-0 w-full px-6 py-4 transition-all duration-500 ease-out md:top-4 md:w-[96%] md:left-[2%] lg:w-[1024px] lg:left-1/2 lg:-translate-x-1/2 md:rounded-2xl md:px-8 ${
           isOpen ? 'z-[101]' : 'z-50'
         } ${
           isScrolled || location.pathname !== '/'
-            ? 'border-b border-white/10 bg-[#000a1a]/95 backdrop-blur-xl shadow-lg shadow-black/20'
-            : 'border-b border-transparent bg-transparent backdrop-blur-none'
+            ? 'border border-white/10 bg-[#000a1a]/70 backdrop-blur-xl shadow-2xl shadow-primary/10'
+            : 'border border-transparent bg-transparent md:bg-[#000a1a]/20 md:backdrop-blur-md'
         }`}
       >
         <nav
@@ -125,18 +125,29 @@ export default function Navbar() {
 
           <div className="flex items-center gap-3 md:gap-6 flex-shrink-0 ml-4 self-end pb-1 xl:self-center xl:pb-0">
             {/* DESKTOP MENU LINKS */}
-            <div className="hidden lg:flex items-center justify-center gap-6 mr-4">
+            <div className="hidden lg:flex items-center justify-center gap-2 mr-4">
               {mobileNavLinks.map((link) => {
                 const isActive = location.pathname === link.path;
                 return (
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`text-sm font-semibold tracking-wide transition-colors ${
-                      isActive ? 'text-primary' : 'text-slate-300 hover:text-white hover:bg-white/5 px-3 py-1.5 rounded-lg'
+                    data-magnetic
+                    className={`relative px-4 py-2 text-sm font-semibold tracking-wide transition-colors ${
+                      isActive ? 'text-white' : 'text-slate-400 hover:text-white'
                     }`}
                   >
-                    {link.label}
+                    {isActive && (
+                      <motion.div
+                        layoutId="nav-pill"
+                        className="absolute inset-0 rounded-xl bg-white/10"
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{link.label}</span>
+                    {isActive && (
+                      <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary shadow-[0_0_8px_rgba(20,184,166,1)]" />
+                    )}
                   </Link>
                 );
               })}
@@ -147,10 +158,10 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               data-magnetic
-              className={`flex items-center gap-2 overflow-hidden rounded-full shadow-lg shadow-[#25D366]/20 bg-[#25D366] px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm font-semibold text-white transition-all duration-500 ease-out hover:bg-[#1DA851] w-auto scale-100 opacity-100`}
+              className={`group relative flex items-center gap-2 overflow-hidden rounded-full border border-[#25D366]/50 bg-[#25D366]/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur-md transition-all duration-500 ease-out hover:bg-[#25D366] hover:shadow-[0_0_20px_rgba(37,211,102,0.6)] w-auto`}
             >
-              <i className="fab fa-whatsapp text-sm md:text-base text-white" />
-              <span className="inline">WhatsApp</span>
+              <i className="fab fa-whatsapp text-sm md:text-base transition-transform duration-300 group-hover:scale-110 text-[#25D366] group-hover:text-white" />
+              <span className="relative z-10">WhatsApp</span>
             </a>
           </div>
         </nav>
