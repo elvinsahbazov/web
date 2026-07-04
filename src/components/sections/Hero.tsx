@@ -38,7 +38,7 @@ export default function Hero() {
     <section 
       className="relative min-h-screen overflow-hidden pt-20"
       style={{
-        backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')`,
+        backgroundImage: `url('https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2064&auto=format&fit=crop')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
