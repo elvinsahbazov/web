@@ -335,10 +335,10 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-100 text-blue-700 font-semibold text-xs mb-4">
               <TrendingUp size={16} /> Data-Driven Marketinq
             </div>
-            <h1 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight mb-2">
+            <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight mb-2">
               Marketinq & <span className="text-blue-600">ROAS</span> Paneli
             </h1>
-            <p className="text-slate-500 text-lg">Xərclərinizi hesablayın və ya hədəflərinizə çatmaq üçün proqnozlar qurun.</p>
+            <p className="text-white/60 text-lg">Xərclərinizi hesablayın və ya hədəflərinizə çatmaq üçün proqnozlar qurun.</p>
           </div>
           
           {/* Action Buttons */}
@@ -359,11 +359,11 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
         </div>
 
         {/* Custom Tabs */}
-        <div className="flex p-1 bg-slate-200/60 rounded-2xl w-full max-w-sm mb-8 relative">
+        <div className="flex p-1 bg-white/10 rounded-2xl w-full max-w-sm mb-8 relative">
           <button
             onClick={() => setActiveTab('roas')}
             className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold rounded-xl transition-all z-10 ${
-              activeTab === 'roas' ? 'text-blue-700 shadow-sm bg-white' : 'text-slate-500 hover:text-slate-700'
+              activeTab === 'roas' ? 'text-blue-700 shadow-sm bg-white' : 'text-white/60 hover:text-white'
             }`}
           >
             <CalcIcon size={16} /> ROAS Hesablayıcı
@@ -371,7 +371,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
           <button
             onClick={() => setActiveTab('forecast')}
             className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold rounded-xl transition-all z-10 ${
-              activeTab === 'forecast' ? 'text-blue-700 shadow-sm bg-white' : 'text-slate-500 hover:text-slate-700'
+              activeTab === 'forecast' ? 'text-blue-700 shadow-sm bg-white' : 'text-white/60 hover:text-white'
             }`}
           >
             <Target size={16} /> Proqnoz Paneli
