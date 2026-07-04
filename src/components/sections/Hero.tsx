@@ -94,25 +94,6 @@ export default function Hero() {
             <span className="block text-gradient-blue">{content.hero_title_2 || 'ŞAHBAZOV'}</span>
           </motion.h1>
 
-          <motion.div variants={revealItem} className="mb-8 flex flex-nowrap items-center gap-2 md:gap-3 overflow-x-auto pb-2 -mx-6 px-6 md:mx-0 md:px-0 hide-scroll" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            <style>{`
-              .hide-scroll::-webkit-scrollbar { display: none; }
-            `}</style>
-            {heroSocials.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.label}
-                data-magnetic
-                className={`social-icon-btn flex-shrink-0 ${social.brand}`}
-              >
-                <i className={`${social.icon} text-base`} />
-              </a>
-            ))}
-          </motion.div>
-
           <motion.div variants={revealItem} className="mb-6 flex flex-wrap gap-2">
             {badges.map((badge) => (
               <span

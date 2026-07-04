@@ -74,22 +74,51 @@ export default function Navbar() {
             isMinimal ? 'justify-end' : 'justify-between'
           }`}
         >
-          <Link
-            to="/"
-            data-magnetic
-            className={`overflow-hidden transition-all duration-500 ease-out hover:opacity-90 ${
+          <div className={`flex flex-col gap-2 transition-all duration-500 ease-out ${
               isMinimal
                 ? 'pointer-events-none w-0 -translate-x-5 opacity-0'
                 : 'w-auto translate-x-0 opacity-100'
-            }`}
-          >
-            <span
-              className="whitespace-nowrap text-sm font-bold uppercase tracking-widest text-white sm:text-base"
-              style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}
+            }`}>
+            <Link
+              to="/"
+              data-magnetic
+              className="overflow-hidden hover:opacity-90"
             >
-              ELVİN ŞAHBAZOV
-            </span>
-          </Link>
+              <span
+                className="whitespace-nowrap text-sm font-bold uppercase tracking-widest text-white sm:text-base block"
+                style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}
+              >
+                ELVİN ŞAHBAZOV
+              </span>
+            </Link>
+            
+            <div className="flex flex-nowrap items-center gap-1.5 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              <style>{`
+                .nav-socials::-webkit-scrollbar { display: none; }
+              `}</style>
+              {[
+                { icon: 'fab fa-linkedin-in', href: 'https://www.linkedin.com/in/elvinsahbazov', label: 'LinkedIn', brand: 'social-hover-linkedin' },
+                { icon: 'fab fa-whatsapp', href: 'https://wa.me/994999550001', label: 'WhatsApp', brand: 'social-hover-whatsapp' },
+                { icon: 'fab fa-youtube', href: 'https://www.youtube.com/@elvinsahbazov1', label: 'YouTube', brand: 'social-hover-youtube' },
+                { icon: 'fab fa-instagram', href: 'https://www.instagram.com/elvin_sahbazov', label: 'Instagram', brand: 'social-hover-instagram' },
+                { icon: 'fab fa-facebook-f', href: 'https://www.facebook.com/share/18wNYYGku2/', label: 'Facebook', brand: 'social-hover-facebook' },
+                { icon: 'fab fa-tiktok', href: 'https://www.tiktok.com/@elvinsahbazov_', label: 'TikTok', brand: 'social-hover-tiktok' },
+                { icon: 'fab fa-x-twitter', href: 'https://x.com/ElvinSahbazov92', label: 'X', brand: 'social-hover-x' },
+                { icon: 'fas fa-envelope', href: 'mailto:elvinsahbazovv@gmail.com', label: 'Gmail', brand: 'social-hover-gmail' },
+              ].map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className={`flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] flex-shrink-0 transition-all duration-300 hover:scale-110 hover:border-transparent hover:bg-white/[0.06] nav-socials ${social.brand}`}
+                >
+                  <i className={`${social.icon} text-[11px] sm:text-xs`} />
+                </a>
+              ))}
+            </div>
+          </div>
 
           <div className="flex items-center gap-3 md:gap-6">
             <a
