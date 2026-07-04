@@ -1,5 +1,142 @@
 export const blogs = [
   {
+    id: 'sifirdan-biznes-qurarken-5-reqemsal-sehv',
+    title: 'Sıfırdan Biznes Qurarkən Edilən 5 Ölümcül Rəqəmsal Marketinq Səhvi',
+    slug: 'sifirdan-biznes-qurarken-5-reqemsal-sehv',
+    excerpt: 'Yeni bazara girən markaların büdcələrini yanlış hədəfləmə və zəif arxitektura ilə necə yandırdıqları və Elvin Şahbazovun çıxış yolları.',
+    cover_image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=70&w=600',
+    published: true,
+    created_at: new Date(Date.now() - 1000).toISOString(),
+    content: `
+<h2>Yeni Bizneslərin Rəqəmsal Dünyada Çöküş Səbəbləri</h2>
+<p>Hər il minlərlə yeni biznes bazara daxil olur, lakin onların çoxu ilk 2 il ərzində fəaliyyətini dayandırır. Rəqəmsal marketinq və biznesin inkişafı sahəsində fəaliyyət göstərdiyim müddətdə yeni şirkətlərin eyni şablon səhvləri təkrarlayaraq on minlərlə manat büdcə yandırdığının şahidi olmuşam. <strong>Rəqəmsal Marketinq Eksperti Elvin Şahbazov</strong> olaraq, startapların və yeni qurulan şirkətlərin ən çox etdiyi 5 ölümcül xətanı və onların həll yollarını təqdim edirəm.</p>
+
+<h3>1. Hədəf Kütləni "Hər Kəs" Kimi Görmək</h3>
+<p>Əgər məhsulunuz "hər kəs" üçündürsə, deməli heç kim üçündür. Ən çox edilən səhv Meta (Facebook/Instagram) reklamlarında yaş, cins və maraq dairələrini geniş tutaraq bütöv bir ölkəyə reklam göstərməkdir. Bu, tıklama sayını (CTR) süni şəkildə artırsa da, real Satış (Conversion) gətirmir. <em>Həll: Ən ideal müştəri (Buyer Persona) profilinizi çıxarın və yalnız o seqmentə yatırım edin.</em></p>
+
+<h3>2. Veb-sayt Arxitekturasının Olmaması</h3>
+<p>Çox vaxt bizneslər çoxlu pul xərcləyərək gözəl sayt yığdırırlar, lakin onun <strong>Satış Qıfı (Sales Funnel)</strong> məntiqi olmur. Ziyarətçi sayta girir, nə edəcəyini bilmir və çıxır. Bir sayt müştərini addım-addım "Alış" düyməsinə aparmırsa, o sadəcə rəqəmsal bir vizitkadır.</p>
+
+<h3>3. Yanlış Platformaya İnvestisiya</h3>
+<p>Əgər B2B (şirkətlərə xidmət) satırsınızsa, büdcənizin böyük qismini TikTok-a deyil, LinkedIn və Google Axtarış (Search) reklamlarına ayırmalısınız. Hər platformanın öz dinamikası və istifadəçi psixologiyası var.</p>
+
+<h3>4. Retargeting (Yenidən Hədəfləmə) Sisteminin Quraşdırılmaması</h3>
+<p>Statistikaya görə, müştərilərin 96%-i sayta ilk daxil olduqlarında heç nə almırlar. Əgər siz sayta girib çıxanları (Pixel və GA4 vasitəsilə) toplayıb onlara bir neçə gün sonra təkrar reklam göstərmirsinizsə (Retargeting), rəqibləriniz o müştəriləri sizin əlinizdən asanlıqla alacaq.</p>
+
+<h3>5. Data Yerine İntuisiyaya Güvənmək</h3>
+<p>"Məncə bu şəkil daha qəşəngdir" və ya "məncə bu mətn daha çox satar" kimi intuisiyalar biznesdə işləmir. A/B testləri etmədən, süni intellekt analizlərinə güvənmədən verilən qərarlar hər zaman zərərlə nəticələnir.</p>
+
+<h2>Nəticə</h2>
+<p>Sıfırdan biznes qurmaq kifayət qədər çətindir. Lakin doğru Rəqəmsal Marketinq strategiyası və Süni İntellekt avtomatlaşdırması ilə bu çətinliyi əla bir fürsətə çevirmək mümkündür. İdarə etdiyim onlarla qlobal layihədə dəfələrlə sübut olunub ki, düzgün qurulmuş infrastruktur ən az büdcə ilə belə maksimum gəlir (ROI) gətirə bilir.</p>
+    `
+  },
+  {
+    id: 'ai-ile-reklam-xerclerini-50-faiz-azaltmaq',
+    title: 'Süni İntellekt (ChatGPT, Midjourney) ilə Reklam Xərclərini 50% Necə Azaltmaq Olar?',
+    slug: 'ai-ile-reklam-xerclerini-50-faiz-azaltmaq',
+    excerpt: 'Dizayner və kopirayterlərə aylarla vaxt xərcləmək əvəzinə, AI alətləri ilə daha sürətli və peşəkar reklam məzmunları yaratmağın sirləri.',
+    cover_image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=70&w=600',
+    published: true,
+    created_at: new Date(Date.now() - 2000).toISOString(),
+    content: `
+<h2>Süni İntellekt Dövründə Məzmun Yaradıcılığı (AI Content Creation)</h2>
+<p>Son 2 il ərzində <strong>Generative AI (Yaradıcı Süni İntellekt)</strong> bizneslərin marketinq yanaşmasını kökündən dəyişdi. Əvvəllər bir reklam kampaniyasının hazırlanması — mətnin (copywriting) yazılması, dizaynın çəkilməsi və test edilməsi həftələr alırdısa, indi AI sayəsində bunu saatlar içində etmək mümkündür. <strong>Süni İntellekt Eksperti</strong> olaraq mənim şirkətlərə qazandırdığım ən böyük dəyərlərdən biri də məhz vaxt və büdcə optimizasiyasıdır.</p>
+
+<h3>Midjourney və DALL-E ilə Vizual İnqilab</h3>
+<p>Reklamlarda fərqlənmək üçün unikal və diqqətçəkən vizuallara (şəkil və videolara) ehtiyac var. Stok şəkillər (Stock photos) artıq istifadəçilərə süni və darıxdırıcı gəlir. Midjourney kimi alətlərlə şirkətinizin məhsulunu istənilən mühitdə, istənilən konseptdə render etmək həm minlərlə dollar studiya xərcinə qənaət edir, həm də reklamın "Kliklənmə Dərəcəsini" (CTR) 3-4 qat artırır.</p>
+
+<h3>ChatGPT və Claude ilə Psixoloji Kopiraytinq</h3>
+<p>Reklam mətni sadəcə cümlələrdən ibarət deyil. O, insan psixologiyasına təsir edən bir silahdır. Süni intellektə düzgün "Prompt" (əmrlər) verərək (məsələn, <em>"Bu məhsul üçün AIDA modelinə uyğun satış mətni yaz və müştərinin 'qıtlıq' hissini tətiklə"</em>) saatlarla davam edən beyin fırtınasını bir neçə dəqiqəyə endirmək mümkündür.</p>
+
+<h3>Dinamik Məzmun (Dynamic Creative Optimization - DCO)</h3>
+<p>Reklam büdcəsini idarə edərkən ən çox istifadə etdiyim metodlardan biri DCO-dur. Meta və Google platformalarında AI-a onlarla fərqli şəkil və mətn versiyası verirəm. Platformanın daxili süni intellekti bu kombinasiyaları hər bir istifadəçinin şəxsi maraqlarına uyğun şəkildə qarışdırır və hər kəsə fərqli bir reklam göstərir. Nəticədə <strong>Gəlirlilik (ROI)</strong> maksimuma çatır.</p>
+
+<h2>Nəticə</h2>
+<p>Rəqəmsal marketinqdə süni intellektdən istifadə etməmək, müasir dövrdə at arabası ilə yarışa qatılmaq deməkdir. Mən, <strong>Elvin Şahbazov</strong>, bu alətləri sadəcə qısa yollar kimi deyil, rəqabətdə haqsız üstünlük (Unfair Advantage) qazanmaq üçün strateji biznes silahı kimi tətbiq edirəm. Şirkətinizin xərclərini azaldaraq daha çox satış etməyin ən qısa yolu məhz AI integrasiyasından keçir.</p>
+    `
+  },
+  {
+    id: 'google-analytics-4-ga4-pixel-izleme',
+    title: 'Google Analytics 4 (GA4) və Pixel: Görünməyən Müştərilərinizi Necə İzləməlisiniz?',
+    slug: 'google-analytics-4-ga4-pixel-izleme',
+    excerpt: 'Biznes sahiblərinin reklamın xeyir gətirib-gətirmədiyini bilməsi üçün rəqəmləri (datanı) necə düzgün oxumalı olduğu barədə dərin analiz.',
+    cover_image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=70&w=600',
+    published: true,
+    created_at: new Date(Date.now() - 3000).toISOString(),
+    content: `
+<h2>Bilmədiyiniz Şeyi İnkişaf Etdirə Bilməzsiniz</h2>
+<p>Əgər bu gün kimsə saytınıza daxil olur, bir neçə səhifəyə baxır və heç nə almadan çıxıb gedirsə, bu, böyük bir itkidirmi? Ənənəvi marketinqdə bəli. Lakin Data Analitikası ilə (Data-driven marketing) xeyr. Çünki siz <strong>Google Analytics 4 (GA4)</strong> və <strong>Meta Pixel (API Conversion)</strong> sayəsində həmin şəxsin kim olduğunu (anonim data olaraq), haradan gəldiyini və nə ilə maraqlandığını tam olaraq bilirsiniz.</p>
+
+<h3>İzləmə Sistemləri (Tracking) Niyə Həyati Əhəmiyyət Daşıyır?</h3>
+<p>Mən həmişə şirkət rəhbərlərinə deyirəm: "Gözübağlı reklam vermək, pəncərədən pul atmaq deməkdir". Əgər reklam büdcənizin hansı hissəsinin sizə pul gətirdiyini (ROI) dəqiq ölçə bilmirsinizsə, böyüyə bilməzsiniz.</p>
+<ul>
+  <li><strong>Müştəri Yolu Xəritəsi (User Journey Mapping):</strong> GA4 bizə imkan verir ki, müştərinin sayta daxil olduğu andan "Təşəkkür edirik, sifarişiniz qəbul olundu" səhifəsinə qədər olan bütün addımlarını qeyd edək. Harada dayanırlar? Hansı səhifədən qaçırlar? Bütün bu sualların cavabı datanın içindədir.</li>
+  <li><strong>Qayıdış Pəncərəsi (Attribution Models):</strong> Bəzən istifadəçi sizin Facebook reklamınızı görür, klikləyir amma almır. 2 gün sonra gedib Google-da axtarıb alır. Düzgün qurulmuş analitika sistemi olmadan, siz elə biləcəksiniz ki, satış Google-dan gəldi. Lakin əsl qəhrəman Facebook idi. Buna Attribution Modelling deyilir.</li>
+</ul>
+
+<h3>Pixel və Conversions API (CAPI)</h3>
+<p>Son illərdə Apple-ın iOS yeniləmələri (iOS 14.5+) çərəzləri (cookies) məhdudlaşdırdıqdan sonra, ənənəvi Pixel izləmələri zəiflədi. Rəqəmsal ekspert kimi mütləq şəkildə server-tərəfli izləmələri (Server-Side Tracking / CAPI) qururam. Bu o deməkdir ki, brauzer datanı bloka salsa belə, saytın serveri müştərinin hərəkətini birbaşa Facebook və Google-a ötürür.</p>
+
+<h2>Ekspert Nəticəsi</h2>
+<p>Analitika və Data ölçümləri rəqəmsal biznesin onurğa sütunudur. <strong>Elvin Şahbazov</strong> olaraq tətbiq etdiyim layihələrdə hesabatlılıq o qədər şəffafdır ki, hər ayın sonunda yatırılan reklam büdcəsi ilə qazanılan gəlir arasındakı riyazi əlaqə (ROAS) saniyəsinə qədər biznes sahibinə təqdim olunur.</p>
+    `
+  },
+  {
+    id: 'b2b-sektoru-linkedin-meta-ads-strategiyalari',
+    title: 'B2B Sektoru Üçün LinkedIn və Meta Ads: Böyük Büdcəli Müştəriləri Necə Tapmalı?',
+    slug: 'b2b-sektoru-linkedin-meta-ads-strategiyalari',
+    excerpt: 'Şirkət rəhbərlərinə, direktorlara xidmət (B2B) satmaq istəyən bizneslərin hansı rəqəmsal addımları atmalı olduğunun strateji bələdçisi.',
+    cover_image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=70&w=600',
+    published: true,
+    created_at: new Date(Date.now() - 4000).toISOString(),
+    content: `
+<h2>B2B Marketinq B2C-dən Nə İlə Fərqlənir?</h2>
+<p>Ayaqqabı satmaqla (B2C), böyük bir zavoda 50,000 dollarlıq proqram təminatı satmaq (B2B) rəqəmsal dünyada tamam fərqli qaydalarla işləyir. B2B (Business-to-Business) satışlarında qərar vermə prosesi uzundur, qərar verən şəxslərin (Decision Makers) sayı çoxdur və məhsulun qiyməti yüksəkdir. 11 fərqli qlobal platformada yığdığım təcrübələr göstərir ki, B2B sektorunda adi "Endirim etdik, al" mesajı əks effekt verir.</p>
+
+<h3>LinkedIn Ads: Korporativ Dünyanın Mərkəzi</h3>
+<p>B2B satışı üçün dünyanın ən effektiv, lakin ən bahalı reklam platforması LinkedIn-dir. Bəs niyə bahalıdır? Çünki hədəfləmə (Targeting) inanılmaz dərəcədə dərindir.</p>
+<ul>
+  <li>Siz reklamınızı sadəcə "25-45 yaş arası kişilərə" deyil, <strong>"Logistika sektorunda çalışan, şirkətində 50-dən çox işçisi olan və vəzifəsi İcraçı Direktor (CEO) olan"</strong> konkret şəxslərə göstərə bilərsiniz.</li>
+  <li>Buna Account-Based Marketing (ABM) deyilir. Yəni biz kütləyə yox, spesifik şirkətlərə və onların rəhbərlərinə hədəflənirik.</li>
+</ul>
+
+<h3>Meta Ads (Facebook/Instagram) B2B Üçün İşləyirmi?</h3>
+<p>Əksər rəhbərlər elə bilir ki, B2B üçün Instagram işləmir. Tamamilə yanlışdır! CEO-lar da axşamlar işdən sonra Instagram-da vaxt keçirirlər. Məsələ onlara nə göstərdiyimizdədir.</p>
+<p>Meta platformasında B2B üçün ən uğurlu strategiya <strong>"Lead Magnet"</strong> (Müştəri cəlb edici) strategiyasıdır. Biz onlara "Xidmətimizi alın" demirik. Biz onlara "2026-cı il üçün logistika sektorunda süni intellekt hesabatını PULSUZ yükləyin" deyirik. Onlar e-poçt və nömrələrini daxil edib hesabatı yüklədikdə isə, artıq birbaşa bizim CRM sistemimizə çox keyfiyyətli bir "Lead" kimi daxil olurlar.</p>
+
+<h2>Uğurun Açarı: Çoxkanallı (Omnichannel) Yanaşma</h2>
+<p>B2B marketinqində ideal ssenari budur: Ziyarətçi bizi ilk dəfə Google-da (SEO/Search) axtarıb tapır. Saytımızda məqaləmizi oxuyur. Daha sonra biz onu LinkedIn-də rəsmi bir reklamla retarget edirik (yenidən hədəfləyirik). Axşam evdə olarkən isə Instagram-da qarşısına video formatında fərqli bir rəy (Testimonial) çıxarırıq. <strong>Elvin Şahbazov strategiyasının əsası</strong> – biznesinizin potensial müştərinin gözündə qaçılmaz və yüksək avtoritetə malik olmasını təmin etməkdir.</p>
+    `
+  },
+  {
+    id: 'e-ticarat-sebet-terki-ai-avtomatlasdirma',
+    title: 'E-ticarətdə Səbəti Tərk Edənləri (Abandoned Cart) AI ilə Necə Geri Qaytarmaq Olar?',
+    slug: 'e-ticarat-sebet-terki-ai-avtomatlasdirma',
+    excerpt: 'Sayta girib məhsulu səbətə atan, lakin almayan müştəriləri Avtomatik SMS, E-poçt və Dinamik Retargeting reklamları ilə necə yenidən sayta qaytarıb satışa çevirməyin yolları.',
+    cover_image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=70&w=600',
+    published: true,
+    created_at: new Date(Date.now() - 5000).toISOString(),
+    content: `
+<h2>Səbətin Tərk Edilməsi (Abandoned Cart): E-Ticarətin Ən Böyük Problemi</h2>
+<p>Qlobal e-ticarət statistikalarına görə, onlayn mağazaya daxil olub məhsulu səbətə atan istifadəçilərin təqribən <strong>70%-i</strong> ödəniş mərhələsini tamamlamadan saytdan çıxır. Bu, sizin marketing büdcənizin 70%-nin potensial olaraq boşa getməsi deməkdir. Lakin <strong>Rəqəmsal Marketinq və AI Avtomatlaşdırması</strong> ilə bu itkini nəinki bərpa etmək, hətta ən qazanclı satış kanalına çevirmək mümkündür.</p>
+
+<h3>Müştərilər Səbəti Niyə Tərk Edirlər?</h3>
+<p>Bunun müxtəlif səbəbləri var: Qəfil çıxan yüksək kuryer (çatdırılma) xərcləri, rəqiblərin qiymətini yoxlamaq istəyi, kartın yanında olmaması və ya sadəcə diqqətin yayınması. Məsələ ondadır ki, bu insanların "alma niyyəti" (Buying Intent) çox yüksəkdir. Onları geri qaytarmaq, tamamilə yeni müştəri tapmaqdan qat-qat ucuz və asandır.</p>
+
+<h3>Süni İntellektlə Ucdan-Uca (End-to-End) Geri Qaytarma Strategiyası</h3>
+<p><strong>Elvin Şahbazov olaraq, e-ticarət layihələrində aşağıdakı 3 mərhələli avtomatlaşdırma sistemini qururam:</strong></p>
+
+<ol>
+  <li><strong>Dinamik Retargeting (Dynamic Product Ads):</strong> Müştəri saytdan çıxdıqdan sonra Facebook və ya Instagram-a girəndə, məhz səbətdə qoyduğu həmin məhsulun şəklini və adını yenidən görür. Süni intellekt məhsulu onun qarşısına xüsusi bir mesajla ("Səbətinizdəki ayaqqabı hələ də sizi gözləyir!") çıxarır.</li>
+  <li><strong>Avtomatlaşdırılmış E-poçt Ardıcıllığı:</strong> Sistem müştərinin e-poçt ünvanını tanıyırsa, 1 saat sonra xatırlatma, 24 saat sonra isə "Yalnız sizin üçün 10% endirim kodu" olan avtomatik mail göndərir. Bu strategiya tərk edilmiş səbətlərin 15-20%-ni geri qaytarır.</li>
+  <li><strong>WhatsApp və SMS Botları:</strong> Bəzi coğrafiyalarda (xüsusən də Azərbaycan və Yaxın Şərqdə) SMS və WhatsApp daha aktiv oxunur. Səbəti tərk edən şəxsə dərhal WhatsApp üzərindən AI Chatbot tərəfindən yazılır: "Salam, sifarişinizi tamamlamaqda çətinlik çəkirsiniz? Kömək edə bilərəm."</li>
+</ol>
+
+<h2>Riyazi Nəticə və ROI (Gəlirlilik)</h2>
+<p>Əgər gündəlik 100 nəfər səbəti tərk edirsə, bu sistemlə onların ən azı 20-sini (20%) satışa çevirmək mümkündür. Aylıq hesabladıqda bu, əlavə minlərlə manat mənfəət deməkdir. Süni intellekt avtomatlaşdırması biznesə məhz bu cür görünməyən gəlir qapıları açır. Ən güclü marketinq, artıq maraqlanmış kütləni əldən qaçırmamaqla başlayır.</p>
+    `
+  },
+  {
     id: 'ai-chatbots-business-automation',
     title: 'Süni İntellekt (AI) Avtomatlaşdırması: Satışları 3X Necə Artırmalı?',
     slug: 'suni-intellekt-ai-avtomatlasdirmasi-satislari-3x-artirmaq',
