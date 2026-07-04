@@ -36,12 +36,9 @@ export default function Hero() {
 
   return (
     <section 
-      className="relative min-h-screen overflow-hidden pt-20"
+      className="relative min-h-screen overflow-hidden pt-20 bg-cover bg-center bg-scroll md:bg-fixed"
       style={{
-        backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
+        backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')`
       }}
     >
       {/* Deep Navy/Corporate Overlay for premium look */}
