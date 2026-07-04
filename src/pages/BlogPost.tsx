@@ -42,15 +42,15 @@ export default function BlogPost() {
     <div className="min-h-screen bg-transparent text-white pt-32 pb-20">
       <Container>
         <motion.div {...fadeUp()} className="max-w-3xl mx-auto">
-          <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-black/50 hover:text-primary transition-colors mb-8">
+          <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-primary transition-colors mb-8">
             <ArrowLeft size={16} /> Bloqa qayıt
           </Link>
           
-          <h1 className="font-black text-3xl md:text-5xl text-black leading-tight mb-6" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>
+          <h1 className="font-black text-3xl md:text-5xl text-white leading-tight mb-6" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>
             {post.title}
           </h1>
           
-          <div className="flex items-center gap-4 text-sm text-black/50 mb-10 pb-10 border-b border-black/5">
+          <div className="flex items-center gap-4 text-sm text-white/50 mb-10 pb-10 border-b border-white/5">
             <div className="flex items-center gap-2">
               <i className="fas fa-calendar-alt" />
               {new Date(post.created_at).toLocaleDateString('az-AZ')}
@@ -62,13 +62,13 @@ export default function BlogPost() {
           </div>
 
           {post.cover_image && (
-            <div className="w-full aspect-video rounded-3xl overflow-hidden mb-10 bg-black/5">
+            <div className="w-full aspect-video rounded-3xl overflow-hidden mb-10 bg-white/5">
               <img src={post.cover_image} alt={post.title} className="w-full h-full object-cover" />
             </div>
           )}
 
           <div 
-            className="prose prose-lg prose-blue max-w-none text-black/80"
+            className="prose prose-lg prose-invert prose-blue max-w-none text-white/80"
             dangerouslySetInnerHTML={{ __html: post.content.replace(/\n/g, '<br />') }}
           />
         </motion.div>

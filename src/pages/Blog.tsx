@@ -25,14 +25,14 @@ export default function Blog() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.length > 0 ? (
             posts.map((post, i) => (
-              <motion.div
+                  <motion.div
                   key={post.id}
                   {...fadeUp(Math.min(i * 0.05, 0.25))}
                   data-cursor-text="Oxu"
-                  className="bg-white rounded-3xl overflow-hidden border border-black/5 hover:border-primary/20 transition-all duration-300 shadow-sm hover:shadow-blue group"
+                  className="bg-white/[0.03] backdrop-blur-md rounded-3xl overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-blue group"
                 >
                   <Link to={`/blog/${post.slug}`} className="block">
-                    <div className="aspect-video bg-black/5 overflow-hidden relative">
+                    <div className="aspect-video bg-white/5 overflow-hidden relative">
                       {post.cover_image ? (
                         <img
                           src={post.cover_image}
@@ -42,19 +42,19 @@ export default function Blog() {
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-black/20">
+                        <div className="w-full h-full flex items-center justify-center text-white/20">
                           <i className="fas fa-image text-4xl" />
                         </div>
                       )}
                     </div>
                     <div className="p-6 md:p-8">
-                      <div className="text-xs text-black/40 mb-3 font-semibold tracking-wider">
+                      <div className="text-xs text-white/40 mb-3 font-semibold tracking-wider">
                         {new Date(post.created_at).toLocaleDateString('az-AZ')}
                       </div>
-                      <h3 className="font-bold text-xl text-black leading-tight mb-3 group-hover:text-primary transition-colors">
+                      <h3 className="font-bold text-xl text-white leading-tight mb-3 group-hover:text-primary transition-colors">
                         {post.title}
                       </h3>
-                      <p className="text-sm text-black/60 line-clamp-3">
+                      <p className="text-sm text-white/60 line-clamp-3">
                         {post.excerpt}
                       </p>
                     </div>
@@ -62,7 +62,7 @@ export default function Blog() {
                 </motion.div>
               ))
             ) : (
-              <div className="col-span-full text-center text-black/50 py-10">
+              <div className="col-span-full text-center text-white/50 py-10">
                 Hələlik heç bir məqalə yoxdur.
               </div>
             )}
