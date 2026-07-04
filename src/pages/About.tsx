@@ -153,7 +153,7 @@ function AboutHero() {
                 transition={{ delay: 0.48, duration: 0.65 }}
                 className="mb-3 max-w-lg text-base font-medium leading-relaxed text-white/90 md:text-xl"
               >
-                Digital Marketing & AI Automation Specialist
+                Digital Marketing & AI Automation Specialist. 11 qlobal reklam platformasında peşəkar təcrübə və 2 milyon dollardan çox idarə olunan reklam büdcəsi.
               </motion.p>
 
               <motion.div
