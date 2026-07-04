@@ -44,8 +44,8 @@ export default function Hero() {
       }}
     >
       {/* Deep Navy/Corporate Overlay for premium look */}
-      <div className="absolute inset-0 bg-[#00193b]/85 mix-blend-multiply pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#000a1a]/90 via-[#00193b]/60 to-[#000000]/95 pointer-events-none" />
+      <div className="absolute inset-0 bg-[#00193b]/50 mix-blend-multiply pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#000a1a]/70 via-[#00193b]/30 to-[#000000]/90 pointer-events-none" />
 
 
 
