@@ -885,12 +885,12 @@ function ForumCountdown() {
 // ─────────────────────────────────────────────────────────────────────────────
 export default function IndexPage() {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-[#030712]">
       <div className="relative z-0">
         <Hero />
       </div>
 
-      <div className="relative z-10 bg-black shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+      <div className="relative z-10 bg-[#030712] shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
         <MarqueeTicker />
 
 

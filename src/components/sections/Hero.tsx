@@ -32,12 +32,17 @@ export default function Hero() {
   const { isOpen: isMenuOpen } = useMobileMenu();
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-black">
-      {/* Stripe ambient glow */}
-      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
-        <div className="absolute -left-32 top-1/4 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(0,123,255,0.14)_0%,transparent_68%)] blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-[640px] w-[640px] translate-x-1/4 rounded-full bg-[radial-gradient(circle,rgba(0,123,255,0.08)_0%,transparent_70%)] blur-3xl" />
-        <div className="vercel-grid absolute inset-0 opacity-[0.35]" />
+    <section className="relative min-h-screen overflow-hidden bg-[#030712]">
+      {/* Premium Aurora Ambient Glow */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute top-0 -left-1/4 h-[800px] w-[800px] animate-blob rounded-full bg-blue-600/30 mix-blend-screen blur-[120px]" />
+          <div className="animation-delay-2000 absolute top-0 -right-1/4 h-[800px] w-[800px] animate-blob rounded-full bg-indigo-600/20 mix-blend-screen blur-[120px]" />
+          <div className="animation-delay-4000 absolute -bottom-32 left-1/4 h-[800px] w-[800px] animate-blob rounded-full bg-purple-600/20 mix-blend-screen blur-[120px]" />
+        </div>
+        <div className="vercel-grid absolute inset-0 opacity-[0.2]" />
+        {/* Deep shadow vignette for focus */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#030712_100%)] opacity-80" />
       </div>
 
       
