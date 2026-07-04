@@ -63,7 +63,7 @@ export default function Hero() {
             variants={revealItem}
             className="mb-10 max-w-xl text-base font-medium leading-relaxed text-slate-400 md:text-lg"
           >
-            {content.hero_subtitle || 'Digital Marketing and AI Automation Specialist. Şirkətlər üçün performansa əsaslanan reklam və avtomatlaşdırma strategiyaları.'}
+            {content.hero_subtitle || 'Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi. Şirkətlər üçün performansa əsaslanan reklam və avtomatlaşdırma strategiyaları.'}
           </motion.p>
 
           <motion.div variants={revealItem} className="mb-10 flex flex-wrap gap-2">
@@ -92,7 +92,7 @@ export default function Hero() {
               Konsultasiya
             </motion.a>
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={springSnappy}>
-              <Link to="/xidmetler" data-magnetic className="bg-white/[0.03] backdrop-blur-xl border border-white/5 text-white btn-hero hover:bg-white/[0.08] transition-colors">
+              <Link to="/xidmetler" data-magnetic className="inline-flex items-center gap-2 rounded-xl bg-white/[0.03] backdrop-blur-xl border border-white/5 text-white btn-hero hover:bg-white/[0.08] transition-colors">
                 {content.hero_button_2 || 'Xidmətlər'}
                 <ArrowRight size={16} />
               </Link>
