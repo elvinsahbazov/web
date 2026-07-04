@@ -39,25 +39,56 @@ const aiCards = [
   },
 ];
 
-import { useMotionTemplate, useMotionValue } from 'framer-motion';
+import { useMotionTemplate, useMotionValue, useTransform, useSpring } from 'framer-motion';
 
 function HoverCard({ card, i }: { card: any, i: number }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  
+  // For 3D Tilt Effect
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
+  
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], [7, -7]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], [-7, 7]);
 
   function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
+    const rect = currentTarget.getBoundingClientRect();
+    
+    // For background gradient glow
+    mouseX.set(clientX - rect.left);
+    mouseY.set(clientY - rect.top);
+    
+    // For 3D Tilt (-0.5 to 0.5)
+    const width = rect.width;
+    const height = rect.height;
+    const mouseXPos = clientX - rect.left;
+    const mouseYPos = clientY - rect.top;
+    x.set(mouseXPos / width - 0.5);
+    y.set(mouseYPos / height - 0.5);
+  }
+  
+  function handleMouseLeave() {
+    x.set(0);
+    y.set(0);
   }
 
   return (
     <motion.div
       {...fadeUp(i * 0.12)}
-      whileHover={{ y: -6 }}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: 'preserve-3d',
+      }}
+      whileHover={{ scale: 1.02 }}
       onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       data-cursor-text="Kəşf et"
-      className="relative group rounded-3xl bg-white/5 border border-white/10 p-8 lg:p-10 overflow-hidden cursor-default transition-all duration-500 hover:border-primary/40"
+      className="relative group rounded-3xl bg-white/5 border border-white/10 p-8 lg:p-10 overflow-hidden cursor-default transition-all duration-300 hover:border-primary/40"
     >
       <motion.div
         className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
@@ -94,6 +125,8 @@ function HoverCard({ card, i }: { card: any, i: number }) {
   );
 }
 
+import ScrollRevealText from '../components/ui/ScrollRevealText';
+
 function AIPremiumSection() {
   return (
     <section className="section-py section-black relative overflow-hidden">
@@ -101,15 +134,14 @@ function AIPremiumSection() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/[0.04] rounded-full blur-[100px] pointer-events-none" />
 
       <Container wide className="relative">
-        <motion.div {...fadeUp()} className="text-center mb-20 md:mb-28 max-w-4xl mx-auto">
+        <motion.div {...fadeUp()} className="text-center mb-20 md:mb-28 max-w-4xl mx-auto flex flex-col items-center">
           <span className="section-label">
             <i className="fas fa-robot text-primary" /> AI-Powered Biznes
           </span>
-          <h2 className="section-title mt-8">
-            Biznes proseslərinizi AI ilə daha<br />
-            <span className="text-gradient-blue">sürətli, ölçülə bilən</span> və avtomatik<br />
-            idarə olunan sistemə çevirin.
-          </h2>
+          <ScrollRevealText 
+            text="Biznes proseslərinizi AI ilə daha sürətli, ölçülə bilən və avtomatik hala gətirin, tam idarə olunan sistemə çevirin."
+            className="section-title mt-8 justify-center"
+          />
           <p className="section-subtitle mx-auto">
             Manual işlər bitir. AI işçilərinizi avtomatlaşdırır, leadlər itmir, satış böyüyür.
           </p>
@@ -867,9 +899,12 @@ export default function IndexPage() {
 
       <section className="section-py section-alt overflow-hidden">
         <Container wide>
-          <motion.div {...fadeUp()} className="text-center mb-16 md:mb-24 max-w-3xl mx-auto">
+          <motion.div {...fadeUp()} className="text-center mb-16 md:mb-24 max-w-3xl mx-auto flex flex-col items-center">
             <span className="section-label"><i className="fas fa-sync-alt" /> İş Prosesi</span>
-            <h2 className="section-title mt-8">Necə işləyirik?</h2>
+            <ScrollRevealText 
+              text="Necə işləyirik?"
+              className="section-title mt-8 justify-center"
+            />
             <p className="section-subtitle mx-auto">
               Hər layihə 4 mərhələdən keçir. Detalları görmək üçün orbitdəki nöqtəyə klikləyin.
             </p>
@@ -883,9 +918,12 @@ export default function IndexPage() {
 
       <section className="section-py section-alt">
         <Container wide>
-          <motion.div {...fadeUp()} className="text-center mb-16 md:mb-24 max-w-3xl mx-auto">
+          <motion.div {...fadeUp()} className="text-center mb-16 md:mb-24 max-w-3xl mx-auto flex flex-col items-center">
             <span className="section-label"><i className="fas fa-cogs" /> Avtomatlaşdırma</span>
-            <h2 className="section-title mt-8">Avtomatlaşdırma Prosesi</h2>
+            <ScrollRevealText 
+              text="Avtomatlaşdırma Prosesi"
+              className="section-title mt-8 justify-center"
+            />
             <p className="section-subtitle mx-auto">
               4 addımda biznesinizi tam avtomatlaşdırırıq. Hər addımı klikləyib ətraflı öyrənin.
             </p>

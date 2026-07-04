@@ -24,6 +24,9 @@ function LayoutShell({ children }: { children: React.ReactNode }) {
   return <Layout>{children}</Layout>;
 }
 
+import CustomCursor from './components/ui/CustomCursor';
+import SmoothScroll from './components/ui/SmoothScroll';
+
 function AppRoutes() {
   return (
     <>
@@ -48,11 +51,14 @@ function AppRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
-      <SiteContentProvider>
-      <Preloader />
-      <AIChatbot />
-      <AppRoutes />
-          </SiteContentProvider>
+      <SmoothScroll>
+        <SiteContentProvider>
+          <CustomCursor />
+          <Preloader />
+          <AIChatbot />
+          <AppRoutes />
+        </SiteContentProvider>
+      </SmoothScroll>
     </BrowserRouter>
   );
 }
