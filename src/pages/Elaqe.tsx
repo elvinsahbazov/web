@@ -188,7 +188,7 @@ export default function Elaqe() {
                 href={c.href}
                 target={c.href.startsWith('http') ? '_blank' : undefined}
                 rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className={`flex items-center gap-4 p-6 rounded-3xl border border-black/8 ${c.bg} transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 group`}
+                className={`flex items-center gap-4 p-6 rounded-3xl border border-white/10 ${c.bg} transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 group`}
               >
                 <div
                   className="w-11 h-11 rounded-xl flex items-center justify-center flex-none text-white"
@@ -196,9 +196,9 @@ export default function Elaqe() {
                 >
                   {c.icon}
                 </div>
-                <div>
-                  <p className="text-xs text-black/40 mb-0.5">{c.label}</p>
-                  <p className="text-sm font-semibold text-black group-hover:text-primary transition-colors">
+                <div className="border-white/10">
+                  <p className="text-xs text-white/50 mb-0.5">{c.label}</p>
+                  <p className="text-sm font-semibold text-white/90 group-hover:text-primary transition-colors">
                     {c.value}
                   </p>
                 </div>
@@ -389,10 +389,10 @@ export default function Elaqe() {
 
         <motion.div {...fadeUp(0.25)} className="mt-16 md:mt-20">
           <div className="mb-8 text-center">
-            <h2 className="font-poppins text-2xl font-bold text-black md:text-3xl">
+            <h2 className="font-poppins text-2xl font-bold text-white md:text-3xl">
               Bütün əlaqə kanalları
             </h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm text-black/55">
+            <p className="mx-auto mt-3 max-w-xl text-sm text-white/60">
               Sosial şəbəkələr, email və digər platformalar üzərindən birbaşa əlaqə saxlayın.
             </p>
           </div>
