@@ -3,9 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { easePremium } from '../lib/motion';
 import { useMobileMenu } from '../context/MobileMenuContext';
-import MobileMenu, { mobileNavLinks } from './MobileMenu';
+import MobileMenu from './MobileMenu';
 
-const SCROLL_THRESHOLD = 20;
+const SCROLL_THRESHOLD = 50;
 
 /** Asymmetrical tech lines → X on open */
 function TechMenuToggle({ open }: { open: boolean }) {
@@ -42,6 +42,8 @@ export default function Navbar() {
   const { isOpen, toggle, close } = useMobileMenu();
   const location = useLocation();
 
+  const isMinimal = false;
+
   useEffect(() => {
     close();
   }, [location, close]);
@@ -55,97 +57,101 @@ export default function Navbar() {
 
   return (
     <>
-      <header
-        className={`fixed top-0 w-full px-6 py-4 transition-all duration-300 ease-out md:px-10 md:py-5 ${
+      <motion.header
+        initial={{ opacity: 0, y: -16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.65, ease: easePremium, delay: 0.08 }}
+        className={`fixed top-0 w-full px-6 py-5 transition-all duration-500 ease-out md:px-10 md:py-6 ${
           isOpen ? 'z-[101]' : 'z-50'
         } ${
           isScrolled || location.pathname !== '/'
-            ? 'bg-[#000a1a]/95 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20'
-            : 'bg-transparent border-b border-transparent'
+            ? 'border-b border-white/10 bg-[#000a1a]/95 backdrop-blur-xl shadow-lg shadow-black/20'
+            : 'border-b border-transparent bg-transparent backdrop-blur-none'
         }`}
       >
-        <nav className="flex w-full items-center justify-between">
-          {/* LOGO & SOCIALS */}
-          <div className="flex flex-col gap-1.5 shrink-0">
+        <nav
+          className={`flex w-full items-center transition-all duration-500 ease-out ${
+            isMinimal ? 'justify-end' : 'justify-between'
+          }`}
+        >
+          <div className={`flex flex-col gap-2 transition-all duration-500 ease-out min-w-0 ${
+              isMinimal
+                ? 'pointer-events-none w-0 -translate-x-5 opacity-0'
+                : 'w-auto translate-x-0 opacity-100'
+            }`}>
             <Link
               to="/"
-              className="flex items-center gap-2 group"
+              data-magnetic
+              className="overflow-hidden hover:opacity-90 min-w-0"
             >
               <span
-                className="text-lg md:text-xl font-bold tracking-widest text-white block transition-colors group-hover:text-primary"
+                className="truncate text-sm font-bold tracking-widest text-white sm:text-base block"
                 style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}
               >
                 ELVİN ŞAHBAZOV <span className="text-gray-400 text-xs sm:text-sm font-medium tracking-normal hidden xl:inline ml-1">/ Digital Marketing and AI Automation Expert</span>
               </span>
             </Link>
             
-            <div className="hidden xl:flex items-center gap-1.5 opacity-100">
+            <div className="flex flex-nowrap items-center gap-1.5 overflow-x-auto pb-1 w-full" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              <style>{`
+                .nav-socials::-webkit-scrollbar { display: none; }
+              `}</style>
               {[
-                { icon: 'fab fa-linkedin-in', href: 'https://www.linkedin.com/in/elvinsahbazov', brand: 'bg-[#0077b5] border-[#0077b5]' },
-                { icon: 'fab fa-whatsapp', href: 'https://wa.me/994999550001', brand: 'bg-[#25D366] border-[#25D366]' },
-                { icon: 'fab fa-youtube', href: 'https://www.youtube.com/@elvinsahbazov1', brand: 'bg-[#FF0000] border-[#FF0000]' },
-                { icon: 'fab fa-instagram', href: 'https://www.instagram.com/elvin_sahbazov', brand: 'bg-[#E1306C] border-[#E1306C]' },
-                { icon: 'fab fa-facebook-f', href: 'https://www.facebook.com/share/18wNYYGku2/', brand: 'bg-[#1877F2] border-[#1877F2]' },
-                { icon: 'fab fa-tiktok', href: 'https://www.tiktok.com/@elvinsahbazov_', brand: 'bg-[#000000] border-gray-600' },
-                { icon: 'fab fa-x-twitter', href: 'https://x.com/ElvinSahbazov92', brand: 'bg-[#000000] border-gray-600' },
-                { icon: 'fas fa-envelope', href: 'mailto:elvinsahbazovv@gmail.com', brand: 'bg-[#EA4335] border-[#EA4335]' },
-              ].map((social, idx) => (
+                { icon: 'fab fa-linkedin-in', href: 'https://www.linkedin.com/in/elvinsahbazov', label: 'LinkedIn', brand: 'social-hover-linkedin' },
+                { icon: 'fab fa-whatsapp', href: 'https://wa.me/994999550001', label: 'WhatsApp', brand: 'social-hover-whatsapp' },
+                { icon: 'fab fa-youtube', href: 'https://www.youtube.com/@elvinsahbazov1', label: 'YouTube', brand: 'social-hover-youtube' },
+                { icon: 'fab fa-instagram', href: 'https://www.instagram.com/elvin_sahbazov', label: 'Instagram', brand: 'social-hover-instagram' },
+                { icon: 'fab fa-facebook-f', href: 'https://www.facebook.com/share/18wNYYGku2/', label: 'Facebook', brand: 'social-hover-facebook' },
+                { icon: 'fab fa-tiktok', href: 'https://www.tiktok.com/@elvinsahbazov_', label: 'TikTok', brand: 'social-hover-tiktok' },
+                { icon: 'fab fa-x-twitter', href: 'https://x.com/ElvinSahbazov92', label: 'X', brand: 'social-hover-x' },
+                { icon: 'fas fa-envelope', href: 'mailto:elvinsahbazovv@gmail.com', label: 'Gmail', brand: 'social-hover-gmail' },
+              ].map((social) => (
                 <a
-                  key={idx}
+                  key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex h-6 w-6 items-center justify-center rounded-md border text-white transition-all duration-300 hover:scale-110 shadow-sm ${social.brand}`}
+                  aria-label={social.label}
+                  className={`flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] flex-shrink-0 transition-all duration-300 hover:scale-110 hover:border-transparent hover:bg-white/[0.06] nav-socials ${social.brand}`}
                 >
-                  <i className={`${social.icon} text-[11px]`} />
+                  <i className={`${social.icon} text-[11px] sm:text-xs`} />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* DESKTOP MENU LINKS */}
-          <div className="hidden lg:flex items-center justify-center gap-8 flex-1 px-8">
-            {mobileNavLinks.map((link) => {
-              const isActive = location.pathname === link.path;
-              return (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`text-sm font-semibold tracking-wide transition-colors ${
-                    isActive ? 'text-primary' : 'text-slate-300 hover:text-white hover:bg-white/5 px-3 py-1.5 rounded-lg'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </div>
+          <div className="flex items-center gap-3 md:gap-6 flex-shrink-0 ml-4">
+            {/* DESKTOP MENU LINKS */}
+            <div className="hidden lg:flex items-center justify-center gap-6 mr-4">
+              {mobileNavLinks.map((link) => {
+                const isActive = location.pathname === link.path;
+                return (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`text-sm font-semibold tracking-wide transition-colors ${
+                      isActive ? 'text-primary' : 'text-slate-300 hover:text-white hover:bg-white/5 px-3 py-1.5 rounded-lg'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </div>
 
-          {/* RIGHT SIDE (WhatsApp CTA + Mobile Toggle) */}
-          <div className="flex items-center gap-4 shrink-0">
             <a
               href="https://wa.me/994999550001"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex items-center gap-2 rounded-full shadow-lg shadow-[#25D366]/20 bg-[#25D366] px-5 py-2 text-sm font-bold text-white transition-all duration-300 hover:bg-[#1DA851] hover:scale-105"
+              data-magnetic
+              className={`flex items-center gap-2 overflow-hidden rounded-full shadow-lg shadow-[#25D366]/20 bg-[#25D366] px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm font-semibold text-white transition-all duration-500 ease-out hover:bg-[#1DA851] w-auto scale-100 opacity-100`}
             >
-              <i className="fab fa-whatsapp text-lg" />
-              <span>Konsultasiya</span>
+              <i className="fab fa-whatsapp text-sm md:text-base text-white" />
+              <span className="inline">WhatsApp</span>
             </a>
-
-            {/* MOBILE HAMBURGER TOGGLE */}
-            <button
-              type="button"
-              aria-label={isOpen ? 'Menyunu bağla' : 'Menyunu aç'}
-              aria-expanded={isOpen}
-              onClick={toggle}
-              className={`lg:hidden relative z-[101] h-12 w-12 flex flex-col items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/5 transition-all duration-300 hover:bg-white/10 ${isOpen ? 'border-white/20 bg-white/10' : ''}`}
-            >
-              <TechMenuToggle open={isOpen} />
-            </button>
           </div>
         </nav>
-      </header>
+      </motion.header>
 
       <MobileMenu />
     </>
