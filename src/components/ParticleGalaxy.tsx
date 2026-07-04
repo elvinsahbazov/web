@@ -65,8 +65,8 @@ export default function ParticleGalaxy() {
     const initParticles = () => {
       particles = [];
       // Calculate amount of particles based on screen size (density)
-      // Reduced density slightly for better performance on mobile/laptops
-      const count = Math.floor((canvas.width * canvas.height) / 16000); 
+      // Strictly limit to a maximum of 45 particles to guarantee 60fps on all devices
+      const count = Math.min(45, Math.floor((canvas.width * canvas.height) / 18000)); 
       for (let i = 0; i < count; i++) {
         particles.push(new Particle(canvas.width, canvas.height));
       }

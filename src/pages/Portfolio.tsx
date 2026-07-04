@@ -45,7 +45,7 @@ export default function Portfolio() {
                 href={item.link_url || '#'}
                 target="_blank"
                 rel="noopener noreferrer"
-                {...fadeUp(i * 0.1)}
+                {...fadeUp(Math.min(i * 0.05, 0.25))}
                 data-cursor-text="Bax"
                 className="group block bg-white rounded-3xl overflow-hidden border border-black/5 shadow-sm hover:shadow-xl transition-all duration-300"
               >

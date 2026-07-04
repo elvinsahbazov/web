@@ -27,7 +27,7 @@ export default function Blog() {
             posts.map((post, i) => (
               <motion.div
                   key={post.id}
-                  {...fadeUp(i * 0.1)}
+                  {...fadeUp(Math.min(i * 0.05, 0.25))}
                   data-cursor-text="Oxu"
                   className="bg-white rounded-3xl overflow-hidden border border-black/5 hover:border-primary/20 transition-all duration-300 shadow-sm hover:shadow-blue group"
                 >

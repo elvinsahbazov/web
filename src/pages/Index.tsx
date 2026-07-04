@@ -78,7 +78,7 @@ function HoverCard({ card, i }: { card: any, i: number }) {
 
   return (
     <motion.div
-      {...fadeUp(i * 0.12)}
+      {...fadeUp(Math.min(i * 0.05, 0.25))}
       style={{
         rotateX,
         rotateY,
@@ -735,7 +735,7 @@ function FlipCards() {
       {flipCards.map((card, i) => (
         <motion.div
           key={card.num}
-          {...fadeUp(i * 0.07)}
+          {...fadeUp(Math.min(i * 0.05, 0.2))}
           className="flip-card"
           style={{ height: 248 }}
         >
