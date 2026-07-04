@@ -9,7 +9,7 @@ export default function Blog() {
   const posts = blogs;
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] pt-32 pb-20">
+    <div className="min-h-screen bg-transparent text-white pt-32 pb-20">
       <Container>
         <motion.div {...fadeUp()} className="text-center mb-16">
           <span className="section-label">Öyrən & İnkişaf et</span>

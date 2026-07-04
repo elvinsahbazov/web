@@ -19,7 +19,7 @@ export default function Portfolio() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] pt-32 pb-20">
+    <div className="min-h-screen bg-transparent text-white pt-32 pb-20">
       <Container>
         <motion.div {...fadeUp()} className="text-center mb-16">
           <span className="section-label inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-bold mb-4">

@@ -23,7 +23,7 @@ export default function BlogPost() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#F8FAFC] pt-32 pb-20 flex justify-center items-center">
+      <div className="min-h-screen bg-transparent text-white pt-32 pb-20 flex justify-center items-center">
         <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
       </div>
     );
@@ -31,7 +31,7 @@ export default function BlogPost() {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-[#F8FAFC] pt-32 pb-20 text-center">
+      <div className="min-h-screen bg-transparent text-white pt-32 pb-20 text-center">
         <h1 className="text-2xl font-bold text-black mb-4">Məqalə tapılmadı</h1>
         <Link to="/blog" className="text-primary hover:underline">Bloqa qayıt</Link>
       </div>
@@ -39,7 +39,7 @@ export default function BlogPost() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] pt-32 pb-20">
+    <div className="min-h-screen bg-transparent text-white pt-32 pb-20">
       <Container>
         <motion.div {...fadeUp()} className="max-w-3xl mx-auto">
           <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-black/50 hover:text-primary transition-colors mb-8">

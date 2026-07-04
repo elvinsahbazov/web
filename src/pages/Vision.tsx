@@ -53,7 +53,7 @@ export default function Vision() {
   const selectedNews = newsItems.find((n) => n.id === selectedNewsId);
 
   return (
-    <div className="min-h-screen bg-black pt-28 pb-20">
+    <div className="min-h-screen bg-transparent text-white pt-28 pb-20">
       <Container>
         {/* Header Section */}
         <motion.div {...fadeUp()} className="text-center mb-16 md:mb-24 max-w-4xl mx-auto">

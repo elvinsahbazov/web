@@ -200,7 +200,7 @@ function DarkCard({ children, className = '' }: { children: React.ReactNode; cla
 export default function About() {
   const { content } = useSiteContent();
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-transparent text-white text-white">
       <AboutHero />
 
       <section className="relative z-[1] -mt-1 py-20 md:py-28">

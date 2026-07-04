@@ -304,10 +304,10 @@
 
   .section-py { @apply py-28 md:py-36 lg:py-48; }
 
-  .section-alt { background: var(--color-blue-soft); }
+  .section-alt { background: rgba(3, 7, 18, 0.4); }
 
   .section-black {
-    background: var(--color-black);
+    background: transparent;
     color: var(--color-white);
   }
 

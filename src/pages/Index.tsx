@@ -885,12 +885,12 @@ function ForumCountdown() {
 // ─────────────────────────────────────────────────────────────────────────────
 export default function IndexPage() {
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-transparent text-white">
       <div className="relative z-0">
         <Hero />
       </div>
 
-      <div className="relative z-10 bg-[#030712] shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+      <div className="relative z-10 bg-transparent">
         <MarqueeTicker />
 
 
@@ -927,7 +927,7 @@ export default function IndexPage() {
         </Container>
       </section>
 
-      <section className="section-py bg-white">
+      <section className="section-py bg-transparent text-white">
         <Container>
           <motion.div {...fadeUp()} className="text-center mb-16 md:mb-24 max-w-3xl mx-auto">
             <span className="section-label"><i className="fas fa-question-circle" /> Sual & Cavab</span>
@@ -954,7 +954,7 @@ export default function IndexPage() {
           <FlipCards />
         </Container>
       </section>
-      <section className="section-py bg-white pb-24">
+      <section className="section-py bg-transparent text-white pb-24">
         <Container>
           <ForumCountdown />
         </Container>

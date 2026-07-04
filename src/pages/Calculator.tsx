@@ -327,7 +327,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-28 pb-20 font-inter">
+    <div className="min-h-screen bg-transparent text-white pt-28 pb-20 font-inter">
       <Container>
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
