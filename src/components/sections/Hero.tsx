@@ -94,14 +94,7 @@ export default function Hero() {
             <span className="block text-gradient-blue">{content.hero_title_2 || 'ŞAHBAZOV'}</span>
           </motion.h1>
 
-          <motion.p
-            variants={revealItem}
-            className="mb-10 max-w-xl text-base font-medium leading-relaxed text-slate-400 md:text-lg"
-          >
-            {content.hero_subtitle || 'Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi. Şirkətlər üçün performansa əsaslanan reklam və avtomatlaşdırma strategiyaları.'}
-          </motion.p>
-
-          <motion.div variants={revealItem} className="mb-10 flex flex-wrap gap-2">
+          <motion.div variants={revealItem} className="mb-6 flex flex-wrap gap-2">
             {badges.map((badge) => (
               <span
                 key={badge.text}
@@ -111,6 +104,13 @@ export default function Hero() {
               </span>
             ))}
           </motion.div>
+
+          <motion.p
+            variants={revealItem}
+            className="mb-10 max-w-xl text-base font-medium leading-relaxed text-slate-400 md:text-lg"
+          >
+            {content.hero_subtitle || 'Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi. Şirkətlər üçün performansa əsaslanan reklam və avtomatlaşdırma strategiyaları.'}
+          </motion.p>
 
           <motion.div variants={revealItem} className="mb-12 flex flex-wrap items-center gap-4">
             <motion.a
