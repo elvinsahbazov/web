@@ -64,7 +64,7 @@ export default function Navbar() {
             : 'bg-transparent border-b border-transparent'
         }`}
       >
-        <nav className="flex w-full items-center justify-between mx-auto max-w-7xl">
+        <nav className="flex w-full items-center justify-between">
           {/* LOGO & SOCIALS */}
           <div className="flex flex-col gap-1.5 shrink-0">
             <Link
@@ -79,24 +79,24 @@ export default function Navbar() {
               </span>
             </Link>
             
-            <div className="hidden xl:flex items-center gap-1.5 opacity-80">
+            <div className="hidden xl:flex items-center gap-1.5 opacity-100">
               {[
-                { icon: 'fab fa-linkedin-in', href: 'https://www.linkedin.com/in/elvinsahbazov', brand: 'hover:bg-[#0077b5] hover:border-[#0077b5]' },
-                { icon: 'fab fa-whatsapp', href: 'https://wa.me/994999550001', brand: 'hover:bg-[#25D366] hover:border-[#25D366]' },
-                { icon: 'fab fa-youtube', href: 'https://www.youtube.com/@elvinsahbazov1', brand: 'hover:bg-[#FF0000] hover:border-[#FF0000]' },
-                { icon: 'fab fa-instagram', href: 'https://www.instagram.com/elvin_sahbazov', brand: 'hover:bg-[#E1306C] hover:border-[#E1306C]' },
-                { icon: 'fab fa-facebook-f', href: 'https://www.facebook.com/share/18wNYYGku2/', brand: 'hover:bg-[#1877F2] hover:border-[#1877F2]' },
-                { icon: 'fab fa-tiktok', href: 'https://www.tiktok.com/@elvinsahbazov_', brand: 'hover:bg-[#000000] hover:border-gray-600' },
-                { icon: 'fas fa-envelope', href: 'mailto:elvinsahbazovv@gmail.com', brand: 'hover:bg-[#EA4335] hover:border-[#EA4335]' },
+                { icon: 'fab fa-linkedin-in', href: 'https://www.linkedin.com/in/elvinsahbazov', brand: 'bg-[#0077b5] border-[#0077b5]' },
+                { icon: 'fab fa-whatsapp', href: 'https://wa.me/994999550001', brand: 'bg-[#25D366] border-[#25D366]' },
+                { icon: 'fab fa-youtube', href: 'https://www.youtube.com/@elvinsahbazov1', brand: 'bg-[#FF0000] border-[#FF0000]' },
+                { icon: 'fab fa-instagram', href: 'https://www.instagram.com/elvin_sahbazov', brand: 'bg-[#E1306C] border-[#E1306C]' },
+                { icon: 'fab fa-facebook-f', href: 'https://www.facebook.com/share/18wNYYGku2/', brand: 'bg-[#1877F2] border-[#1877F2]' },
+                { icon: 'fab fa-tiktok', href: 'https://www.tiktok.com/@elvinsahbazov_', brand: 'bg-[#000000] border-gray-600' },
+                { icon: 'fas fa-envelope', href: 'mailto:elvinsahbazovv@gmail.com', brand: 'bg-[#EA4335] border-[#EA4335]' },
               ].map((social, idx) => (
                 <a
                   key={idx}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex h-6 w-6 items-center justify-center rounded-md border border-white/10 bg-white/[0.04] transition-all duration-300 text-slate-300 hover:text-white ${social.brand}`}
+                  className={`flex h-6 w-6 items-center justify-center rounded-md border text-white transition-all duration-300 hover:scale-110 shadow-sm ${social.brand}`}
                 >
-                  <i className={`${social.icon} text-[10px]`} />
+                  <i className={`${social.icon} text-[11px]`} />
                 </a>
               ))}
             </div>
