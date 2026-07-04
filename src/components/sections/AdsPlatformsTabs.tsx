@@ -131,6 +131,7 @@ export default function AdsPlatformsTabs() {
               aria-selected={isActive}
               data-magnetic
               onClick={() => setActiveId(platform.id)}
+              onMouseEnter={() => setActiveId(platform.id)}
               className={`cursor-pointer rounded-full border px-4 py-2 text-sm transition-all ${
                 isActive
                   ? 'font-semibold'
