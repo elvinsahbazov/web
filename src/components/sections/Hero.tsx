@@ -192,35 +192,7 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Floating Element 1 */}
-            <motion.div 
-              animate={{ y: [0, -10, 0] }} 
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="absolute -right-4 top-12 md:-right-12 md:top-20 z-20 flex items-center gap-3 rounded-2xl border border-white/10 bg-black/60 px-5 py-3 shadow-xl backdrop-blur-md"
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary flex-none">
-                <i className="fas fa-robot text-lg" />
-              </div>
-              <div>
-                <p className="text-[10px] font-semibold text-white/60 uppercase tracking-wider">Avtomatlaşdırma</p>
-                <p className="text-sm font-bold text-white whitespace-nowrap">AI Sistemləri</p>
-              </div>
-            </motion.div>
 
-            {/* Floating Element 2 */}
-            <motion.div 
-              animate={{ y: [0, 10, 0] }} 
-              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-              className="absolute -left-4 bottom-16 md:-left-12 md:bottom-24 z-20 flex items-center gap-3 rounded-2xl border border-white/10 bg-black/60 px-5 py-3 shadow-xl backdrop-blur-md"
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-500/20 text-green-400 flex-none">
-                <i className="fas fa-chart-line text-lg" />
-              </div>
-              <div>
-                <p className="text-[10px] font-semibold text-white/60 uppercase tracking-wider">Performans</p>
-                <p className="text-sm font-bold text-white whitespace-nowrap">+45% ROI Artımı</p>
-              </div>
-            </motion.div>
           </div>
         </motion.div>
 
