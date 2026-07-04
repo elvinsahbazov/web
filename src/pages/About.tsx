@@ -249,7 +249,7 @@ export default function About() {
 
                   <h4 className="text-base font-bold text-white mt-6 mb-2">Peşəkar Uğurlar və Beynəlxalq Sertifikatlar</h4>
                   <p>Peşəkar bilik və bacarıqlarım qlobal miqyasda tanınan <strong className="text-white">Google, Meta, HubSpot Academy</strong> və <strong className="text-white">Digital Marketing Institute (DMI)</strong> tərəfindən verilmiş beynəlxalq sertifikatlarla təsdiqlənmişdir.</p>
-                  <p>Bu günə qədər <strong className="text-white">15-dən çox şirkət üçün</strong> rəqəmsal transformasiya, marketinq strategiyalarının hazırlanması, satış sistemlərinin qurulması və analitika əsaslı idarəetmə layihələrini uğurla həyata keçirmişəm.</p>
+                  <p>Bu günə qədər <strong className="text-white">15-dən çox şirkət üçün</strong> rəqəmsal transformasiya, marketinq strategiyalarının hazırlanması, satış sistemlərinin qurulması və analitika əsaslı idarəetmə layihələrini uğurla həyata keçirmişəm. Ümumilikdə isə <strong className="text-white">2 milyon dollardan çox</strong> rəqəmsal reklam büdcəsini effektiv şəkildə idarə edərək şirkətlər üçün yüksək ROI (yatırımın geri dönüşü) təmin etmişəm.</p>
                 </div>
               </DarkCard>
             </motion.div>
