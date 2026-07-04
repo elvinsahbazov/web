@@ -254,8 +254,10 @@ function RadialTimeline() {
               animate={{ scale: isActive ? 1.12 : 1 }}
               onClick={() => handleNode(node.id)}
             >
+              <div className="absolute inset-x-0 -bottom-8 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="text-[10px] font-bold text-white/90 text-center leading-tight px-1 block">{node.label}</span>
+              </div>
               <i className={`${node.icon} text-xl mb-1`} style={{ color: node.color }} />
-              <span className="text-[10px] font-bold text-black/70 text-center leading-tight px-1 block">{node.label}</span>
             </motion.div>
           );
         })}
@@ -270,16 +272,16 @@ function RadialTimeline() {
             >
               <button
                 onClick={() => { setActive(null); setPaused(false); }}
-                className="absolute top-3 right-3 w-7 h-7 rounded-full bg-black/5 flex items-center justify-center text-black/45 hover:bg-black/10 transition-colors text-xs font-bold"
+                className="absolute top-3 right-3 w-7 h-7 rounded-full bg-black/5 flex items-center justify-center text-white/45 hover:bg-black/10 transition-colors text-xs font-bold"
               >✕</button>
               <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-3" style={{ backgroundColor: orbitNodes[active].bg }}>
                 <i className={`${orbitNodes[active].icon} text-lg`} style={{ color: orbitNodes[active].color }} />
               </div>
-              <h4 className="font-black text-black text-sm mb-2" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{orbitNodes[active].title}</h4>
+              <h4 className="font-black text-white text-sm mb-2" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{orbitNodes[active].title}</h4>
               <p className="text-xs text-muted leading-relaxed mb-3">{orbitNodes[active].desc}</p>
               <ul className="space-y-1.5">
                 {orbitNodes[active].items.map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-xs text-black/60">
+                  <li key={item} className="flex items-center gap-2 text-xs text-white/60">
                     <span className="w-1.5 h-1.5 rounded-full flex-none" style={{ backgroundColor: orbitNodes[active].color }} />
                     {item}
                   </li>
@@ -309,7 +311,7 @@ function RadialTimeline() {
               <i className={`${node.icon} text-sm`} style={{ color: node.color }} />
             </div>
             <div>
-              <p className="font-semibold text-black text-xs">{node.title}</p>
+              <p className="font-semibold text-white text-xs">{node.title}</p>
               <p className="text-xs text-muted line-clamp-1">{node.desc.slice(0, 45)}...</p>
             </div>
           </motion.div>
@@ -353,8 +355,8 @@ function ROIWizard() {
           <button
             key={s}
             onClick={() => setStep(i)}
-            className={`flex-1 py-2.5 px-2 rounded-xl text-xs font-bold transition-all duration-300 ${
-              i === step ? 'bg-white text-primary shadow-sm' : i < step ? 'text-primary' : 'text-black/45'
+            className={`flex-1 py-4 text-center text-sm font-bold tracking-wide transition-all ${
+              i === step ? 'bg-white text-primary shadow-sm rounded-xl' : i < step ? 'text-white' : 'text-white/45'
             }`}
           >
             <span className="hidden sm:inline">{i + 1}. </span>
@@ -371,11 +373,11 @@ function ROIWizard() {
           <motion.div key="step0" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }} className="space-y-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-semibold text-black font-semibold mb-2">Məhsul / Xidmət Qiyməti (₼)</label>
+                <label className="block text-sm font-semibold text-white font-semibold mb-2">Məhsul / Xidmət Qiyməti (₼)</label>
                 <input type="number" value={d.price} onChange={(e) => upd('price', e.target.value)} className="input-field" placeholder="300" />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-black font-semibold mb-2">Maya / Özünə Dəyər (₼)</label>
+                <label className="block text-sm font-semibold text-white font-semibold mb-2">Maya / Özünə Dəyər (₼)</label>
                 <input type="number" value={d.cogs} onChange={(e) => upd('cogs', e.target.value)} className="input-field" placeholder="120" />
               </div>
             </div>
@@ -386,7 +388,7 @@ function ROIWizard() {
               </div>
               <div className="bg-primary/5 border border-black/10 rounded-2xl p-4 text-center">
                 <p className="text-xs text-muted mb-1">Hər satışdan qazanc</p>
-                <p className="font-black text-3xl text-black tracking-tight" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>₼{profitPerSale}</p>
+                <p className="font-black text-3xl text-white tracking-tight" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>₼{profitPerSale}</p>
               </div>
             </div>
             <button onClick={() => setStep(1)} className="btn-primary w-full justify-center">Növbəti Addım <ArrowRight size={15} /></button>
@@ -396,17 +398,17 @@ function ROIWizard() {
         {step === 1 && (
           <motion.div key="step1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }} className="space-y-5">
             <div>
-              <label className="block text-sm font-semibold text-black font-semibold mb-3">
-                Aylıq Hədəf Satış Sayı: <span className="text-primary font-black text-lg">{d.targetSales}</span>
+              <label className="block text-sm font-semibold text-white/90 mb-3">
+                Satış Həcmi (Ay): <span className="text-primary">{d.targetSales}</span>
               </label>
               <input type="range" min="1" max="500" value={d.targetSales} onChange={(e) => upd('targetSales', e.target.value)} className="range-slider w-full" />
-              <div className="flex justify-between text-xs text-black/45 mt-1"><span>1</span><span>500</span></div>
+              <div className="flex justify-between text-xs text-white/45 mt-1"><span>1</span><span>500</span></div>
             </div>
             <div className="grid grid-cols-3 gap-3">
               {[
                 { label: 'Hədəf satış', value: d.targetSales, color: 'text-primary' },
-                { label: 'Hədəf dövriyyə', value: `₼${targetRevNeeded.toLocaleString()}`, color: 'text-black/80' },
-                { label: 'Xalis mənfəət', value: `₼${(profitPerSale * d.targetSales).toLocaleString()}`, color: 'text-black/80' },
+                { label: 'Hədəf dövriyyə', value: `₼${targetRevNeeded.toLocaleString()}`, color: 'text-white/80' },
+                { label: 'Xalis mənfəət', value: `₼${(profitPerSale * d.targetSales).toLocaleString()}`, color: 'text-white/80' },
               ].map((item) => (
                 <div key={item.label} className="bg-primary/5 border border-black/10 rounded-2xl p-4 text-center">
                   <p className="text-xs text-muted mb-1">{item.label}</p>
@@ -425,7 +427,7 @@ function ROIWizard() {
           <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-semibold text-black font-semibold mb-2">Reklam Kanalı</label>
+                <label className="block text-sm font-semibold text-white font-semibold mb-2">Reklam Kanalı</label>
                 <select value={d.channel} onChange={(e) => upd('channel', e.target.value)} className="select-field">
                   <option value="meta">Meta (FB/IG)</option>
                   <option value="google">Google Ads</option>
@@ -434,20 +436,20 @@ function ROIWizard() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-semibold text-black font-semibold mb-2">Aylıq Reklam Büdcəsi (₼)</label>
+                <label className="block text-sm font-semibold text-white font-semibold mb-2">Aylıq Reklam Büdcəsi (₼)</label>
                 <input type="number" value={d.adBudget} onChange={(e) => upd('adBudget', e.target.value)} className="input-field" />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-black font-semibold mb-2">Ortalama CPC (₼)</label>
+                <label className="block text-sm font-semibold text-white font-semibold mb-2">Ortalama CPC (₼)</label>
                 <input type="number" step="0.01" value={d.avgCpc} onChange={(e) => upd('avgCpc', e.target.value)} className="input-field" />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-black font-semibold mb-2">CTR (%)</label>
+                <label className="block text-sm font-semibold text-white font-semibold mb-2">CTR (%)</label>
                 <input type="number" step="0.1" value={d.ctr} onChange={(e) => upd('ctr', e.target.value)} className="input-field" />
               </div>
             </div>
             <div>
-              <label className="block text-sm font-semibold text-black font-semibold mb-3">
+              <label className="block text-sm font-semibold text-white font-semibold mb-3">
                 Konversiya dərəcəsi: <span className="text-primary font-black">{d.convRate}%</span>
               </label>
               <input type="range" min="0.1" max="20" step="0.1" value={d.convRate} onChange={(e) => upd('convRate', e.target.value)} className="range-slider w-full" />
@@ -463,10 +465,10 @@ function ROIWizard() {
           <motion.div key="step3" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} className="space-y-4">
             <div className={`flex items-center gap-3 p-4 rounded-2xl border ${isProfit ? 'bg-primary/5 border-primary/20' : 'bg-black/5 border-black/15'}`}>
               <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-none ${isProfit ? 'bg-primary/15' : 'bg-black/10'}`}>
-                <i className={`fas ${isProfit ? 'fa-check-circle text-primary' : 'fa-times-circle text-black'} text-xl`} />
+                <i className={`fas ${isProfit ? 'fa-check-circle text-primary' : 'fa-times-circle text-white'} text-xl`} />
               </div>
               <div>
-                <p className={`font-black text-base ${isProfit ? 'text-primary' : 'text-black'}`} style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>
+                <p className={`font-black text-base ${isProfit ? 'text-primary' : 'text-white'}`} style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>
                   {isProfit ? 'Səmərəli Kampaniya' : 'Zərərli Kampaniya'}
                 </p>
                 <p className="text-xs text-muted">{isProfit ? 'Bu parametrlərlə reklam gəlirlidir.' : 'Büdcə və ya konversiya optimallaşdırması lazımdır.'}</p>
@@ -500,7 +502,7 @@ function ROIWizard() {
                 <p className="font-black text-2xl tracking-tight" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{margin.toFixed(1)}%</p>
               </div>
             </div>
-            <p className="text-center text-xs text-black/45">* Bu simulyasiya yalnız istiqamət üçündür. Real nəticələr müxtəlif ola bilər.</p>
+            <p className="text-center text-xs text-white/45">* Bu simulyasiya yalnız istiqamət üçündür. Real nəticələr müxtəlif ola bilər.</p>
             <div className="flex gap-3">
               <button onClick={() => { setStep(0); setD(wizardDefaults); }} className="btn-outline flex-1 justify-center text-sm">
                 <i className="fas fa-redo mr-1.5" /> Sıfırla
@@ -560,9 +562,9 @@ function AutomationProcess() {
             <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-none font-black text-sm" style={{ fontFamily: 'Satoshi, Inter, sans-serif', backgroundColor: activeStep === i ? s.color : `${s.color}18`, color: activeStep === i ? '#fff' : s.color }}>
               {s.num}
             </div>
-            <div className="hidden lg:block">
-              <p className="font-semibold text-black text-sm">{s.title}</p>
-              <p className="text-xs text-black/45 mt-0.5">{s.items[0]}</p>
+            <div className="text-left">
+              <p className="font-semibold text-white text-sm">{s.title}</p>
+              <p className="text-xs text-white/60 mt-0.5">{s.items[0]}</p>
             </div>
           </motion.button>
         ))}
@@ -583,17 +585,17 @@ function AutomationProcess() {
             </div>
             <div>
               <span className="text-xs font-bold tracking-widest uppercase" style={{ color: autoSteps[activeStep].color }}>Addım {autoSteps[activeStep].num}</span>
-              <h3 className="font-black text-black text-xl" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{autoSteps[activeStep].title}</h3>
+              <h3 className="font-black text-white text-xl" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{autoSteps[activeStep].title}</h3>
             </div>
           </div>
-          <p className="text-black/60 leading-relaxed mb-6">{autoSteps[activeStep].desc}</p>
+          <p className="text-white/60 leading-relaxed mb-6">{autoSteps[activeStep].desc}</p>
           <div className="grid grid-cols-2 gap-3">
             {autoSteps[activeStep].items.map((item) => (
               <div key={item} className="flex items-center gap-2.5 p-3 rounded-xl" style={{ backgroundColor: `${autoSteps[activeStep].color}08`, border: `1px solid ${autoSteps[activeStep].color}15` }}>
                 <div className="w-5 h-5 rounded-lg flex items-center justify-center flex-none" style={{ backgroundColor: `${autoSteps[activeStep].color}20` }}>
                   <i className="fas fa-check text-[10px]" style={{ color: autoSteps[activeStep].color }} />
                 </div>
-                <span className="text-sm font-medium text-black font-semibold">{item}</span>
+                <span className="text-sm font-medium text-white font-semibold">{item}</span>
               </div>
             ))}
           </div>
@@ -662,17 +664,17 @@ function FAQ() {
               <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-none text-xs font-black ${open === i ? 'bg-primary text-white' : 'bg-black/5 text-muted'}`}>
                 {i + 1}
               </div>
-              <span className="font-semibold text-black text-sm">{faq.q}</span>
+              <span className="font-semibold text-white text-sm">{faq.q}</span>
             </div>
             <motion.div animate={{ rotate: open === i ? 180 : 0 }} transition={{ duration: 0.3 }}>
-              <ChevronDown size={16} className={open === i ? 'text-primary' : 'text-black/45'} />
+              <ChevronDown size={16} className={open === i ? 'text-primary' : 'text-white/45'} />
             </motion.div>
           </button>
           <AnimatePresence>
             {open === i && (
               <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, ease: 'easeInOut' }}>
                 <div className="px-6 pb-6">
-                  <div className="ml-10 text-sm text-black/60 leading-relaxed border-t border-black/8 pt-4">
+                  <div className="ml-10 text-sm text-white/60 leading-relaxed border-t border-black/8 pt-4">
                     {faq.a}
                   </div>
                 </div>
@@ -745,7 +747,7 @@ function FlipCards() {
                 </div>
                 <span className="font-black text-5xl leading-none" style={{ color: `${card.color}12`, fontFamily: 'Satoshi, Inter, sans-serif' }}>{card.num}</span>
               </div>
-              <h3 className="font-black text-black text-base mb-2" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{card.title}</h3>
+              <h3 className="font-black text-white text-base mb-2" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{card.title}</h3>
               <p className="text-sm text-muted leading-relaxed flex-1">{card.front}</p>
               <p className="text-xs mt-3 font-semibold" style={{ color: card.color }}>Hover edin →</p>
             </div>

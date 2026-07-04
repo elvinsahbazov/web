@@ -294,12 +294,12 @@
 
   .section-title {
     font-family: 'Satoshi', 'Inter', sans-serif;
-    @apply font-black text-[clamp(2.25rem,5.5vw,4rem)] text-black tracking-tight leading-[1.02];
+    @apply font-black text-[clamp(2.25rem,5.5vw,4rem)] text-white tracking-tight leading-[1.02];
   }
 
   .section-subtitle {
     @apply text-lg md:text-xl mt-6 max-w-2xl leading-relaxed font-normal;
-    color: var(--color-muted);
+    color: rgba(255, 255, 255, 0.8);
   }
 
   .section-py { @apply py-28 md:py-36 lg:py-48; }
