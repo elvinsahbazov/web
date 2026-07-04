@@ -233,18 +233,19 @@ export default function About() {
                     <li><strong className="text-white">MDB və Asiya:</strong> Rusiya, Qazaxıstan, Özbəkistan, Gürcüstan</li>
                   </ul>
 
-                  <p className="mt-4">Bu qlobal layihələrdə müxtəlif auditoriyalarla düzgün kommunikasiya qurmaq üçün dünyanın ən qabaqcıl <strong className="text-white">10 fərqli rəqəmsal reklam platformasından</strong> peşəkar səviyyədə istifadə edirəm:</p>
+                  <p className="mt-4">Bu qlobal layihələrdə müxtəlif auditoriyalarla düzgün kommunikasiya qurmaq üçün dünyanın ən qabaqcıl <strong className="text-white">11 fərqli rəqəmsal reklam platformasından</strong> peşəkar səviyyədə istifadə edirəm:</p>
                   <ul className="grid grid-cols-2 gap-2 mt-2 pl-4 text-white/65 list-disc">
-                    <li>Facebook Ads</li>
-                    <li>Instagram Ads</li>
+                    <li>Meta Ads</li>
                     <li>Google Ads</li>
-                    <li>YouTube Ads</li>
+                    <li>Yandex Direct</li>
+                    <li>VK Ads</li>
                     <li>LinkedIn Ads</li>
                     <li>TikTok Ads</li>
+                    <li>X (Twitter) Ads</li>
+                    <li>Microsoft Ads</li>
+                    <li>Pinterest Ads</li>
                     <li>Snapchat Ads</li>
-                    <li>X Ads (Twitter)</li>
-                    <li>Yandex Ads</li>
-                    <li>VKontakte Ads</li>
+                    <li>Telegram Ads</li>
                   </ul>
 
                   <h4 className="text-base font-bold text-white mt-6 mb-2">Süni İntellekt (AI) İnteqrasiyası və Avtomatlaşdırma</h4>
