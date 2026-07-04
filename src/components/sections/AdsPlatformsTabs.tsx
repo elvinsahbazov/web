@@ -129,8 +129,9 @@ export default function AdsPlatformsTabs() {
               type="button"
               role="tab"
               aria-selected={isActive}
-              data-magnetic
               onClick={() => setActiveId(platform.id)}
+              onMouseOver={() => setActiveId(platform.id)}
+              onMouseMove={() => setActiveId(platform.id)}
               onPointerEnter={() => setActiveId(platform.id)}
               className={`cursor-pointer rounded-full border px-4 py-2 text-sm transition-all ${
                 isActive
