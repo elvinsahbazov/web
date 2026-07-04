@@ -34,40 +34,18 @@ export default function Hero() {
   const { isOpen: isMenuOpen } = useMobileMenu();
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-transparent pt-20">
-
-      {/* ABSTRACT HOLOGRAPHIC GLOWS (Premium Background Effect - Optimized) */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {/* Top Left Orb */}
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.6, 1, 0.6],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute -left-[20%] top-[-10%] h-[800px] w-[800px]"
-          style={{ background: 'radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 60%)' }}
-        />
-        {/* Bottom Right Orb */}
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.5, 0.8, 0.5],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-          className="absolute -right-[20%] bottom-[-10%] h-[900px] w-[900px]"
-          style={{ background: 'radial-gradient(circle, rgba(147, 51, 234, 0.12) 0%, transparent 60%)' }}
-        />
-      </div>
+    <section 
+      className="relative min-h-screen overflow-hidden pt-20"
+      style={{
+        backgroundImage: `url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      {/* Deep Navy/Corporate Overlay for premium look */}
+      <div className="absolute inset-0 bg-[#00193b]/85 mix-blend-multiply pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#000a1a]/90 via-[#00193b]/60 to-[#000000]/95 pointer-events-none" />
 
 
 
