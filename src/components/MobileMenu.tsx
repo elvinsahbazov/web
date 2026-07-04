@@ -14,9 +14,15 @@ export const mobileNavLinks = [
 ] as const;
 
 const menuSocials = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/elvinsahbazov' },
-  { label: 'WhatsApp', href: 'https://wa.me/994999550001' },
-] as const;
+  { icon: 'fab fa-linkedin-in', href: 'https://www.linkedin.com/in/elvinsahbazov', brand: 'bg-[#0077b5] border-[#0077b5]' },
+  { icon: 'fab fa-whatsapp', href: 'https://wa.me/994999550001', brand: 'bg-[#25D366] border-[#25D366]' },
+  { icon: 'fab fa-youtube', href: 'https://www.youtube.com/@elvinsahbazov1', brand: 'bg-[#FF0000] border-[#FF0000]' },
+  { icon: 'fab fa-instagram', href: 'https://www.instagram.com/elvin_sahbazov', brand: 'bg-[#E1306C] border-[#E1306C]' },
+  { icon: 'fab fa-facebook-f', href: 'https://www.facebook.com/share/18wNYYGku2/', brand: 'bg-[#1877F2] border-[#1877F2]' },
+  { icon: 'fab fa-tiktok', href: 'https://www.tiktok.com/@elvinsahbazov_', brand: 'bg-[#000000] border-gray-600' },
+  { icon: 'fab fa-x-twitter', href: 'https://x.com/ElvinSahbazov92', brand: 'bg-[#000000] border-gray-600' },
+  { icon: 'fas fa-envelope', href: 'mailto:elvinsahbazovv@gmail.com', brand: 'bg-[#EA4335] border-[#EA4335]' },
+];
 
 const menuContainer = {
   hidden: { opacity: 0 },
@@ -97,17 +103,16 @@ export default function MobileMenu() {
               <p className="mb-4 text-center text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 md:text-xs">
                 Rəqəmsal Marketinq & Süni İntellekt Avtomatlaşdırma Mütəxəssisi
               </p>
-              <div className="flex items-center justify-center gap-8">
-                {menuSocials.map((social) => (
+              <div className="flex flex-wrap items-center justify-center gap-3 px-2 mt-2">
+                {menuSocials.map((social, idx) => (
                   <a
-                    key={social.label}
+                    key={idx}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    data-magnetic
-                    className="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+                    className={`flex h-10 w-10 items-center justify-center rounded-xl border text-white shadow-sm transition-transform active:scale-95 ${social.brand}`}
                   >
-                    {social.label}
+                    <i className={`${social.icon} text-base`} />
                   </a>
                 ))}
               </div>
