@@ -88,11 +88,30 @@ export default function Hero() {
         >
           <motion.h1
             variants={revealItem}
-            className="font-satoshi mb-8 max-w-xl text-[clamp(2.75rem,7vw,5.5rem)] font-black leading-[0.92] tracking-[-0.04em] text-white"
+            className="font-satoshi mb-6 max-w-xl text-[clamp(2.75rem,7vw,5.5rem)] font-black leading-[0.92] tracking-[-0.04em] text-white"
           >
             ELVİN
             <span className="block text-gradient-blue">{content.hero_title_2 || 'ŞAHBAZOV'}</span>
           </motion.h1>
+
+          <motion.div variants={revealItem} className="mb-8 flex flex-nowrap items-center gap-2 md:gap-3 overflow-x-auto pb-2 -mx-6 px-6 md:mx-0 md:px-0 hide-scroll" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <style>{`
+              .hide-scroll::-webkit-scrollbar { display: none; }
+            `}</style>
+            {heroSocials.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                data-magnetic
+                className={`social-icon-btn flex-shrink-0 ${social.brand}`}
+              >
+                <i className={`${social.icon} text-base`} />
+              </a>
+            ))}
+          </motion.div>
 
           <motion.div variants={revealItem} className="mb-6 flex flex-wrap gap-2">
             {badges.map((badge) => (
@@ -132,25 +151,6 @@ export default function Hero() {
                 <ArrowRight size={16} />
               </Link>
             </motion.div>
-          </motion.div>
-
-          <motion.div variants={revealItem} className="mb-14 flex flex-nowrap items-center gap-2 md:gap-3 overflow-x-auto pb-4 -mx-6 px-6 md:mx-0 md:px-0" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            <style>{`
-              .mb-14::-webkit-scrollbar { display: none; }
-            `}</style>
-            {heroSocials.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.label}
-                data-magnetic
-                className={`social-icon-btn flex-shrink-0 ${social.brand}`}
-              >
-                <i className={`${social.icon} text-base`} />
-              </a>
-            ))}
           </motion.div>
 
           {/* Cubix authority stats — inline, no dividers */}
