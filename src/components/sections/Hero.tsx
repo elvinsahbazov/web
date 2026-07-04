@@ -4,7 +4,7 @@ import { ArrowRight, BarChart2, Target, TrendingUp } from 'lucide-react';
 import { revealContainer, revealItem, springSnappy, springSmooth } from '../../lib/motion';
 import { useMobileMenu } from '../../context/MobileMenuContext';
 import { useSiteContent } from '../../context/SiteContentContext';
-import { TypeAnimation } from 'react-type-animation';
+import { TypewriterText } from '../ui/TypewriterText';
 import AdsPlatformsTabs from './AdsPlatformsTabs';
 
 
@@ -68,23 +68,12 @@ export default function Hero() {
             <span className="block bg-gradient-to-r from-slate-200 via-white to-slate-400 bg-clip-text text-transparent">{content.hero_title_2 || 'ŞAHBAZOV'}</span>
           </motion.h1>
 
-          <motion.div variants={revealItem} className="mb-6 min-h-[32px] text-lg font-bold text-[#14b8a6] md:text-xl">
-            <TypeAnimation
-              sequence={[
-                'Rəqəmsal Marketinq Eksperti',
-                2000,
-                'Süni İntellekt Mütəxəssisi',
-                2000,
-                'Satışları Artıran Strategiyalar',
-                2000,
-                'Biznes Avtomatlaşdırılması',
-                2000
-              ]}
-              wrapper="span"
-              speed={50}
-              repeat={Infinity}
-            />
-          </motion.div>
+          <motion.p
+            variants={revealItem}
+            className="mb-10 max-w-xl text-base font-medium leading-relaxed text-slate-400 md:text-lg min-h-[72px]"
+          >
+            <TypewriterText text={content.hero_subtitle || 'Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi. Şirkətlər üçün performansa əsaslanan reklam və avtomatlaşdırma strategiyaları.'} speed={25} delay={400} />
+          </motion.p>
 
           <motion.div variants={revealItem} className="mb-6 flex flex-wrap gap-2">
             {[
@@ -102,12 +91,7 @@ export default function Hero() {
             ))}
           </motion.div>
 
-          <motion.p
-            variants={revealItem}
-            className="mb-10 max-w-xl text-base font-medium leading-relaxed text-slate-400 md:text-lg"
-          >
-            {content.hero_subtitle || 'Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi. Şirkətlər üçün performansa əsaslanan reklam və avtomatlaşdırma strategiyaları.'}
-          </motion.p>
+
 
           <motion.div variants={revealItem} className="mb-12 flex flex-wrap items-center gap-4">
             <motion.a
@@ -162,19 +146,18 @@ export default function Hero() {
               className="relative rounded-2xl border border-white/10 border-l-4 border-l-primary p-6 shadow-2xl md:p-8"
               style={{ backgroundColor: 'rgba(255, 255, 255, 0.03)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
             >
-              <p className="text-sm leading-relaxed text-white/80 md:text-base">
-                Hər əsrdə bir dönüş nöqtəsi olur və oyunun qaydaları dəyişir. Bu gün həmin nöqtənin
-                adı <span className="font-bold text-primary">Süni İntellektdir.</span>
+              <p className="text-sm leading-relaxed text-white/80 md:text-base min-h-[44px]">
+                <TypewriterText text="Hər əsrdə bir dönüş nöqtəsi olur və oyunun qaydaları dəyişir. Bu gün həmin nöqtənin adı " speed={20} delay={1000} />
+                <span className="font-bold text-primary"><TypewriterText text="Süni İntellektdir." speed={20} delay={2780} /></span>
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-white/60 md:text-base">
-                Bu dəyişikliyi vaxtında anlayanlar sabah bazarın lideri olur, gecikənlər isə bu
-                gündən geridə qalmağa başlayır.
+              <p className="mt-4 text-sm leading-relaxed text-white/60 md:text-base min-h-[44px]">
+                <TypewriterText text="Bu dəyişikliyi vaxtında anlayanlar sabah bazarın lideri olur, gecikənlər isə bu gündən geridə qalmağa başlayır." speed={20} delay={3440} />
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-white/60 md:text-base">
-                Texnologiya artıq seçim deyil — böyümənin mühərrikidir.
+              <p className="mt-4 text-sm leading-relaxed text-white/60 md:text-base min-h-[22px]">
+                <TypewriterText text="Texnologiya artıq seçim deyil — böyümənin mühərrikidir." speed={20} delay={6000} />
               </p>
-              <p className="mt-5 block text-base font-black text-white md:text-lg">
-                Gələcək gözləyənlərin yox, indi hərəkət edənlərindir.
+              <p className="mt-5 block text-base font-black text-white md:text-lg min-h-[28px]">
+                <TypewriterText text="Gələcək gözləyənlərin yox, indi hərəkət edənlərindir." speed={20} delay={7400} />
               </p>
             </div>
           </motion.div>
