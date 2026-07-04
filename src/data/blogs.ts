@@ -4,7 +4,7 @@ export const blogs = [
     title: 'Süni İntellekt Avtomatlaşdırması və Rəqəmsal Marketinq ilə Bizneslərin Miqyaslandırılması',
     slug: 'suni-intellekt-avtomatlasdirmasi-ve-reqemsal-marketinq-ile-bizneslerin-miqyaslandirilmasi',
     excerpt: 'Müasir bizneslər həm əməliyyatlarını optimallaşdırmaq, həm də müştərilərlə daha effektiv əlaqə qurmaq üçün süni intellekt və rəqəmsal marketinqə investisiya edir.',
-    cover_image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80',
+    cover_image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=70&w=600',
     published: true,
     created_at: new Date().toISOString(),
     content: `
@@ -52,7 +52,7 @@ export const blogs = [
     title: 'AI Automation Bizneslər üçün Niyə Vacibdir?',
     slug: 'ai-automation-biznesler-ucun-niye-vacibdir',
     excerpt: 'Süni intellekt avtomatlaşdırması yalnız böyük korporasiyalar üçün deyil, kiçik və orta bizneslər üçün də yeni imkanlar yaradır. Məqsəd insanları əvəz etmək deyil, prosesləri optimallaşdırmaqdır.',
-    cover_image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80',
+    cover_image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=70&w=600',
     published: true,
     created_at: new Date(Date.now() - 86400000).toISOString(),
     content: `
@@ -110,7 +110,7 @@ export const blogs = [
     title: 'Rəqəmsal Marketinq Nədir? SEO və GEO Nədir? Gələcəkdə Biznesləri Nələr Gözləyir?',
     slug: 'reqemsal-marketinq-nedir-seo-ve-geo-nedir',
     excerpt: 'Rəqəmsal marketinq, SEO və son dövrlərdə sürətlə inkişaf edən GEO (Generative Engine Optimization) biznes inkişafının əsas istiqamətlərindən birinə çevrilib.',
-    cover_image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80',
+    cover_image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=70&w=600',
     published: true,
     created_at: new Date(Date.now() - 172800000).toISOString(),
     content: `
@@ -199,7 +199,7 @@ export const blogs = [
     title: 'Remarketing nədir və strategiyası necə qurulur?',
     slug: 'remarketing-nedir-ve-strategiyasi-nece-qurulur',
     excerpt: 'Remarketing rəqəmsal marketinqin ən effektiv üsullarından biridir. Bu strategiya məhsul və ya xidmətinizlə artıq maraqlanmış insanlarla yenidən əlaqə qurmağa imkan verir.',
-    cover_image: 'https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&q=80',
+    cover_image: 'https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&q=70&w=600',
     published: true,
     created_at: new Date(Date.now() - 259200000).toISOString(),
     content: `
@@ -305,7 +305,7 @@ export const blogs = [
     title: 'Süni İntellekt Axtarış Motorları üçün Sayt Necə Optimallaşdırılır?',
     slug: 'suni-intellekt-axtaris-motorlari-ucun-sayt-nece-optimallasdirilir',
     excerpt: 'İnternetdə məlumat axtarma vərdişləri son illərdə əhəmiyyətli dərəcədə dəyişib. Bu gün milyonlarla insan suallarını birbaşa süni intellekt platformalarına verir.',
-    cover_image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80',
+    cover_image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=70&w=600',
     published: true,
     created_at: new Date(Date.now() - 345600000).toISOString(),
     content: `
@@ -470,7 +470,7 @@ export const blogs = [
     title: 'AI ilə Müştəri Seqmentasiyası və AI ilə Satış Proqnozları: Məlumatlara Əsaslanan Biznes Qərarlarının Gələcəyi',
     slug: 'ai-ile-musteri-seqmentasiyasi-ve-ai-ile-satis-proqnozlari',
     excerpt: 'Müasir biznes mühitində uğurlu satış yalnız daha çox reklam vermək və ya daha böyük marketinq büdcəsi ayırmaqla əldə olunmur. Əsas fərq müştərini nə qədər yaxşı tanımaqda və ehtiyaclarını düzgün anlamaqdadır.',
-    cover_image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=80',
+    cover_image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=70&w=600',
     published: true,
     created_at: new Date(Date.now() - 432000000).toISOString(),
     content: `
@@ -588,7 +588,7 @@ export const blogs = [
     title: 'Müxtəlif Sektorlar üçün Süni İntellekt, SEO və Rəqəmsal Marketinq Strategiyaları: Biznesinizi Gələcəyə Hazırlayın',
     slug: 'muxtelif-sektorlar-ucun-ai-seo-reqemsal-marketinq',
     excerpt: 'Hər sektorun fəaliyyət prinsipi, müştəri davranışı və satış prosesi bir-birindən fərqlənir. Məhz buna görə bütün bizneslər üçün eyni marketinq strategiyasından istifadə etmək düzgün yanaşma hesab olunmur.',
-    cover_image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80',
+    cover_image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=70&w=600',
     published: true,
     created_at: new Date(Date.now() - 518400000).toISOString(),
     content: `
