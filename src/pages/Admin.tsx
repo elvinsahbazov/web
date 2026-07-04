@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   LayoutDashboard, FileText, Settings, Briefcase, Plus, 
-  Edit2, Trash2, X, Check, Save, LogOut, Menu, LayoutTemplate
+  Edit2, Trash2, X, Check, Save, LogOut, Menu, LayoutTemplate, MessageSquare, Users, Mail
 } from 'lucide-react';
 
 // Reusable Toast Component
@@ -39,9 +39,12 @@ export default function Admin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [activeTab, setActiveTab] = useState<'blog' | 'services' | 'portfolio' | 'pages'>('blog');
+  const [activeTab, setActiveTab] = useState<'blog' | 'services' | 'portfolio' | 'pages' | 'messages' | 'subscribers'>('blog');
   
   const [toast, setToast] = useState<{message: string, type: 'success'|'error'} | null>(null);
+  
+  const [messages, setMessages] = useState<any[]>([]);
+  const [subscribers, setSubscribers] = useState<any[]>([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // Site Content State
@@ -89,6 +92,12 @@ export default function Admin() {
     } else if(activeTab === 'pages') {
       const { data } = await supabase.from('site_content').select('*').order('section', { ascending: true });
       if (data) setSiteContent(data);
+    } else if(activeTab === 'messages') {
+      const { data } = await supabase.from('contact_submissions').select('*').order('created_at', { ascending: false });
+      if (data) setMessages(data);
+    } else if(activeTab === 'subscribers') {
+      const { data } = await supabase.from('newsletter_subscribers').select('*').order('created_at', { ascending: false });
+      if (data) setSubscribers(data);
     }
   }
 
@@ -208,6 +217,8 @@ export default function Admin() {
     { id: 'services', label: 'Xidmətlər', icon: Briefcase },
     { id: 'portfolio', label: 'Portfolio', icon: LayoutDashboard },
     { id: 'pages', label: 'Səhifə Məzmunu', icon: LayoutTemplate },
+    { id: 'messages', label: 'Gələn Mesajlar', icon: MessageSquare },
+    { id: 'subscribers', label: 'Abunəçilər', icon: Users },
   ];
 
   return (
@@ -285,7 +296,7 @@ export default function Admin() {
         <div className="p-6 md:p-10 max-w-6xl mx-auto">
           
           {/* CREATE/EDIT FORM */}
-          {activeTab !== 'pages' && (
+          {(activeTab === 'blog' || activeTab === 'services' || activeTab === 'portfolio') && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8 mb-10">
               <div className="flex items-center justify-between mb-8">
                 <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2">
@@ -386,7 +397,7 @@ export default function Admin() {
               <div className="px-6 py-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
                 <h3 className="text-lg font-bold text-slate-800">Mövcud Siyahı</h3>
                 <span className="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">
-                  {activeTab === 'blog' ? posts.length : activeTab === 'services' ? services.length : portfolio.length} Qeyd
+                  {activeTab === 'blog' ? posts.length : activeTab === 'services' ? services.length : activeTab === 'portfolio' ? portfolio.length : activeTab === 'messages' ? messages.length : subscribers.length} Qeyd
                 </span>
               </div>
               <div className="divide-y divide-slate-100 max-h-[600px] overflow-y-auto">
@@ -435,10 +446,45 @@ export default function Admin() {
                   </div>
                 ))}
                 
+                {activeTab === 'messages' && messages.map(item => (
+                  <div key={item.id} className="flex flex-col md:flex-row md:items-center justify-between p-6 hover:bg-slate-50 transition-colors group gap-4">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <h4 className="font-bold text-slate-800">{item.full_name}</h4>
+                        <span className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-md">{new Date(item.created_at).toLocaleDateString('az')}</span>
+                      </div>
+                      <a href={`mailto:${item.email}`} className="text-blue-600 text-sm font-medium hover:underline flex items-center gap-1 mb-2">
+                        <Mail size={14} /> {item.email}
+                      </a>
+                      <p className="text-sm text-slate-600 bg-white p-4 rounded-xl border border-slate-100">{item.message}</p>
+                    </div>
+                    <div className="flex items-center gap-2 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
+                      <button onClick={() => handleDelete('contact_submissions', item.id)} className="p-2 text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"><Trash2 size={16} /></button>
+                    </div>
+                  </div>
+                ))}
+
+                {activeTab === 'subscribers' && subscribers.map(item => (
+                  <div key={item.id} className="flex items-center justify-between p-6 hover:bg-slate-50 transition-colors group">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center"><Mail size={18} /></div>
+                      <div>
+                        <h4 className="font-bold text-slate-800">{item.email}</h4>
+                        <p className="text-xs text-slate-500 mt-1">Mənbə: {item.source} • Tarix: {new Date(item.created_at).toLocaleDateString('az')}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <button onClick={() => handleDelete('newsletter_subscribers', item.id)} className="p-2 text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"><Trash2 size={16} /></button>
+                    </div>
+                  </div>
+                ))}
+                
                 {/* Empty states */}
                 {((activeTab === 'blog' && posts.length === 0) || 
                   (activeTab === 'services' && services.length === 0) || 
-                  (activeTab === 'portfolio' && portfolio.length === 0)) && (
+                  (activeTab === 'portfolio' && portfolio.length === 0) ||
+                  (activeTab === 'messages' && messages.length === 0) ||
+                  (activeTab === 'subscribers' && subscribers.length === 0)) && (
                   <div className="p-12 flex flex-col items-center justify-center text-slate-400">
                     <LayoutDashboard size={48} className="mb-4 opacity-20" />
                     <p className="font-medium">Hələ heç bir məlumat yoxdur</p>
