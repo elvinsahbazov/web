@@ -528,7 +528,7 @@ const autoSteps = [
     items: ['İş axışı xəritəsi', 'Manual tapşırıq analizi', 'Vaxt itkisi nöqtələri', 'Prioritet sıralama'],
   },
   {
-    num: '02', title: 'Avtomatlaşdırma Xəritəsi', icon: 'fas fa-project-diagram', color: C.black,
+    num: '02', title: 'Avtomatlaşdırma Xəritəsi', icon: 'fas fa-project-diagram', color: C.blue,
     desc: 'Hər bir proses üçün avtomatlaşdırma ssenarisinin hazırlanması, alət seçimi (Make, Zapier, n8n), inteqrasiya nöqtələrinin müəyyənləşdirilməsi.',
     items: ['Ssenari dizaynı', 'Alət & platforma seçimi', 'İnteqrasiya xəritəsi', 'Test planı'],
   },
@@ -538,7 +538,7 @@ const autoSteps = [
     items: ['Sistem qurulumu', 'CRM & email inteqrasiyası', 'WhatsApp & SMS sistemi', 'İlkin test dövrü'],
   },
   {
-    num: '04', title: 'Optimizasiya', icon: 'fas fa-tachometer-alt', color: C.black,
+    num: '04', title: 'Optimizasiya', icon: 'fas fa-tachometer-alt', color: C.blue,
     desc: 'Canlı sistemin monitorinqi, performans göstəricilərinə əsasən optimallaşdırma, yeni proses əlavələri və davamlı inkişaf.',
     items: ['Canlı monitorinq', 'Performans analizi', 'Davamlı inkişaf', 'Aylıq hesabat'],
   },
@@ -555,11 +555,11 @@ function AutomationProcess() {
             onClick={() => setActiveStep(i)}
             whileHover={{ x: 3 }}
             className={`flex-none lg:flex items-center gap-4 text-left p-4 rounded-2xl border transition-all duration-300 min-w-[180px] lg:min-w-0 ${
-              activeStep === i ? 'shadow-card' : 'border-black/8 bg-white hover:border-black/15'
+              activeStep === i ? 'shadow-card bg-white/[0.05] border-white/20' : 'border-white/5 bg-white/[0.02] hover:bg-white/[0.05]'
             }`}
-            style={activeStep === i ? { backgroundColor: `${s.color}0a`, borderColor: `${s.color}25` } : {}}
+            style={activeStep === i ? { backgroundColor: `${s.color}15`, borderColor: `${s.color}40` } : {}}
           >
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-none font-black text-sm" style={{ fontFamily: 'Satoshi, Inter, sans-serif', backgroundColor: activeStep === i ? s.color : `${s.color}18`, color: activeStep === i ? '#fff' : s.color }}>
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-none font-black text-sm" style={{ fontFamily: 'Satoshi, Inter, sans-serif', backgroundColor: activeStep === i ? s.color : 'rgba(255,255,255,0.05)', color: activeStep === i ? '#fff' : 'rgba(255,255,255,0.6)' }}>
               {s.num}
             </div>
             <div className="text-left">
@@ -577,7 +577,7 @@ function AutomationProcess() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.35 }}
-          className="lg:col-span-3 card p-8"
+          className="lg:col-span-3 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-md p-8 shadow-2xl"
         >
           <div className="flex items-center gap-4 mb-5">
             <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-card" style={{ backgroundColor: autoSteps[activeStep].color }}>
@@ -591,8 +591,8 @@ function AutomationProcess() {
           <p className="text-white/60 leading-relaxed mb-6">{autoSteps[activeStep].desc}</p>
           <div className="grid grid-cols-2 gap-3">
             {autoSteps[activeStep].items.map((item) => (
-              <div key={item} className="flex items-center gap-2.5 p-3 rounded-xl" style={{ backgroundColor: `${autoSteps[activeStep].color}08`, border: `1px solid ${autoSteps[activeStep].color}15` }}>
-                <div className="w-5 h-5 rounded-lg flex items-center justify-center flex-none" style={{ backgroundColor: `${autoSteps[activeStep].color}20` }}>
+              <div key={item} className="flex items-center gap-2.5 p-3 rounded-xl" style={{ backgroundColor: `${autoSteps[activeStep].color}15`, border: `1px solid ${autoSteps[activeStep].color}30` }}>
+                <div className="w-5 h-5 rounded-lg flex items-center justify-center flex-none" style={{ backgroundColor: `${autoSteps[activeStep].color}30` }}>
                   <i className="fas fa-check text-[10px]" style={{ color: autoSteps[activeStep].color }} />
                 </div>
                 <span className="text-sm font-medium text-white font-semibold">{item}</span>
