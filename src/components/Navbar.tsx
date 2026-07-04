@@ -82,13 +82,16 @@ export default function Navbar() {
             <Link
               to="/"
               data-magnetic
-              className="overflow-hidden hover:opacity-90 min-w-0"
+              className="hover:opacity-90 min-w-0 flex flex-col xl:flex-row xl:items-end"
             >
               <span
-                className="truncate text-sm font-bold tracking-widest text-white sm:text-base block"
+                className="text-sm font-bold tracking-widest text-white sm:text-base block shrink-0"
                 style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}
               >
-                ELVİN ŞAHBAZOV <span className="text-gray-400 text-xs sm:text-sm font-medium tracking-normal hidden xl:inline ml-1">/ Digital Marketing and AI Automation Expert</span>
+                ELVİN ŞAHBAZOV
+              </span>
+              <span className="text-gray-400 text-[10px] sm:text-xs font-medium tracking-normal block xl:inline xl:ml-1 mt-0.5 xl:mt-0 leading-tight xl:pb-0.5">
+                / Digital Marketing and AI Automation Expert
               </span>
             </Link>
             
@@ -120,7 +123,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 md:gap-6 flex-shrink-0 ml-4">
+          <div className="flex items-center gap-3 md:gap-6 flex-shrink-0 ml-4 self-end pb-1 xl:self-center xl:pb-0">
             {/* DESKTOP MENU LINKS */}
             <div className="hidden lg:flex items-center justify-center gap-6 mr-4">
               {mobileNavLinks.map((link) => {
