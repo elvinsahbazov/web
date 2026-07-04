@@ -14,6 +14,7 @@ export default function ParticleGalaxy() {
     
     // Configuration
     const maxDistance = 140; // Max distance to form "chains"
+    const maxDistanceSq = maxDistance * maxDistance;
     
     class Particle {
       x: number;
@@ -50,10 +51,7 @@ export default function ParticleGalaxy() {
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
         ctx.fill();
-        
-        // Add a slight glow to particles
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = this.color;
+        // Removed expensive shadowBlur for performance
       }
     }
 
@@ -67,7 +65,8 @@ export default function ParticleGalaxy() {
     const initParticles = () => {
       particles = [];
       // Calculate amount of particles based on screen size (density)
-      const count = Math.floor((canvas.width * canvas.height) / 10000); 
+      // Reduced density slightly for better performance on mobile/laptops
+      const count = Math.floor((canvas.width * canvas.height) / 16000); 
       for (let i = 0; i < count; i++) {
         particles.push(new Particle(canvas.width, canvas.height));
       }
@@ -82,17 +81,15 @@ export default function ParticleGalaxy() {
         p.draw(ctx);
       });
 
-      // Reset shadow for lines
-      ctx.shadowBlur = 0;
-
       // Draw chain-like connections
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (distance < maxDistance) {
+          if (distSq < maxDistanceSq) {
+            const distance = Math.sqrt(distSq);
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
