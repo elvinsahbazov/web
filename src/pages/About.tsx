@@ -233,23 +233,31 @@ export default function About() {
                     <li><strong className="text-white">MDB və Asiya:</strong> Rusiya, Qazaxıstan, Özbəkistan, Gürcüstan</li>
                   </ul>
 
-                  <p>Bu qlobal layihələrdə müxtəlif auditoriyalarla düzgün kommunikasiya qurmaq üçün dünyanın ən qabaqcıl rəqəmsal reklam platformalarından peşəkar səviyyədə istifadə edirəm:</p>
-                  <ul className="list-disc pl-5 space-y-1 text-white/65">
-                    <li>Meta Ads (Facebook, Instagram)</li>
-                    <li>Google Ads & YouTube Ads</li>
-                    <li>LinkedIn Ads (B2B seqmenti üçün)</li>
-                    <li>TikTok Ads & Snapchat Ads</li>
-                    <li>X Ads (keçmiş Twitter)</li>
-                    <li>Yandex Ads & VKontakte (MDB bazarları üçün)</li>
+                  <p className="mt-4">Bu qlobal layihələrdə müxtəlif auditoriyalarla düzgün kommunikasiya qurmaq üçün dünyanın ən qabaqcıl <strong className="text-white">10 fərqli rəqəmsal reklam platformasından</strong> peşəkar səviyyədə istifadə edirəm:</p>
+                  <ul className="grid grid-cols-2 gap-2 mt-2 pl-4 text-white/65 list-disc">
+                    <li>Facebook Ads</li>
+                    <li>Instagram Ads</li>
+                    <li>Google Ads</li>
+                    <li>YouTube Ads</li>
+                    <li>LinkedIn Ads</li>
+                    <li>TikTok Ads</li>
+                    <li>Snapchat Ads</li>
+                    <li>X Ads (Twitter)</li>
+                    <li>Yandex Ads</li>
+                    <li>VKontakte Ads</li>
                   </ul>
 
                   <h4 className="text-base font-bold text-white mt-6 mb-2">Süni İntellekt (AI) İnteqrasiyası və Avtomatlaşdırma</h4>
                   <p>Müasir biznesin rəqabətədavamlı olması üçün ənənəvi metodlar kifayət etmir. Bu səbəbdən fəaliyyətimdə texnoloji innovasiyalara xüsusi yer ayırıram. Bir çox şirkət üçün rəqəmsal marketinq və süni intellektin (AI) inteqrasiyası vasitəsilə unikal biznes həlləri yaratmışam.</p>
                   <p>Eyni zamanda, ümumi süni intellekt avtomatlaşdırılması tətbiq edərək şirkətlərin daxili proseslərini, müştəri münasibətlərini və satış qıflarını (sales funnel) avtomatlaşdırıb idarəetməni sadələşdirən xüsusi biznes həlləri ərsəyə gətirmişəm. Məqsəd minimum insan əməyi ilə maksimum qazanc və məhsuldarlıq əldə etməkdir.</p>
 
-                  <h4 className="text-base font-bold text-white mt-6 mb-2">Peşəkar Uğurlar və Beynəlxalq Sertifikatlar</h4>
+                  <h4 className="text-base font-bold text-white mt-6 mb-2">Peşəkar Uğurlar, 2 Milyon+ Büdcə İdarəetməsi və Sertifikatlar</h4>
                   <p>Peşəkar bilik və bacarıqlarım qlobal miqyasda tanınan <strong className="text-white">Google, Meta, HubSpot Academy</strong> və <strong className="text-white">Digital Marketing Institute (DMI)</strong> tərəfindən verilmiş beynəlxalq sertifikatlarla təsdiqlənmişdir.</p>
-                  <p>Bu günə qədər <strong className="text-white">15-dən çox şirkət üçün</strong> rəqəmsal transformasiya, marketinq strategiyalarının hazırlanması, satış sistemlərinin qurulması və analitika əsaslı idarəetmə layihələrini uğurla həyata keçirmişəm. Ümumilikdə isə <strong className="text-white">2 milyon dollardan çox</strong> rəqəmsal reklam büdcəsini effektiv şəkildə idarə edərək şirkətlər üçün yüksək ROI (yatırımın geri dönüşü) təmin etmişəm.</p>
+                  <p>Bu günə qədər <strong className="text-white">15-dən çox şirkət üçün</strong> rəqəmsal transformasiya, marketinq strategiyalarının hazırlanması, satış sistemlərinin qurulması və analitika əsaslı idarəetmə layihələrini uğurla həyata keçirmişəm.</p>
+                  <div className="mt-4 p-4 rounded-xl border border-primary/20 bg-primary/10">
+                    <p className="font-semibold text-white">💰 2 Milyon Dollardan Çox Reklam Büdcəsi İdarəetməsi</p>
+                    <p className="text-xs text-white/70 mt-1">İndiyə qədər müxtəlif bizneslər və qlobal layihələr üçün ümumilikdə 2 milyon ABŞ dollarından çox rəqəmsal reklam büdcəsini effektiv şəkildə idarə edərək şirkətlər üçün yüksək ROI (yatırımın geri dönüşü) təmin etmişəm.</p>
+                  </div>
                 </div>
               </DarkCard>
             </motion.div>
