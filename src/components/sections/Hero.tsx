@@ -30,40 +30,20 @@ const heroSocials = [
 
 
 
-import { useState, useEffect } from 'react';
-
-const bgImages = [
-  'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop',
-];
-
 export default function Hero() {
   const { content } = useSiteContent();
   const { isOpen: isMenuOpen } = useMobileMenu();
-  const [currentBg, setCurrentBg] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentBg((prev) => (prev + 1) % bgImages.length);
-    }, 10000); // 10 saniyə
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section 
       className="relative min-h-screen overflow-hidden pt-20"
+      style={{
+        backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
     >
-      {/* Background Images Slider */}
-      {bgImages.map((img, index) => (
-        <div
-          key={img}
-          className={`absolute inset-0 bg-cover bg-center bg-fixed transition-opacity duration-[2000ms] ease-in-out ${
-            index === currentBg ? 'opacity-100' : 'opacity-0'
-          }`}
-          style={{ backgroundImage: `url('${img}')` }}
-        />
-      ))}
       {/* Deep Navy/Corporate Overlay for premium look */}
       <div className="absolute inset-0 bg-[#00193b]/50 mix-blend-multiply pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#000a1a]/70 via-[#00193b]/30 to-[#000000]/90 pointer-events-none" />
