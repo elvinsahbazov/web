@@ -4,6 +4,7 @@ import { ArrowRight, BarChart2, Target, TrendingUp } from 'lucide-react';
 import { revealContainer, revealItem, springSnappy, springSmooth } from '../../lib/motion';
 import { useMobileMenu } from '../../context/MobileMenuContext';
 import { useSiteContent } from '../../context/SiteContentContext';
+import { TypeAnimation } from 'react-type-animation';
 import AdsPlatformsTabs from './AdsPlatformsTabs';
 
 
@@ -61,11 +62,29 @@ export default function Hero() {
         >
           <motion.h1
             variants={revealItem}
-            className="font-satoshi mb-6 max-w-xl text-[clamp(2.75rem,7vw,5.5rem)] font-black leading-[0.92] tracking-[-0.04em] text-white"
+            className="font-satoshi mb-2 max-w-xl text-[clamp(2.75rem,7vw,5.5rem)] font-black leading-[0.92] tracking-[-0.04em] text-white"
           >
             ELVİN
             <span className="block bg-gradient-to-r from-slate-200 via-white to-slate-400 bg-clip-text text-transparent">{content.hero_title_2 || 'ŞAHBAZOV'}</span>
           </motion.h1>
+
+          <motion.div variants={revealItem} className="mb-6 min-h-[32px] text-lg font-bold text-[#14b8a6] md:text-xl">
+            <TypeAnimation
+              sequence={[
+                'Rəqəmsal Marketinq Eksperti',
+                2000,
+                'Süni İntellekt Mütəxəssisi',
+                2000,
+                'Satışları Artıran Strategiyalar',
+                2000,
+                'Biznes Avtomatlaşdırılması',
+                2000
+              ]}
+              wrapper="span"
+              speed={50}
+              repeat={Infinity}
+            />
+          </motion.div>
 
           <motion.div variants={revealItem} className="mb-6 flex flex-wrap gap-2">
             {[
