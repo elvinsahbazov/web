@@ -131,7 +131,7 @@ export default function AdsPlatformsTabs() {
               aria-selected={isActive}
               data-magnetic
               onClick={() => setActiveId(platform.id)}
-              onMouseEnter={() => setActiveId(platform.id)}
+              onPointerEnter={() => setActiveId(platform.id)}
               className={`cursor-pointer rounded-full border px-4 py-2 text-sm transition-all ${
                 isActive
                   ? 'font-semibold'
@@ -146,17 +146,18 @@ export default function AdsPlatformsTabs() {
       </div>
 
       <div
-        className="mt-6 rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-md"
+        className="mt-6 rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-md relative overflow-hidden"
         role="tabpanel"
         aria-live="polite"
       >
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
           <motion.div
             key={active.id}
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            exit={{ opacity: 0, y: -5, position: 'absolute' }}
+            transition={{ duration: 0.2 }}
+            className="w-full"
           >
             <p
               className="mb-2 text-xs font-semibold uppercase tracking-[0.2em]"
