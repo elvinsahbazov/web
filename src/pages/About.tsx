@@ -295,22 +295,32 @@ export default function About() {
                     Təhsil
                   </h3>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-white text-sm font-bold text-black">
-                    AÜ
-                  </div>
-                  <div>
-                    <p className="font-semibold text-white">Atatürk Universiteti</p>
-                    <p className="text-sm text-white/55">İqtisadiyyat Fakültəsi</p>
-                    <div className="mt-2 flex flex-wrap gap-2">
-                      {['İşletme', 'Ekonomi', 'Pazarlama'].map((t) => (
-                        <span
-                          key={t}
-                          className="rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-xs text-white/70"
-                        >
-                          {t}
+                <div className="flex flex-col gap-6">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-white text-sm font-bold text-black">
+                      AÜ
+                    </div>
+                    <div>
+                      <p className="font-semibold text-white">Atatürk Universiteti</p>
+                      <p className="text-sm text-white/55">İqtisadiyyat Fakültəsi</p>
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        <span className="rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-xs text-white/70">
+                          Biznesin Təşkili və İdarə Edilməsi
                         </span>
-                      ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-white text-sm font-bold text-black">
+                      SBS
+                    </div>
+                    <div>
+                      <p className="font-semibold text-white">Sabancı Business School</p>
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        <span className="rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-xs text-white/70">
+                          AI Automation and Digital Marketing
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
