@@ -63,7 +63,7 @@ export default function Hero() {
             variants={revealItem}
             className="mb-10 max-w-xl text-base font-medium leading-relaxed text-slate-400 md:text-lg"
           >
-            Rəqəmsal Marketinq & Süni İntellekt Avtomatlaşdırma Mütəxəssisi
+            {content.hero_subtitle || 'Digital Marketing and AI Automation Specialist. Şirkətlər üçün performansa əsaslanan reklam və avtomatlaşdırma strategiyaları.'}
           </motion.p>
 
           <motion.div variants={revealItem} className="mb-10 flex flex-wrap gap-2">

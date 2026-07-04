@@ -165,7 +165,7 @@ function AboutHero() {
                 <p className="font-black text-sm text-white" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>
                   Elvin Şahbazov
                 </p>
-                <p className="text-xs text-white/55">Marketing Director & AI Specialist</p>
+                <p className="text-xs text-white/55">Digital Marketing and AI Automation Specialist</p>
               </motion.div>
             </motion.div>
           </div>
