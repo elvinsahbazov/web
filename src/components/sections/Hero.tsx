@@ -134,7 +134,10 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          <motion.div variants={revealItem} className="mb-14 flex flex-wrap gap-3">
+          <motion.div variants={revealItem} className="mb-14 flex flex-nowrap items-center gap-2 md:gap-3 overflow-x-auto pb-4 -mx-6 px-6 md:mx-0 md:px-0" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <style>{`
+              .mb-14::-webkit-scrollbar { display: none; }
+            `}</style>
             {heroSocials.map((social) => (
               <a
                 key={social.label}
@@ -143,7 +146,7 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 aria-label={social.label}
                 data-magnetic
-                className={`social-icon-btn ${social.brand}`}
+                className={`social-icon-btn flex-shrink-0 ${social.brand}`}
               >
                 <i className={`${social.icon} text-base`} />
               </a>
