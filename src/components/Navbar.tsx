@@ -74,7 +74,7 @@ export default function Navbar() {
             isMinimal ? 'justify-end' : 'justify-between'
           }`}
         >
-          <div className={`flex flex-col gap-2 transition-all duration-500 ease-out ${
+          <div className={`flex flex-col gap-2 transition-all duration-500 ease-out min-w-0 ${
               isMinimal
                 ? 'pointer-events-none w-0 -translate-x-5 opacity-0'
                 : 'w-auto translate-x-0 opacity-100'
@@ -82,17 +82,17 @@ export default function Navbar() {
             <Link
               to="/"
               data-magnetic
-              className="overflow-hidden hover:opacity-90"
+              className="overflow-hidden hover:opacity-90 min-w-0"
             >
               <span
-                className="whitespace-nowrap text-sm font-bold tracking-widest text-white sm:text-base block"
+                className="truncate text-sm font-bold tracking-widest text-white sm:text-base block"
                 style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}
               >
                 ELVİN SHAHBAZOV <span className="text-gray-400 text-xs sm:text-sm font-medium tracking-normal hidden xl:inline ml-1">/ Digital Marketing and AI Automation Expert</span>
               </span>
             </Link>
             
-            <div className="flex flex-nowrap items-center gap-1.5 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div className="flex flex-nowrap items-center gap-1.5 overflow-x-auto pb-1 w-full" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
               <style>{`
                 .nav-socials::-webkit-scrollbar { display: none; }
               `}</style>
@@ -120,7 +120,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 md:gap-6">
+          <div className="flex items-center gap-3 md:gap-6 flex-shrink-0 ml-4">
             <a
               href="https://wa.me/994999550001"
               target="_blank"
