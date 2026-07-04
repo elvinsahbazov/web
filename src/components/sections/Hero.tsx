@@ -14,7 +14,7 @@ const stats = [
   { icon: BarChart2, value: '₼2M+', label: 'İdarə edilən büdcə' },
 ];
 
-const badges = ['ROI Focused', 'AI Expert', '7+ Platforma'];
+const badges = ['Daha Çox Satış', 'Sistemli Biznes', 'Şəffaf Hesabat', 'AI İnteqrasiyası'];
 
 const heroSocials = [
   { icon: 'fab fa-linkedin-in', href: 'https://www.linkedin.com/in/elvinsahbazov', label: 'LinkedIn', brand: 'social-hover-linkedin' },
