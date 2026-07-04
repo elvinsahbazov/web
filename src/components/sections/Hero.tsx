@@ -27,6 +27,55 @@ const heroSocials = [
   { icon: 'fas fa-envelope', href: 'mailto:elvinsahbazovv@gmail.com', label: 'Gmail', brand: 'social-hover-gmail' },
 ];
 
+const DigitalDataStream = () => {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.15]" style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)', maskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)' }}>
+      <style>
+        {`
+          @keyframes dataFlowDown {
+            0% { transform: translateY(-50%); }
+            100% { transform: translateY(0%); }
+          }
+          @keyframes dataFlowUp {
+            0% { transform: translateY(0%); }
+            100% { transform: translateY(-50%); }
+          }
+        `}
+      </style>
+      
+      {/* Left Stream */}
+      <div 
+        className="absolute left-2 md:left-[3%] top-0 flex flex-col gap-10 text-[9px] md:text-[10px] font-mono text-primary tracking-widest whitespace-nowrap"
+        style={{ animation: 'dataFlowDown 40s linear infinite' }}
+      >
+        {Array.from({ length: 40 }).map((_, i) => (
+          <div key={i} className="flex flex-col gap-10">
+            <span>AI_MODEL: ACTIVE</span>
+            <span>ROI_TRACKING: +45.2%</span>
+            <span>SYSTEM_STATUS: ONLINE</span>
+            <span>DATA_FLOW: OPTIMIZED</span>
+          </div>
+        ))}
+      </div>
+      
+      {/* Right Stream */}
+      <div 
+        className="absolute right-2 md:right-[3%] top-0 flex flex-col gap-10 text-[9px] md:text-[10px] font-mono text-purple-400 tracking-widest whitespace-nowrap text-right"
+        style={{ animation: 'dataFlowUp 50s linear infinite' }}
+      >
+        {Array.from({ length: 40 }).map((_, i) => (
+          <div key={i} className="flex flex-col gap-10">
+            <span>CONVERSION: 8.4%</span>
+            <span>CPA_TARGET: ACHIEVED</span>
+            <span>NEURAL_NET: SYNCED</span>
+            <span>PIXEL_FIRE: 2049</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default function Hero() {
   const { content } = useSiteContent();
   const { isOpen: isMenuOpen } = useMobileMenu();
@@ -64,6 +113,8 @@ export default function Hero() {
           className="absolute -right-[10%] bottom-[-10%] h-[600px] w-[600px] rounded-full bg-purple-600/20 blur-[130px]"
         />
       </div>
+
+      <DigitalDataStream />
 
 
       {/* TEXT LAYOUT (THE "CUBIX" CLEANLINESS) */}
