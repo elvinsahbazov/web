@@ -5,6 +5,7 @@ import { revealContainer, revealItem, springSnappy, springSmooth } from '../../l
 import { useMobileMenu } from '../../context/MobileMenuContext';
 import { useSiteContent } from '../../context/SiteContentContext';
 import AdsPlatformsTabs from './AdsPlatformsTabs';
+import ParticleGalaxy from '../ParticleGalaxy';
 
 
 
@@ -35,14 +36,15 @@ export default function Hero() {
     <section className="relative min-h-screen overflow-hidden bg-[#030712]">
       {/* Premium Aurora Ambient Glow */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute inset-0 opacity-60">
+        <ParticleGalaxy />
+        <div className="absolute inset-0 opacity-40">
           <div className="absolute top-[-10%] left-[-10%] h-[700px] w-[700px] animate-blob rounded-full bg-blue-600/40 blur-[100px]" />
           <div className="animation-delay-2000 absolute top-[10%] right-[-10%] h-[700px] w-[700px] animate-blob rounded-full bg-indigo-600/30 blur-[100px]" />
           <div className="animation-delay-4000 absolute bottom-[-20%] left-[20%] h-[800px] w-[800px] animate-blob rounded-full bg-purple-600/30 blur-[120px]" />
         </div>
-        <div className="vercel-grid absolute inset-0 opacity-[0.25]" />
+        <div className="vercel-grid absolute inset-0 opacity-[0.15]" />
         {/* Deep shadow vignette for focus */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#030712_100%)] opacity-90" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#030712_100%)] opacity-80" />
       </div>
 
       
