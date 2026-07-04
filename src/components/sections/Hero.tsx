@@ -29,7 +29,7 @@ const heroSocials = [
 
 const DigitalDataStream = () => {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.15]" style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)', maskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)' }}>
+    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40" style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)', maskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)' }}>
       <style>
         {`
           @keyframes dataFlowDown {
@@ -46,7 +46,7 @@ const DigitalDataStream = () => {
       {/* Left Stream */}
       <div 
         className="absolute left-2 md:left-[3%] top-0 flex flex-col gap-10 text-[9px] md:text-[10px] font-mono text-primary tracking-widest whitespace-nowrap"
-        style={{ animation: 'dataFlowDown 40s linear infinite' }}
+        style={{ animation: 'dataFlowDown 100s linear infinite' }}
       >
         {Array.from({ length: 40 }).map((_, i) => (
           <div key={i} className="flex flex-col gap-10">
@@ -61,7 +61,7 @@ const DigitalDataStream = () => {
       {/* Right Stream */}
       <div 
         className="absolute right-2 md:right-[3%] top-0 flex flex-col gap-10 text-[9px] md:text-[10px] font-mono text-purple-400 tracking-widest whitespace-nowrap text-right"
-        style={{ animation: 'dataFlowUp 50s linear infinite' }}
+        style={{ animation: 'dataFlowUp 120s linear infinite' }}
       >
         {Array.from({ length: 40 }).map((_, i) => (
           <div key={i} className="flex flex-col gap-10">
