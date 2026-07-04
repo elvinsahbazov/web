@@ -14,12 +14,7 @@ const stats = [
   { icon: BarChart2, value: '₼2M+', label: 'İdarə edilən büdcə' },
 ];
 
-const badges = [
-  { text: 'Daha Çox Satış', style: 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' },
-  { text: 'Sistemli Biznes', style: 'bg-sky-500/10 border-sky-500/20 text-sky-400' },
-  { text: 'Şəffaf Hesabat', style: 'bg-amber-500/10 border-amber-500/20 text-amber-400' },
-  { text: 'AI İnteqrasiyası', style: 'bg-fuchsia-500/10 border-fuchsia-500/20 text-fuchsia-400' }
-];
+
 
 const heroSocials = [
   { icon: 'fab fa-linkedin-in', href: 'https://www.linkedin.com/in/elvinsahbazov', label: 'LinkedIn', brand: 'social-hover-linkedin' },
@@ -95,12 +90,17 @@ export default function Hero() {
           </motion.h1>
 
           <motion.div variants={revealItem} className="mb-6 flex flex-wrap gap-2">
-            {badges.map((badge) => (
+            {[
+              'Daha Çox Satış', 
+              'Sistemli Biznes', 
+              'Şəffaf Hesabat', 
+              'AI İnteqrasiyası'
+            ].map((badge) => (
               <span
-                key={badge.text}
-                className={`backdrop-blur-xl border rounded-full px-4 py-1.5 text-xs font-bold tracking-wide ${badge.style}`}
+                key={badge}
+                className="backdrop-blur-md border border-white/10 bg-white/[0.03] rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide text-slate-300"
               >
-                {badge.text}
+                {badge}
               </span>
             ))}
           </motion.div>
