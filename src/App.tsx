@@ -24,7 +24,6 @@ function LayoutShell({ children }: { children: React.ReactNode }) {
   return <Layout>{children}</Layout>;
 }
 
-import CustomCursor from './components/ui/CustomCursor';
 import SmoothScroll from './components/ui/SmoothScroll';
 
 function AppRoutes() {
@@ -53,7 +52,6 @@ export default function App() {
     <BrowserRouter>
       <SmoothScroll>
         <SiteContentProvider>
-          <CustomCursor />
           <Preloader />
           <AIChatbot />
           <AppRoutes />
