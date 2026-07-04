@@ -1,5 +1,41 @@
 export const blogs = [
   {
+    id: 'data-driven-marketing-2m-budget',
+    title: 'Datalara Əsaslanan Marketinq: $2M+ Büdcə İdarəetməsindən Çıxarılan Dərslər',
+    slug: 'datalara-esaslanan-marketinq-2m-budce',
+    excerpt: '11 qlobal reklam platformasında fəaliyyət göstərərək 2 milyon dollardan çox büdcəni idarə etdiyim müddətdə öyrəndiyim marketinq və AI sirrləri.',
+    cover_image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=70&w=600',
+    published: true,
+    created_at: new Date().toISOString(),
+    content: `
+<h2>Rəqəmsal Marketinqdə Datalara Əsaslanan Qərarvermə: $2M+ Büdcə İdarəetməsindən Çıxarılan Dərslər</h2>
+<p>Marketinq büdcəsini idarə etmək sadəcə reklam kanallarına pul yatırmaq deyil, eyni zamanda o yatırımı ən yüksək ROI (İnvestisiya Gəlirliyi) ilə geri qaytarmaq sənətidir. 11-dən çox qlobal reklam platformasında fəaliyyət göstərərək 2 milyon dollardan çox büdcəni idarə etdiyim müddətdə biznes sahiblərinin ən çox etdiyi bir səhvlə qarşılaşmışam: <strong>Dataları (məlumatları) doğru oxumamaq.</strong></p>
+
+<h2>Büdcəni Yandıran Səhvlər Nələrdir?</h2>
+<p>Əgər siz bir reklam kampaniyasına 1000 AZN xərcləyib, onun hansı auditoriyadan, hansı cihazdan və hansı saatda daha çox satış gətirdiyini dəqiqliklə bilmirsinizsə, deməli, büdcənizin böyük bir qismi boşa gedir. Mən müştərilərimlə işləyərkən həmişə deyirəm: Marketinqdə "mənə elə gəlir ki" ifadəsinə yer yoxdur. Hər şey ölçülə biləndir.</p>
+
+<ul>
+  <li><strong>Səhv 1: Hər kəsə satmağa çalışmaq.</strong> Hədəf kütlənin çox geniş seçilməsi klikləri artırsa da, real alıcıların sayını aşağı salır.</li>
+  <li><strong>Səhv 2: Çoxkanallı analitikanın (Omnichannel Analytics) olmaması.</strong> Müştəri sizi Google-da tapıb, Instagram-da izləyib, sonda isə saytdan alış-veriş edə bilər. Bu zənciri qurmadıqda, siz hansı platformanın işə yaradığını bilmirsiniz.</li>
+  <li><strong>Səhv 3: Süni intellektdən (AI) istifadə etməmək.</strong> Günümüzdə A/B testlərindən tutmuş büdcənin optimallaşdırılmasına qədər hər bir xırda detal AI alqoritmlərinə həvalə edilməlidir.</li>
+</ul>
+
+<h2>Süni İntellektin Reklam İdarəetməsinə Təsiri</h2>
+<p>Süni intellekt avtomatlaşdırmasını rəqəmsal marketinq strategiyasına daxil etdikdə, kampaniyalar 24/7 özünü optimallaşdırır. İnsan beyni eyni anda milyonlarla məlumat nöqtəsini (data point) analiz edə bilməz, lakin AI bunu saniyələr içində edir. Hansı rəngli düymənin (button) daha çox klikləndiyini, istifadəçinin saytın hansı hissəsində çox qaldığını analiz edərək reklam büdcənizi ən effektiv şəkildə bölüşdürür.</p>
+
+<h2>Data Əsaslı Marketinq Necə Qurulmalıdır?</h2>
+<p>Mənim təqdim etdiyim xidmətlərin təməlində tam şəffaflıq dayanır. Bir layihəyə başladıqda aşağıdakı infrastrukturu mütləq qururam:</p>
+<ol>
+  <li><strong>Tam İzləmə (Tracking):</strong> Pixel, API Conversion və Google Analytics 4 (GA4) qurulumu vasitəsilə bütün müştəri addımlarının izlənməsi.</li>
+  <li><strong>Auditoriyanın Seqmentasiyası:</strong> Sadəcə "sayta girənlər" deyil, "səbətə məhsul atıb almayanlar", "qiymət səhifəsinə 2 dəfə girənlər" kimi spesifik kütlələrin ayrılması.</li>
+  <li><strong>Retargeting (Yenidən Hədəfləmə) Strategiyası:</strong> İsti müştərilərə xüsusi kampaniyalarla özünü xatırlatmaq, lakin bunu onları bezdirmədən, müəyyən tezliklərlə (Frequency Capping) etmək.</li>
+</ol>
+
+<h2>Nəticə</h2>
+<p>Data rəqəmsal marketinqin qanıdır. Əgər qərarlarınızı və büdcə bölgünüzü təxminlərə deyil, real və ölçülə bilən datalara əsaslandırarsınızsa, biznesinizin miqyasını böyütmək qaçınılmaz olacaq. Unutmayın ki, müasir biznes ekosistemində qalib gələn ən çox büdcə xərcləyən yox, ən ağıllı optimallaşdırma aparan tərəfdir.</p>
+    `
+  },
+  {
     id: 'ai-digital-marketing-expert-elvin-sahbazov',
     title: 'Azərbaycanda Rəqəmsal Marketinq və Süni İntellekt: Ekspert Yanaşması',
     slug: 'azerbaycanda-reqemsal-marketinq-ve-suni-intellekt-ekspert',
