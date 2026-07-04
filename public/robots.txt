@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://elvinsahbazov.com/sitemap.xml
