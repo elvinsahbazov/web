@@ -301,7 +301,7 @@ export default function Services() {
                       </div>
                     </div>
                     
-                    <h3 className="font-bold text-xl text-black mb-3" style={{ fontFamily: "Outfit, sans-serif" }}>{s.title}</h3>
+                    <h3 className="font-bold text-xl text-black mb-3" style={{ fontFamily: "Inter, sans-serif" }}>{s.title}</h3>
                     <p className="text-black/60 leading-relaxed text-sm">{s.desc}</p>
                     
                     <AnimatePresence>

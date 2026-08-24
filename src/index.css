@@ -27,7 +27,7 @@
   }
 
   body {
-    font-family: 'Outfit', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     background-color: var(--color-white);
     color: var(--color-black);
     line-height: 1.65;
@@ -41,7 +41,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', 'Inter', system-ui, sans-serif;
     letter-spacing: -0.03em;
     line-height: 1.05;
     color: var(--color-black);
@@ -293,7 +293,7 @@
   }
 
   .section-title {
-    font-family: 'Outfit', 'Inter', sans-serif;
+    font-family: 'Inter', 'Inter', sans-serif;
     @apply font-black text-[clamp(2.25rem,5.5vw,4rem)] text-white tracking-tight leading-[1.02];
   }
 
@@ -329,7 +329,7 @@
   }
 
   .display-title {
-    font-family: 'Outfit', 'Inter', sans-serif;
+    font-family: 'Inter', 'Inter', sans-serif;
     font-weight: 900;
     letter-spacing: -0.04em;
     line-height: 0.98;
@@ -532,12 +532,12 @@
   }
 
   .cubix-counter {
-    font-family: 'Outfit', 'Inter', sans-serif;
+    font-family: 'Inter', 'Inter', sans-serif;
     @apply font-black text-5xl md:text-6xl text-black tracking-tight;
   }
 
   .cubix-counter-white {
-    font-family: 'Outfit', 'Inter', sans-serif;
+    font-family: 'Inter', 'Inter', sans-serif;
     @apply font-black text-5xl md:text-6xl text-white tracking-tight;
   }
 }

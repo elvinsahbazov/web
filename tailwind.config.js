@@ -4,9 +4,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Outfit', 'system-ui', 'sans-serif'],
-        satoshi: ['Outfit', 'system-ui', 'sans-serif'],
-        poppins: ['Outfit', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        satoshi: ['Inter', 'system-ui', 'sans-serif'],
+        poppins: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         primary: {
