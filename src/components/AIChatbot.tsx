@@ -59,7 +59,7 @@ Mütləq və mütləq olaraq, HEC BİR HALDA Markdown formatından istifadə etm
 Siyahı (1., 2., 3. və s.) əvəzinə təbii cümlələr qur. Məsələn, "Bizim xidmətlərimizə bunlar daxildir: ..." şəklində yaz, alt-alta 1,2,3 yazma. Sadəcə düzmətn şəklində yaz. Çünki ekranda formatlama kodları xəta kimi görünür. Heç bir halda **, *, # istifadə etmə.
 
 ELVİN ŞAHBAZOV HAQQINDA MƏLUMAT:
-${content.about_text_1 || 'Rəqəmsal Marketinq və Suni intelektle avtomatlaşdirma Mutexesisidir.'}
+${content.about_text_1 || 'Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisidir.'}
 ${content.about_text_2 || 'Hazırda Baku Auto Mall-da Marketinq Direktoru və SMARTKOB-da Departament rəhbəridir.'}
 
 ƏLAQƏ MƏLUMATLARI:

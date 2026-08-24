@@ -480,7 +480,7 @@ export default function Services() {
                   <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
                   <div className="relative z-10 max-w-2xl mx-auto">
                     <h3 className="text-3xl md:text-4xl font-black text-white mb-6 font-satoshi">
-                      Rəqəmsal Marketinq və Suni intelektle avtomatlaşdirma Mutexesisi Olun
+                      Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi Olun
                     </h3>
                     <p className="text-blue-100 text-base md:text-lg mb-10 leading-relaxed">
                       Şirkətlərin bu gün axtardığı bacarıqları öyrənin və real layihələr, AI avtomatlaşdırması və mentorluqla gələcəyə hazır karyera qurun.
@@ -495,7 +495,7 @@ export default function Services() {
                     </div>
 
                     <div className="mt-12 text-blue-100/60 font-medium text-sm border-t border-white/10 pt-6">
-                      Elvin Şahbazov / Rəqəmsal Marketinq və Suni intelektle avtomatlaşdirma Mutexesisi
+                      Elvin Şahbazov / Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi
                     </div>
                   </div>
                 </motion.div>

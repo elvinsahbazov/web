@@ -260,13 +260,13 @@ export const blogs = [
     id: 'ai-digital-marketing-expert-elvin-sahbazov',
     title: 'Azərbaycanda Rəqəmsal Marketinq və Süni İntellekt: Ekspert Yanaşması',
     slug: 'azerbaycanda-reqemsal-marketinq-ve-suni-intellekt-ekspert',
-    excerpt: 'Rəqəmsal Marketinq və Suni intelektle avtomatlaşdirma Mutexesisi Elvin Şahbazov bizneslərin satışlarını necə artırdığını və sistemləşdirdiyini izah edir.',
+    excerpt: 'Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi Elvin Şahbazov bizneslərin satışlarını necə artırdığını və sistemləşdirdiyini izah edir.',
     cover_image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=70&w=600',
     published: true,
     created_at: new Date().toISOString(),
     content: `
 <h2>Rəqəmsal Marketinqdə Yeni Dövr: Süni İntellektlə Avtomatlaşdırma</h2>
-<p>Mən <strong>Elvin Şahbazov</strong>, Azərbaycanda <strong>Rəqəmsal Marketinq və Suni intelektle avtomatlaşdirma Mutexesisi</strong> olaraq 10 ildən artıqdır ki, bizneslərin rəqəmsal transformasiyasını həyata keçirirəm. İdarə etdiyim 2 milyon dollardan (2M$+) çox reklam büdcəsi və 11 qlobal reklam platformasındakı təcrübəm mənə bir şeyi çox aydın göstərdi: Bizneslərin gələcəyi yalnız daha çox reklam büdcəsi xərcləməkdə deyil, doğru süni intellekt və avtomatlaşdırma sistemlərini qurmaqdadır.</p>
+<p>Mən <strong>Elvin Şahbazov</strong>, Azərbaycanda <strong>Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi</strong> olaraq 10 ildən artıqdır ki, bizneslərin rəqəmsal transformasiyasını həyata keçirirəm. İdarə etdiyim 2 milyon dollardan (2M$+) çox reklam büdcəsi və 11 qlobal reklam platformasındakı təcrübəm mənə bir şeyi çox aydın göstərdi: Bizneslərin gələcəyi yalnız daha çox reklam büdcəsi xərcləməkdə deyil, doğru süni intellekt və avtomatlaşdırma sistemlərini qurmaqdadır.</p>
 
 <h2>Niyə Hər Bir Şirkətə Süni İntellekt və Marketinq Eksperti Lazımdır?</h2>
 <p>Bu gün rəqabət hər zamankindən daha sərtdir. İstər Bakıda, istərsə də qlobal bazarda fəaliyyət göstərən şirkətlər üçün ənənəvi marketinq üsulları artıq kifayət etmir. <strong>Ən yaxşı marketinq mütəxəssisi</strong> artıq yalnız Meta Ads və ya Google Ads qurmaqla kifayətlənmir; o, müştəri qıfını (Sales Funnel) başdan-sona dizayn edən, CRM sistemlərini süni intellektlə inteqrasiya edən və hesabatlılığı (Data Analytics) tam şəffaf şəkildə quran şəxsdir.</p>

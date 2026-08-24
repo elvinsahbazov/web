@@ -94,7 +94,7 @@ export default function MobileMenu() {
               className="absolute bottom-0 left-0 right-0 border-t border-white/5 px-6 py-8 md:px-12"
             >
               <p className="mb-4 text-center text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 md:text-xs">
-                Rəqəmsal Marketinq və Suni intelektle avtomatlaşdirma Mutexesisi
+                Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi
               </p>
               <div className="flex items-center justify-center gap-8">
                 {menuSocials.map((social) => (

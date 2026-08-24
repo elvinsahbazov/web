@@ -235,7 +235,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="mb-8 text-sm leading-relaxed text-slate-400">
-              Rəqəmsal Marketinq və Suni intelektle avtomatlaşdirma Mutexesisi
+              Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi
             </p>
             <div className="flex gap-2 flex-wrap mb-8">
               {socials.map((s) => (
@@ -296,7 +296,7 @@ export default function Footer() {
 
         <div className="border-t border-white/5 mt-16 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/50 text-xs">{content.footer_copyright || `© ${new Date().getFullYear()} Elvin Şahbazov. Bütün hüquqlar qorunur.`}</p>
-          <p className="text-sm text-slate-400">Rəqəmsal Marketinq və Suni intelektle avtomatlaşdirma Mutexesisi</p>
+          <p className="text-sm text-slate-400">Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi</p>
         </div>
       </Container>
     </footer>
