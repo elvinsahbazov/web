@@ -387,37 +387,40 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
               <div className="lg:col-span-8 space-y-8">
                 
                 {/* 1. Presets */}
-                <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
-                      <Filter size={20} />
+                <div className="bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-6 md:p-10 shadow-xl shadow-slate-200/40 border border-white relative overflow-hidden mb-8">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl pointer-events-none -mr-32 -mt-32"></div>
+                  <div className="flex flex-col md:flex-row md:items-center gap-6 mb-8 relative z-10">
+                    <div className="flex items-center gap-4 flex-1">
+                      <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-700 text-white rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-blue-500/30">
+                        <Filter size={24} />
+                      </div>
+                      <div>
+                        <h2 className="text-2xl font-black text-slate-900 tracking-tight">Sənaye Şablonları</h2>
+                        <p className="text-sm text-slate-500 font-medium mt-1">Biznes növünüzü seçin, ortalama ROAS dəyərləri avtomatik yüklənsin.</p>
+                      </div>
                     </div>
-                    <div>
-                      <h2 className="text-xl font-bold text-slate-900">Sənaye Şablonları</h2>
-                      <p className="text-sm text-slate-500">Biznes növünüzü seçin, ortalama ROAS dəyərləri avtomatik yüklənsin.</p>
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {Object.keys(PRESETS).map(p => (
-                      <button
-                        key={p}
-                        onClick={() => loadPreset(p)}
-                        className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                          state.presetName === p
-                            ? 'bg-blue-600 text-white shadow-md'
-                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                        }`}
+                    
+                    <div className="relative md:w-72 shrink-0">
+                      <select
+                        value={state.presetName}
+                        onChange={(e) => loadPreset(e.target.value)}
+                        className="w-full appearance-none bg-slate-50 border-2 border-slate-200 rounded-2xl px-5 py-4 text-lg font-bold text-slate-900 cursor-pointer focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all shadow-inner"
                       >
-                        {p}
-                      </button>
-                    ))}
+                        {Object.keys(PRESETS).map(p => (
+                          <option key={p} value={p}>{p}</option>
+                        ))}
+                      </select>
+                      <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-blue-500 bg-white rounded-full p-1 shadow-sm border border-slate-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
                 {/* 2. Basic Data */}
-                <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200">
+                <div className="bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-6 md:p-10 shadow-xl shadow-slate-200/40 border border-white relative overflow-hidden">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                    <div className="w-12 h-12 bg-blue-50/50 text-blue-600 rounded-2xl shadow-sm border border-blue-100/50 flex items-center justify-center shrink-0">
                       <Banknote size={20} />
                     </div>
                     <div>
@@ -431,7 +434,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                       <label className="block text-sm font-bold text-slate-700 mb-2">Orta Satış Qiyməti (AOV) $</label>
                       <input
                         type="number"
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                        className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-4 py-3.5 text-lg font-bold text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all shadow-inner"
                         value={state.productPrice === 0 ? '' : state.productPrice}
                         onChange={(e) => setState(s => ({ ...s, productPrice: Number(e.target.value) }))}
                         onFocus={handleFocus}
@@ -445,7 +448,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                       </label>
                       <input
                         type="number"
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                        className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-4 py-3.5 text-lg font-bold text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all shadow-inner"
                         value={state.ltvFrequency || ''}
                         onChange={(e) => setState(s => ({ ...s, ltvFrequency: Number(e.target.value) }))}
                         onFocus={handleFocus}
@@ -470,7 +473,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                       <label className="block text-sm font-bold text-slate-700 mb-2">Məhsulun Maya Dəyəri (COGS) $</label>
                       <input
                         type="number"
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                        className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-4 py-3.5 text-lg font-bold text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all shadow-inner"
                         value={state.cogs === 0 ? '' : state.cogs}
                         onChange={(e) => setState(s => ({ ...s, cogs: Number(e.target.value) }))}
                         onFocus={handleFocus}
@@ -484,7 +487,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                       </label>
                       <input
                         type="number"
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-lg font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                        className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-4 py-3.5 text-lg font-bold text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all shadow-inner"
                         value={state.fixedCosts === 0 ? '' : state.fixedCosts}
                         onChange={(e) => setState(s => ({ ...s, fixedCosts: Number(e.target.value) }))}
                         onFocus={handleFocus}
@@ -503,7 +506,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                 {/* 3. Channels */}
                 <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200 overflow-hidden">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                    <div className="w-12 h-12 bg-blue-50/50 text-blue-600 rounded-2xl shadow-sm border border-blue-100/50 flex items-center justify-center shrink-0">
                       <Target size={20} />
                     </div>
                     <div>
@@ -713,7 +716,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
               <div className="lg:col-span-6 space-y-6">
                 
                 {/* 1. Məhsul Qiyməti (Shared) */}
-                <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200">
+                <div className="bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-6 md:p-10 shadow-xl shadow-slate-200/40 border border-white relative overflow-hidden">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center shrink-0">
                       <Banknote size={20} />
@@ -737,7 +740,7 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
                 </div>
 
                 {/* 2. Forecast Variables */}
-                <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200">
+                <div className="bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-6 md:p-10 shadow-xl shadow-slate-200/40 border border-white relative overflow-hidden">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center shrink-0">
                       <Target size={20} />
