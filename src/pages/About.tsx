@@ -156,17 +156,7 @@ function AboutHero() {
                 Digital Marketing & AI Automation Expert. 11 qlobal reklam platformasında peşəkar təcrübə və 2 milyon dollardan çox idarə olunan reklam büdcəsi.
               </motion.p>
 
-              <motion.div
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.56, duration: 0.65 }}
-                className="inline-flex flex-col gap-1 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 backdrop-blur-sm"
-              >
-                <p className="font-black text-sm text-white" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>
-                  Elvin Şahbazov
-                </p>
-                <p className="text-xs text-white/55">Digital Marketing and AI Automation Expert</p>
-              </motion.div>
+
             </motion.div>
           </div>
 
