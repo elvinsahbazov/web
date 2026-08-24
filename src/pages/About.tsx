@@ -218,13 +218,15 @@ export default function About() {
                   </h3>
                 </div>
                 <div className="space-y-4 text-sm leading-relaxed text-white/75">
-                  <p>Mən <strong className="text-white">Elvin Şahbazov</strong> – rəqəmsal marketinq, süni intellektlə avtomatlaşdırma, biznes inkişafı və rəqəmsal idarəetmə sistemləri üzrə fəaliyyət göstərən mütəxəssis, təlimçi və rəhbərəm.</p>
+                  <p>Mən <strong className="text-white">Elvin Şahbazov</strong> — rəqəmsal marketinq, süni intellektlə avtomatlaşdırma və biznes inkişafı üzrə mütəxəssisəm.</p>
 
-                  <p>Hazırda fəaliyyətimi Qafqazın ən böyük Avtomobil Mərkəzi olan <strong className="text-white">Baku Auto Mall-da Marketinq Direktoru</strong>, eyni zamanda <strong className="text-white">SMARTKOB – Rəqəmsal İdarəetmə Mərkəzində Marketinq və Biznes İnkişafı Departamentinin Rəhbəri</strong> kimi davam etdirirəm.</p>
+                  <p>Hazırda fəaliyyətimi Qafqazın ən böyük Avtomobil Mərkəzi olan <strong className="text-white">Baku Auto Mall-da Marketinq Direktoru</strong>, eyni zamanda <strong className="text-white">SMARTKOB Rəqəmsal İdarəetmə Mərkəzində Marketinq və Biznes İnkişafı Departamentinin Rəhbəri</strong> kimi davam etdirirəm.</p>
 
-                  <p>Mən eyni zamanda <strong className="text-white">smartrestoran.cloud</strong> və <strong className="text-white">dadmaarket.shop</strong> platformalarının yaradıcısıyam. Bu platformalar mənim bizneslərin anbardan maliyyəyə qədər (smart restoran anlayışında) vahid, tam avtomatlaşdırılması istiqamətində gördüyüm əsas layihələrdəndir.</p>
+                  <p>Bununla yanaşı, müasir bizneslərin rəqəmsal transformasiyasına xidmət edən iki böyük layihənin təsisçisi və baş memarıyam. Bunlar tamhüquqlu ERP sistemi olaraq fəaliyyət göstərən <strong className="text-white">Smart Restoran</strong> (smartrestoran.cloud) və genişmiqyaslı elektron ticarət ekosistemi olan <strong className="text-white">DadMarket</strong> (dadmarket.shop) Marketpleysidir. Bu layihələr sadəcə biznes ideyası deyil; texniki arxitekturasından tutmuş tam fəaliyyətinə qədər şəxsən layihələndirib sıfırdan ərsəyə gətirdiyim mürəkkəb rəqəmsal sistemlərdir.</p>
 
-                  <p>Marketinq sahəsində məqsədim yalnız reklam kampaniyaları idarə etmək deyil. Əsas hədəfim bizneslər üçün ölçülə bilən nəticələrə əsaslanan, davamlı və tam idarə olunan rəqəmsal marketinq sistemləri qurmaqdır.</p>
+                  <p>Burada əsas məqsədim təkcə müəssisələrin anbardan maliyyəyə qədər olan daxili əməliyyatlarını avtomatlaşdırıb mərkəzləşdirmək deyil, həm də bizneslərin öz müştərilərinə daha rahat, birbaşa və effektiv şəkildə çatması üçün güclü bir infrastruktur yaratmaqdır.</p>
+
+                  <p>Marketinq sahəsində hədəfim yalnız reklam kampaniyaları idarə etmək deyil; bizneslər üçün ölçülə bilən nəticələrə əsaslanan, davamlı və müstəqil işləyən sistemlər qurmaqdır.</p>
 
                   <h4 className="text-base font-bold text-white mt-6 mb-2">Qlobal Təcrübə və Beynəlxalq Reklam Platformaları</h4>
                   <p>Fəaliyyət coğrafiyam təkcə yerli bazarla məhdudlaşmır. Fərqli mədəniyyətlərə və bazar dinamikalarına malik olan bir çox ölkədə şirkətlərin rəqəmsal marketinq fəaliyyətlərini uğurla həyata keçirmişəm. Uğurlu reklam və marketinq kampaniyaları idarə etdiyim ölkələr sırasına aşağıdakılar daxildir:</p>
