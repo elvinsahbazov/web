@@ -7,7 +7,7 @@ const apiKey = import.meta.env.VITE_OPENAI_API_KEY || '';
 
 export default function UnifiedContactWidget() {
   const { content } = useSiteContent();
-  
+
   const [siteData, setSiteData] = useState({
     services: '',
     blogs: '',
@@ -59,7 +59,7 @@ Mütləq və mütləq olaraq, HEC BİR HALDA Markdown formatından istifadə etm
 Siyahı (1., 2., 3. və s.) əvəzinə təbii cümlələr qur. Məsələn, "Bizim xidmətlərimizə bunlar daxildir: ..." şəklində yaz, alt-alta 1,2,3 yazma. Sadəcə düzmətn şəklində yaz. Çünki ekranda formatlama kodları xəta kimi görünür. Heç bir halda **, *, # istifadə etmə.
 
 ELVİN ŞAHBAZOV HAQQINDA MƏLUMAT:
-${content.about_text_1 || 'Rəqəmsal marketinq, performans reklamları (Meta & Google Ads) və bizneslərin süni intellektlə (AI) avtomatlaşdırılması üzrə peşəkar mütəxəssisdir.'}
+${content.about_text_1 || 'Rəqəmsal Marketinq və Suni intelektle avtomatlaşdirma Mutexesisidir.'}
 ${content.about_text_2 || 'Hazırda Baku Auto Mall-da Marketinq Direktoru və SMARTKOB-da Departament rəhbəridir.'}
 
 ƏLAQƏ MƏLUMATLARI:
@@ -85,7 +85,7 @@ DİQQƏT EDİLƏSİ NÜANS:
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
-  
+
   const [messages, setMessages] = useState<{ role: 'user' | 'assistant'; text: string }[]>([
     { role: 'assistant', text: 'Salam! Mən Elvin Şahbazovun süni intellekt asistentiyəm. Sizə necə kömək edə bilərəm? 😊' }
   ]);
@@ -144,7 +144,7 @@ DİQQƏT EDİLƏSİ NÜANS:
 
       const data = await response.json();
       let responseText = data.choices[0].message.content;
-      
+
       // Clean up markdown bold/italic tags just in case AI still outputs them
       responseText = responseText.replace(/\*\*/g, '');
       responseText = responseText.replace(/\*/g, '');
@@ -192,7 +192,7 @@ DİQQƏT EDİLƏSİ NÜANS:
                   <p className="text-[10px] text-blue-100/90 font-medium tracking-wider uppercase">Onlayn</p>
                 </div>
               </div>
-              <button 
+              <button
                 onClick={handleCloseChat}
                 className="w-8 h-8 rounded-full bg-black/10 hover:bg-black/30 flex items-center justify-center transition-colors border border-white/10"
               >
@@ -203,17 +203,16 @@ DİQQƏT EDİLƏSİ NÜANS:
             {/* Messages Body */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#F8FAFC]">
               {messages.map((msg, i) => (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  key={i} 
+                  key={i}
                   className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div className={`max-w-[85%] rounded-2xl p-3.5 text-sm leading-relaxed shadow-sm whitespace-pre-wrap ${
-                    msg.role === 'user' 
-                    ? 'bg-blue-600 text-white rounded-br-none' 
-                    : 'bg-white text-black/80 border border-black/5 rounded-bl-none'
-                  }`}>
+                  <div className={`max-w-[85%] rounded-2xl p-3.5 text-sm leading-relaxed shadow-sm whitespace-pre-wrap ${msg.role === 'user'
+                      ? 'bg-blue-600 text-white rounded-br-none'
+                      : 'bg-white text-black/80 border border-black/5 rounded-bl-none'
+                    }`}>
                     {msg.text}
                   </div>
                 </motion.div>
@@ -240,7 +239,7 @@ DİQQƏT EDİLƏSİ NÜANS:
                   placeholder="Sualınızı yazın..."
                   className="w-full bg-[#F1F5F9] border border-black/5 rounded-full pl-5 pr-14 py-3.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all text-black/80 placeholder-black/40"
                 />
-                <button 
+                <button
                   type="submit"
                   disabled={!input.trim()}
                   className="absolute right-1.5 w-10 h-10 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 disabled:shadow-none shadow-md shadow-blue-500/30 text-white rounded-full flex items-center justify-center transition-all"
@@ -259,7 +258,7 @@ DİQQƏT EDİLƏSİ NÜANS:
       {/* --- Speed Dial Options --- */}
       <AnimatePresence>
         {menuOpen && !chatOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.8 }}
@@ -310,11 +309,10 @@ DİQQƏT EDİLƏSİ NÜANS:
             setMenuOpen(!menuOpen);
           }
         }}
-        className={`relative flex items-center justify-center w-14 h-14 rounded-full shadow-2xl transition-all duration-300 ${
-          menuOpen || chatOpen 
-          ? 'bg-black text-white shadow-black/30' 
-          : 'bg-primary text-white shadow-primary/40'
-        }`}
+        className={`relative flex items-center justify-center w-14 h-14 rounded-full shadow-2xl transition-all duration-300 ${menuOpen || chatOpen
+            ? 'bg-black text-white shadow-black/30'
+            : 'bg-primary text-white shadow-primary/40'
+          }`}
       >
         {!(menuOpen || chatOpen) && (
           <>

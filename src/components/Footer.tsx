@@ -94,7 +94,7 @@ function ContactForm() {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
     setStatus('loading');
-    
+
     // Web3Forms integration
     const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
     if (accessKey) {
@@ -235,7 +235,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="mb-8 text-sm leading-relaxed text-slate-400">
-              Rəqəmsal Marketinq & Süni İntellekt Avtomatlaşdırma Mütəxəssisi
+              Rəqəmsal Marketinq və Suni intelektle avtomatlaşdirma Mutexesisi
             </p>
             <div className="flex gap-2 flex-wrap mb-8">
               {socials.map((s) => (
@@ -296,7 +296,7 @@ export default function Footer() {
 
         <div className="border-t border-white/5 mt-16 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/50 text-xs">{content.footer_copyright || `© ${new Date().getFullYear()} Elvin Şahbazov. Bütün hüquqlar qorunur.`}</p>
-          <p className="text-sm text-slate-400">Rəqəmsal Marketinq & Süni İntellekt Avtomatlaşdırma Mütəxəssisi</p>
+          <p className="text-sm text-slate-400">Rəqəmsal Marketinq və Suni intelektle avtomatlaşdirma Mutexesisi</p>
         </div>
       </Container>
     </footer>

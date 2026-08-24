@@ -76,9 +76,8 @@ export default function MobileMenu() {
                       to={link.path}
                       onClick={close}
                       data-magnetic
-                      className={`font-satoshi block text-4xl font-bold transition-all duration-300 hover:translate-x-4 hover:text-blue-500 md:text-6xl ${
-                        isActive ? 'text-blue-500' : 'text-white'
-                      }`}
+                      className={`font-satoshi block text-4xl font-bold transition-all duration-300 hover:translate-x-4 hover:text-blue-500 md:text-6xl ${isActive ? 'text-blue-500' : 'text-white'
+                        }`}
                     >
                       {link.label}
                     </Link>
@@ -95,7 +94,7 @@ export default function MobileMenu() {
               className="absolute bottom-0 left-0 right-0 border-t border-white/5 px-6 py-8 md:px-12"
             >
               <p className="mb-4 text-center text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 md:text-xs">
-                Rəqəmsal Marketinq & Süni İntellekt Avtomatlaşdırma Mütəxəssisi
+                Rəqəmsal Marketinq və Suni intelektle avtomatlaşdirma Mutexesisi
               </p>
               <div className="flex items-center justify-center gap-8">
                 {menuSocials.map((social) => (

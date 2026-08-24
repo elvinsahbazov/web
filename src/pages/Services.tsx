@@ -1,4 +1,4 @@
- 
+
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
@@ -214,14 +214,14 @@ export default function Services() {
     fetchServices();
   }, []);
 
-  const displayServices = dbServices.length > 0 
+  const displayServices = dbServices.length > 0
     ? dbServices.map(s => ({
-        icon: s.icon || 'fas fa-star',
-        title: s.title,
-        color: C.blue,
-        desc: s.description,
-        features: ['Xüsusi strategiya', 'Məlumata əsaslanan', 'Daimi nəzarət'] // Fallback features if not in DB schema yet
-      }))
+      icon: s.icon || 'fas fa-star',
+      title: s.title,
+      color: C.blue,
+      desc: s.description,
+      features: ['Xüsusi strategiya', 'Məlumata əsaslanan', 'Daimi nəzarət'] // Fallback features if not in DB schema yet
+    }))
     : services;
 
   const scrollTo = (id: string) => {
@@ -246,11 +246,10 @@ export default function Services() {
             <button
               key={n.id}
               onClick={() => scrollTo(n.id)}
-              className={`flex-none px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition-all duration-300 ${
-                active === n.id
-                  ? 'bg-primary text-white'
-                  : 'bg-[#F8FAFC] text-black/55 hover:bg-primary/8 hover:text-primary'
-              }`}
+              className={`flex-none px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition-all duration-300 ${active === n.id
+                ? 'bg-primary text-white'
+                : 'bg-[#F8FAFC] text-black/55 hover:bg-primary/8 hover:text-primary'
+                }`}
             >
               {n.label}
             </button>
@@ -267,11 +266,10 @@ export default function Services() {
                 <button
                   key={n.id}
                   onClick={() => scrollTo(n.id)}
-                  className={`w-full px-5 py-3 rounded-2xl text-sm font-bold text-left tracking-wide transition-all duration-300 ${
-                    active === n.id
-                      ? 'bg-primary text-white shadow-blue'
-                      : 'text-black/55 bg-[#F8FAFC] hover:bg-primary/8 hover:text-primary'
-                  }`}
+                  className={`w-full px-5 py-3 rounded-2xl text-sm font-bold text-left tracking-wide transition-all duration-300 ${active === n.id
+                    ? 'bg-primary text-white shadow-blue'
+                    : 'text-black/55 bg-[#F8FAFC] hover:bg-primary/8 hover:text-primary'
+                    }`}
                 >
                   {n.label}
                 </button>
@@ -416,7 +414,7 @@ export default function Services() {
                   <p className="text-white/60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
                     {content.services_course_subtitle || 'Rəqəmsal Marketinq və Süni İntellektlə Avtomatlaşdırmanı real layihələr, mentorluq və beynəlxalq səviyyəli bacarıqlarla öyrənin.'}
                   </p>
-                  
+
                   <div className="flex flex-wrap justify-center gap-3 mt-8">
                     {['18 Modul', 'Real Layihələr', 'Süni İntellektlə Avtomatlaşdırma', 'Karyera Dəstəyi', 'Sertifikat'].map((badge) => (
                       <span key={badge} className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white/80 text-xs font-medium backdrop-blur-sm">
@@ -446,7 +444,7 @@ export default function Services() {
                           <span className="text-3xl font-black text-white/10 group-hover:text-blue-500/30 transition-colors duration-500 font-satoshi">
                             {m.num}
                           </span>
-                          <motion.div 
+                          <motion.div
                             variants={{
                               hover: { x: 5, opacity: 1 }
                             }}
@@ -456,11 +454,11 @@ export default function Services() {
                             <i className="fas fa-arrow-right text-sm" />
                           </motion.div>
                         </div>
-                        
+
                         <h4 className="text-lg font-bold text-white mb-4 leading-snug font-satoshi">
                           {m.title}
                         </h4>
-                        
+
                         <div className="h-0 opacity-0 overflow-hidden group-hover:h-auto group-hover:opacity-100 transition-all duration-500 ease-in-out">
                           <ul className="space-y-2 mt-4 pt-4 border-t border-white/10">
                             {m.learn.map((l) => (
@@ -530,7 +528,7 @@ export default function Services() {
                   <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
                   <div className="relative z-10 max-w-2xl mx-auto">
                     <h3 className="text-3xl md:text-4xl font-black text-white mb-6 font-satoshi">
-                      Rəqəmsal Marketinq & Süni İntellektlə Avtomatlaşdırma Mütəxəssisi Olun
+                      Rəqəmsal Marketinq və Suni intelektle avtomatlaşdirma Mutexesisi Olun
                     </h3>
                     <p className="text-blue-100 text-base md:text-lg mb-10 leading-relaxed">
                       Şirkətlərin bu gün axtardığı bacarıqları öyrənin və real layihələr, AI avtomatlaşdırması və mentorluqla gələcəyə hazır karyera qurun.
@@ -543,9 +541,9 @@ export default function Services() {
                         <i className="fas fa-file-pdf mr-2" /> Sillabusu Yüklə
                       </a>
                     </div>
-                    
+
                     <div className="mt-12 text-blue-100/60 font-medium text-sm border-t border-white/10 pt-6">
-                      Elvin Şahbazov / Rəqəmsal Marketinq və Süni İntellektlə Avtomatlaşdırma Mütəxəssisi
+                      Elvin Şahbazov / Rəqəmsal Marketinq və Suni intelektle avtomatlaşdirma Mutexesisi
                     </div>
                   </div>
                 </motion.div>

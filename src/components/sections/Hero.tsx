@@ -35,7 +35,7 @@ export default function Hero() {
   const { isOpen: isMenuOpen } = useMobileMenu();
 
   return (
-    <section 
+    <section
       className="relative min-h-screen overflow-hidden pt-20 bg-cover bg-center bg-scroll md:bg-fixed"
       style={{
         backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')`
@@ -69,14 +69,14 @@ export default function Hero() {
             variants={revealItem}
             className="mb-10 max-w-xl text-base font-medium leading-relaxed text-slate-400 md:text-lg min-h-[72px]"
           >
-            <TypewriterText text={content.hero_subtitle || 'Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi. Şirkətlər üçün performansa əsaslanan Marketinq və avtomatlaşdırma strategiyaları.'} speed={25} delay={400} />
+            <TypewriterText text={content.hero_subtitle || 'Rəqəmsal Marketinq və Suni intelektle avtomatlaşdirma Mutexesisi. Şirkətlər üçün performansa əsaslanan Marketinq və avtomatlaşdırma strategiyaları.'} speed={25} delay={400} />
           </motion.p>
 
           <motion.div variants={revealItem} className="mb-6 flex flex-wrap gap-2">
             {[
-              'Daha Çox Satış', 
-              'Sistemli Biznes', 
-              'Şəffaf Hesabat', 
+              'Daha Çox Satış',
+              'Sistemli Biznes',
+              'Şəffaf Hesabat',
               'AI İnteqrasiyası'
             ].map((badge) => (
               <span
@@ -139,7 +139,7 @@ export default function Hero() {
               className="pointer-events-none absolute -inset-3 rounded-3xl bg-primary/10 blur-2xl opacity-60"
               aria-hidden="true"
             />
-            <div 
+            <div
               className="relative rounded-2xl border border-white/10 border-l-4 border-l-primary p-6 shadow-2xl md:p-8"
               style={{ backgroundColor: 'rgba(255, 255, 255, 0.03)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
             >
@@ -175,7 +175,7 @@ export default function Hero() {
           <div className="relative w-full max-w-[380px] md:max-w-[480px]">
             {/* Glowing backdrop */}
             <div className="absolute -inset-4 rounded-[40px] bg-gradient-to-br from-primary/30 to-purple-500/20 blur-2xl opacity-50 animate-pulse" />
-            
+
             {/* Image Container with Glassmorphism Border */}
             <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur-sm">
               <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-b from-white/5 to-transparent">
@@ -183,7 +183,7 @@ export default function Hero() {
                   src={content.hero_image || 'https://drive.google.com/thumbnail?id=1YmSQizY-GCTKCiPg6UD2PPFOG0d_ap2o&sz=w1000'}
                   alt="Elvin Şahbazov"
                   className="w-full object-cover"
-                  style={{ 
+                  style={{
                     WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
                     maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
                   }}

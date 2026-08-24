@@ -153,7 +153,7 @@ function AboutHero() {
                 transition={{ delay: 0.48, duration: 0.65 }}
                 className="mb-3 max-w-lg text-base font-medium leading-relaxed text-white/90 md:text-xl"
               >
-                Digital Marketing & AI Automation Specialist. 11 qlobal reklam platformasında peşəkar təcrübə və 2 milyon dollardan çox idarə olunan reklam büdcəsi.
+                Digital Marketing & AI Automation Expert. 11 qlobal reklam platformasında peşəkar təcrübə və 2 milyon dollardan çox idarə olunan reklam büdcəsi.
               </motion.p>
 
               <motion.div
@@ -165,7 +165,7 @@ function AboutHero() {
                 <p className="font-black text-sm text-white" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>
                   Elvin Şahbazov
                 </p>
-                <p className="text-xs text-white/55">Digital Marketing and AI Automation Specialist</p>
+                <p className="text-xs text-white/55">Digital Marketing and AI Automation Expert</p>
               </motion.div>
             </motion.div>
           </div>
@@ -222,11 +222,13 @@ export default function About() {
 
                   <p>Hazırda fəaliyyətimi Qafqazın ən böyük Avtomobil Mərkəzi olan <strong className="text-white">Baku Auto Mall-da Marketinq Direktoru</strong>, eyni zamanda <strong className="text-white">SMARTKOB – Rəqəmsal İdarəetmə Mərkəzində Marketinq və Biznes İnkişafı Departamentinin Rəhbəri</strong> kimi davam etdirirəm.</p>
 
+                  <p>Mən eyni zamanda <strong className="text-white">smartrestoran.cloud</strong> və <strong className="text-white">dadmaarket.shop</strong> platformalarının yaradıcısıyam. Bu platformalar mənim bizneslərin anbardan maliyyəyə qədər (smart restoran anlayışında) vahid, tam avtomatlaşdırılması istiqamətində gördüyüm əsas layihələrdəndir.</p>
+
                   <p>Marketinq sahəsində məqsədim yalnız reklam kampaniyaları idarə etmək deyil. Əsas hədəfim bizneslər üçün ölçülə bilən nəticələrə əsaslanan, davamlı və tam idarə olunan rəqəmsal marketinq sistemləri qurmaqdır.</p>
 
                   <h4 className="text-base font-bold text-white mt-6 mb-2">Qlobal Təcrübə və Beynəlxalq Reklam Platformaları</h4>
                   <p>Fəaliyyət coğrafiyam təkcə yerli bazarla məhdudlaşmır. Fərqli mədəniyyətlərə və bazar dinamikalarına malik olan bir çox ölkədə şirkətlərin rəqəmsal marketinq fəaliyyətlərini uğurla həyata keçirmişəm. Uğurlu reklam və marketinq kampaniyaları idarə etdiyim ölkələr sırasına aşağıdakılar daxildir:</p>
-                  
+
                   <ul className="list-disc pl-5 space-y-1 text-white/65">
                     <li><strong className="text-white">Avropa və Amerika:</strong> Kanada, Argentina, Litva, Çexiya, Albaniya</li>
                     <li><strong className="text-white">Yaxın Şərq və Körfəz Ölkələri:</strong> Qətər, Küveyt, BƏƏ (Birləşmiş Ərəb Əmirlikləri), Türkiyə</li>
