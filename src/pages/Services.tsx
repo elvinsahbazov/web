@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Container from '../components/ui/Container';
 import { fadeUp } from '../lib/motion';
@@ -34,73 +34,63 @@ function useScrollSpy(ids: string[]) {
 // ─── Services Data ───────────────────────────────────────────────────────────
 const services = [
   {
+    id: 1,
     icon: 'fas fa-bullhorn',
-    title: 'Performance Marketinq',
+    title: 'Rəqəmsal Marketinq',
     color: C.blue,
     desc: 'Meta, Google, TikTok, Yandex platformalarında ROI-a fokuslanmış reklam kampaniyalarının idarə edilməsi.',
-    features: ['Kampaniya strategiyası', 'A/B test', 'Auditoriya seqmentasiyası', 'Hesabat & analiz'],
+    details: [
+      'Meta Ads (Facebook, Instagram, WhatsApp, Threads)',
+      'Google Ads (Search, Display, YouTube)',
+      'Yandex Direct',
+      'VK Ads',
+      'LinkedIn Ads',
+      'TikTok Ads',
+      'X (Twitter) Ads',
+      'Microsoft Ads (Bing)',
+      'Pinterest Ads',
+      'Snapchat Ads',
+      'Telegram Ads'
+    ],
   },
   {
+    id: 2,
     icon: 'fas fa-robot',
-    title: 'Süni İntellektlə Biznes Avtomatlaşdırması',
+    title: 'Süni İntellektlə Biznes Avtomatlaşdırılması',
     color: C.blue,
-    desc: 'Təkcə CRM yox, müştəri xidmətləri (AI Çatbotlar), daxili əməliyyatlar, sənəd dövriyyəsi və marketinq proseslərinin AI ilə tam avtomatlaşdırılması.',
-    features: ['AI Çatbot və Səs Agentləri', 'Bütün biznes proseslərin avtomatlaşdırılması', 'CRM və ERP İnteqrasiyası', '24/7 İşləyən AI İşçilər'],
+    desc: 'Müştəri xidmətləri, daxili əməliyyatlar və marketinq proseslərinin AI ilə tam avtomatlaşdırılması.',
+    details: [
+      'AI Çatbotlar və 24/7 Səs Agentləri',
+      'Sənəd dövriyyəsinin avtomatlaşdırılması',
+      'CRM və ERP İnteqrasiyası',
+      'İş axınlarının sürətləndirilməsi və optimizasiyası'
+    ],
   },
   {
-    icon: 'fas fa-chart-bar',
-    title: 'Data Analitika & Hesabat',
-    color: C.blue,
-    desc: 'GA4, Meta Pixel, Yandex Metrica konfiqurasiyası, dashboard qurulması və dərin analiz.',
-    features: ['GA4 konfiqurasiyası', 'Custom dashboardlar', 'Attribution modeli', 'Conversion tracking'],
-  },
-  {
+    id: 3,
     icon: 'fas fa-search',
-    title: 'SEO & Kontent Strategiyası',
+    title: 'Veb Saytların Yaradılması və SEO',
     color: C.blue,
-    desc: 'Texniki SEO, açar söz tədqiqatı, kontent planlaması və link building strategiyaları.',
-    features: ['Texniki SEO audit', 'Açar söz analizi', 'Kontent planı', 'Link building'],
+    desc: 'Yüksək konversiyalı, sürətli korporativ və e-ticarət saytlarının yaradılması.',
+    details: [
+      'Müasir UI/UX dizayn',
+      'Sürət və konversiya optimizasiyası',
+      'Texniki SEO və Açar söz tədqiqatı',
+      'Axtarış sistemlərində ön sıralara çıxarılma'
+    ],
   },
   {
-    icon: 'fas fa-laptop-code',
-    title: 'Vebsaytların Hazırlanması',
+    id: 4,
+    icon: 'fas fa-network-wired',
+    title: 'ERP və CRM-lərin Yaradılması',
     color: C.blue,
-    desc: 'Yüksək konversiyalı, sürətli və müasir dizayna malik korporativ və e-ticarət saytları.',
-    features: ['Müasir UI/UX', 'SEO uyğun kodlama', 'Sürət optimizasiyası', 'Responsive dizayn'],
-  },
-  {
-    icon: 'fas fa-funnel-dollar',
-    title: 'Satış Hunisi & CRO',
-    color: C.blue,
-    desc: 'Landing page optimizasiyası, A/B testlər, konversiya hunisi qurulması və CRO auditi.',
-    features: ['Landing page dizayn', 'Huni analizi', 'CRO strategiyası', 'Heat mapping'],
-  },
-];
-
-const bizdevItems = [
-  {
-    icon: 'fas fa-handshake',
-    title: 'Biznes İnkişaf Strategiyası',
-    desc: 'Yeni bazar imkanlarının müəyyənləşdirilməsi, tərəfdaşlıq inkişafı və gəlir artırım strategiyaları.',
-    color: C.blue,
-  },
-  {
-    icon: 'fas fa-store',
-    title: 'E-ticarət Qurulması',
-    desc: 'Online mağaza qurulması, ödəniş sistemləri inteqrasiyası, stok idarəetməsi avtomatlaşdırması.',
-    color: C.blue,
-  },
-  {
-    icon: 'fas fa-people-arrows',
-    title: 'B2B Lead Generation',
-    desc: 'LinkedIn outreach, email kampaniyaları, webinar funnel sistemi ilə keyfiyyətli B2B leadlər.',
-    color: C.blue,
-  },
-  {
-    icon: 'fas fa-coins',
-    title: 'Monetizasiya Strategiyası',
-    desc: 'Mövcud auditoriyadan maksimum gəlir əldə etmək üçün çoxşaxəli monetizasiya modeli.',
-    color: C.blue,
+    desc: 'Biznesinizin xüsusi ehtiyaclarına uyğun fərdi proqram təminatlarının sıfırdan yazılması.',
+    details: [
+      'Xüsusi Müştəri Münasibətləri İdarəetməsi (CRM)',
+      'Resursların Planlaşdırılması (ERP)',
+      'Kassa və Anbar uçotu sistemləri',
+      'Mövcud sistemlərinizə API inteqrasiyaları'
+    ],
   },
 ];
 
@@ -197,32 +187,17 @@ const whoIsThisFor = [
 ];
 
 
-const sectionIds = ['xidmetlerim', 'biznes-inkisaf', 'telim'];
+const sectionIds = ['xidmetlerim', 'telim'];
 
 export default function Services() {
   const active = useScrollSpy(sectionIds);
   const { content } = useSiteContent();
-  const [dbServices, setDbServices] = useState<any[]>([]);
+  const [expandedId, setExpandedId] = useState<number | null>(null);
 
-  useEffect(() => {
-    async function fetchServices() {
-      const { data } = await supabase.from('services').select('*').eq('published', true).order('created_at', { ascending: true });
-      if (data && data.length > 0) {
-        setDbServices(data);
-      }
-    }
-    fetchServices();
-  }, []);
-
-  const displayServices = dbServices.length > 0
-    ? dbServices.map(s => ({
-      icon: s.icon || 'fas fa-star',
-      title: s.title,
-      color: C.blue,
-      desc: s.description,
-      features: ['Xüsusi strategiya', 'Məlumata əsaslanan', 'Daimi nəzarət'] // Fallback features if not in DB schema yet
-    }))
-    : services;
+  const toggleExpand = (id: number) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
+  
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -234,7 +209,6 @@ export default function Services() {
 
   const navItems = [
     { id: 'xidmetlerim', label: 'XİDMƏTLƏRİM' },
-    { id: 'biznes-inkisaf', label: 'BİZNES İNKİŞAF' },
     { id: 'telim', label: 'TƏLİM' },
   ];
 
@@ -304,94 +278,72 @@ export default function Services() {
                 </p>
               </motion.div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                {displayServices.map((s, i) => (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                {services.map((s, i) => (
                   <motion.div
-                    key={s.title}
+                    key={s.id}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.08 }}
-                    className="card card-hover group cursor-pointer"
+                    onClick={() => toggleExpand(s.id)}
+                    className={`card card-hover group cursor-pointer transition-all duration-500 border ${expandedId === s.id ? 'border-primary ring-2 ring-primary/20 bg-[#f8fafc]' : 'border-transparent'}`}
                   >
-                    <div
-                      className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110"
-                      style={{ backgroundColor: `${s.color}15` }}
-                    >
-                      <i className={`${s.icon} text-xl`} style={{ color: s.color }} />
-                    </div>
-                    <h3 className="font-bold text-black mb-2" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{s.title}</h3>
-                    <p className="text-sm text-black/55 leading-relaxed mb-4">{s.desc}</p>
-                    <ul className="space-y-1.5">
-                      {s.features.map((f) => (
-                        <li key={f} className="flex items-center gap-2 text-xs text-black/70">
-                          <span className="w-1.5 h-1.5 rounded-full flex-none" style={{ backgroundColor: s.color }} />
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-5 pt-4 border-t border-black/8">
-                      <a
-                        href="https://wa.me/994999550001"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-xs font-semibold transition-colors duration-200"
-                        style={{ color: s.color }}
+                    <div className="flex items-start justify-between">
+                      <div 
+                        className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110"
+                        style={{ backgroundColor: `${s.color}15` }}
                       >
-                        Ətraflı <ArrowRight size={12} />
-                      </a>
+                        <i className={`${s.icon} text-2xl`} style={{ color: s.color }} />
+                      </div>
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${expandedId === s.id ? 'bg-primary text-white' : 'bg-black/5 text-black/50 group-hover:bg-primary/10 group-hover:text-primary'}`}>
+                        <i className={`fas fa-chevron-${expandedId === s.id ? 'up' : 'down'} text-xs`} />
+                      </div>
                     </div>
+                    
+                    <h3 className="font-bold text-xl text-black mb-3" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{s.title}</h3>
+                    <p className="text-black/60 leading-relaxed text-sm">{s.desc}</p>
+                    
+                    <AnimatePresence>
+                      {expandedId === s.id && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                          animate={{ height: 'auto', opacity: 1, marginTop: 24 }}
+                          exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pt-5 border-t border-black/8">
+                            <h4 className="text-xs font-bold text-black uppercase tracking-wider mb-4">Ətraflı məlumat</h4>
+                            <ul className="space-y-3">
+                              {s.details.map((detail, idx) => (
+                                <li key={idx} className="flex items-start gap-3 text-sm text-black/75">
+                                  <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-none mt-0.5">
+                                    <i className="fas fa-check text-primary text-[10px]" />
+                                  </div>
+                                  <span className="leading-relaxed">{detail}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            
+                            <a
+                              href="https://wa.me/994999550001"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="mt-6 inline-flex items-center gap-2 text-sm font-bold bg-primary text-white px-5 py-2.5 rounded-xl hover:bg-primary/90 transition-colors"
+                            >
+                              Sifariş et <ArrowRight size={14} />
+                            </a>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </motion.div>
                 ))}
               </div>
             </section>
 
-            {/* BİZNES İNKİŞAF */}
-            <section id="biznes-inkisaf">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="mb-12"
-              >
-                <span className="section-label">
-                  <i className="fas fa-chart-line" /> Biznes İnkişaf
-                </span>
-                <h2 className="section-title mt-4">{content.services_bizdev_title || 'Biznes İnkişaf Xidmətləri'}</h2>
-                <p className="section-subtitle">
-                  {content.services_bizdev_subtitle || 'Biznesinizi böyütmək üçün strateji yanaşmalar və hazır həllər.'}
-                </p>
-              </motion.div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {bizdevItems.map((b, i) => (
-                  <motion.div
-                    key={b.title}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="card card-hover group"
-                  >
-                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: C.blueSoft }}>
-                      <i className={`${b.icon} text-xl text-primary`} />
-                    </div>
-                    <h3 className="font-bold text-black mb-2" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>{b.title}</h3>
-                    <p className="text-sm text-black/55 leading-relaxed">{b.desc}</p>
-                    <div className="mt-4 pt-4 border-t border-black/8">
-                      <a
-                        href="https://wa.me/994999550001"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-xs font-semibold text-primary"
-                      >
-                        Müzakirə et <ArrowRight size={12} />
-                      </a>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </section>
+            
 
             {/* TƏLİM */}
             <section id="telim" className="mt-24 mb-10 pt-16 pb-24 px-6 md:px-12 rounded-[2rem] md:rounded-[3rem] bg-[#0A0A0A] text-white relative overflow-hidden shadow-2xl border border-white/10">
