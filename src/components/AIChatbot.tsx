@@ -71,8 +71,13 @@ ${content.about_text_2 || 'Hazırda Baku Auto Mall-da Marketinq Direktoru və SM
 - Email: ${content.contact_email || 'elvinsahbazovv@gmail.com'}
 - İş vaxtı: 7/24 onlaynıq! (Həmçinin mən 7/24 buradayam!)
 
-SAYTDAKİ BÜTÜN XİDMƏTLƏRİMİZ:
-${siteData.services || 'Məlumat yüklənir...'}
+SAYTDAKİ BÜTÜN XİDMƏTLƏRİMİZ VƏ TƏLİMLƏR:
+1. Rəqəmsal Marketinq: Meta, Google, TikTok, Yandex platformalarında reklam kampaniyalarının idarə edilməsi.
+2. Süni İntellektlə Biznes Avtomatlaşdırılması: Müştəri xidmətləri, CRM və daxili proseslərin AI (Çatbotlar, Səs agentləri) ilə avtomatlaşdırılması.
+3. Veb Saytların Yaradılması və SEO: Yüksək konversiyalı korporativ və e-ticarət saytlarının qurulması, SEO optimizasiya.
+4. ERP və CRM-lərin Yaradılması: Xüsusi CRM və ERP proqram təminatlarının yazılması.
+5. Təlimlər: Rəqəmsal Marketinq və Süni İntellektlə Avtomatlaşdırma üzrə peşəkar (18 modulluq) Masterklass dərsləri.
+Bununla yanaşı bazadakı xidmətlər: ${siteData.services}
 
 SAYTDAKİ BÜTÜN BLOQ YAZILARIMIZ VƏ XƏBƏRLƏR:
 ${siteData.blogs || 'Məlumat yüklənir...'}
