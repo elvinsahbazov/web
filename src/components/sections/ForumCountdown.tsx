@@ -36,6 +36,27 @@ function ForumCountdown() {
       business_type: form.businessType.trim() || null,
       source: 'forum_block',
     });
+
+    // Send silently to Google Forms as requested
+    const googleFormsUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfD-P6RhwGioRtXPreb4P1FsHd5flsJKXvnh7pokAaR4zPhUw/formResponse";
+    const formData = new URLSearchParams();
+    formData.append("entry.635463488", form.name.trim()); // Ad Soyad
+    formData.append("entry.914307651", form.email.trim().toLowerCase()); // Email
+    formData.append("entry.464079801", form.phone.trim()); // Elaqe nomresi
+    formData.append("entry.2140819732", form.businessType.trim()); // Sirketiniz
+    formData.append("entry.1463037034", "Vebsayt"); // Haradan tapdiniz
+
+    try {
+      await fetch(googleFormsUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData.toString()
+      });
+    } catch (err) {
+      console.error("Google Forms xətası:", err);
+    }
+
     if (error) { setStatus('error'); setErrorMsg('Xəta baş verdi. Yenidən cəhd edin.'); }
     else setStatus('success');
   };
