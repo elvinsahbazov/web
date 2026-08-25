@@ -177,6 +177,11 @@ export default function Hero() {
             </div>
           </motion.div>
 
+          {/* Ads Platforms Tabs */}
+          <div className="mt-12 w-full lg:max-w-[1200px]">
+            <AdsPlatformsTabs />
+          </div>
+
         </motion.div>
 
         {/* RIGHT — Premium Image & Floating Elements */}
@@ -210,10 +215,6 @@ export default function Hero() {
             </div>
 
 
-          </div>
-
-          <div className="mt-8 w-full max-w-[380px] md:max-w-[480px]">
-            <AdsPlatformsTabs />
           </div>
         </motion.div>
 

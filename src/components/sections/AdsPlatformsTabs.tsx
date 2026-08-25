@@ -114,7 +114,7 @@ export default function AdsPlatformsTabs() {
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ ...springSmooth, delay: 0.58 }}
-      className="mt-12 w-full max-w-2xl"
+      className="mt-12 w-full max-w-full"
     >
       <div
         className="mb-6 min-h-[140px] rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-md relative overflow-hidden"
