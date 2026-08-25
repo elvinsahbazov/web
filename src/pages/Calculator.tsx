@@ -16,6 +16,71 @@ import {
 import { Doughnut, Bar, Line } from 'react-chartjs-2';
 import Container from '../components/ui/Container';
 
+function CalculatorLockScreen({ onUnlock }: { onUnlock: () => void }) {
+  const [form, setForm] = useState({ name: '', email: '', phone: '' });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name.trim() || !form.email.trim() || !form.phone.trim()) return;
+    setStatus('loading');
+
+    const googleFormsUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfD-P6RhwGioRtXPreb4P1FsHd5flsJKXvnh7pokAaR4zPhUw/formResponse";
+    const formData = new URLSearchParams();
+    formData.append("entry.635463488", form.name.trim());
+    formData.append("entry.914307651", form.email.trim().toLowerCase());
+    formData.append("entry.464079801", form.phone.trim());
+    formData.append("entry.2140819732", "Hesablayıcı Səhifəsi");
+    formData.append("entry.1463037034", "Vebsayt Hesablayıcı Qeydiyyatı");
+
+    try {
+      await fetch(googleFormsUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData.toString()
+      });
+    } catch (err) {
+      console.error("Google Forms error:", err);
+    }
+    
+    localStorage.setItem('calculator_unlocked', 'true');
+    localStorage.setItem('calc_user', JSON.stringify({ name: form.name.trim(), email: form.email.trim().toLowerCase() }));
+    onUnlock();
+  };
+
+  return (
+    <div className="min-h-[75vh] flex items-center justify-center pt-24 pb-20">
+      <div className="w-full max-w-md bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl mx-4 shadow-2xl relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-transparent pointer-events-none" />
+        <div className="relative z-10 text-center mb-8">
+           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-600/20 text-blue-500 mb-4 border border-blue-500/30">
+              <CalcIcon size={28} />
+           </div>
+           <h2 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}>Rəqəmsal Marketinq Hesablayıcısı</h2>
+           <p className="text-white/60 text-sm leading-relaxed">Alətdən pulsuz istifadə etmək üçün qısa qeydiyyatdan keçin.</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="relative z-10 space-y-4">
+          <input type="text" placeholder="Ad Soyad *" required
+            value={form.name} onChange={e => setForm({...form, name: e.target.value})}
+            className="w-full px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 text-sm focus:outline-none focus:border-blue-500/50 transition-colors" />
+          <input type="email" placeholder="Email *" required
+            value={form.email} onChange={e => setForm({...form, email: e.target.value})}
+            className="w-full px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 text-sm focus:outline-none focus:border-blue-500/50 transition-colors" />
+          <input type="tel" placeholder="Mobil nömrə *" required
+            value={form.phone} onChange={e => setForm({...form, phone: e.target.value})}
+            className="w-full px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 text-sm focus:outline-none focus:border-blue-500/50 transition-colors" />
+          <button type="submit" disabled={status === 'loading'}
+            className="w-full py-4 mt-2 bg-blue-600 rounded-xl text-white font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+            {status === 'loading' ? <i className="fas fa-spinner fa-spin" /> : 'Hesablayıcıya Keçid Et'}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 const InfoTooltip = ({ title, content }: { title: string, content: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -104,6 +169,10 @@ const PRESETS: Record<string, { price: number; cogs: number; fixedCosts: number;
 export default function Calculator() {
   const [activeTab, setActiveTab] = useState<'roas' | 'forecast'>('roas');
   const [passed, setPassed] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState(() => {
+    return localStorage.getItem('calculator_unlocked') === 'true';
+  });
+
   useEffect(() => {
     setPassed(true);
   }, []);
@@ -326,8 +395,16 @@ _Bu hesabat Elvin Şahbazov-un Proqnoz Paneli tərəfindən generasiya edilmişd
     window.open(`https://wa.me/994999550001?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
+  if (!isUnlocked) {
+    return (
+      <div className="min-h-screen bg-transparent text-white pt-24 pb-20 relative z-10 font-inter">
+        <CalculatorLockScreen onUnlock={() => setIsUnlocked(true)} />
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-transparent text-white pt-28 pb-20 font-inter">
+    <div className="min-h-screen bg-transparent text-white pt-28 pb-20 font-inter relative z-10">
       <Container>
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
