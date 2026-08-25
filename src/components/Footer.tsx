@@ -239,7 +239,7 @@ export default function Footer() {
                 Rəqəmsal Marketinq & AI Avtomatlaşdırma Eksperti
               </h4>
               <p className="text-xs leading-relaxed text-white/50">
-                Süni intellekt əsaslı innovativ həllərlə bizneslərin qlobal rəqəmsal transformasiyası.
+                Süni intellekt əsaslı innovativ həllərlə bizneslərin rəqəmsal inkişafı və sürətli böyüməsi.
               </p>
             </div>
             <div className="flex gap-2 flex-wrap mb-8">
