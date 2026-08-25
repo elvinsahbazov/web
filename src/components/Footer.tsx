@@ -294,9 +294,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/5 mt-16 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="border-t border-white/5 mt-16 pt-8 flex flex-col items-center justify-center text-center">
           <p className="text-white/50 text-xs">{content.footer_copyright || `© ${new Date().getFullYear()} Elvin Şahbazov. Bütün hüquqlar qorunur.`}</p>
-          <p className="text-sm text-slate-400">Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi</p>
         </div>
       </Container>
     </footer>
