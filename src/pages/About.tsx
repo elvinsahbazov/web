@@ -238,7 +238,7 @@ export default function About() {
                   <p>Fəaliyyət coğrafiyam təkcə yerli bazarla məhdudlaşmır. Fərqli mədəniyyətlərə və bazar dinamikalarına malik olan bir çox ölkədə şirkətlərin rəqəmsal marketinq fəaliyyətlərini uğurla həyata keçirmişəm. Uğurlu reklam və marketinq kampaniyaları idarə etdiyim ölkələr sırasına aşağıdakılar daxildir:</p>
 
                   <ul className="list-disc pl-5 space-y-1 text-white/65">
-                    <li><strong className="text-white">Avropa və Amerika:</strong> Kanada, Argentina, Litva, Çexiya, Albaniya</li>
+                    <li><strong className="text-white">Avropa və Amerika:</strong> Kanada, Argentina, Litva, Çexiya, Albaniya, Monteneqro</li>
                     <li><strong className="text-white">Yaxın Şərq və Körfəz Ölkələri:</strong> Qətər, Küveyt, BƏƏ (Birləşmiş Ərəb Əmirlikləri), Türkiyə</li>
                     <li><strong className="text-white">MDB və Asiya:</strong> Rusiya, Qazaxıstan, Özbəkistan, Gürcüstan</li>
                   </ul>
