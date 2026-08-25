@@ -7,7 +7,8 @@ import { useSiteContent } from '../../context/SiteContentContext';
 import { TypewriterText } from '../ui/TypewriterText';
 import { MagneticButton } from '../ui/MagneticButton';
 import { ParticleBackground } from '../ui/ParticleBackground';
-import AdsPlatformsTabs from './AdsPlatformsTabs';
+import { useState } from 'react';
+import AdsPlatformsTabs, { AdsPlatformCard, adPlatforms } from './AdsPlatformsTabs';
 
 
 
@@ -35,6 +36,7 @@ const heroSocials = [
 export default function Hero() {
   const { content } = useSiteContent();
   const { isOpen: isMenuOpen } = useMobileMenu();
+  const [activeAdPlatformId, setActiveAdPlatformId] = useState(adPlatforms[0].id);
 
   return (
     <section
@@ -150,13 +152,14 @@ export default function Hero() {
             ))}
           </motion.div>
 
-          {/* Manifesto card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...springSmooth, delay: 0.48 }}
-            className="relative mt-8 w-full max-w-xl"
-          >
+          <div className="flex flex-col xl:flex-row gap-6 w-full mt-8">
+            {/* Manifesto card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...springSmooth, delay: 0.48 }}
+              className="relative w-full max-w-xl"
+            >
             <div
               className="pointer-events-none absolute -inset-3 rounded-3xl bg-primary/10 blur-2xl opacity-60"
               aria-hidden="true"
@@ -177,9 +180,15 @@ export default function Hero() {
               </p>
               <p className="mt-3 block text-base font-black text-white md:text-lg min-h-[28px]">
                 <TypewriterText text="Gələcək gözləyənlərin yox, indi hərəkət edənlərindir." speed={20} delay={7400} />
-              </p>
+                </p>
+              </div>
+            </motion.div>
+            
+            {/* Active Ad Platform Card (Side by side on xl screens or stacked) */}
+            <div className="w-full max-w-xl">
+              <AdsPlatformCard activeId={activeAdPlatformId} />
             </div>
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* RIGHT — Premium Image & Floating Elements */}
@@ -219,7 +228,7 @@ export default function Hero() {
 
       {/* Ads Platforms Tabs (Sticky Bottom) */}
       <div className="sticky bottom-0 left-0 w-full px-4 md:px-8 lg:px-12 xl:px-20 z-50 pb-4 pt-4 bg-[#000a1a]/80 backdrop-blur-md border-t border-white/10 shadow-[0_-20px_40px_rgba(0,0,0,0.5)]">
-        <AdsPlatformsTabs />
+        <AdsPlatformsTabs activeId={activeAdPlatformId} setActiveId={setActiveAdPlatformId} />
       </div>
     </section>
   );
