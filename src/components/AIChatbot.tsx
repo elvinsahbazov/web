@@ -5,6 +5,25 @@ import { supabase } from '../lib/supabase';
 
 const apiKey = import.meta.env.VITE_OPENAI_API_KEY || import.meta.env.VITE_OPENROUTER_API_KEY;
 
+const renderMessageText = (text: string) => {
+  // Match URLs, Emails, and +994 phone numbers
+  const urlRegex = /(https?:\/\/[^\s]+|[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}|\+994[\s-]?\d{2}[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2})/g;
+  
+  const parts = text.split(urlRegex);
+  return parts.map((part, i) => {
+    if (!part) return null;
+    if (part.match(/^https?:\/\/[^\s]+$/)) {
+      return <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline font-medium hover:text-blue-800 break-all">{part}</a>;
+    } else if (part.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/)) {
+      return <a key={i} href={`mailto:${part}`} className="text-blue-600 underline font-medium hover:text-blue-800">{part}</a>;
+    } else if (part.match(/^\+994[\s-]?\d{2}[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/)) {
+      const cleanPhone = part.replace(/[\s-]/g, '').replace('+', '');
+      return <a key={i} href={`https://wa.me/${cleanPhone}`} target="_blank" rel="noopener noreferrer" className="text-[#25D366] font-semibold underline hover:text-green-800 whitespace-nowrap"><i className="fab fa-whatsapp mr-1"></i>{part}</a>;
+    }
+    return part;
+  });
+};
+
 export default function UnifiedContactWidget() {
   const { content } = useSiteContent();
 
@@ -225,7 +244,7 @@ DİQQƏT EDİLƏSİ NÜANS:
                       ? 'bg-blue-600 text-white rounded-br-none'
                       : 'bg-white text-black/80 border border-black/5 rounded-bl-none'
                     }`}>
-                    {msg.text}
+                    {renderMessageText(msg.text)}
                   </div>
                 </motion.div>
               ))}
