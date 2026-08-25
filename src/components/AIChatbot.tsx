@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSiteContent } from '../context/SiteContentContext';
 import { supabase } from '../lib/supabase';
+import { playChatOpenSound, playMessageReceivedSound, playClickSound } from '../lib/sounds';
 
 const apiKey = import.meta.env.VITE_OPENAI_API_KEY || import.meta.env.VITE_OPENROUTER_API_KEY;
 
@@ -181,6 +182,7 @@ DİQQƏT EDİLƏSİ NÜANS:
       responseText = responseText.replace(/#/g, '');
 
       setMessages(prev => [...prev, { role: 'assistant', text: responseText }]);
+      playMessageReceivedSound();
     } catch (error) {
       console.error('AI Error:', error);
       let errorMsg = 'Üzr istəyirəm, hal-hazırda sistemdə qısa bir fasilə var. 🛠️ Zəhmət olmasa bizimlə birbaşa WhatsApp (+994 99 955 00 01) üzərindən əlaqə saxlayın!';
