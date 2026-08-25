@@ -1,3 +1,4 @@
+import LazyImage from '../components/ui/LazyImage';
  
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
@@ -73,3 +74,4 @@ export default function Portfolio() {
     </div>
   );
 }
+

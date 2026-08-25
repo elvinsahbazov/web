@@ -1,3 +1,4 @@
+import LazyImage from '../components/ui/LazyImage';
    
 import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
@@ -551,3 +552,4 @@ export default function Admin() {
     </div>
   );
 }
+

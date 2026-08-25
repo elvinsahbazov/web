@@ -1,3 +1,4 @@
+import LazyImage from '../components/ui/LazyImage';
 import { motion } from 'framer-motion';
 import { BookOpen, Award, Briefcase, Target, GraduationCap } from 'lucide-react';
 import Container from '../components/ui/Container';
@@ -471,3 +472,4 @@ export default function About() {
     </div>
   );
 }
+

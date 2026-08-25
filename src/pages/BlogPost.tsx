@@ -1,3 +1,4 @@
+import LazyImage from '../components/ui/LazyImage';
  
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
@@ -76,3 +77,4 @@ export default function BlogPost() {
     </div>
   );
 }
+
