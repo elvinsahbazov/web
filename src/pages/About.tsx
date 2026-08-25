@@ -104,7 +104,7 @@ function AboutHero() {
       >
         <div className="absolute inset-0 z-[1] bg-gradient-to-r from-black via-black/60 to-transparent lg:from-black lg:via-black/25 lg:to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 z-[1] h-[18%] bg-gradient-to-t from-black/70 to-transparent lg:hidden" />
-        <img src={content.about_image || ABOUT_IMAGE} alt="Elvin Şahbazov" />
+        <LazyImage src={content.about_image || ABOUT_IMAGE} alt="Elvin Şahbazov" />
       </motion.div>
 
       <div className="relative z-[3] mx-auto max-w-[1600px]">

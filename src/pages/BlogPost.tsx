@@ -63,7 +63,7 @@ export default function BlogPost() {
 
           {post.cover_image && (
             <div className="w-full aspect-video rounded-3xl overflow-hidden mb-10 bg-white/5">
-              <img src={post.cover_image} alt={post.title} className="w-full h-full object-cover" />
+              <LazyImage src={post.cover_image} alt={post.title} className="w-full h-full object-cover" />
             </div>
           )}
 

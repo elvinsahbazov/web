@@ -50,7 +50,7 @@ export default function Portfolio() {
                 className="group block bg-white rounded-3xl overflow-hidden border border-black/5 shadow-sm hover:shadow-xl transition-all duration-300"
               >
                 <div className="aspect-[4/3] w-full bg-black/5 overflow-hidden relative">
-                  <img 
+                  <LazyImage 
                     src={item.image_url} 
                     alt={item.title} 
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"

@@ -288,7 +288,7 @@ export default function Admin() {
               <span className="text-xs text-slate-500">Admin</span>
             </div>
             <div className="w-10 h-10 rounded-full bg-slate-200 border-2 border-white shadow-sm overflow-hidden">
-              <img src="https://drive.google.com/thumbnail?id=1YmSQizY-GCTKCiPg6UD2PPFOG0d_ap2o&sz=w200" alt="Admin" className="w-full h-full object-cover" />
+              <LazyImage src="https://drive.google.com/thumbnail?id=1YmSQizY-GCTKCiPg6UD2PPFOG0d_ap2o&sz=w200" alt="Admin" className="w-full h-full object-cover" />
             </div>
           </div>
         </header>
@@ -324,7 +324,7 @@ export default function Admin() {
                     <div>
                       <label className="block text-sm font-bold text-slate-700 mb-2">Şəkil URL</label>
                       <input type="text" value={coverImage} onChange={(e) => setCoverImage(e.target.value)} className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:border-blue-500 outline-none" />
-                      {coverImage && <img src={coverImage} alt="Preview" className="mt-4 w-full h-32 object-cover rounded-xl border border-slate-200 shadow-sm" />}
+                      {coverImage && <LazyImage src={coverImage} alt="Preview" className="mt-4 w-full h-32 object-cover rounded-xl border border-slate-200 shadow-sm" />}
                     </div>
                   </div>
                   <div className="flex flex-col h-full">
@@ -381,7 +381,7 @@ export default function Admin() {
                   <div>
                     <label className="block text-sm font-bold text-slate-700 mb-2">Şəkil URL</label>
                     <input type="text" required value={portImage} onChange={(e) => setPortImage(e.target.value)} className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 outline-none focus:border-blue-500 mb-4" />
-                    {portImage && <img src={portImage} alt="Preview" className="w-48 h-32 object-cover rounded-xl border border-slate-200 shadow-sm" />}
+                    {portImage && <LazyImage src={portImage} alt="Preview" className="w-48 h-32 object-cover rounded-xl border border-slate-200 shadow-sm" />}
                   </div>
                   <button type="submit" className="w-full md:w-auto px-8 py-4 bg-blue-600 text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors">
                      {editingItem ? <><Save size={18} /> Yenilə</> : <><Plus size={18} /> Əlavə et</>}
@@ -404,15 +404,15 @@ export default function Admin() {
                 {activeTab === 'blog' && posts.map(item => (
                   <div key={item.id} className="flex items-center justify-between p-6 hover:bg-slate-50 transition-colors group">
                     <div className="flex items-center gap-4">
-                      {item.cover_image && <img src={item.cover_image} alt="" className="w-12 h-12 rounded-lg object-cover border border-slate-200 shadow-sm" />}
+                      {item.cover_image && <LazyImage src={item.cover_image} alt="" className="w-12 h-12 rounded-lg object-cover border border-slate-200 shadow-sm" />}
                       <div>
                         <h4 className="font-bold text-slate-800">{item.title}</h4>
                         <p className="text-xs text-slate-500 mt-1">/{item.slug}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button onClick={() => handleEditClick(item, 'blog')} className="p-2 text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"><Edit2 size={16} /></button>
-                      <button onClick={() => handleDelete('posts', item.id)} className="p-2 text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"><Trash2 size={16} /></button>
+                      <button aria-label="Redaktə et" onClick={() => handleEditClick(item, 'blog')} className="p-2 text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"><Edit2 size={16} /></button>
+                      <button aria-label="Sil" onClick={() => handleDelete('posts', item.id)} className="p-2 text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"><Trash2 size={16} /></button>
                     </div>
                   </div>
                 ))}
@@ -427,8 +427,8 @@ export default function Admin() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button onClick={() => handleEditClick(item, 'services')} className="p-2 text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"><Edit2 size={16} /></button>
-                      <button onClick={() => handleDelete('services', item.id)} className="p-2 text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"><Trash2 size={16} /></button>
+                      <button aria-label="Redaktə et" onClick={() => handleEditClick(item, 'services')} className="p-2 text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"><Edit2 size={16} /></button>
+                      <button aria-label="Sil" onClick={() => handleDelete('services', item.id)} className="p-2 text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"><Trash2 size={16} /></button>
                     </div>
                   </div>
                 ))}
@@ -436,12 +436,12 @@ export default function Admin() {
                 {activeTab === 'portfolio' && portfolio.map(item => (
                   <div key={item.id} className="flex items-center justify-between p-6 hover:bg-slate-50 transition-colors group">
                     <div className="flex items-center gap-4">
-                      {item.image_url && <img src={item.image_url} alt="" className="w-20 h-14 rounded-lg object-cover border border-slate-200 shadow-sm" />}
+                      {item.image_url && <LazyImage src={item.image_url} alt="" className="w-20 h-14 rounded-lg object-cover border border-slate-200 shadow-sm" />}
                       <h4 className="font-bold text-slate-800">{item.title}</h4>
                     </div>
                     <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button onClick={() => handleEditClick(item, 'portfolio')} className="p-2 text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"><Edit2 size={16} /></button>
-                      <button onClick={() => handleDelete('portfolio', item.id)} className="p-2 text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"><Trash2 size={16} /></button>
+                      <button aria-label="Redaktə et" onClick={() => handleEditClick(item, 'portfolio')} className="p-2 text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"><Edit2 size={16} /></button>
+                      <button aria-label="Sil" onClick={() => handleDelete('portfolio', item.id)} className="p-2 text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"><Trash2 size={16} /></button>
                     </div>
                   </div>
                 ))}
@@ -459,7 +459,7 @@ export default function Admin() {
                       <p className="text-sm text-slate-600 bg-white p-4 rounded-xl border border-slate-100">{item.message}</p>
                     </div>
                     <div className="flex items-center gap-2 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
-                      <button onClick={() => handleDelete('contact_submissions', item.id)} className="p-2 text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"><Trash2 size={16} /></button>
+                      <button aria-label="Sil" onClick={() => handleDelete('contact_submissions', item.id)} className="p-2 text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"><Trash2 size={16} /></button>
                     </div>
                   </div>
                 ))}
@@ -474,7 +474,7 @@ export default function Admin() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button onClick={() => handleDelete('newsletter_subscribers', item.id)} className="p-2 text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"><Trash2 size={16} /></button>
+                      <button aria-label="Sil" onClick={() => handleDelete('newsletter_subscribers', item.id)} className="p-2 text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"><Trash2 size={16} /></button>
                     </div>
                   </div>
                 ))}
@@ -523,7 +523,7 @@ export default function Admin() {
                               {/* Image preview heuristic */}
                               {item.type !== 'textarea' && (item.value.includes('http') && (item.value.includes('image') || item.value.includes('thumbnail') || item.value.includes('.png') || item.value.includes('.jpg'))) && (
                                 <div className="mt-4 p-2 bg-slate-50 rounded-xl border border-slate-100 inline-block">
-                                  <img src={item.value} alt="" className="h-24 rounded-lg object-contain" />
+                                  <LazyImage src={item.value} alt="" className="h-24 rounded-lg object-contain" />
                                 </div>
                               )}
                             </div>

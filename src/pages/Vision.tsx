@@ -80,7 +80,7 @@ export default function Vision() {
               {/* Image Section */}
               <div className="relative h-56 md:h-64 overflow-hidden">
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500 z-10" />
-                <img 
+                <LazyImage 
                   src={news.image} 
                   alt={news.title}
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -146,7 +146,7 @@ export default function Vision() {
               </button>
 
               <div className="w-full h-48 md:h-72 relative">
-                <img 
+                <LazyImage 
                   src={selectedNews.image} 
                   alt={selectedNews.title} 
                   className="w-full h-full object-cover"

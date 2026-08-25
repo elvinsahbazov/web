@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useSiteContent } from '../context/SiteContentContext';
 import { supabase } from '../lib/supabase';
 
-const apiKey = import.meta.env.VITE_OPENAI_API_KEY || '';
+const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
 
 export default function UnifiedContactWidget() {
   const { content } = useSiteContent();
@@ -50,9 +50,9 @@ export default function UnifiedContactWidget() {
     fetchFullSiteData();
   }, []);
 
-  const dynamicPrompt = `Sən Elvin Şahbazovun şəxsi AI köməkçisisən. Adın "AI Asistent"dir.
-Çox mehriban, enerjili, köməksevər, səmimi, tam bir insan kimi və səlis Azərbaycan dilində danışırsan.
-Emoji-lərdən istifadə et. Qısa, dəqiq və təbii cavablar ver. Çox uzun, darıxdırıcı və robotik mətnlər yazma. Sən saytın bütün məlumatlarını bilirsən və istifadəçi ilə real bir dost/insan kimi söhbət edirsən.
+  const dynamicPrompt = `Sən Elvin Şahbazovun şəxsi və peşəkar AI köməkçisisən. Adın "AI Asistent"dir.
+Tam korporativ, səlis Azərbaycan dilində, çox nəzakətli və yüksək səviyyəli bir köməkçi dilində danışırsan.
+Emoji-lərdən yerində istifadə et. Qısa, dəqiq və son dərəcə peşəkar cavablar ver. Saytdakı bütün məlumatları bilirsən və müştərilərlə rəsmi, amma eyni zamanda səmimi bir asistent kimi davranırsan.
 
 XÜSUSİ VƏ QƏTİ QAYDA (FORMATLAMA ÜÇÜN):
 Mütləq və mütləq olaraq, HEC BİR HALDA Markdown formatından istifadə etmə! Qalın yazılar (bold) üçün ** və ya * işarələrindən qətiyyən İSTİFADƏ ETMƏ!
@@ -124,14 +124,16 @@ DİQQƏT EDİLƏSİ NÜANS:
         { role: 'user', content: userMessage }
       ];
 
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
+          'Authorization': `Bearer ${apiKey}`,
+          'HTTP-Referer': window.location.href,
+          'X-Title': 'Elvin Shabazov Site'
         },
         body: JSON.stringify({
-          model: 'gpt-4o-mini',
+          model: 'openai/gpt-4o-mini',
           messages: openAiMessages,
           temperature: 0.7,
           max_tokens: 600
@@ -194,6 +196,7 @@ DİQQƏT EDİLƏSİ NÜANS:
               </div>
               <button
                 onClick={handleCloseChat}
+                aria-label="Söhbəti bağla"
                 className="w-8 h-8 rounded-full bg-black/10 hover:bg-black/30 flex items-center justify-center transition-colors border border-white/10"
               >
                 <i className="fas fa-chevron-down text-sm" />
@@ -242,6 +245,7 @@ DİQQƏT EDİLƏSİ NÜANS:
                 <button
                   type="submit"
                   disabled={!input.trim()}
+                  aria-label="Göndər"
                   className="absolute right-1.5 w-10 h-10 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 disabled:shadow-none shadow-md shadow-blue-500/30 text-white rounded-full flex items-center justify-center transition-all"
                 >
                   <i className="fas fa-paper-plane text-xs ml-[-2px]" />
