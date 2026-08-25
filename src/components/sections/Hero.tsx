@@ -52,7 +52,7 @@ export default function Hero() {
 
 
       {/* TEXT LAYOUT (THE "CUBIX" CLEANLINESS) */}
-      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] w-full max-w-[1920px] grid-cols-1 items-start px-4 pb-12 pt-32 md:grid-cols-[1fr_auto] md:gap-8 md:px-8 md:pb-16 md:pt-40 lg:px-12 xl:px-20 lg:pt-36">
+      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] w-full max-w-[1920px] grid-cols-1 items-start px-4 pb-8 pt-24 md:grid-cols-[1fr_auto] md:gap-8 md:px-8 md:pb-12 md:pt-28 lg:px-12 xl:px-20 lg:pt-24">
         {/* LEFT — persona & authority */}
         <motion.div
           variants={revealContainer}
@@ -62,14 +62,14 @@ export default function Hero() {
         >
           <motion.h1
             variants={revealItem}
-            className="font-satoshi mb-8 w-full text-[clamp(2.75rem,5vw,6rem)] font-black leading-[0.92] tracking-[-0.04em] text-white"
+            className="font-satoshi mb-4 w-full text-[clamp(2.75rem,5vw,6rem)] font-black leading-[0.92] tracking-[-0.04em] text-white"
           >
             ELVİN <span className="bg-gradient-to-r from-slate-200 via-white to-slate-400 bg-clip-text text-transparent">{content.hero_title_2 || 'ŞAHBAZOV'}</span>
           </motion.h1>
 
           <motion.div
             variants={revealItem}
-            className="mb-10 w-full"
+            className="mb-4 flex w-full flex-wrap items-center justify-start gap-4"
           >
             {content.hero_subtitle ? (
               <p className="text-lg md:text-xl lg:text-2xl font-light leading-relaxed text-white/70 flex items-center gap-4">
@@ -153,7 +153,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...springSmooth, delay: 0.48 }}
-            className="relative mt-16 w-full max-w-xl"
+            className="relative mt-8 w-full max-w-xl"
           >
             <div
               className="pointer-events-none absolute -inset-3 rounded-3xl bg-primary/10 blur-2xl opacity-60"
@@ -167,13 +167,13 @@ export default function Hero() {
                 <TypewriterText text="Hər əsrdə bir dönüş nöqtəsi olur və oyunun qaydaları dəyişir. Bu gün həmin nöqtənin adı " speed={20} delay={1000} />
                 <span className="font-bold text-primary"><TypewriterText text="Süni İntellektdir." speed={20} delay={2780} /></span>
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-white/60 md:text-base min-h-[44px]">
+              <p className="mt-2 text-sm leading-relaxed text-white/60 md:text-base min-h-[44px]">
                 <TypewriterText text="Bu dəyişikliyi vaxtında anlayanlar sabah bazarın lideri olur, gecikənlər isə bu gündən geridə qalmağa başlayır." speed={20} delay={3440} />
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-white/60 md:text-base min-h-[22px]">
+              <p className="mt-2 text-sm leading-relaxed text-white/60 md:text-base min-h-[22px]">
                 <TypewriterText text="Texnologiya artıq seçim deyil — böyümənin mühərrikidir." speed={20} delay={6000} />
               </p>
-              <p className="mt-5 block text-base font-black text-white md:text-lg min-h-[28px]">
+              <p className="mt-3 block text-base font-black text-white md:text-lg min-h-[28px]">
                 <TypewriterText text="Gələcək gözləyənlərin yox, indi hərəkət edənlərindir." speed={20} delay={7400} />
               </p>
             </div>
@@ -188,10 +188,10 @@ export default function Hero() {
             filter: isMenuOpen ? 'blur(20px) brightness(0.2)' : 'blur(0px) brightness(1)',
           }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mt-16 flex h-full w-full flex-col items-center justify-start md:mt-0"
+          className="relative mt-8 flex h-full w-full flex-col items-center justify-start md:mt-0"
         >
           {/* Main Photo Card */}
-          <div className="relative w-full max-w-[380px] md:max-w-[480px]">
+          <div className="relative w-full max-w-[340px] md:max-w-[420px]">
             {/* Glowing backdrop */}
             <div className="absolute -inset-4 rounded-[40px] bg-gradient-to-br from-primary/30 to-purple-500/20 blur-2xl opacity-50 animate-pulse" />
 
@@ -216,7 +216,7 @@ export default function Hero() {
       </div>
 
       {/* Ads Platforms Tabs (Full Width Bottom) */}
-      <div className="relative w-full px-4 md:px-8 lg:px-12 xl:px-20 z-40 pb-16 -mt-8 md:-mt-12">
+      <div className="relative w-full px-4 md:px-8 lg:px-12 xl:px-20 z-40 pb-8 -mt-4 md:-mt-8">
         <AdsPlatformsTabs />
       </div>
     </section>
