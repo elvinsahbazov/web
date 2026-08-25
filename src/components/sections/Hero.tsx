@@ -38,7 +38,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-screen overflow-hidden pt-20 bg-cover bg-center bg-scroll md:bg-fixed"
+      className="relative min-h-screen overflow-hidden pt-24 md:pt-28 bg-cover bg-center bg-scroll md:bg-fixed"
       style={{
         backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')`
       }}
@@ -52,13 +52,13 @@ export default function Hero() {
 
 
       {/* TEXT LAYOUT (THE "CUBIX" CLEANLINESS) */}
-      <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center px-6 pb-24 pt-16 md:grid-cols-2 md:px-12 md:pb-32 md:pt-20">
+      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] max-w-7xl grid-cols-1 items-center px-6 pb-12 pt-0 md:grid-cols-2 md:px-12 md:pb-16 md:pt-0">
         {/* LEFT — persona & authority */}
         <motion.div
           variants={revealContainer}
           initial="hidden"
           animate="show"
-          className="relative z-10 flex flex-col justify-center text-left pt-12 md:pt-0"
+          className="relative z-10 flex flex-col justify-center text-left"
         >
           <motion.h1
             variants={revealItem}
