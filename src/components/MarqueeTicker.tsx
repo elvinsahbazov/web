@@ -53,11 +53,11 @@ function TickerTrack({ copyKey }: { copyKey: string }) {
     <>
       {tickerItems.map((item, i) => (
         <span key={`${copyKey}-${i}`} className="flex shrink-0 items-center whitespace-nowrap">
-          <span className="text-xs font-semibold uppercase tracking-[0.25em] md:text-sm">
+          <span className="text-sm md:text-lg font-bold uppercase tracking-[0.15em]">
             <HighlightedPhrase text={item} />
           </span>
-          <span className="mx-8 font-mono text-blue-500/70 md:mx-12" aria-hidden="true">
-            //
+          <span className="mx-6 md:mx-10 text-primary/50 text-xl" aria-hidden="true">
+            ✦
           </span>
         </span>
       ))}

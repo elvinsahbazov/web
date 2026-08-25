@@ -5,7 +5,7 @@ import { ArrowRight, CheckCircle, ChevronDown } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import Container from '../components/ui/Container';
 import Hero from '../components/sections/Hero';
-import MarqueeTicker from '../components/MarqueeTicker';
+import { InfiniteMarquee } from '../components/ui/InfiniteMarquee';
 import { fadeUp } from '../lib/motion';
 import { C } from '../lib/colors';
 
@@ -30,7 +30,7 @@ export default function IndexPage() {
       </div>
 
       <div className="relative z-10 bg-transparent">
-        <MarqueeTicker />
+        <InfiniteMarquee />
 
         {/* LIGHT GLASSMORPHIC THEME WRAPPER FOR MIDDLE SECTIONS */}
         <div className="relative z-20 bg-white/90 backdrop-blur-3xl border border-white/50 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] rounded-[40px] mx-4 md:mx-8 my-10 overflow-hidden text-gray-900">

@@ -6,6 +6,7 @@ import { useMobileMenu } from '../../context/MobileMenuContext';
 import { useSiteContent } from '../../context/SiteContentContext';
 import { TypewriterText } from '../ui/TypewriterText';
 import { MagneticButton } from '../ui/MagneticButton';
+import { ParticleBackground } from '../ui/ParticleBackground';
 import AdsPlatformsTabs from './AdsPlatformsTabs';
 
 
@@ -42,9 +43,10 @@ export default function Hero() {
         backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')`
       }}
     >
+      <ParticleBackground />
       {/* Deep Navy/Corporate Overlay for premium look */}
-      <div className="absolute inset-0 bg-[#00193b]/50 mix-blend-multiply pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#000a1a]/70 via-[#00193b]/30 to-[#000000]/90 pointer-events-none" />
+      <div className="absolute inset-0 bg-[#00193b]/60 mix-blend-multiply pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#000a1a]/80 via-[#00193b]/40 to-[#000000]/90 pointer-events-none z-0" />
 
 
 
