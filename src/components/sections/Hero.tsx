@@ -69,7 +69,7 @@ export default function Hero() {
             variants={revealItem}
             className="mb-10 max-w-xl text-base font-medium leading-relaxed text-slate-400 md:text-lg min-h-[72px]"
           >
-            <TypewriterText text={content.hero_subtitle || 'Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi. Şirkətlər üçün performansa əsaslanan Marketinq və avtomatlaşdırma strategiyaları.'} speed={25} delay={400} />
+            {content.hero_subtitle || 'Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi. Şirkətlər üçün performansa əsaslanan Marketinq və avtomatlaşdırma strategiyaları.'}
           </motion.p>
 
           <motion.div variants={revealItem} className="mb-6 flex flex-wrap gap-2">
