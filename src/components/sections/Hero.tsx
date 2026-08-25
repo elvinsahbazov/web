@@ -52,7 +52,7 @@ export default function Hero() {
 
 
       {/* TEXT LAYOUT (THE "CUBIX" CLEANLINESS) */}
-      <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center px-6 pb-12 pt-20 md:grid-cols-2 md:px-12 md:pb-16 md:pt-24">
+      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] max-w-7xl grid-cols-1 items-start px-6 pb-12 pt-28 md:grid-cols-2 md:px-12 md:pb-16 md:pt-32 lg:pt-24">
         {/* LEFT — persona & authority */}
         <motion.div
           variants={revealContainer}
