@@ -52,7 +52,7 @@ export default function Hero() {
 
 
       {/* TEXT LAYOUT (THE "CUBIX" CLEANLINESS) */}
-      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] max-w-7xl grid-cols-1 items-start px-6 pb-12 pt-28 md:grid-cols-2 md:px-12 md:pb-16 md:pt-32 lg:pt-24">
+      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] w-full max-w-[1920px] grid-cols-1 items-start px-4 pb-12 pt-28 md:grid-cols-[1fr_auto] md:gap-8 md:px-8 md:pb-16 md:pt-32 lg:px-12 xl:px-20 lg:pt-24">
         {/* LEFT — persona & authority */}
         <motion.div
           variants={revealContainer}
@@ -62,23 +62,22 @@ export default function Hero() {
         >
           <motion.h1
             variants={revealItem}
-            className="font-satoshi mb-2 max-w-xl text-[clamp(2.75rem,7vw,5.5rem)] font-black leading-[0.92] tracking-[-0.04em] text-white"
+            className="font-satoshi mb-2 w-full text-[clamp(2.75rem,5vw,6rem)] font-black leading-[0.92] tracking-[-0.04em] text-white"
           >
-            ELVİN
-            <span className="block bg-gradient-to-r from-slate-200 via-white to-slate-400 bg-clip-text text-transparent">{content.hero_title_2 || 'ŞAHBAZOV'}</span>
+            ELVİN <span className="bg-gradient-to-r from-slate-200 via-white to-slate-400 bg-clip-text text-transparent">{content.hero_title_2 || 'ŞAHBAZOV'}</span>
           </motion.h1>
 
           <motion.div
             variants={revealItem}
-            className="mb-10 max-w-xl"
+            className="mb-10 w-full"
           >
             {content.hero_subtitle ? (
-              <p className="text-lg md:text-xl font-light leading-relaxed text-white/70">
+              <p className="text-lg md:text-xl lg:text-2xl font-light leading-relaxed text-white/70">
                 {content.hero_subtitle}
               </p>
             ) : (
               <>
-                <h2 className="text-[1.15rem] md:text-xl font-light leading-relaxed text-white/70 mb-2">
+                <h2 className="text-[1.15rem] md:text-xl lg:text-2xl font-light leading-relaxed text-white/70 mb-2 md:whitespace-nowrap">
                   <span className="font-medium text-white">Rəqəmsal Marketinq</span> və <span className="font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Süni İntellektlə Avtomatlaşdırma</span> Mütəxəssisi.
                 </h2>
                 <p className="text-base md:text-lg text-white/50 font-light leading-relaxed">
