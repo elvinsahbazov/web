@@ -120,7 +120,7 @@ export function AdsPlatformCard({ activeId }: { activeId: string }) {
         aria-hidden="true"
       />
       <div
-        className="relative rounded-2xl border border-white/10 border-l-4 p-6 shadow-2xl md:p-8 transition-colors duration-300 overflow-hidden"
+        className="relative rounded-2xl border border-white/10 border-l-4 p-5 sm:p-6 shadow-2xl md:p-8 transition-colors duration-300 overflow-hidden"
         style={{ 
           backgroundColor: 'rgba(255, 255, 255, 0.03)', 
           backdropFilter: 'blur(20px)', 

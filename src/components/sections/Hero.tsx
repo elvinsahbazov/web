@@ -56,7 +56,7 @@ export default function Hero() {
 
 
       {/* TEXT LAYOUT (THE "CUBIX" CLEANLINESS) */}
-      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] w-full max-w-[1920px] grid-cols-1 items-start px-4 pb-8 pt-32 md:grid-cols-[1fr_auto] md:gap-8 md:px-8 md:pb-12 md:pt-36 lg:px-12 xl:px-20 lg:pt-32">
+      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] w-full max-w-[1920px] grid-cols-1 items-start px-4 pb-32 pt-28 md:grid-cols-[1fr_auto] md:gap-8 md:px-8 md:pb-32 md:pt-36 lg:px-12 xl:px-20 lg:pt-32">
         {/* LEFT — persona & authority */}
         <motion.div
           variants={revealContainer}
@@ -165,7 +165,7 @@ export default function Hero() {
               aria-hidden="true"
             />
             <div
-              className="relative rounded-2xl border border-white/10 border-l-4 border-l-primary p-6 shadow-2xl md:p-8"
+              className="relative rounded-2xl border border-white/10 border-l-4 border-l-primary p-5 sm:p-6 shadow-2xl md:p-8"
               style={{ backgroundColor: 'rgba(255, 255, 255, 0.03)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
             >
               <p className="text-sm leading-relaxed text-white/80 md:text-base min-h-[44px]">
@@ -202,7 +202,7 @@ export default function Hero() {
           className="relative mt-8 flex h-full w-full flex-col items-center justify-start md:mt-0"
         >
           {/* Main Photo Card */}
-          <div className="relative w-full max-w-[340px] md:max-w-[420px]">
+          <div className="relative w-full max-w-[280px] sm:max-w-[340px] md:max-w-[420px]">
             {/* Glowing backdrop */}
             <div className="absolute -inset-4 rounded-[40px] bg-gradient-to-br from-primary/30 to-purple-500/20 blur-2xl opacity-50 animate-pulse" />
 
