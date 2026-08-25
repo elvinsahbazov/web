@@ -38,7 +38,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-screen overflow-hidden bg-cover bg-center bg-scroll md:bg-fixed"
+      className="relative min-h-screen overflow-x-hidden overflow-y-visible bg-cover bg-center bg-scroll md:bg-fixed"
       style={{
         backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')`
       }}
@@ -52,7 +52,7 @@ export default function Hero() {
 
 
       {/* TEXT LAYOUT (THE "CUBIX" CLEANLINESS) */}
-      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] w-full max-w-[1920px] grid-cols-1 items-start px-4 pb-12 pt-32 md:grid-cols-[1fr_auto] md:gap-8 md:px-8 md:pb-16 md:pt-40 lg:px-12 xl:px-20 lg:pt-36">
+      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] w-full max-w-[1920px] grid-cols-1 items-start px-4 pb-32 pt-32 md:grid-cols-[1fr_auto] md:gap-8 md:px-8 md:pb-40 md:pt-40 lg:px-12 xl:px-20 lg:pt-36">
         {/* LEFT — persona & authority */}
         <motion.div
           variants={revealContainer}
@@ -213,12 +213,11 @@ export default function Hero() {
 
           </div>
         </motion.div>
+      </div>
 
-        {/* Ads Platforms Tabs (Full Width) */}
-        <div className="col-span-1 md:col-span-2 mt-8 md:mt-16 w-full">
-          <AdsPlatformsTabs />
-        </div>
-
+      {/* Ads Platforms Tabs (Absolute Bottom Full Width) */}
+      <div className="absolute bottom-4 left-0 w-full px-4 md:px-8 lg:px-12 xl:px-20 z-40">
+        <AdsPlatformsTabs />
       </div>
     </section>
   );
