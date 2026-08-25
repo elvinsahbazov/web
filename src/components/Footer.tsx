@@ -234,9 +234,14 @@ export default function Footer() {
                 Elvin Şahbazov
               </span>
             </div>
-            <p className="mb-8 text-sm leading-relaxed text-slate-400">
-              Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi
-            </p>
+            <div className="mb-8">
+              <h4 className="text-sm font-semibold text-white/90 mb-1.5">
+                Rəqəmsal Marketinq & AI Avtomatlaşdırma Eksperti
+              </h4>
+              <p className="text-xs leading-relaxed text-white/50">
+                Süni intellekt əsaslı innovativ həllərlə bizneslərin qlobal rəqəmsal transformasiyası.
+              </p>
+            </div>
             <div className="flex gap-2 flex-wrap mb-8">
               {socials.map((s) => (
                 <a
