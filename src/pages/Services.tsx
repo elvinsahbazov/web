@@ -7,6 +7,7 @@ import { fadeUp } from '../lib/motion';
 import { C } from '../lib/colors';
 import { supabase } from '../lib/supabase';
 import { useSiteContent } from '../context/SiteContentContext';
+import { SpotlightCard } from '../components/ui/SpotlightCard';
 
 // ─── ScrollSpy Hook ─────────────────────────────────────────────────────────
 function useScrollSpy(ids: string[]) {
@@ -287,8 +288,11 @@ export default function Services() {
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.08 }}
                     onClick={() => toggleExpand(s.id)}
-                    className={"card card-hover group cursor-pointer transition-all duration-500 border " + (expandedId === s.id ? "border-primary ring-2 ring-primary/20 bg-[#f8fafc]" : "border-transparent")}
                   >
+                    <SpotlightCard
+                      spotlightColor="rgba(37,99,235,0.06)"
+                      className={"card group cursor-pointer transition-all duration-500 border h-full " + (expandedId === s.id ? "border-primary ring-2 ring-primary/20 bg-white" : "border-black/5 hover:border-black/10")}
+                    >
                     <div className="flex items-start justify-between">
                       <div 
                         className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110"
@@ -338,6 +342,7 @@ export default function Services() {
                         </motion.div>
                       )}
                     </AnimatePresence>
+                    </SpotlightCard>
                   </motion.div>
                 ))}
               </div>

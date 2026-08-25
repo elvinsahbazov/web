@@ -5,6 +5,7 @@ import { revealContainer, revealItem, springSnappy, springSmooth } from '../../l
 import { useMobileMenu } from '../../context/MobileMenuContext';
 import { useSiteContent } from '../../context/SiteContentContext';
 import { TypewriterText } from '../ui/TypewriterText';
+import { MagneticButton } from '../ui/MagneticButton';
 import AdsPlatformsTabs from './AdsPlatformsTabs';
 
 
@@ -65,12 +66,25 @@ export default function Hero() {
             <span className="block bg-gradient-to-r from-slate-200 via-white to-slate-400 bg-clip-text text-transparent">{content.hero_title_2 || 'ŞAHBAZOV'}</span>
           </motion.h1>
 
-          <motion.p
+          <motion.div
             variants={revealItem}
-            className="mb-10 max-w-xl text-base font-medium leading-relaxed text-slate-400 md:text-lg min-h-[72px]"
+            className="mb-10 max-w-xl"
           >
-            {content.hero_subtitle || 'Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisi. Şirkətlər üçün performansa əsaslanan Marketinq və avtomatlaşdırma strategiyaları.'}
-          </motion.p>
+            {content.hero_subtitle ? (
+              <p className="text-lg md:text-xl font-light leading-relaxed text-slate-300">
+                {content.hero_subtitle}
+              </p>
+            ) : (
+              <>
+                <h2 className="text-[1.15rem] md:text-xl font-light leading-relaxed text-slate-200 mb-2">
+                  <span className="font-medium text-white">Rəqəmsal Marketinq</span> və <span className="font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Süni İntellektlə Avtomatlaşdırma</span> Mütəxəssisi.
+                </h2>
+                <p className="text-base md:text-lg text-slate-400 font-light leading-relaxed">
+                  Şirkətlər üçün performansa əsaslanan innovativ marketinq və biznes avtomatlaşdırma strategiyaları.
+                </p>
+              </>
+            )}
+          </motion.div>
 
           <motion.div variants={revealItem} className="mb-6 flex flex-wrap gap-2">
             {[
@@ -91,25 +105,28 @@ export default function Hero() {
 
 
           <motion.div variants={revealItem} className="mb-12 flex flex-wrap items-center gap-4">
-            <motion.a
-              href="https://wa.me/994999550001"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-magnetic
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              transition={springSnappy}
-              className="btn-primary btn-hero shadow-blue-glow"
-            >
-              <i className="fab fa-whatsapp text-base" />
-              Konsultasiya
-            </motion.a>
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={springSnappy}>
-              <Link to="/xidmetler" data-magnetic className="inline-flex items-center gap-2 rounded-xl bg-white/[0.03] backdrop-blur-xl border border-white/5 text-white btn-hero hover:bg-white/[0.08] transition-colors">
-                {content.hero_button_2 || 'Xidmətlər'}
-                <ArrowRight size={16} />
-              </Link>
-            </motion.div>
+            <MagneticButton>
+              <motion.a
+                href="https://wa.me/994999550001"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={springSnappy}
+                className="btn-primary btn-hero shadow-blue-glow"
+              >
+                <i className="fab fa-whatsapp text-base" />
+                Konsultasiya
+              </motion.a>
+            </MagneticButton>
+            <MagneticButton>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={springSnappy}>
+                <Link to="/xidmetler" className="inline-flex items-center gap-2 rounded-xl bg-white/[0.03] backdrop-blur-xl border border-white/5 text-white btn-hero hover:bg-white/[0.08] transition-colors">
+                  {content.hero_button_2 || 'Xidmətlər'}
+                  <ArrowRight size={16} />
+                </Link>
+              </motion.div>
+            </MagneticButton>
           </motion.div>
 
           {/* Cubix authority stats — inline, no dividers */}
