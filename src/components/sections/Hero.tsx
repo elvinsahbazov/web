@@ -52,7 +52,7 @@ export default function Hero() {
 
 
       {/* TEXT LAYOUT (THE "CUBIX" CLEANLINESS) */}
-      <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-start px-6 pb-24 pt-28 md:grid-cols-2 md:px-12 md:pb-32 md:pt-32">
+      <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-start px-6 pb-32 pt-32 md:grid-cols-2 md:px-12 md:pb-40 md:pt-40">
         {/* LEFT — persona & authority */}
         <motion.div
           variants={revealContainer}
@@ -73,15 +73,15 @@ export default function Hero() {
             className="mb-10 max-w-xl"
           >
             {content.hero_subtitle ? (
-              <p className="text-lg md:text-xl font-light leading-relaxed text-slate-300">
+              <p className="text-lg md:text-xl font-light leading-relaxed text-white/70">
                 {content.hero_subtitle}
               </p>
             ) : (
               <>
-                <h2 className="text-[1.15rem] md:text-xl font-light leading-relaxed text-slate-200 mb-2">
+                <h2 className="text-[1.15rem] md:text-xl font-light leading-relaxed text-white/70 mb-2">
                   <span className="font-medium text-white">Rəqəmsal Marketinq</span> və <span className="font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Süni İntellektlə Avtomatlaşdırma</span> Mütəxəssisi.
                 </h2>
-                <p className="text-base md:text-lg text-slate-400 font-light leading-relaxed">
+                <p className="text-base md:text-lg text-white/50 font-light leading-relaxed">
                   Şirkətlər üçün performansa əsaslanan innovativ marketinq və biznes avtomatlaşdırma strategiyaları.
                 </p>
               </>
@@ -123,7 +123,7 @@ export default function Hero() {
             </MagneticButton>
             <MagneticButton>
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={springSnappy}>
-                <Link to="/xidmetler" className="inline-flex items-center gap-2 rounded-xl bg-white/[0.03] backdrop-blur-xl border border-white/5 text-white btn-hero hover:bg-white/[0.08] transition-colors">
+                <Link to="/xidmetler" className="inline-flex items-center min-h-[48px] gap-2 rounded-xl bg-white/[0.03] backdrop-blur-xl border border-white/10 text-white/80 btn-hero hover:bg-white/[0.08] hover:text-white transition-colors">
                   {content.hero_button_2 || 'Xidmətlər'}
                   <ArrowRight size={16} />
                 </Link>

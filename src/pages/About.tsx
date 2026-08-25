@@ -111,7 +111,7 @@ function AboutHero() {
 
       <div className="relative z-[3] mx-auto max-w-[1600px]">
         <div className="grid min-h-[min(105svh,960px)] grid-cols-1 lg:grid-cols-2">
-          <div className="flex flex-col justify-center px-5 pb-12 pt-32 md:px-10 md:pt-36 lg:px-14 lg:pb-20">
+          <div className="flex flex-col justify-center px-5 pb-16 pt-36 md:px-10 md:pt-40 lg:px-14 lg:pb-32">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -209,7 +209,7 @@ export default function About() {
     <div className="min-h-screen bg-transparent text-white text-white">
       <AboutHero />
 
-      <section className="relative z-[1] -mt-1 py-20 md:py-28">
+      <section className="relative z-[1] -mt-1 py-24 md:py-32 lg:py-40">
         <Container wide>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4 lg:gap-8">
             {/* About Card */}

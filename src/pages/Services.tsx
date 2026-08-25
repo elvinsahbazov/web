@@ -214,7 +214,7 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen bg-transparent text-white pt-28 md:pt-32">
+    <div className="min-h-screen bg-transparent text-white pt-36 md:pt-40">
       <div className="sticky top-24 z-40 bg-white/90 backdrop-blur-xl border-b border-black/8 md:hidden">
         <div className="flex gap-2 px-4 py-3 overflow-x-auto no-scrollbar">
           {navItems.map((n) => (
@@ -232,7 +232,7 @@ export default function Services() {
         </div>
       </div>
 
-      <Container wide className="py-12 md:py-16">
+      <Container wide className="py-20 md:py-24 lg:py-32">
         <div className="flex gap-12 lg:gap-16">
           {/* Desktop Sidebar */}
           <aside className="hidden md:block w-56 flex-none">

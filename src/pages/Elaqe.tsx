@@ -185,8 +185,8 @@ export default function Elaqe() {
   };
 
   return (
-    <div className="min-h-screen bg-transparent text-white pt-28 md:pt-32 pb-24">
-      <Container wide className="py-12 md:py-16">
+    <div className="min-h-screen bg-transparent text-white pt-36 md:pt-40 pb-32">
+      <Container wide className="py-20 md:py-24">
         <motion.div
           {...fadeUp()}
           className="text-center mb-16 md:mb-24 max-w-3xl mx-auto"

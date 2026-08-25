@@ -57,7 +57,7 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2.5 px-8 py-4 text-white rounded-xl font-semibold text-sm tracking-wide transition-all duration-300 border border-transparent;
+    @apply inline-flex items-center justify-center min-h-[48px] gap-2.5 px-8 py-4 text-white rounded-xl font-semibold text-sm tracking-wide transition-all duration-300 border border-transparent;
     background: var(--color-blue);
   }
 
@@ -68,7 +68,7 @@
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2.5 px-8 py-4 border bg-white text-black rounded-xl font-semibold text-sm tracking-wide transition-all duration-300;
+    @apply inline-flex items-center justify-center min-h-[48px] gap-2.5 px-8 py-4 border bg-white text-black rounded-xl font-semibold text-sm tracking-wide transition-all duration-300;
     border-color: var(--color-border);
   }
 
@@ -79,7 +79,7 @@
   }
 
   .btn-black {
-    @apply inline-flex items-center justify-center gap-2.5 px-8 py-4 text-white rounded-xl font-semibold text-sm tracking-wide transition-all duration-300;
+    @apply inline-flex items-center justify-center min-h-[48px] gap-2.5 px-8 py-4 text-white rounded-xl font-semibold text-sm tracking-wide transition-all duration-300;
     background: var(--color-black);
   }
 

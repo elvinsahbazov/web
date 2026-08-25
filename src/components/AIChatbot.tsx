@@ -227,7 +227,7 @@ DİQQƏT EDİLƏSİ NÜANS:
               <button
                 onClick={handleCloseChat}
                 aria-label="Söhbəti bağla"
-                className="w-8 h-8 rounded-full bg-black/10 hover:bg-black/30 flex items-center justify-center transition-colors border border-white/10"
+                className="w-12 h-12 md:w-10 md:h-10 rounded-full bg-black/10 hover:bg-black/30 flex items-center justify-center transition-colors border border-white/10"
               >
                 <i className="fas fa-chevron-down text-sm" />
               </button>
@@ -276,9 +276,9 @@ DİQQƏT EDİLƏSİ NÜANS:
                   type="submit"
                   disabled={!input.trim()}
                   aria-label="Göndər"
-                  className="absolute right-1.5 w-10 h-10 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 disabled:shadow-none shadow-md shadow-blue-500/30 text-white rounded-full flex items-center justify-center transition-all"
+                  className="absolute right-1.5 w-12 h-12 md:w-10 md:h-10 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 disabled:shadow-none shadow-md shadow-blue-500/30 text-white rounded-full flex items-center justify-center transition-all"
                 >
-                  <i className="fas fa-paper-plane text-xs ml-[-2px]" />
+                  <i className="fas fa-paper-plane text-xs md:text-sm ml-[-2px]" />
                 </button>
               </form>
               <div className="text-center mt-2">

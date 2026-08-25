@@ -1,0 +1,1 @@
+fetch('https://docs.google.com/forms/d/e/1FAIpQLSfD-P6RhwGioRtXPreb4P1FsHd5flsJKXvnh7pokAaR4zPhUw/viewform').then(r=>r.text()).then(t=>{ const matches = t.match(/data-params="[^"]*"/g); if(matches) { matches.forEach(m => console.log(decodeURIComponent(m.replace(/\\\\u/g, '%u')))); } })
