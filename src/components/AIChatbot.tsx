@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useSiteContent } from '../context/SiteContentContext';
 import { supabase } from '../lib/supabase';
 
-const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
+const apiKey = import.meta.env.VITE_OPENAI_API_KEY || import.meta.env.VITE_OPENROUTER_API_KEY;
 
 export default function UnifiedContactWidget() {
   const { content } = useSiteContent();
