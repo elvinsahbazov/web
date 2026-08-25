@@ -62,7 +62,7 @@ export default function Hero() {
         >
           <motion.h1
             variants={revealItem}
-            className="font-satoshi mb-2 w-full text-[clamp(2.75rem,5vw,6rem)] font-black leading-[0.92] tracking-[-0.04em] text-white"
+            className="font-satoshi mb-8 w-full text-[clamp(2.75rem,5vw,6rem)] font-black leading-[0.92] tracking-[-0.04em] text-white"
           >
             ELVİN <span className="bg-gradient-to-r from-slate-200 via-white to-slate-400 bg-clip-text text-transparent">{content.hero_title_2 || 'ŞAHBAZOV'}</span>
           </motion.h1>
@@ -72,13 +72,15 @@ export default function Hero() {
             className="mb-10 w-full"
           >
             {content.hero_subtitle ? (
-              <p className="text-lg md:text-xl lg:text-2xl font-light leading-relaxed text-white/70">
+              <p className="text-lg md:text-xl lg:text-2xl font-light leading-relaxed text-white/70 flex items-center gap-4">
+                <span className="w-12 h-[2px] bg-gradient-to-r from-primary to-transparent opacity-70"></span>
                 {content.hero_subtitle}
               </p>
             ) : (
               <>
-                <h2 className="text-[1.15rem] md:text-xl lg:text-2xl font-light leading-relaxed text-white/70 mb-2 md:whitespace-nowrap">
-                  <span className="font-medium text-white">Rəqəmsal Marketinq</span> və <span className="font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Süni İntellektlə Avtomatlaşdırma</span> Mütəxəssisi.
+                <h2 className="text-[1.15rem] md:text-xl lg:text-2xl font-light leading-relaxed text-white/70 mb-2 md:whitespace-nowrap flex items-center gap-4">
+                  <span className="w-8 md:w-12 h-[2px] bg-gradient-to-r from-primary to-transparent opacity-80 shrink-0 rounded-full"></span>
+                  <span><span className="font-medium text-white">Rəqəmsal Marketinq</span> və <span className="font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Süni İntellektlə Avtomatlaşdırma</span> Mütəxəssisi.</span>
                 </h2>
                 <p className="text-base md:text-lg text-white/50 font-light leading-relaxed">
                   Şirkətlər üçün performansa əsaslanan innovativ marketinq və biznes avtomatlaşdırma strategiyaları.
