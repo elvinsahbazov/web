@@ -39,7 +39,18 @@ export default class ErrorBoundary extends Component<Props, State> {
             Gözlənilməz bir xəta ilə qarşılaşdıq. Lütfən səhifəni yeniləyin və ya bir az sonra təkrar yoxlayın.
           </p>
           <button
-            onClick={() => window.location.reload()}
+            onClick={() => {
+              if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistrations().then((registrations) => {
+                  for (let registration of registrations) {
+                    registration.unregister();
+                  }
+                  window.location.href = window.location.href;
+                });
+              } else {
+                window.location.reload();
+              }
+            }}
             className="flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-blue-700 shadow-lg shadow-blue-600/20"
           >
             <RefreshCw size={18} />
