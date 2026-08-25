@@ -104,8 +104,8 @@ function AboutHero() {
         className="hero-portrait-layer pointer-events-none absolute inset-y-0 right-0 hidden lg:block lg:w-[52%]"
       >
         <div className="absolute inset-0 z-[1] bg-gradient-to-r from-black via-black/60 to-transparent lg:from-black lg:via-black/25 lg:to-transparent" />
-        {/* Gradient to hide the sharp bottom edge of the image */}
-        <div className="absolute bottom-0 left-0 right-0 z-[2] h-1/3 bg-gradient-to-t from-black via-black/80 to-transparent" />
+        {/* Gradient to hide the sharp bottom edge of the image gently */}
+        <div className="absolute bottom-0 left-0 right-0 z-[2] h-[15%] bg-gradient-to-t from-black to-transparent" />
         <LazyImage src={content.about_image || ABOUT_IMAGE} alt="Elvin Şahbazov" className="h-full w-full object-cover object-top" />
       </motion.div>
 
