@@ -273,14 +273,14 @@ export default function About() {
                   <div className="flex items-start gap-2">
                     <span className="mt-1.5 h-2 w-2 flex-none rounded-full bg-primary" />
                     <div>
-                      <p className="text-xs font-semibold text-white">Marketing Director</p>
-                      <p className="text-xs text-white/55">Baku Auto Mall – Qafqazın ən böyük auto mərkəzi</p>
+                      <p className="text-xs font-semibold text-white">Marketinq Direktoru</p>
+                      <p className="text-xs text-white/55">Baku Auto Mall – Qafqazın ən böyük avtomobil mərkəzi</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="mt-1.5 h-2 w-2 flex-none rounded-full bg-primary/50" />
                     <div>
-                      <p className="text-xs font-semibold text-white">Head of Marketing & Business Dev.</p>
+                      <p className="text-xs font-semibold text-white">Marketinq və Biznesin İnkişafı Rəhbəri</p>
                       <p className="text-xs text-white/55">SMARTKOB – Rəqəmsal İdarəetmə Mərkəzi</p>
                     </div>
                   </div>
