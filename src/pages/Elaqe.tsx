@@ -152,6 +152,25 @@ export default function Elaqe() {
       page_source: 'contact',
     });
 
+    const googleFormsUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfD-P6RhwGioRtXPreb4P1FsHd5flsJKXvnh7pokAaR4zPhUw/formResponse";
+    const formData = new URLSearchParams();
+    formData.append("entry.635463488", form.full_name.trim());
+    formData.append("entry.914307651", form.email.trim().toLowerCase());
+    formData.append("entry.464079801", form.phone.trim());
+    formData.append("entry.2140819732", form.subject ? form.subject.trim() : "Əlaqə bölməsi müraciəti");
+    formData.append("entry.1463037034", "Vebsayt (Əlaqə)");
+
+    try {
+      await fetch(googleFormsUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData.toString()
+      });
+    } catch (err) {
+      console.error("Google form error", err);
+    }
+
     if (error) {
       setStatus('error');
     } else {

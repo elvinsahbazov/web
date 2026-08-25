@@ -30,162 +30,6 @@ const navLinks = [
   { path: '/elaqe', label: 'Əlaqə' },
 ];
 
-function NewsletterForm() {
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'duplicate' | 'error'>('idle');
-
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.trim()) return;
-    setStatus('loading');
-    const { error } = await supabase.from('newsletter_subscribers').insert({
-      email: email.trim().toLowerCase(),
-      source: 'footer',
-    });
-    if (!error) {
-      setStatus('success');
-    } else if (error.code === '23505') {
-      setStatus('duplicate');
-    } else {
-      setStatus('error');
-    }
-  };
-
-  if (status === 'success') {
-    return (
-      <div className="flex items-center gap-2 text-primary text-sm">
-        <CheckCircle size={15} />
-        <span>Abunə oldunuz! Xoş gəldiniz.</span>
-      </div>
-    );
-  }
-
-  return (
-    <div>
-      {status === 'duplicate' && (
-        <p className="text-white/60 text-xs mb-2">Bu email artıq abunədir.</p>
-      )}
-      <form onSubmit={submit} className="flex gap-2">
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => { setEmail(e.target.value); setStatus('idle'); }}
-          placeholder="Email ünvanınız"
-          required
-          className="flex-1 px-5 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-white/40 text-sm focus:outline-none focus:border-primary/50 transition-colors"
-        />
-        <button
-          type="submit"
-          disabled={status === 'loading'}
-          className="px-5 py-3 bg-primary rounded-2xl text-white hover:bg-primary-dark transition-colors disabled:opacity-60 flex items-center"
-        >
-          {status === 'loading' ? <i className="fas fa-spinner fa-spin text-xs" /> : <Send size={13} />}
-        </button>
-      </form>
-    </div>
-  );
-}
-
-function ContactForm() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
-    setStatus('loading');
-
-    // Web3Forms integration
-    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
-    if (accessKey) {
-      try {
-        await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            access_key: accessKey,
-            name: form.name.trim(),
-            email: form.email.trim().toLowerCase(),
-            message: form.message.trim(),
-            subject: 'Saytdan yeni mesaj (Sürətli Əlaqə)',
-            from_name: 'ElvinShabazov.com'
-          })
-        });
-      } catch (err) {
-        console.error('Web3forms error:', err);
-      }
-    }
-
-    const { error } = await supabase.from('contact_submissions').insert({
-      full_name: form.name.trim(),
-      email: form.email.trim().toLowerCase(),
-      message: form.message.trim(),
-      page_source: 'footer',
-    });
-    if (error) {
-      setStatus('error');
-    } else {
-      setStatus('success');
-      setForm({ name: '', email: '', message: '' });
-    }
-  };
-
-  return (
-    <div>
-      <h4 className="font-semibold text-xs uppercase tracking-[0.2em] text-white/50 mb-5">
-        Sürətli Əlaqə
-      </h4>
-      {status === 'success' ? (
-        <div className="flex items-center gap-2 text-primary text-sm py-3">
-          <CheckCircle size={15} />
-          <span>Mesajınız göndərildi! Tezliklə cavablanacaq.</span>
-        </div>
-      ) : (
-        <form onSubmit={submit} className="space-y-3">
-          <input
-            type="text"
-            value={form.name}
-            onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-            placeholder="Adınız *"
-            required
-            className="w-full px-5 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-white/40 text-sm focus:outline-none focus:border-primary/50 transition-colors"
-          />
-          <input
-            type="email"
-            value={form.email}
-            onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-            placeholder="Email *"
-            required
-            className="w-full px-5 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-white/40 text-sm focus:outline-none focus:border-primary/50 transition-colors"
-          />
-          <textarea
-            value={form.message}
-            onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-            placeholder="Mesajınız *"
-            required
-            rows={3}
-            className="w-full px-5 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-white/40 text-sm focus:outline-none focus:border-primary/50 transition-colors resize-none"
-          />
-          {status === 'error' && (
-            <p className="text-white/60 text-xs">Xəta baş verdi. Yenidən cəhd edin.</p>
-          )}
-          <button
-            type="submit"
-            disabled={status === 'loading'}
-            className="w-full flex items-center justify-center gap-2 px-5 py-4 bg-primary text-white rounded-2xl text-sm font-semibold hover:bg-primary-dark transition-colors disabled:opacity-60"
-          >
-            {status === 'loading' ? (
-              <><i className="fas fa-spinner fa-spin text-xs" /> Göndərilir...</>
-            ) : (
-              <><Send size={13} /> Göndər</>
-            )}
-          </button>
-        </form>
-      )}
-    </div>
-  );
-}
-
 export default function Footer() {
   const { content } = useSiteContent();
   return (
@@ -258,8 +102,6 @@ export default function Footer() {
               ))}
             </div>
 
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-3">Bülletendə abunə ol</p>
-            <NewsletterForm />
           </div>
 
           <div>
@@ -294,8 +136,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="lg:col-span-2">
-            <ContactForm />
+          <div className="lg:col-span-2 hidden">
           </div>
         </div>
 
