@@ -135,7 +135,12 @@ export default function Elaqe() {
   const [status, setStatus] = useState<FormStatus>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    if (name === 'phone') {
+      setForm(prev => ({ ...prev, [name]: value.replace(/[^\d\+\-\s]/g, '') }));
+    } else {
+      setForm(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -305,6 +310,7 @@ export default function Elaqe() {
                         value={form.full_name}
                         onChange={handleChange}
                         required
+                        autoComplete="name"
                         placeholder="Adınızı daxil edin"
                         className="input-field"
                       />
@@ -319,6 +325,7 @@ export default function Elaqe() {
                         value={form.email}
                         onChange={handleChange}
                         required
+                        autoComplete="email"
                         placeholder="email@domain.com"
                         className="input-field"
                       />
@@ -335,6 +342,9 @@ export default function Elaqe() {
                         name="phone"
                         value={form.phone}
                         onChange={handleChange}
+                        autoComplete="tel"
+                        pattern="^[\+]?[0-9\s\-]{7,15}$"
+                        title="Düzgün nömrə daxil edin (məs: 0501234567)"
                         placeholder="+994 XX XXX XX XX"
                         className="input-field"
                       />

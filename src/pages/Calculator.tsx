@@ -63,13 +63,18 @@ function CalculatorLockScreen({ onUnlock }: { onUnlock: () => void }) {
 
         <form onSubmit={handleSubmit} className="relative z-10 space-y-4">
           <input type="text" placeholder="Ad Soyad *" required
+            autoComplete="name"
             value={form.name} onChange={e => setForm({...form, name: e.target.value})}
             className="w-full px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 text-sm focus:outline-none focus:border-blue-500/50 transition-colors" />
           <input type="email" placeholder="Email *" required
+            autoComplete="email"
             value={form.email} onChange={e => setForm({...form, email: e.target.value})}
             className="w-full px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 text-sm focus:outline-none focus:border-blue-500/50 transition-colors" />
-          <input type="tel" placeholder="Mobil nömrə *" required
-            value={form.phone} onChange={e => setForm({...form, phone: e.target.value})}
+          <input type="tel" placeholder="Mobil nömrə (məs: 0501234567) *" required
+            autoComplete="tel"
+            pattern="^[\+]?[0-9\s\-]{7,15}$"
+            title="Düzgün nömrə daxil edin"
+            value={form.phone} onChange={e => setForm({...form, phone: e.target.value.replace(/[^\d\+\-\s]/g, '')})}
             className="w-full px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 text-sm focus:outline-none focus:border-blue-500/50 transition-colors" />
           <button type="submit" disabled={status === 'loading'}
             className="w-full py-4 mt-2 bg-blue-600 rounded-xl text-white font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
