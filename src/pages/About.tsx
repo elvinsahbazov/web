@@ -105,7 +105,7 @@ function AboutHero() {
       >
         <div className="absolute inset-0 z-[1] bg-gradient-to-r from-black via-black/60 to-transparent lg:from-black lg:via-black/25 lg:to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 z-[1] h-[18%] bg-gradient-to-t from-black/70 to-transparent lg:hidden" />
-        <LazyImage src={content.about_image || ABOUT_IMAGE} alt="Elvin Şahbazov" />
+        <LazyImage src={content.about_image || ABOUT_IMAGE} alt="Elvin Şahbazov" className="w-full h-full object-cover object-top" />
       </motion.div>
 
       <div className="relative z-[3] mx-auto max-w-[1600px]">
@@ -127,14 +127,14 @@ function AboutHero() {
               </motion.span>
 
               <h1
-                className="display-title mb-6 text-[clamp(2.5rem,6.5vw,4.75rem)] leading-[1.02] md:mb-8"
+                className="display-title mb-6 text-[clamp(2.5rem,5.5vw,4rem)] leading-[1.1] md:mb-8 flex flex-wrap gap-x-3"
                 style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}
               >
                 <motion.span
                   initial={{ opacity: 0, y: 28 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.25, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  className="block text-white"
+                  className="text-white"
                 >
                   ELVİN
                 </motion.span>
@@ -142,7 +142,7 @@ function AboutHero() {
                   initial={{ opacity: 0, y: 28 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.38, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  className="block text-gradient-blue"
+                  className="text-gradient-blue"
                 >
                   ŞAHBAZOV
                 </motion.span>
@@ -163,9 +163,9 @@ function AboutHero() {
 
           <div className="relative min-h-[50vh] overflow-hidden lg:hidden">
             <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black via-transparent to-transparent" />
-            <img
+            <LazyImage
               src={content.about_image || ABOUT_IMAGE}
-              alt=""
+              alt="Elvin Şahbazov"
               aria-hidden="true"
               className="h-[118%] w-full object-cover object-[50%_12%] -translate-y-[10%]"
             />
@@ -173,7 +173,7 @@ function AboutHero() {
         </div>
       </div>
 
-      <div className="hero-batuhan-diagonal" aria-hidden="true" />
+
     </section>
   );
 }
