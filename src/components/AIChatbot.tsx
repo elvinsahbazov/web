@@ -61,6 +61,10 @@ Siyahı (1., 2., 3. və s.) əvəzinə təbii cümlələr qur. Məsələn, "Bizi
 ELVİN ŞAHBAZOV HAQQINDA MƏLUMAT:
 ${content.about_text_1 || 'Rəqəmsal Marketinq və Süni intellektlə avtomatlaşdırma Mütəxəssisidir.'}
 ${content.about_text_2 || 'Hazırda Baku Auto Mall-da Marketinq Direktoru və SMARTKOB-da Departament rəhbəridir.'}
+- Təhsili: Atatürk Universiteti, İqtisadiyyat Fakültəsi (Biznesin Təşkili və İdarə Edilməsi); Sabancı Business School (AI Automation and Digital Marketing).
+- Əlavə olaraq Google, Meta, HubSpot və DMI tərəfindən verilmiş beynəlxalq sertifikatları var.
+- Təcrübə: 11 qlobal reklam platformasında ekspertiza, indiyə qədər 2 milyon dollardan çox idarə olunan reklam büdcəsi.
+- Şəxsi layihələri: Smart Restoran (smartrestoran.cloud) və DadMarket (dadmarket.shop) kimi rəqəmsal sistemlərin təsisçisi və baş memarıdır.
 
 ƏLAQƏ MƏLUMATLARI:
 - WhatsApp və Zəng: ${content.contact_phone || '+994 99 955 00 01'}
