@@ -104,8 +104,9 @@ function AboutHero() {
         className="hero-portrait-layer pointer-events-none absolute inset-y-0 right-0 hidden lg:block lg:w-[52%]"
       >
         <div className="absolute inset-0 z-[1] bg-gradient-to-r from-black via-black/60 to-transparent lg:from-black lg:via-black/25 lg:to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 z-[1] h-[18%] bg-gradient-to-t from-black/70 to-transparent lg:hidden" />
-        <LazyImage src={content.about_image || ABOUT_IMAGE} alt="Elvin Şahbazov" className="w-full h-full object-cover object-top" />
+        {/* Gradient to hide the sharp bottom edge of the image */}
+        <div className="absolute bottom-0 left-0 right-0 z-[2] h-1/3 bg-gradient-to-t from-black via-black/80 to-transparent" />
+        <LazyImage src={content.about_image || ABOUT_IMAGE} alt="Elvin Şahbazov" className="h-full w-full object-cover object-top" />
       </motion.div>
 
       <div className="relative z-[3] mx-auto max-w-[1600px]">
@@ -116,7 +117,10 @@ function AboutHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="max-w-xl"
+              itemScope
+              itemType="https://schema.org/Person"
             >
+              <meta itemProp="name" content="Elvin Şahbazov" />
               <motion.span
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -148,15 +152,26 @@ function AboutHero() {
                 </motion.span>
               </h1>
 
-              <motion.p
+              <motion.h2
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.48, duration: 0.65 }}
-                className="mb-3 max-w-lg text-base font-medium leading-relaxed text-white/90 md:text-xl"
+                className="mb-5 max-w-lg text-lg font-medium leading-relaxed text-white md:text-xl"
+                itemProp="jobTitle"
               >
-                Digital Marketing & AI Automation Expert. 11 qlobal reklam platformasında peşəkar təcrübə və 2 milyon dollardan çox idarə olunan reklam büdcəsi.
-              </motion.p>
+                Digital Marketing & AI Automation Expert.
+              </motion.h2>
 
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.55, duration: 0.65 }}
+                className="max-w-lg border-l-2 border-primary pl-4"
+              >
+                <p className="text-sm md:text-base text-white/75 font-medium leading-relaxed" itemProp="description">
+                  <strong className="text-white">11 qlobal reklam platformasında</strong> peşəkar təcrübə və <strong className="text-white">2 milyon dollardan çox</strong> idarə olunan reklam büdcəsi.
+                </p>
+              </motion.div>
 
             </motion.div>
           </div>
