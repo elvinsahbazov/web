@@ -116,38 +116,8 @@ export default function AdsPlatformsTabs() {
       transition={{ ...springSmooth, delay: 0.58 }}
       className="mt-12 w-full max-w-2xl"
     >
-      <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-primary">
-        Reklam Platformaları
-      </p>
-
-      <div className="flex flex-wrap gap-2.5" role="tablist" aria-label="Reklam platformaları">
-        {adPlatforms.map((platform) => {
-          const isActive = platform.id === activeId;
-          return (
-            <button
-              key={platform.id}
-              type="button"
-              role="tab"
-              aria-selected={isActive}
-              onClick={() => setActiveId(platform.id)}
-              onMouseOver={() => setActiveId(platform.id)}
-              onMouseMove={() => setActiveId(platform.id)}
-              onPointerEnter={() => setActiveId(platform.id)}
-              className={`cursor-pointer rounded-full border px-4 py-2 text-sm transition-all ${
-                isActive
-                  ? 'font-semibold'
-                  : 'border-white/10 bg-white/5 text-gray-400 hover:bg-white/10'
-              }`}
-              style={isActive ? activePillStyle(platform.color) : undefined}
-            >
-              {platform.name}
-            </button>
-          );
-        })}
-      </div>
-
       <div
-        className="mt-6 rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-md relative overflow-hidden"
+        className="mb-6 min-h-[140px] rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-md relative overflow-hidden"
         role="tabpanel"
         aria-live="polite"
       >
@@ -169,6 +139,41 @@ export default function AdsPlatformsTabs() {
             <p className="text-sm leading-relaxed text-white/70 md:text-base">{active.description}</p>
           </motion.div>
         </AnimatePresence>
+      </div>
+
+      <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-primary">
+        Reklam Platformaları
+      </p>
+
+      <div 
+        className="flex overflow-x-auto gap-2.5 pb-4 snap-x [&::-webkit-scrollbar]:hidden" 
+        role="tablist" 
+        aria-label="Reklam platformaları"
+        style={{ msOverflowStyle: 'none', scrollbarWidth: 'none' }}
+      >
+        {adPlatforms.map((platform) => {
+          const isActive = platform.id === activeId;
+          return (
+            <button
+              key={platform.id}
+              type="button"
+              role="tab"
+              aria-selected={isActive}
+              onClick={() => setActiveId(platform.id)}
+              onMouseOver={() => setActiveId(platform.id)}
+              onMouseMove={() => setActiveId(platform.id)}
+              onPointerEnter={() => setActiveId(platform.id)}
+              className={`flex-shrink-0 snap-start whitespace-nowrap cursor-pointer rounded-full border px-4 py-2 text-sm transition-all ${
+                isActive
+                  ? 'font-semibold'
+                  : 'border-white/10 bg-white/5 text-gray-400 hover:bg-white/10'
+              }`}
+              style={isActive ? activePillStyle(platform.color) : undefined}
+            >
+              {platform.name}
+            </button>
+          );
+        })}
       </div>
     </motion.div>
   );
