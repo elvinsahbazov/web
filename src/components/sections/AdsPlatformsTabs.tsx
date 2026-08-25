@@ -116,6 +116,31 @@ export default function AdsPlatformsTabs() {
       transition={{ ...springSmooth, delay: 0.58 }}
       className="mt-12 w-full max-w-full"
     >
+      <div
+        className="mb-6 min-h-[140px] rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-md relative overflow-hidden"
+        role="tabpanel"
+        aria-live="polite"
+      >
+        <AnimatePresence>
+          <motion.div
+            key={active.id}
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -5, position: 'absolute' }}
+            transition={{ duration: 0.2 }}
+            className="w-full"
+          >
+            <p
+              className="mb-2 text-xs font-semibold uppercase tracking-[0.2em]"
+              style={{ color: active.color }}
+            >
+              {active.name}
+            </p>
+            <p className="text-sm leading-relaxed text-white/70 md:text-base">{active.description}</p>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
       <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-primary">
         Reklam Platformaları
       </p>
@@ -151,31 +176,6 @@ export default function AdsPlatformsTabs() {
             </button>
           );
         })}
-      </div>
-
-      <div
-        className="mt-6 min-h-[140px] rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-md relative overflow-hidden"
-        role="tabpanel"
-        aria-live="polite"
-      >
-        <AnimatePresence>
-          <motion.div
-            key={active.id}
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -5, position: 'absolute' }}
-            transition={{ duration: 0.2 }}
-            className="w-full"
-          >
-            <p
-              className="mb-2 text-xs font-semibold uppercase tracking-[0.2em]"
-              style={{ color: active.color }}
-            >
-              {active.name}
-            </p>
-            <p className="text-sm leading-relaxed text-white/70 md:text-base">{active.description}</p>
-          </motion.div>
-        </AnimatePresence>
       </div>
     </motion.div>
   );

@@ -38,15 +38,17 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-screen overflow-x-hidden overflow-y-visible bg-cover bg-center bg-scroll md:bg-fixed"
+      className="relative min-h-screen bg-cover bg-center bg-scroll md:bg-fixed"
       style={{
         backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')`
       }}
     >
       <ParticleBackground />
       {/* Deep Navy/Corporate Overlay for premium look */}
-      <div className="absolute inset-0 bg-[#00193b]/60 mix-blend-multiply pointer-events-none z-0" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#000a1a]/80 via-[#00193b]/40 to-[#000000]/90 pointer-events-none z-0" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute inset-0 bg-[#00193b]/60 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#000a1a]/80 via-[#00193b]/40 to-[#000000]/90" />
+      </div>
 
 
 
@@ -215,8 +217,8 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Ads Platforms Tabs (Full Width Bottom) */}
-      <div className="relative w-full px-4 md:px-8 lg:px-12 xl:px-20 z-40 pb-8 -mt-4 md:-mt-8">
+      {/* Ads Platforms Tabs (Sticky Bottom) */}
+      <div className="sticky bottom-0 left-0 w-full px-4 md:px-8 lg:px-12 xl:px-20 z-50 pb-4 pt-4 bg-[#000a1a]/80 backdrop-blur-md border-t border-white/10 shadow-[0_-20px_40px_rgba(0,0,0,0.5)]">
         <AdsPlatformsTabs />
       </div>
     </section>
