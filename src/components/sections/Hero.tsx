@@ -52,7 +52,7 @@ export default function Hero() {
 
 
       {/* TEXT LAYOUT (THE "CUBIX" CLEANLINESS) */}
-      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] w-full max-w-[1920px] grid-cols-1 items-start px-4 pb-32 pt-32 md:grid-cols-[1fr_auto] md:gap-8 md:px-8 md:pb-40 md:pt-40 lg:px-12 xl:px-20 lg:pt-36">
+      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] w-full max-w-[1920px] grid-cols-1 items-start px-4 pb-12 pt-32 md:grid-cols-[1fr_auto] md:gap-8 md:px-8 md:pb-16 md:pt-40 lg:px-12 xl:px-20 lg:pt-36">
         {/* LEFT — persona & authority */}
         <motion.div
           variants={revealContainer}
@@ -215,8 +215,8 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Ads Platforms Tabs (Absolute Bottom Full Width) */}
-      <div className="absolute bottom-4 left-0 w-full px-4 md:px-8 lg:px-12 xl:px-20 z-40">
+      {/* Ads Platforms Tabs (Full Width Bottom) */}
+      <div className="relative w-full px-4 md:px-8 lg:px-12 xl:px-20 z-40 pb-16 -mt-8 md:-mt-12">
         <AdsPlatformsTabs />
       </div>
     </section>
