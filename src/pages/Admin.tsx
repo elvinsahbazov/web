@@ -319,7 +319,7 @@ export default function Admin() {
           </div>
         </header>
 
-        <div className="p-6 md:p-10 max-w-6xl mx-auto">
+        <div className="p-6 md:p-10 pb-32 max-w-6xl mx-auto">
           
           {/* CREATE/EDIT FORM */}
           {(activeTab === 'blog' || activeTab === 'services' || activeTab === 'portfolio') && (
@@ -434,7 +434,7 @@ export default function Admin() {
                   {activeTab === 'blog' ? posts.length : activeTab === 'services' ? services.length : activeTab === 'portfolio' ? portfolio.length : activeTab === 'messages' ? messages.length : subscribers.length} Qeyd
                 </span>
               </div>
-              <div className="divide-y divide-slate-100 max-h-[600px] overflow-y-auto">
+              <div className="divide-y divide-slate-100/10">
                 {activeTab === 'blog' && posts.map(item => (
                   <div key={item.id} className="flex items-center justify-between p-6 hover:bg-[#18181b] transition-colors group">
                     <div className="flex items-center gap-4">
