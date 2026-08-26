@@ -49,7 +49,7 @@ export const adPlatforms: AdPlatform[] = [
     color: '#0A66C2',
     icon: 'fab fa-linkedin',
     description:
-      'B2B sektorunda "böyük balıqları" ovlamaq üçün tək ünvan. Şirkət adı, vəzifə və sənayeyə görə qərarverici şəxslərə (CEO, Direktorlar) birbaşa çıxış əldə edib rəsmi biznes əlaqələri (Lead) yaradırıq.',
+      'B2B sektorunda strateji tərəfdaşlıqlar və böyük müqavilələr üçün tək ünvan. Şirkət adı, vəzifə və sənayeyə görə birbaşa qərarverici şəxsləri (CEO, Direktorlar) hədəfləyərək yüksək keyfiyyətli potensial müştərilər (Lead) cəlb edirik.',
   },
   {
     id: 'tiktok',
