@@ -82,16 +82,16 @@ export default function Navbar() {
             <Link
               to="/"
               data-magnetic
-              className="hover:opacity-90 min-w-0 flex flex-col xl:flex-row xl:items-end"
+              className="hover:opacity-90 min-w-0 flex items-baseline gap-1 sm:gap-1.5"
             >
               <span
-                className="text-sm font-bold tracking-widest text-white sm:text-base block shrink-0"
+                className="text-[12px] sm:text-base font-bold tracking-widest text-white whitespace-nowrap"
                 style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}
               >
                 ELVİN ŞAHBAZOV
               </span>
-              <span className="text-gray-400 text-[10px] sm:text-xs font-medium tracking-normal block xl:inline xl:ml-1 mt-0.5 xl:mt-0 leading-tight xl:pb-0.5">
-                / Digital Marketing and AI Automation Expert
+              <span className="text-primary text-[8.5px] sm:text-xs font-medium tracking-normal whitespace-nowrap">
+                / Digital Marketing & AI Automation Expert
               </span>
             </Link>
             
