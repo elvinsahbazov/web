@@ -93,19 +93,28 @@ export default function Hero() {
             )}
           </motion.div>
 
-          <motion.div variants={revealItem} className="mb-6 flex flex-wrap gap-2">
+          <motion.div variants={revealItem} className="mb-8 flex flex-col md:flex-row md:flex-wrap xl:flex-nowrap gap-3 w-full">
             {[
-              'Daha Çox Satış',
-              'Sistemli Biznes',
-              'Şəffaf Hesabat',
-              'AI İnteqrasiyası'
-            ].map((badge) => (
-              <span
-                key={badge}
-                className="backdrop-blur-md border border-white/10 bg-white/[0.03] rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide text-slate-300"
+              { text: 'Yüksək ROI', icon: 'fas fa-chart-line' },
+              { text: 'Data Əsaslı Strategiya', icon: 'fas fa-network-wired' },
+              { text: 'Omnichannel Marketinq', icon: 'fas fa-layer-group' },
+              { text: 'Sistemləşdirilmiş Satış', icon: 'fas fa-funnel-dollar' },
+              { text: 'AI ilə İdarəetmə', icon: 'fas fa-microchip' }
+            ].map((badge, idx) => (
+              <motion.div
+                key={badge.text}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 + idx * 0.1, duration: 0.5, type: 'spring' }}
+                className="group relative flex items-center gap-3 rounded-2xl md:rounded-full bg-white/[0.02] border border-white/10 px-4 md:px-5 py-3 md:py-2 hover:bg-white/[0.06] hover:border-primary/30 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(0,123,255,0.15)] cursor-default"
               >
-                {badge}
-              </span>
+                <div className="flex h-8 w-8 md:h-6 md:w-6 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-purple-500/20 border border-white/5 group-hover:scale-110 transition-transform duration-300 shrink-0">
+                  <i className={`${badge.icon} text-[13px] md:text-[11px] text-blue-300`} />
+                </div>
+                <span className="text-[15px] md:text-xs font-semibold tracking-wide text-slate-200 group-hover:text-white transition-colors whitespace-nowrap">
+                  {badge.text}
+                </span>
+              </motion.div>
             ))}
           </motion.div>
 
