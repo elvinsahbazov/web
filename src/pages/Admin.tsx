@@ -130,7 +130,7 @@ export default function Admin() {
     });
 
     if (error) {
-      showToast('Giriş xətası. Məlumatları yoxlayın.', 'error');
+      showToast('Xəta: ' + error.message, 'error');
     } else {
       setAuth(true);
       showToast('Xoş gəldiniz, Elvin!', 'success');
