@@ -40,7 +40,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-screen bg-cover bg-center bg-scroll md:bg-fixed"
+      className="relative min-h-[100svh] flex flex-col justify-between bg-cover bg-center bg-scroll md:bg-fixed"
       style={{
         backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')`
       }}
@@ -56,7 +56,7 @@ export default function Hero() {
 
 
       {/* TEXT LAYOUT (THE "CUBIX" CLEANLINESS) */}
-      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] w-full max-w-[1920px] grid-cols-1 items-start px-4 pb-32 pt-28 md:grid-cols-[1fr_auto] md:gap-8 md:px-8 md:pb-32 md:pt-36 lg:px-12 xl:px-20 lg:pt-32">
+      <div className="relative z-10 mx-auto grid flex-1 w-full max-w-[1920px] grid-cols-1 items-center px-4 pt-24 pb-12 md:grid-cols-[1fr_auto] md:gap-8 md:px-8 md:pt-28 md:pb-16 lg:px-12 xl:px-20 lg:pt-28 lg:pb-12">
         {/* LEFT — persona & authority */}
         <motion.div
           variants={revealContainer}
@@ -227,7 +227,7 @@ export default function Hero() {
       </div>
 
       {/* Ads Platforms Tabs (Sticky Bottom) */}
-      <div className="sticky bottom-0 left-0 w-full px-4 md:px-8 lg:px-12 xl:px-20 z-50 pb-4 pt-4 bg-[#000a1a]/80 backdrop-blur-md border-t border-white/10 shadow-[0_-20px_40px_rgba(0,0,0,0.5)]">
+      <div className="relative mt-auto w-full px-4 md:px-8 lg:px-12 xl:px-20 z-50 pb-4 pt-4 bg-[#000a1a]/80 backdrop-blur-md border-t border-white/10 shadow-[0_-20px_40px_rgba(0,0,0,0.5)]">
         <AdsPlatformsTabs activeId={activeAdPlatformId} setActiveId={setActiveAdPlatformId} />
       </div>
     </section>
