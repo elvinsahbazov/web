@@ -15,7 +15,7 @@ import ROIWizard from '../components/sections/ROIWizard';
 import AutomationProcess from '../components/sections/AutomationProcess';
 import FAQ from '../components/sections/FAQ';
 import FlipCards from '../components/sections/FlipCards';
-import ForumCountdown from '../components/sections/ForumCountdown';
+
 import SEO from '../components/SEO';
 // ─────────────────────────────────────────────────────────────────────────────
 // MAIN PAGE
@@ -95,11 +95,7 @@ export default function IndexPage() {
           <FlipCards />
         </Container>
       </section>
-      <section className="section-py bg-transparent text-gray-900 pb-24">
-        <Container>
-          <ForumCountdown />
-        </Container>
-      </section>
+
 
         {/* END LIGHT GLASSMORPHIC THEME WRAPPER */}
         </div>
