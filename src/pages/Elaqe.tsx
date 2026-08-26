@@ -7,108 +7,16 @@ import { fadeUp } from '../lib/motion';
 import { C } from '../lib/colors';
 import { useSiteContent } from '../context/SiteContentContext';
 
-const contactInfo = [
-  {
-    icon: <Phone size={20} />,
-    label: 'Telefon / WhatsApp',
-    value: '+994 99 955 00 01',
-    href: 'https://wa.me/994999550001',
-    color: C.blue,
-    bg: 'bg-primary/5',
-  },
-  {
-    icon: <Mail size={20} />,
-    label: 'E-mail',
-    value: 'elvinsahbazovv@gmail.com',
-    href: 'mailto:elvinsahbazovv@gmail.com',
-    color: C.black,
-    bg: 'bg-black/5',
-  },
-  {
-    icon: <MapPin size={20} />,
-    label: 'Yer',
-    value: 'Bakı, Azərbaycan',
-    href: '#',
-    color: C.blue,
-    bg: 'bg-primary/5',
-  },
-  {
-    icon: <Clock size={20} />,
-    label: 'İş saatları',
-    value: 'B.e – Cümə: 09:00 – 19:00',
-    href: '#',
-    color: C.black,
-    bg: 'bg-black/5',
-  },
-];
 
-const socialLinks = [
-  {
-    href: 'https://www.linkedin.com/in/elvinsahbazov',
-    icon: 'fab fa-linkedin-in',
-    label: 'LinkedIn',
-    sub: 'Professional Network',
-    brandColor: '#0A66C2',
-  },
-  {
-    href: 'https://www.instagram.com/elvin_sahbazov',
-    icon: 'fab fa-instagram',
-    label: 'Instagram',
-    sub: '@elvin_sahbazov',
-    brandGradient: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)',
-  },
-  {
-    href: 'https://www.facebook.com/share/18wNYYGku2/',
-    icon: 'fab fa-facebook-f',
-    label: 'Facebook',
-    sub: 'Elvin Şahbazov',
-    brandColor: '#1877F2',
-  },
-  {
-    href: 'https://www.tiktok.com/@elvinsahbazov_',
-    icon: 'fab fa-tiktok',
-    label: 'TikTok',
-    sub: '@elvinsahbazov_',
-    brandColor: '#010101',
-  },
-  {
-    href: 'https://x.com/ElvinSahbazov92',
-    icon: 'fab fa-x-twitter',
-    label: 'X (Twitter)',
-    sub: '@ElvinSahbazov92',
-    brandColor: '#000000',
-  },
-  {
-    href: 'https://wa.me/994999550001',
-    icon: 'fab fa-whatsapp',
-    label: 'WhatsApp',
-    sub: '+994 99 955 00 01',
-    brandColor: '#25D366',
-  },
-  {
-    href: 'mailto:elvinsahbazovv@gmail.com',
-    icon: 'fas fa-envelope',
-    label: 'Email',
-    sub: 'elvinsahbazovv@gmail.com',
-    brandColor: '#EA4335',
-  },
-  {
-    href: 'https://docs.google.com/forms/d/e/1FAIpQLSfD-P6RhwGioRtXPreb4P1FsHd5flsJKXvnh7pokAaR4zPhUw/viewform?usp=sharing&ouid=101273263139991444708',
-    icon: 'fas fa-ticket-alt',
-    label: 'Forum Qeydiyyat',
-    sub: 'Digital Marketing Forum 2025',
-    brandColor: '#007BFF',
-  },
-] as const;
 
-function linkIconStyle(link: (typeof socialLinks)[number]): CSSProperties {
+function linkIconStyle(link: any): CSSProperties {
   if ('brandGradient' in link) {
     return { background: link.brandGradient };
   }
   return { backgroundColor: link.brandColor };
 }
 
-function linkIconColor(link: (typeof socialLinks)[number]): string {
+function linkIconColor(link: any): string {
   if ('brandColor' in link) return link.brandColor;
   return '#E1306C';
 }
@@ -125,6 +33,101 @@ type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
 export default function Elaqe() {
   const { content } = useSiteContent();
+
+  const contactInfo = [
+    {
+      icon: <Phone size={20} />,
+      label: 'Telefon / WhatsApp',
+      value: content.contact_phone || '+994 99 955 00 01',
+      href: content.contact_whatsapp_link || 'https://wa.me/994999550001',
+      color: C.blue,
+      bg: 'bg-primary/5',
+    },
+    {
+      icon: <Mail size={20} />,
+      label: 'E-mail',
+      value: content.contact_email || 'elvinsahbazovv@gmail.com',
+      href: `mailto:${content.contact_email || 'elvinsahbazovv@gmail.com'}`,
+      color: C.black,
+      bg: 'bg-black/5',
+    },
+    {
+      icon: <MapPin size={20} />,
+      label: 'Yer',
+      value: content.contact_address || 'Bakı, Azərbaycan',
+      href: '#',
+      color: C.blue,
+      bg: 'bg-primary/5',
+    },
+    {
+      icon: <Clock size={20} />,
+      label: 'İş saatları',
+      value: 'B.e – Cümə: 09:00 – 19:00',
+      href: '#',
+      color: C.black,
+      bg: 'bg-black/5',
+    },
+  ];
+
+  const socialLinks = [
+    {
+      href: content.linkedin_link || 'https://www.linkedin.com/in/elvinsahbazov',
+      icon: 'fab fa-linkedin-in',
+      label: 'LinkedIn',
+      sub: 'Professional Network',
+      brandColor: '#0A66C2',
+    },
+    {
+      href: content.instagram_link || 'https://www.instagram.com/elvin_sahbazov',
+      icon: 'fab fa-instagram',
+      label: 'Instagram',
+      sub: '@elvin_sahbazov',
+      brandGradient: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)',
+    },
+    {
+      href: content.facebook_link || 'https://www.facebook.com/share/18wNYYGku2/',
+      icon: 'fab fa-facebook-f',
+      label: 'Facebook',
+      sub: 'Elvin Şahbazov',
+      brandColor: '#1877F2',
+    },
+    {
+      href: 'https://www.tiktok.com/@elvinsahbazov_',
+      icon: 'fab fa-tiktok',
+      label: 'TikTok',
+      sub: '@elvinsahbazov_',
+      brandColor: '#010101',
+    },
+    {
+      href: 'https://x.com/ElvinSahbazov92',
+      icon: 'fab fa-x-twitter',
+      label: 'X (Twitter)',
+      sub: '@ElvinSahbazov92',
+      brandColor: '#000000',
+    },
+    {
+      href: content.contact_whatsapp_link || 'https://wa.me/994999550001',
+      icon: 'fab fa-whatsapp',
+      label: 'WhatsApp',
+      sub: content.contact_phone || '+994 99 955 00 01',
+      brandColor: '#25D366',
+    },
+    {
+      href: `mailto:${content.contact_email || 'elvinsahbazovv@gmail.com'}`,
+      icon: 'fas fa-envelope',
+      label: 'Email',
+      sub: content.contact_email || 'elvinsahbazovv@gmail.com',
+      brandColor: '#EA4335',
+    },
+    {
+      href: 'https://docs.google.com/forms/d/e/1FAIpQLSfD-P6RhwGioRtXPreb4P1FsHd5flsJKXvnh7pokAaR4zPhUw/viewform?usp=sharing&ouid=101273263139991444708',
+      icon: 'fas fa-ticket-alt',
+      label: 'Forum Qeydiyyat',
+      sub: 'Digital Marketing Forum 2025',
+      brandColor: '#007BFF',
+    },
+  ];
+
   const [form, setForm] = useState({
     full_name: '',
     email: '',
@@ -251,9 +254,8 @@ export default function Elaqe() {
               </div>
             </div>
 
-            {/* WhatsApp quick CTA */}
             <motion.a
-              href="https://wa.me/994999550001"
+              href={content.contact_whatsapp_link || "https://wa.me/994999550001"}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.02, y: -2 }}

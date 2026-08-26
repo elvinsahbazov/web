@@ -32,68 +32,7 @@ function useScrollSpy(ids: string[]) {
   return active;
 }
 
-// ─── Services Data ───────────────────────────────────────────────────────────
-const services = [
-  {
-    id: 1,
-    icon: 'fas fa-bullhorn',
-    title: 'Rəqəmsal Marketinq',
-    color: C.blue,
-    desc: 'Meta, Google, TikTok, Yandex platformalarında ROI-a fokuslanmış reklam kampaniyalarının idarə edilməsi.',
-    details: [
-      'Meta Ads (Facebook, Instagram, WhatsApp, Threads)',
-      'Google Ads (Search, Display, YouTube)',
-      'Yandex Direct',
-      'VK Ads',
-      'LinkedIn Ads',
-      'TikTok Ads',
-      'X (Twitter) Ads',
-      'Microsoft Ads (Bing)',
-      'Pinterest Ads',
-      'Snapchat Ads',
-      'Telegram Ads'
-    ],
-  },
-  {
-    id: 2,
-    icon: 'fas fa-robot',
-    title: 'Süni İntellektlə Biznes Avtomatlaşdırılması',
-    color: C.blue,
-    desc: 'Müştəri xidmətləri, daxili əməliyyatlar və marketinq proseslərinin AI ilə tam avtomatlaşdırılması.',
-    details: [
-      'AI Çatbotlar və 24/7 Səs Agentləri',
-      'Sənəd dövriyyəsinin avtomatlaşdırılması',
-      'CRM və ERP İnteqrasiyası',
-      'İş axınlarının sürətləndirilməsi və optimizasiyası'
-    ],
-  },
-  {
-    id: 3,
-    icon: 'fas fa-search',
-    title: 'Veb Saytların Yaradılması və SEO',
-    color: C.blue,
-    desc: 'Yüksək konversiyalı, sürətli korporativ və e-ticarət saytlarının yaradılması.',
-    details: [
-      'Müasir UI/UX dizayn',
-      'Sürət və konversiya optimizasiyası',
-      'Texniki SEO və Açar söz tədqiqatı',
-      'Axtarış sistemlərində ön sıralara çıxarılma'
-    ],
-  },
-  {
-    id: 4,
-    icon: 'fas fa-network-wired',
-    title: 'ERP və CRM-lərin Yaradılması',
-    color: C.blue,
-    desc: 'Biznesinizin xüsusi ehtiyaclarına uyğun fərdi proqram təminatlarının sıfırdan yazılması.',
-    details: [
-      'Xüsusi Müştəri Münasibətləri İdarəetməsi (CRM)',
-      'Resursların Planlaşdırılması (ERP)',
-      'Kassa və Anbar uçotu sistemləri',
-      'Mövcud sistemlərinizə API inteqrasiyaları'
-    ],
-  },
-];
+// Services data is fetched from Supabase
 
 // ─── 18 Training Modules ─────────────────────────────────────────────────────
 const modules = [
@@ -193,9 +132,18 @@ const sectionIds = ['xidmetlerim', 'telim'];
 export default function Services() {
   const active = useScrollSpy(sectionIds);
   const { content } = useSiteContent();
-  const [expandedId, setExpandedId] = useState<number | null>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [services, setServices] = useState<any[]>([]);
 
-  const toggleExpand = (id: number) => {
+  useEffect(() => {
+    const fetchServices = async () => {
+      const { data } = await supabase.from('services').select('*').eq('published', true).order('created_at', { ascending: true });
+      if (data) setServices(data);
+    };
+    fetchServices();
+  }, []);
+
+  const toggleExpand = (id: string) => {
     setExpandedId(expandedId === id ? null : id);
   };
   
@@ -306,7 +254,7 @@ export default function Services() {
                     </div>
                     
                     <h3 className="font-bold text-xl text-black mb-3" style={{ fontFamily: "Inter, sans-serif" }}>{s.title}</h3>
-                    <p className="text-black/60 leading-relaxed text-sm">{s.desc}</p>
+                    <p className="text-black/60 leading-relaxed text-sm">{s.description ? s.description.split('\n')[0] : ''}</p>
                     
                     <AnimatePresence>
                       {expandedId === s.id && (
@@ -319,7 +267,7 @@ export default function Services() {
                           <div className="pt-5 border-t border-black/8">
                             <h4 className="text-xs font-bold text-black uppercase tracking-wider mb-4">Ətraflı məlumat</h4>
                             <ul className="space-y-3">
-                              {s.details.map((detail, idx) => (
+                              {s.description && s.description.split('\n').slice(1).map((detail: string, idx: number) => (
                                 <li key={idx} className="flex items-start gap-3 text-sm text-black/75">
                                   <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-none mt-0.5">
                                     <i className="fas fa-check text-primary text-[10px]" />

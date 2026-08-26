@@ -1,7 +1,7 @@
 import LazyImage from '../components/ui/LazyImage';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Globe, Zap, ShieldCheck, SearchCode, Calendar, X } from 'lucide-react';
+import { ArrowRight, Globe, Zap, ShieldCheck, SearchCode, Calendar, X, BarChart2, Mic, Video, Database, Cpu, Network } from 'lucide-react';
 import Container from '../components/ui/Container';
 import { fadeUp } from '../lib/motion';
 
@@ -45,6 +45,66 @@ const newsItems = [
     icon: <ShieldCheck size={24} className="text-red-500" />,
     image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800',
     category: 'Qanunvericilik'
+  },
+  {
+    id: 5,
+    title: 'Proqnozlaşdırıcı Analitika (Predictive AI): Müştəri Nə Alacağını Sizdən Əvvəl Bilir',
+    desc: 'Böyük data və Süni İntellekt alqoritmləri birləşərək müştərinin növbəti addımını əvvəlcədən təxmin edir. Kampaniyalarınızı "bəlkə alarlar" ümidi ilə yox, "mütləq alacaqlar" əminliyi ilə qurun.',
+    content: 'Ənənəvi rəqəmsal marketinq, istifadəçinin keçmişdə nə etdiyinə baxırdı (məsələn, sayta girib-girməməsi). Lakin Predictive AI (Proqnozlaşdırıcı Süni İntellekt) sayəsində artıq istifadəçinin gələcəkdə nə edəcəyini hesablamaq mümkündür. Makro-iqtisadi göstəricilərdən tutmuş hava durumuna qədər minlərlə dəyişəni saniyələr içində analiz edən AI, ən yüksək alış ehtimalı olan kütləni müəyyən edir və reklam büdcəsini məhz onlara yönəldir. Bu texnologiyanı biznesinə inteqrasiya edənlər, rəqabətdə haqsız üstünlük qazanırlar.',
+    date: '12 Avqust 2026',
+    icon: <BarChart2 size={24} className="text-indigo-500" />,
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
+    category: 'Data Analitikası'
+  },
+  {
+    id: 6,
+    title: 'Səsli Axtarış və Süni İntellekt Assistentləri: Gələcəyin Axtarış Motorları',
+    desc: 'İstifadəçilər artıq yazaraq deyil, danışaraq axtarış edirlər. Siri, Alexa, ChatGPT Voice kimi assistentlər üçün vebsaytlarınızı optimallaşdırmasınız, müştəriləriniz sizi tapa bilməyəcək.',
+    content: 'Smartfonlar və ağıllı ev cihazlarının artması ilə Səsli Axtarış (Voice Search) qlobal axtarış həcminin 50%-ni keçmək üzrədir. İnsanlar "Bakıda ən yaxşı rəqəmsal marketinq eksperti" yazmaq əvəzinə, ChatGPT-yə səsli formada "Mənə süni intellekt avtomatlaşdırması edə biləcək peşəkar tap" deyirlər. Səsli axtarışlarda AI botlar yalnız 1 ən yaxşı cavab (Position Zero) səsləndirir. Buna görə də markaların məzmunları sual-cavab (FAQ) formatında və təbii danışıq dilinə uyğun olaraq (NPL) strukturlaşdırılmalıdır.',
+    date: '05 Avqust 2026',
+    icon: <Mic size={24} className="text-purple-500" />,
+    image: 'https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&q=80&w=800',
+    category: 'Səsli Axtarış'
+  },
+  {
+    id: 7,
+    title: 'Video Marketinqdə Generativ AI İnqilabı: Sora və Runway',
+    desc: 'Bahalı video çəkilişlər, günlərlə davam edən montaj işləri keçmişdə qalır. Mətndən-Videoya (Text-to-Video) texnologiyaları reklam yaradıcılığını (Creative) 100 qat sürətləndirir.',
+    content: 'OpenAI-ın Sora modeli və Runway kimi Generativ AI alətləri reklam sənayesində yeni bir dövr başlatdı. İndi bir məhsulun fərqli məkanlarda, fərqli hava şəraitində və aktyorlarla videosunu yaratmaq üçün bir neçə kəlmə (prompt) yazmaq kifayətdir. Bu, xüsusilə TikTok, Reels və Shorts kimi qısametrajlı video platformalarında fəaliyyət göstərən bizneslər üçün inqilabi yenilikdir. Şirkətlər artıq məzmun istehsalına yox, doğru ideya və AI idarəetməsinə (Prompt Engineering) yatırım etməlidirlər.',
+    date: '28 İyul 2026',
+    icon: <Video size={24} className="text-pink-500" />,
+    image: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&q=80&w=800',
+    category: 'Video Marketinq'
+  },
+  {
+    id: 8,
+    title: 'Ağıllı CRM: Müştəri Münasibətlərinin Süni İntellektlə İdarəedilməsi',
+    desc: 'Gündəlik yüzlərlə müraciəti (Lead) əl ilə emal etmək satışları öldürür. AI dəstəkli CRM sistemləri müştərini tanıyır, təsnif edir və satış zənginə qədər avtomatik isidir.',
+    content: 'Bir çox şirkət reklam vasitəsilə minlərlə potensial müştəri (Lead) əldə edir, lakin onların çoxu diqqətsizlik və ya gecikmələr səbəbindən itirilir. Süni intellektlə inteqrasiya olunmuş CRM (Customer Relationship Management) sistemləri, daxil olan hər bir müraciəti saniyələr içində analiz edir. Müştərinin yazdığı mesajın tonundan, baxdığı səhifələrdən onun alış potensialını (Lead Scoring) hesablayır. Zəif müştərilərə avtomatik qidalandırıcı (nurturing) e-poçtlar göndərir, isti müştəriləri isə dərhal satış təmsilçisinə yönləndirir.',
+    date: '20 İyul 2026',
+    icon: <Database size={24} className="text-orange-500" />,
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
+    category: 'Avtomatlaşdırma'
+  },
+  {
+    id: 9,
+    title: 'Rəqəmsal Agentliklərin Sonu? "In-House" AI Marketinq Komandaları',
+    desc: 'Bizneslər böyük büdcələri marketinq agentliklərinə vermək əvəzinə, daxili sistemlərinə Süni İntellekt alətlərini inteqrasiya edərək öz avtomatlaşdırılmış komandalarını qururlar.',
+    content: 'Əvvəllər bizneslərin uğurlu marketinq üçün kopirayter, dizayner, media buyer və analitikdən ibarət böyük komandalara və ya agentliklərə ehtiyacı var idi. Lakin hazırda 1 peşəkar AI Marketinq Eksperti və doğru süni intellekt alətləri (Midjourney, ChatGPT, Zapier, Make) 10 nəfərlik komandanın işini təkbaşına və daha ucuz edə bilir. Biznes sahibləri üçün yeni trend, agentliklərə aylıq xidmət haqqı ödəmək yox, bir dəfə öz "In-house AI Sistemlərini" qurduraraq daimi və müstəqil şəkildə böyüməkdir.',
+    date: '14 İyul 2026',
+    icon: <Cpu size={24} className="text-cyan-500" />,
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
+    category: 'Biznes Strategiyası'
+  },
+  {
+    id: 10,
+    title: 'Omnichannel AI: Müştərini Hər Platformada Avtomatik İzləyən Ekosistem',
+    desc: 'Google, Meta, TikTok, LinkedIn və E-poçt. Süni intellekt bu kanalların hamısını bir mərkəzdən idarə edir və hər bir istifadəçiyə eyni ardıcıllıqla reklam göstərir.',
+    content: 'İstifadəçilər bir məhsulu almazdan əvvəl orta hesabla 7-21 fərqli nöqtədə həmin marka ilə qarşılaşırlar. Omnichannel (Çoxkanallı) Marketinq müştərini hər yerdə izləmək deməkdir. Lakin bunu manuel olaraq etmək demək olar ki, qeyri-mümkündür. AI idarəetməsindəki Omnichannel strategiyası belə işləyir: Ziyarətçi sizi Google-da axtarır, 2 saat sonra Instagram-da videonuzu görür, səhəri gün e-poçtuna təklif gəlir, həftə sonu isə LinkedIn-də mütəxəssis məqalənizlə qarşılaşır. Süni intellekt bütün bu toxunuşları xüsusi ardıcıllıqla idarə edir.',
+    date: '08 İyul 2026',
+    icon: <Network size={24} className="text-teal-500" />,
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=800',
+    category: 'Çoxkanallı Marketinq'
   }
 ];
 

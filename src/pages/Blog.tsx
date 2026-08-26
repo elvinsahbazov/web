@@ -1,12 +1,20 @@
-   
+import { useEffect, useState } from 'react';
+import { supabase } from '../lib/supabase';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { blogs } from '../data/blogs';
 import Container from '../components/ui/Container';
 import { fadeUp } from '../lib/motion';
 
 export default function Blog() {
-  const posts = blogs;
+  const [posts, setPosts] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const { data } = await supabase.from('posts').select('*').eq('published', true).order('created_at', { ascending: false });
+      if (data) setPosts(data);
+    };
+    fetchPosts();
+  }, []);
 
   return (
     <div className="min-h-screen bg-transparent text-white pt-32 pb-20">

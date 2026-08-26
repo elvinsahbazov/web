@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
-import { blogs } from '../data/blogs';
+import { supabase } from '../lib/supabase';
 import Container from '../components/ui/Container';
 import { fadeUp } from '../lib/motion';
 
@@ -14,12 +14,12 @@ export default function BlogPost() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulating a fast network request
-    setTimeout(() => {
-      const found = blogs.find(b => b.slug === slug);
-      setPost(found || null);
+    const fetchPost = async () => {
+      const { data } = await supabase.from('posts').select('*').eq('slug', slug).eq('published', true).single();
+      setPost(data || null);
       setLoading(false);
-    }, 400);
+    };
+    fetchPost();
   }, [slug]);
 
   if (loading) {

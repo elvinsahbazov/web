@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import CommandMenu from '../CommandMenu';
@@ -10,6 +11,17 @@ type LayoutProps = {
 };
 
 export default function Layout({ children }: LayoutProps) {
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith('/admin');
+
+  if (isAdmin) {
+    return (
+      <div className="layout-shell relative min-h-screen bg-[#09090b] text-white antialiased overflow-hidden flex">
+        <main className="relative flex-grow w-full h-screen overflow-hidden">{children}</main>
+      </div>
+    );
+  }
+
   return (
     <MobileMenuProvider>
       <div className="layout-shell relative min-h-screen bg-[#030712] text-white antialiased">

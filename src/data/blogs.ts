@@ -923,5 +923,130 @@ export const blogs = [
 <p>Ən uğurlu bizneslər texnologiyanı yalnız yeni alət kimi deyil, uzunmüddətli inkişaf strategiyasının əsas hissəsi kimi qəbul edirlər. Sektorun xüsusiyyətlərinə uyğun hazırlanmış AI həlləri, güclü SEO infrastrukturu, faydalı məzmun strategiyası və məlumatlara əsaslanan rəqəmsal marketinq yanaşması şirkətlərə rəqabət üstünlüyü qazandırır və dəyişən bazar şərtlərinə daha çevik uyğunlaşmağa imkan verir.</p>
 <p>Gələcəkdə həm Google, həm də süni intellekt əsaslı axtarış sistemlərində daha görünən olmaq istəyən bizneslər üçün əsas prioritet istifadəçilərə real dəyər təqdim edən məzmun yaratmaq, texniki cəhətdən güclü veb sayt qurmaq və AI, SEO, GEO və rəqəmsal marketinq strategiyalarını vahid ekosistem şəklində tətbiq etmək olacaq.</p>
     `
+  },
+  {
+    id: 'generative-ai-global-sales',
+    title: 'Generative AI (Yaradıcı Süni İntellekt) ilə Qlobal Satışları Avtomatlaşdırmaq',
+    slug: 'generative-ai-qlobal-satislar-avtomatlasdirmasi',
+    excerpt: 'Süni intellektin təkcə məzmun deyil, həm də birbaşa satış strategiyalarını və qlobal müştəri müraciətlərini necə idarə etdiyi barədə ekspert təhlili.',
+    cover_image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=70&w=600',
+    published: true,
+    created_at: new Date(Date.now() - 50000).toISOString(),
+    content: `
+<h2>Süni İntellektlə Qlobal Satış Maşını Qurmaq</h2>
+<p>Generative AI (Yaradıcı Süni İntellekt) dedikdə ağlımıza ilk növbədə mətn (ChatGPT) və ya şəkil (Midjourney) yaradan alətlər gəlir. Lakin rəqəmsal marketinq və satış dünyasında bu texnologiyanın rolu bundan çox daha dərindir. İndi şirkətlər bu texnologiyadan istifadə edərək dünyanın 50 fərqli ölkəsinə, o ölkələrin doğma dillərində və mədəniyyətlərinə uyğun satış təklifləri göndərə bilirlər.</p>
+
+<h3>İxtisaslaşdırılmış AI Satış Agentləri (Sales Agents)</h3>
+<p>Böyük komandalara ehtiyac olmadan, AI botları hər bir istifadəçiyə öz dilində xidmət göstərir. Təsəvvür edin ki, BƏƏ-dən (Dubaydan) saytınıza daxil olan bir istifadəçiyə süni intellekt dərhal ərəbcə və oranın iqtisadi reallıqlarına uyğun bir təklif sunur, Almaniyadan girən birinə isə GDPR qaydalarını nəzərə alaraq daha rəsmi alman dilində məlumat verir. Bu, <strong>Hiper-Fərdiləşdirmə (Hyper-Personalization)</strong> adlanır.</p>
+
+<h3>Çoxkanallı (Omnichannel) Əlaqə</h3>
+<p>Qlobal satışlarda ən vacib amil davamlılıqdır. AI vasitəsilə bir istifadəçi səhər LinkedIn-də gördüyü reklama tıklayırsa, günorta e-poçtuna həmin məhsulla bağlı spesifik detallar gəlir və axşam WhatsApp-ına qısa bir təklif göndərilir. Bütün bu proses insan müdaxiləsi olmadan, saniyələr içində qərar verən AI tərəfindən idarə olunur.</p>
+
+<p><em>Nəticə olaraq</em>, qlobal bazara çıxmaq istəyən bizneslər üçün süni intellekt artıq bir "lüks" deyil, sağ qalmaq və rəqiblərdən öndə olmaq üçün zərurətdir.</p>
+    `
+  },
+  {
+    id: 'performance-marketing-trends-2026',
+    title: '2026-cı İlin Performans Marketinq Trendləri: Data və Prediktiv Modelləmə',
+    slug: '2026-performans-marketinq-trendleri',
+    excerpt: 'Gələcəyin rəqəmsal marketinqində uğur qazanmaq üçün hədəfləmə (targeting) və gəlirliliyin (ROAS) Süni İntellektlə necə hesablandığını öyrənin.',
+    cover_image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=70&w=600',
+    published: true,
+    created_at: new Date(Date.now() - 150000).toISOString(),
+    content: `
+<h2>2026-da Performans Marketinq Bizi Hara Aparır?</h2>
+<p>Performans marketinqi hər zaman ölçüləbilən nəticələrə (ROI və ROAS) əsaslanıb. Lakin 2026-cı ildə bu yanaşma tamam yeni bir mərhələyə qədəm qoyur: Artıq "reklamı verək, görək kim alır" dövrü bitdi. İndi "Prediktiv (Proqnozlaşdırıcı) Modelləmə" dövrüdür.</p>
+
+<h3>Prediktiv (Proqnozlaşdırıcı) Analitika Nədir?</h3>
+<p>Köhnə üsullarda biz istifadəçinin keçmişdəki hərəkətlərinə əsasən reklam göstərirdik (məsələn, səbəti tərk edib). 2026-da isə Süni İntellekt istifadəçinin gələcəkdə hansı addımı atacağını proqnozlaşdırır. O, 1000-dən çox məlumat nöqtəsini analiz edərək tapır ki, "Bu istifadəçinin növbəti 24 saat ərzində alış etmə ehtimalı 87%-dir". Və reklam büdcəsi ancaq belə yüksək potensiallı şəxslərə (High-Intent Audience) xərclənir.</p>
+
+<h3>Dinamik Qiymətləndirmə və Təklif</h3>
+<p>Süni intellekt istifadəçinin büdcəsini və alış psixologiyasını təxmin edərək eyni məhsul üçün fərqli istifadəçilərə (onların fərdi qərarvermə prosesinə uyğun) dinamik endirimlər və ya up-sell (daha baha məhsul satma) təklifləri edir. Bu yanaşma müştəri başı gəlirliyi (LTV) kəskin şəkildə artırır.</p>
+
+<p>Performans marketinqində rəqabət artıq reklamı daha yaxşı yaratmaqda yox, datanı (məlumatı) AI ilə daha ağıllı işləməkdədir.</p>
+    `
+  },
+  {
+    id: 'customer-experience-ai-revolution',
+    title: 'Müştəri Məmnuniyyətində (CX) Süni İntellekt İnqilabı',
+    slug: 'musteri-memnuniyyetinde-cx-suni-intellekt-inqilabi',
+    excerpt: 'AI chatbotlar və avtomatlaşdırılmış CRM sistemlərinin istifadəçi təcrübəsini (Customer Experience) necə kusursuzlaşdırdığına dair təhlil.',
+    cover_image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=70&w=600',
+    published: true,
+    created_at: new Date(Date.now() - 250000).toISOString(),
+    content: `
+<h2>Süni İntellektlə Müştəri Təcrübəsini (CX) Kökündən Dəyişmək</h2>
+<p>Bugünkü rəqəbət mühitində ən böyük fərq yaradan amil məhsulun özündən çox, istifadəçiyə yaşadılan təcrübədir (Customer Experience). İnsanlar artıq saatlarla cavab gözləmək və ya şablon mətnlər oxumaq istəmirlər. Süni intellekt burada inqilabi bir həll təklif edir.</p>
+
+<h3>Gözləmə Müddətinin "0"-a Enməsi</h3>
+<p>Süni intellekt dəstəkli agentlər (AI Chatbotlar) 7/24 fəaliyyət göstərir və minlərlə müştəriyə eyni saniyədə, individual şəkildə cavab verir. Bir istifadəçi gecə saat 3-də WhatsApp üzərindən müraciət etdikdə belə, sualının cavabını dərhal alır və hətta sifarişini rəsmiləşdirə bilir.</p>
+
+<h3>Duyğu Analizi (Sentiment Analysis)</h3>
+<p>Yeni nəsil AI botları sadəcə sözləri deyil, müştərinin "duyğusunu" da analiz edir. Əgər bir müştəri şikayət edirsə və cümlələrində əsəbilik hiss olunursa, AI bunu dərhal aşkarlayır və həmin müştərini gözlətmədən "Qaynar Xətt" rəhbərinə (insana) yönləndirir, və ya vəziyyəti sakitləşdirmək üçün xüsusi kompensasiya endirimi təklif edir.</p>
+
+<p>Bu cür dərin və ağıllı avtomatlaşdırma, həm xidmət xərclərini azaldır, həm də müştəri loyallığını qoruyub saxlayır.</p>
+    `
+  },
+  {
+    id: 'no-code-ai-business-management',
+    title: 'Biznes Proseslərinin No-Code və AI Alətləri ilə İdarəedilməsi',
+    slug: 'biznes-prosesleri-no-code-ai',
+    excerpt: 'Make.com, Zapier və Süni İntellektin vəhdəti: Proqramçı olmadan biznesin daxili proseslərini necə tam avtomatlaşdırmaq olar?',
+    cover_image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=70&w=600',
+    published: true,
+    created_at: new Date(Date.now() - 350000).toISOString(),
+    content: `
+<h2>No-Code və AI: Proqramçı Olmadan Sistemi Qurmaq</h2>
+<p>Müasir dövrdə böyük kod sətirləri yazmadan və bahalı İT komandaları qurmadan nəhəng rəqəmsal əməliyyatları idarə etmək mümkündür. <strong>No-Code (Kodsuz) avtomatlaşdırma alətləri (Make, Zapier)</strong> və Süni İntellekt (OpenAI, Anthropic) bir-birinə bağlandıqda inanılmaz bir güc yaranır.</p>
+
+<h3>Mükəmməl İş Axını (Workflow) Necə Qurulur?</h3>
+<p>Təsəvvür edin: Facebook-dan yeni bir müştəri müraciəti (Lead) gəlir. No-code aləti bunu avtomatik tutur. Sonra onu ChatGPT-yə ötürür. ChatGPT müraciətin məzmununu oxuyaraq müştərinin tam olaraq nə istədiyini kateqoriyalaşdırır. Daha sonra bu məlumat CRM sisteminə (HubSpot, Pipedrive) yazılır və satış menecerinə uyğun dildə bir Trello və ya Slack bildirişi gedir.</p>
+<p>Və bütün bunlar 3 saniyə ərzində, bir sətir belə kod yazılmadan baş verir!</p>
+
+<h3>Niyə Bu Avtomatlaşdırma Vacibdir?</h3>
+<p>Biznes sahibləri və menecerlər saatlarını məlumatları bir Excel faylından digərinə köçürməklə (Data Entry) keçirməməlidirlər. AI və No-Code vizyonu, insanları maşınların görə biləcəyi rutin işlərdən xilas edib, onlara yalnız "yaradıcılıq" və "qərarvermə" məsuliyyətini saxlamaqdan ibarətdir.</p>
+    `
+  },
+  {
+    id: 'ab-testing-ai-optimization',
+    title: 'A/B Testlərinin Süni İntellektlə Təkmilləşdirilməsi',
+    slug: 'ab-test-ai-optimizasiyasi',
+    excerpt: 'AI sayəsində aylarla çəkən marketinq testlərini saniyələrə endirin və konversiya nisbətini (CRO) maksimuma çatdırın.',
+    cover_image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=70&w=600',
+    published: true,
+    created_at: new Date(Date.now() - 450000).toISOString(),
+    content: `
+<h2>Müasir A/B Testing və Süni İntellektin Gücü</h2>
+<p>Rəqəmsal marketinqdə "Hansı başlıq daha yaxşıdır?" və ya "Qırmızı yoxsa yaşıl düymə daha çox kliklənir?" suallarını fərziyyə ilə deyil, A/B testi ilə həll edirik. Lakin klassik A/B testlər həm çox büdcə, həm də zaman (həftələr) tələb edirdi. İndi isə <strong>Süni İntellekt Dəstəkli Optimizasiya</strong> oyunun qaydalarını dəyişir.</p>
+
+<h3>Çoxvariantlı (Multivariate) Dinamik Testlər</h3>
+<p>Süni intellekt artıq sadəcə A və B variantlarını deyil, eyni anda 100 fərqli mətn, şəkil və başlıq kombinasiyasını sınaqdan keçirir. Hər bir istifadəçiyə onun profilinə (coğrafiyası, əvvəlki maraqları) ən çox təsir edəcək vizualı seçib göstərir. Bu, <em>Dynamic Creative Optimization (DCO)</em> adlanır.</p>
+
+<h3>Avtomatik Büdcə Köçürmələri</h3>
+<p>Süni İntellekt bir neçə saatlıq testdən sonra hansı kombinasiyanın satışı artırdığını riyazi olaraq dəqiqləşdirir və insan müdaxiləsinə ehtiyac olmadan zəif variantları bağlayaraq bütün büdcəni "qalib" variantlara yönəldir.</p>
+
+<p>A/B testlərinə AI yanaşması, marketinq büdcəsinin boşa getməsinin qarşısını alan və ən qısa zamanda ən yüksək konversiyaya (Conversion Rate) çatmağı təmin edən mükəmməl vasitədir.</p>
+    `
+  },
+  {
+    id: 'cookieless-targeting-strategy',
+    title: 'Məlumat Məxfiliyi Dövründə (Cookieless) Hədəfləmə Strategiyası',
+    slug: 'cookieless-hedefleme-strategiyasi',
+    excerpt: 'Apple iOS yeniləmələri və Google-un Cookie-ləri məhdudlaşdırması fonunda reklamların düzgün şəxslərə necə çatdırılmasının sirrləri.',
+    cover_image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=70&w=600',
+    published: true,
+    created_at: new Date(Date.now() - 550000).toISOString(),
+    content: `
+<h2>Cookieless Dövrü: İzlənilməyən İstifadəçiləri Necə Tapmalı?</h2>
+<p>Qlobal səviyyədə məlumat məxfiliyinin (Privacy) ön plana çıxması (GDPR, iOS 14.5+ ATT, Google Chrome çərəz məhdudiyyətləri) rəqəmsal marketinq dünyasında böyük bir zəlzələ yaratdı. Artıq istifadəçiləri saytdan-sayta asanlıqla izləmək olmur. Bəs belə olan halda hədəfləmə (Targeting) necə həyata keçirilir?</p>
+
+<h3>Zero-Party Data və First-Party Data Əhəmiyyəti</h3>
+<p>Üçüncü tərəf (Third-party cookies) məlumatlarına güvənmək artıq tarixə qovuşur. Yeni dövrdə şirkətlər istifadəçiləri öz məlumatlarını "öz xoşları ilə" verməyə təşviq etməlidirlər. Bunun üçün bizneslər CRM sistemlərini çox güclü qurmalı, istifadəçilərə dəyər (pulsuz e-kitab, endirim kodu, maraqlı testlər) qarşılığında e-poçt və nömrə bazası toplamalıdır (First-party data).</p>
+
+<h3>Server-Side Tracking (Server Tərəfli İzləmə) və AI</h3>
+<p>Brauzerlərin qoyduğu məhdudiyyətləri aşmağın yeganə qanuni yolu məlumatların birbaşa Vebsayt Serverindən Reklam platformasına (Facebook Conversions API kimi) ötürülməsidir. Bundan əlavə, AI alqoritmləri əskik olan dataları böyük riyazi modellər əsasında (Modeling) təxmin edərək reklamın doğru şəxsə çatmasına kömək edir.</p>
+
+<p>Cookieless (Çərəzsiz) dövrdə uğur qazanmaq — güclü texniki infrastruktur (API-lər) və qüsursuz məzmun strategiyasının birbaşa vəhdətindən asılıdır.</p>
+    `
   }
 ];
