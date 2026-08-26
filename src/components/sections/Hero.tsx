@@ -193,8 +193,8 @@ export default function Hero() {
               </div>
             </motion.div>
             
-            {/* Active Ad Platform Card (Side by side on xl screens or stacked) */}
-            <div className="w-full max-w-xl">
+            {/* Active Ad Platform Card (Desktop Only) */}
+            <div className="w-full max-w-xl hidden md:block">
               <AdsPlatformCard activeId={activeAdPlatformId} />
             </div>
           </div>
@@ -238,6 +238,11 @@ export default function Hero() {
       {/* Ads Platforms Tabs (Sticky Bottom) */}
       <div className="relative mt-auto w-full px-4 md:px-8 lg:px-12 xl:px-20 z-50 pb-4 pt-4 bg-[#000a1a]/80 backdrop-blur-md border-t border-white/10 shadow-[0_-20px_40px_rgba(0,0,0,0.5)]">
         <AdsPlatformsTabs activeId={activeAdPlatformId} setActiveId={setActiveAdPlatformId} />
+        
+        {/* Active Ad Platform Card (Mobile Only) */}
+        <div className="w-full mt-4 md:hidden">
+          <AdsPlatformCard activeId={activeAdPlatformId} />
+        </div>
       </div>
     </section>
   );
