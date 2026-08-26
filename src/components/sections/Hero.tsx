@@ -77,14 +77,16 @@ export default function Hero() {
           >
             {content.hero_subtitle ? (
               <p className="text-lg md:text-xl lg:text-2xl font-light leading-relaxed text-white/70 flex items-center gap-4">
-                <span className="w-12 h-[2px] bg-gradient-to-r from-primary to-transparent opacity-70"></span>
+                <span className="w-8 md:w-12 h-[2px] bg-gradient-to-r from-transparent to-primary opacity-80 shrink-0 rounded-full"></span>
                 {content.hero_subtitle}
+                <span className="w-8 md:w-12 h-[2px] bg-gradient-to-r from-primary to-transparent opacity-80 shrink-0 rounded-full"></span>
               </p>
             ) : (
               <>
                 <h2 className="text-[1.15rem] md:text-xl lg:text-2xl font-light leading-relaxed text-white/70 mb-2 md:whitespace-nowrap flex items-center gap-4">
-                  <span className="w-8 md:w-12 h-[2px] bg-gradient-to-r from-primary to-transparent opacity-80 shrink-0 rounded-full"></span>
+                  <span className="w-8 md:w-12 h-[2px] bg-gradient-to-r from-transparent to-primary opacity-80 shrink-0 rounded-full"></span>
                   <span><span className="font-medium text-white">Rəqəmsal Marketinq</span> və <span className="font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Süni İntellektlə Avtomatlaşdırma</span> Mütəxəssisi.</span>
+                  <span className="w-8 md:w-12 h-[2px] bg-gradient-to-r from-primary to-transparent opacity-80 shrink-0 rounded-full"></span>
                 </h2>
                 <p className="text-base md:text-lg text-white/50 font-light leading-relaxed">
                   Şirkətlər üçün performansa əsaslanan innovativ marketinq və biznes avtomatlaşdırma strategiyaları.
