@@ -16,8 +16,8 @@ export default function Layout({ children }: LayoutProps) {
 
   if (isAdmin) {
     return (
-      <div className="layout-shell relative min-h-screen bg-[#09090b] text-white antialiased overflow-hidden flex">
-        <main className="relative flex-grow w-full h-screen overflow-hidden">{children}</main>
+      <div className="layout-shell relative min-h-screen bg-[#09090b] text-white antialiased flex">
+        <main className="relative flex-grow w-full">{children}</main>
       </div>
     );
   }
