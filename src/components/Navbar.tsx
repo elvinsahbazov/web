@@ -88,7 +88,7 @@ export default function Navbar() {
                 className="text-[12px] sm:text-base font-bold tracking-widest text-white whitespace-nowrap"
                 style={{ fontFamily: 'Satoshi, Inter, sans-serif' }}
               >
-                ELVİN ŞAHBAZOV
+                ELVIN SHAHBAZOV
               </span>
               <span className="text-primary text-[8.5px] sm:text-xs font-medium tracking-normal whitespace-nowrap">
                 / Digital Marketing & AI Automation Expert

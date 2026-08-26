@@ -68,7 +68,7 @@ export default function Hero() {
             variants={revealItem}
             className="font-satoshi mb-4 w-full text-[clamp(2.75rem,5vw,6rem)] font-black leading-[0.92] tracking-[-0.04em] text-white"
           >
-            ELVİN <span className="bg-gradient-to-r from-slate-200 via-white to-slate-400 bg-clip-text text-transparent">{content.hero_title_2 || 'ŞAHBAZOV'}</span>
+            ELVIN <span className="bg-gradient-to-r from-slate-200 via-white to-slate-400 bg-clip-text text-transparent">{content.hero_title_2 || 'SHAHBAZOV'}</span>
           </motion.h1>
 
           <motion.div
