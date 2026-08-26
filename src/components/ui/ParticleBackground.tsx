@@ -12,7 +12,7 @@ export const ParticleBackground = () => {
 
     let particlesArray: Particle[] = [];
     let animationFrameId: number;
-    let mouse = { x: null as number | null, y: null as number | null, radius: 150 };
+    const mouse = { x: null as number | null, y: null as number | null, radius: 150 };
 
     const handleResize = () => {
       canvas.width = window.innerWidth;
@@ -73,9 +73,9 @@ export const ParticleBackground = () => {
 
         // Mouse collision
         if (mouse.x != null && mouse.y != null) {
-          let dx = mouse.x - this.x;
-          let dy = mouse.y - this.y;
-          let distance = Math.sqrt(dx * dx + dy * dy);
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
           if (distance < mouse.radius + this.size) {
             if (mouse.x < this.x && this.x < canvas!.width - this.size * 10) {
               this.x += 1;
@@ -100,14 +100,14 @@ export const ParticleBackground = () => {
 
     const init = () => {
       particlesArray = [];
-      let numberOfParticles = (canvas.height * canvas.width) / 12000;
+      const numberOfParticles = (canvas.height * canvas.width) / 12000;
       for (let i = 0; i < numberOfParticles; i++) {
-        let size = (Math.random() * 2) + 0.5;
-        let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
-        let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-        let directionX = (Math.random() * 0.4) - 0.2;
-        let directionY = (Math.random() * 0.4) - 0.2;
-        let color = 'rgba(255,255,255,0.4)';
+        const size = (Math.random() * 2) + 0.5;
+        const x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+        const y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+        const directionX = (Math.random() * 0.4) - 0.2;
+        const directionY = (Math.random() * 0.4) - 0.2;
+        const color = 'rgba(255,255,255,0.4)';
         particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
       }
     };
@@ -116,7 +116,7 @@ export const ParticleBackground = () => {
       let opacityValue = 1;
       for (let a = 0; a < particlesArray.length; a++) {
         for (let b = a; b < particlesArray.length; b++) {
-          let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
+          const distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
             + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
           if (distance < (canvas.width / 7) * (canvas.height / 7)) {
             opacityValue = 1 - (distance / 20000);

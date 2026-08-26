@@ -42,10 +42,10 @@ export default class ErrorBoundary extends Component<Props, State> {
             onClick={() => {
               if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.getRegistrations().then((registrations) => {
-                  for (let registration of registrations) {
+                  for (const registration of registrations) {
                     registration.unregister();
                   }
-                  window.location.href = window.location.href;
+                  window.location.reload();
                 });
               } else {
                 window.location.reload();

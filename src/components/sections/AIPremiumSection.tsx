@@ -34,7 +34,7 @@ const aiCards = [
   },
 ];
 
-import { useMotionTemplate, useMotionValue, useTransform, useSpring } from 'framer-motion';
+
 
 function HoverCard({ card, i }: { card: any, i: number }) {
   const mouseX = useMotionValue(0);

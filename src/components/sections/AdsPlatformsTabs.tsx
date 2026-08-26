@@ -7,6 +7,7 @@ export type AdPlatform = {
   name: string;
   color: string;
   description: string;
+  icon: string;
 };
 
 export const adPlatforms: AdPlatform[] = [
@@ -14,77 +15,89 @@ export const adPlatforms: AdPlatform[] = [
     id: 'meta',
     name: 'Meta Ads',
     color: '#1877F2',
+    icon: 'fab fa-meta',
     description:
-      'Facebook, Instagram, WhatsApp və Threads ekosistemi vasitəsilə geniş kütləyə çatmaq. B2B/B2C retargeting, dəqiq demoqrafik hədəfləmə, WhatsApp API ilə avtomatlaşdırılmış satış və icma idarəetməsi.',
+      'Sadəcə "like" deyil, real satış gətirən kampaniyalar. Advantage+ və sınaqdan keçirilmiş strategiyalarla Facebook və Instagram-dan biznesinizə birbaşa müştəri axını, mürəkkəb retargeting və WhatsApp satış tunelləri qururuq.',
   },
   {
     id: 'google',
     name: 'Google Ads',
     color: '#4285F4',
+    icon: 'fab fa-google',
     description:
-      'Axtarış niyyəti olan isti müştəriləri (Search Intent) birbaşa satışa çevirmək. YouTube və Display (banner) reklamları ilə qlobal marka bilinirliyi yaratmaq və bütün veb ekosistemində güclü retargeting kampaniyaları qurmaq.',
+      'Rəqibə getmədən, məhz sizi axtaran "isti" müştəriləri ələ keçirin. Performance Max və Search kampaniyaları ilə Google, YouTube və tərəfdaş saytlarda anında görünürlük və yüksək dönüşüm (ROI) təmin edirik.',
   },
   {
     id: 'yandex',
     name: 'Yandex Direct',
     color: '#FC3F1D',
+    icon: 'fab fa-yandex',
     description:
-      'MDB və lokal bazarlarda axtarış sistemləri və partnyor şəbəkələri (RSY) vasitəsilə satışların artırılması.',
+      'MDB bazarı və alternativ axtarış motorlarında böyümək istəyənlər üçün ideal kanal. RSY şəbəkəsində rəqabətin daha az olduğu yerlərdə ucuz klik xərci (CPC) ilə geniş kütləyə çatıb birbaşa satışlar çıxarırıq.',
   },
   {
     id: 'vk',
     name: 'VK Ads',
     color: '#0077FF',
-    description: 'Rusdilli seqmentdə xüsusi alqoritmlərlə hədəflənmiş sosial media kampaniyaları.',
+    icon: 'fab fa-vk',
+    description:
+      'Rusiya və MDB ölkələrinə məhsul/xidmət satmaq üçün ən effektiv platforma. Dərin maraq seqmentasiyası və Lead-form reklamları ilə rusdilli auditoriyada satışlarınızı sürətləndiririk.',
   },
   {
     id: 'linkedin',
     name: 'LinkedIn Ads',
     color: '#0A66C2',
+    icon: 'fab fa-linkedin',
     description:
-      'B2B satışlar üçün peşəkar seqmentasiya. Vəzifə, sənaye və şirkət böyüklüyünə görə qərar vericilərə (Decision Makers) birbaşa çıxış.',
+      'B2B sektorunda "böyük balıqları" ovlamaq üçün tək ünvan. Şirkət adı, vəzifə və sənayeyə görə qərarverici şəxslərə (CEO, Direktorlar) birbaşa çıxış əldə edib rəsmi biznes əlaqələri (Lead) yaradırıq.',
   },
   {
     id: 'tiktok',
     name: 'TikTok Ads',
     color: '#00F2FE',
+    icon: 'fab fa-tiktok',
     description:
-      'Z nəsli və millennial auditoriya üçün viral video kampaniyalar. E-ticarət satışlarını artırmaq üçün yaradıcı formatlar.',
+      'Brendinizi darıxdırıcı olmaqdan xilas edin. Yüksək alıcılıq qabiliyyətinə malik gənc və dinamik auditoriyanı əyləndirərək alış-verişə məcbur edən aqressiv və viral qısa video reklam strategiyaları.',
   },
   {
     id: 'x',
     name: 'X (Twitter) Ads',
     color: '#1DA1F2',
+    icon: 'fab fa-x-twitter',
     description:
-      'Real vaxt trendlərinə uyğunlaşan kampaniyalar, müzakirələrə inteqrasiya və seqmentləşdirilmiş B2B/B2C kommunikasiyası.',
+      'Kütlənin diqqət mərkəzində və real-vaxt trendlərində olun. Xəbər, kripto, İT və Premium B2C/B2B kütləsini hədəfləyərək ən aktual müzakirələrdən birbaşa trafik və satış çəkirik.',
   },
   {
     id: 'microsoft',
     name: 'Microsoft Ads',
     color: '#00A4EF',
+    icon: 'fab fa-microsoft',
     description:
-      'Bing, Yahoo və DuckDuckGo istifadəçilərinə çatmaq. Daha yüksək alıcılıq qabiliyyətinə malik fərqli auditoriya.',
+      'Google-un səs-küyündən və rəqabətindən kənarda qalan gizli xəzinə. Bing və Yahoo istifadə edən, əsasən yaşlı, korporativ və alıcılıq qabiliyyəti yüksək seqmentə birbaşa hədəflənmə.',
   },
   {
     id: 'pinterest',
     name: 'Pinterest Ads',
     color: '#E60023',
+    icon: 'fab fa-pinterest',
     description:
-      'Vizual axtarış və alış-veriş niyyəti olan auditoriya üçün e-ticarət və kataloq reklamları.',
+      'E-ticarət və vizual məhsul satanlar üçün ilham mənbəyi. Məhsulunuzu birbaşa olaraq dizayn, geyim və ya "moodboard" axtaran müştərilərin qarşısına çıxararaq birbaşa səbətə yönləndiririk.',
   },
   {
     id: 'snapchat',
     name: 'Snapchat Ads',
     color: '#FFFC00',
+    icon: 'fab fa-snapchat',
     description:
-      'Gənc auditoriya üçün interaktiv AR (Artırılmış Reallıq) linzaları və video reklam formatları.',
+      'Xüsusilə Körfəz (Ərəbistan) və Avropa bazarlarında üstünlük təşkil edən, əyləncəni və sürətli istehlakı sevən kütlədən ucuz klik (CPC) və anında reaksiyalar (App Install/Satış) almaq üçün ideal platforma.',
   },
   {
     id: 'telegram',
     name: 'Telegram Ads',
     color: '#26A5E4',
+    icon: 'fab fa-telegram',
     description:
-      'Böyük qruplar və kanallar vasitəsilə spesifik maraq dairəsi olan kütlələrə kütləvi mesajlaşma və reklam.',
+      'Rəqiblərinizin oxucularını birbaşa özünüzə cəlb edin. Rəsmi Telegram reklamları vasitəsilə aidiyyəti biznes kanallarında sadə, lakin yüksək konversiyalı mesajlarla kütləvi müştəri axını yaradırıq.',
   },
 ];
 
@@ -138,9 +151,10 @@ export function AdsPlatformCard({ activeId }: { activeId: string }) {
             className="w-full"
           >
             <p
-              className="mb-3 text-base font-bold uppercase tracking-[0.1em]"
+              className="mb-3 text-base font-bold uppercase tracking-[0.1em] flex items-center gap-2.5"
               style={{ color: active.color }}
             >
+              <i className={`${active.icon} text-lg`} />
               {active.name}
             </p>
             <p className="text-sm leading-relaxed text-white/80 md:text-base min-h-[66px]">
@@ -190,7 +204,10 @@ export default function AdsPlatformsTabs({ activeId, setActiveId }: { activeId: 
               }`}
               style={isActive ? activePillStyle(platform.color) : undefined}
             >
-              {platform.name}
+              <span className="flex items-center gap-2">
+                <i className={platform.icon} style={{ color: isActive ? 'inherit' : platform.color }} />
+                {platform.name}
+              </span>
             </button>
           );
         })}
