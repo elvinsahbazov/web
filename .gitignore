@@ -22,5 +22,5 @@ dist-ssr
 *.sw?
 .env
 
-# Claude Code — personal overrides (permission choices, local plugin toggles)
+# Claude Code — per-developer permission choices, not shared
 .claude/settings.local.json
