@@ -21,3 +21,6 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Claude Code — personal overrides (permission choices, local plugin toggles)
+.claude/settings.local.json
